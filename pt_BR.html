@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-brands/css/uicons-brands.css'>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="icon" href=".icon/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="./icon/apple-touch-icon.png">
+    <title>OpenTune</title>
+</head>
+
+
+<body class="bg-white dark:bg-gray-900">
+    <header class="blur-bg shadow-lg sticky top-0 z-50 rounded-lg">
+        <style>
+            .blur-bg {
+                backdrop-filter: blur(10px);
+                background-color: rgba(17, 24, 39, 0.8);
+            }
+
+            .blur-bg-light {
+                backdrop-filter: blur(5px);
+                background-color: rgba(31, 41, 55, 0.7);
+            }
+        </style>
+        <nav class="border-gray-200 px-4 lg:px-6 py-4 ">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <a href="#" class="flex items-center">
+                    <img src="./icon/favicon.ico"
+                        class="mr-3 h-8 sm:h-10" alt="OpenTune Logo" />
+                        <span id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                        class="self-center text-2xl font-semibold whitespace-nowrap text-white">OpenTune &nbsp;<i
+                            class="fi fi-br-waveform-path"></i></span>
+                </a>
+                <!-- Dropdown menu -->
+                <div id="dropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="./PdP.html"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Política
+                                de Privacidade</a>
+                        </li>
+                        <li>
+                            <a href="https://forms.gle/TynrLxqa2Jq9dskr5"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acceso
+                                Beta</a>
+                        </li>
+                        <li>
+                            <a href="./contribuidores.html"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contribuidores</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Dropdown menu -->
+                <div class="flex absolute top-3 right-0">
+
+                    <button id="dropdown-button-2" data-dropdown-toggle="dropdown-search-city"
+                        class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                        type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
+                            <mask id="IconifyId18f58df65399e66ff0">
+                                <circle cx="256" cy="256" r="256" fill="#fff" />
+                            </mask>
+                            <g mask="url(#IconifyId18f58df65399e66ff0)">
+                                <path fill="#6da544" d="M0 0h512v512H0z" />
+                                <path fill="#ffda44" d="M256 100.2L467.5 256L256 411.8L44.5 256z" />
+                                <path fill="#eee"
+                                    d="M174.2 221a87 87 0 0 0-7.2 36.3l162 49.8a88.5 88.5 0 0 0 14.4-34c-40.6-65.3-119.7-80.3-169.1-52z" />
+                                <path fill="#0052b4"
+                                    d="M255.7 167a89 89 0 0 0-41.9 10.6a89 89 0 0 0-39.6 43.4a181.7 181.7 0 0 1 169.1 52.2a89 89 0 0 0-9-59.4a89 89 0 0 0-78.6-46.8M212 250.5a149 149 0 0 0-45 6.8a89 89 0 0 0 10.5 40.9a89 89 0 0 0 120.6 36.2a89 89 0 0 0 30.7-27.3A151 151 0 0 0 212 250.5" />
+                            </g>
+                        </svg>
+                        &nbsp;Brasil (PR) <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg></button>
+                    <div id="dropdown-search-city"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button-2">
+                            <li>
+                                <a href="./index.html"><button type="button"
+                                        class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">
+                                        <div class="inline-flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                viewBox="0 0 64 64">
+                                                <rect width="64" height="64" fill="none" />
+                                                <path fill="#ed4c5c"
+                                                    d="M62 32c0-13.1-8.3-24.2-20-28.3v56.6C53.7 56.2 62 45.1 62 32" />
+                                                <path fill="#75a843"
+                                                    d="M2 32c0 13.1 8.4 24.2 20 28.3V3.7C10.4 7.8 2 18.9 2 32" />
+                                                <path fill="#fff"
+                                                    d="M42 3.7C38.9 2.6 35.5 2 32 2s-6.9.6-10 1.7v56.6c3.1 1.1 6.5 1.7 10 1.7s6.9-.6 10-1.7z" />
+                                                <path fill="#75a843"
+                                                    d="M40.7 31.7c-.1-.3-.2.1-.2.2c0-.3-.1-.5-.3-.8c-.3.3-.4.7-.4 1.1c-.1-.3-.2-.6-.5-.7c.2.3.1.5.1.8c0 .4.3.7.3 1.1c0 .4-.2.7-.5 1v-.3c-1 .4-.8.9-.8 1.8s-.5.7-1.1 1.2c.1-.2.1-.5 0-.7c0 .6-.8.6-.9 1.1c-.1.2 0 .6-.3.7c-.2.1-.5.3-.5.5c-.2-.1-.4-.1-.7-.1c.1-.1.2-.1.3-.2c-1-.5-1.3.6-2.2.7c-.3 0-1-.4-1 0c.9 0 1.3.8 2 .8c.6 0 1.1-.5 1.7-.5c-.1 0-.4-.2-.7-.2c.5-.3.8-.9 1.4-.9c1 0 1.5-.2 1.8-1.2c-.1 0-.2 0-.3.1c0-.4.4-.9.8-1.1c1-.2.9-1 1.5-1.7c-.2 0-.4.1-.6.3c0-.6-.1-1.2.4-1.6c1-.5.9-.7.7-1.4m-17.4 0c-.2.8-.3 1 .5 1.5c.6.4.4 1 .4 1.6c-.2-.2-.3-.3-.6-.3c.6.6.5 1.5 1.5 1.7c.3.2.8.7.8 1.1c-.1 0-.2-.1-.3-.1c.3 1 .8 1.2 1.8 1.2c.6 0 .9.6 1.4.9c-.3 0-.6.1-.7.2c.6 0 1.1.6 1.7.5c.7 0 1.2-.8 2-.8c0-.4-.7 0-1 0c-.8-.2-1.1-1.2-2.2-.8c.1.1.2.2.3.2c-.2 0-.5-.1-.7.1c-.1-.2-.3-.4-.5-.5c-.2-.2-.2-.5-.3-.7c-.2-.5-.9-.6-.9-1.1c-.1.2-.1.5 0 .7c-.6-.5-1.1-.3-1.1-1.2c0-.8.2-1.4-.8-1.8v.3c-.3-.3-.5-.5-.5-1c0-.4.4-.7.3-1.1c0-.3-.1-.5.1-.8c-.3.1-.4.4-.5.7c0-.4-.1-.8-.4-1.1c-.1.2-.2.5-.3.8c.1-.2 0-.5 0-.2m2.3 5" />
+                                                <path fill="#428bc1"
+                                                    d="M34.7 37.7c-.2 0-.3-.2-.4-.3c0-.2.8-.4.9-.4v-.2c-1.3.4-5.2.7-6-.7c-.4.6-1.1.2-1.8-.3c.1.2.5 1.2.5 1.1c.2.1 1.5.4 1.5.7l-.3.3c2.1.7 3.4.9 5.6-.2" />
+                                                <path fill="#ed4c5c"
+                                                    d="M33.4 37.7c.1-.1.1-.2.1-.4l-.1-.3c.2-.2 0-.7-.3-.6c-.2.1-.1.1-.3 0c-.1 0-.1-.1-.2-.1h-1.8c-.2 0-.2-.1-.4-.1c-.2-.1-.3.1-.4.2c0 .2.1.2.1.3c0 .1-.1.2-.1.4s.1.3.2.4c-.4.3 0 .8.4.5c.1.2.4.2.7.2h1.1c.2 0 .6.1.7-.2c.3.5.7-.1.3-.3" />
+                                                <path fill="#428bc1"
+                                                    d="M36.6 35.1c-.8-1-1.2.5-2.1.4c.2-1.2-1.6-.8-2.1-.5c.1-.1.2-.3.3-.5c-.4 0-.9.2-1.2-.1c-.6-.4-1.4-.6-1.9.1c-.4-.6-1.5-1.2-2.1-.6c0-.6-.6-1.5-1.3-1.4c-.8.1-.5 1.1-.1 1.5c.3.3.7.4 1.1.4c0 .2.1.3.2.4c.5.4 1.5.5 2 .1c0 1 2 1 2.5.5c-.2.5-.4 1.5.3 1.5c.6 0 .4-.6.9-.8c.4-.2.9-.3 1.3-.1c.7.4 2.9.3 2.2-.9" />
+                                                <g fill="#75a843">
+                                                    <path
+                                                        d="M28.4 32.6c-.1-.2-.3-.4-.3-.4c-.4.1-.4-.2-.5-.5c-.1-.5-.8-.7-.8-1.1c0-.4.4-.8.1-1.2c-.3-.4-.8-.6-.8-.4c-.1.2.4.2.4.7c0 .6-.6 1.1.1 1.6c.4.6.4 1.7 1.1 1.7c.3 0 .6-.1.7-.4" />
+                                                    <path
+                                                        d="M29.9 32.1c-.2-.4 0-1-.4-1.3c-.5-.4-1.5.4-1.6-.6c0-.2 1.1-1.4 1.3-1.5c.3-.4.2-1.1-.1-1.3c-.4-.2-.5 0-.8.4c.1.1.5.3.5.4c-.3.7-1.2.8-1.4 1.5c-.2.5-.1 1.3.4 1.6c.3.2.5.2.8.2c.9-.1.4.1.5.3c0 .2.3.9.8.3m-3-4.9c0 .6.6.5 1 .4c0-.2 0-.4.1-.6c-.2.1-.5.1-.6 0c-.3-.2.7-.6.6-.6c0 0-1 .5-.6-.1c.1-.2.3-.4.4-.6c.1-.2-.3 0-.3 0c-.1 0-.2 0-.3.1c-.6.5-.4.8-.3 1.4" />
+                                                </g>
+                                                <path fill="#89664c"
+                                                    d="M37.5 27.2c-.5-.7-2.4-3-5.1-3.2c-.3 0-1.1.3-1.4.4c-.9.6 1 1.1 1.1 1.5c0 .2.1.3.1.5c-.3-.5-.6-.8-.7-1c-.5.2-1.3-.1-1.4-.6c-.1.2-.1.3-.3.5c0-.3-.1-.3-.2-.5c0 .3 0 .7-.3.8c.1-.2 0-.4-.1-.6c0 .3 0 .5-.2.7c.1-.2-.1-.3-.1-.5c-.1.8-1.2 1.1-.1 1.4c.4.1.6 0 1 .2c.1.1.3.3.3.2c0 .1-.4.5-.1.6c-.1.1-.4.7-.4.7c.3 0 .1.2-.1.4c-.3.5 0 1 .1 1.6c0-.2.3.1.3.4c0 .4.4.6.5.9c-.5-.5-.6 0 0 .3c-.5 0-.6.3-.1.5c-1.2 0-.2.5 0 .6c.8.2 1.4-.4 1.4-.5c0 0 1.6 1.6 1.7 1.6c.1 0 .9-.4 1.1-.2c.2.3.4 0 .6.1c.2.2 1 0 1.2-.1c.1 0 1.1-.2.9-.4c-.5-.4-1.1-.8-1.6-1.2c-.5-.4-1-.7-1.4-1.1c-.2-.2-.2-.6-.3-.9c.9.9 1.8 1.4 1.7-.3c.6.5 1.8 3.3 1.9 3.3c.3 0 0-3 0-3.3c.4.4.4 3.7.5 3.7c.5.1 1.2-4.3-.5-6.5" />
+                                                <path fill="#ffce31"
+                                                    d="M30.3 32.3c-.1 0-.6-.7-.6-.8c.3 1.2-.9.5-.6 0c-.4-.1-1.4.5-1 1.1c-.2.4 1.4.1 1.5-.1c.4.9 1.4-.1.7-.2m4.7 3c.5-.7-1.6-.9-1.4-1.7c-.3.2-.7.9-1.1.7c-.2-.1-1 .4-.6.7c0-.4.2-.1.5-.2c-.1.3-.4.6.1.8c-.2-.6.6-.3.5-.6c-.2-.2.7-.2.8-.2c.3 0 1.3.3.9.6c0 0 .2 0 .3-.1m-6.7-8.6c-.1.2-.5.5-.5.8c0 .2.5.7.7.4c-.6-.4.1-.7.4-.7c.1 0 .1.2.1.2c.1.1.9-.2.8-.4c.1-.4-1.2-.4-1.5-.3m0 0" />
+                                            </svg>
+                                            &nbsp; Spanish
+                                        </div>
+                                    </button></a>
+                            </li>
+                            <li>
+                                <a href="./en.html"><button type="button"
+                                        class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">
+                                        <div class="inline-flex items-center">
+                                            <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full me-2"
+                                                xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
+                                                viewBox="0 0 512 512">
+                                                <g fill-rule="evenodd">
+                                                    <g stroke-width="1pt">
+                                                        <path fill="#bd3d44"
+                                                            d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                                            transform="scale(3.9385)" />
+                                                        <path fill="#fff"
+                                                            d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                                                            transform="scale(3.9385)" />
+                                                    </g>
+                                                    <path fill="#192f5d" d="M0 0h98.8v70H0z"
+                                                        transform="scale(3.9385)" />
+                                                    <path fill="#fff"
+                                                        d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
+                                                        transform="scale(3.9385)" />
+                                                </g>
+                                            </svg>
+                                            English
+                                        </div>
+                                    </button></a>
+                            </li>
+                            <li>
+                                <a href="./pt_BR.html"><button type="button"
+                                        class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        role="menuitem">
+                                        <div class="inline-flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                viewBox="0 0 512 512">
+                                                <mask id="IconifyId18f58df65399e66ff0">
+                                                    <circle cx="256" cy="256" r="256" fill="#fff" />
+                                                </mask>
+                                                <g mask="url(#IconifyId18f58df65399e66ff0)">
+                                                    <path fill="#6da544" d="M0 0h512v512H0z" />
+                                                    <path fill="#ffda44" d="M256 100.2L467.5 256L256 411.8L44.5 256z" />
+                                                    <path fill="#eee"
+                                                        d="M174.2 221a87 87 0 0 0-7.2 36.3l162 49.8a88.5 88.5 0 0 0 14.4-34c-40.6-65.3-119.7-80.3-169.1-52z" />
+                                                    <path fill="#0052b4"
+                                                        d="M255.7 167a89 89 0 0 0-41.9 10.6a89 89 0 0 0-39.6 43.4a181.7 181.7 0 0 1 169.1 52.2a89 89 0 0 0-9-59.4a89 89 0 0 0-78.6-46.8M212 250.5a149 149 0 0 0-45 6.8a89 89 0 0 0 10.5 40.9a89 89 0 0 0 120.6 36.2a89 89 0 0 0 30.7-27.3A151 151 0 0 0 212 250.5" />
+                                                </g>
+                                            </svg>
+                                            &nbsp;Brasil (PR)
+                                        </div>
+                                    </button></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <center>
+
+
+        <br>
+        <br>
+        <br>
+
+        <div id="toast-success"
+            class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+            role="alert">
+            <div
+                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                </svg>
+                <span class="sr-only">Check icon</span>
+            </div>
+            <div class="ms-3 text-sm font-normal">Boa Notícia! . Chegou a versão 1.1.0 do OpenTune</div>
+            <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                data-dismiss-target="#toast-success" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
+        <section class="bg-white dark:bg-gray-900">
+            <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+                <div class="mr-auto place-self-center lg:col-span-7">
+                    <center>
+                        <h1
+                            class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                            OpenTune <i class="fi fi-br-waveform-path"></i></h1>
+                    </center>
+                    <p
+                        class="max-w-3xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-x2 text3xl text-gray-400">
+                        Um client do Youtube Music com Material Design 3, para Android
+
+                        <br>
+                        <center>
+                            <span id="badge-dismiss-purple"
+                                class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-purple-800 bg-purple-100 rounded dark:bg-purple-900 dark:text-purple-300">
+                                Open Source ⭐
+                                <button type="button"
+                                    class="inline-flex items-center p-1 ms-2 text-sm text-purple-400 bg-transparent rounded-sm hover:bg-purple-200 hover:text-purple-900 dark:hover:bg-purple-800 dark:hover:text-purple-300"
+                                    data-dismiss-target="#badge-dismiss-purple" aria-label="Remove">
+                                    <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Remove badge</span>
+                                </button>
+                            </span>
+                            <br>
+                            <br>
+
+                        </center>
+                    </p>
+                    <a href="#downloadapk"
+                        class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                        Descargar
+                    </a>
+                </div>
+                <!-- Style -->
+
+                <style>
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                        }
+
+                        to {
+                            opacity: 1;
+                        }
+                    }
+
+                    .fade-in {
+                        animation: fadeIn 4s ease-in-out;
+                    }
+                </style>
+
+                <!-- Style -->
+
+
+
+
+                <div class="lg:mt-0 lg:col-span-5 lg:flex fade-in">
+                    <img src="./img/mock.png" alt="mockup" class="w-full h-auto max-w-xl mx-auto ">
+                </div>
+                <div
+                class="absolute inset-0 m-auto max-w-xs h-[357px] blur-[118px] sm:max-w-md md:max-w-lg"
+                style="
+                  background: linear-gradient(
+                    106.89deg,
+                    rgba(192, 132, 252, 0.11) 15.73%,
+                    rgba(14, 165, 233, 0.41) 15.74%,
+                    rgba(232, 121, 249, 0.26) 56.49%,
+                    rgba(79, 70, 229, 0.4) 115.91%
+                  );
+                "
+              ></div>
+            </div>
+        </section>
+        <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+        <br>
+        <center>
+            <h1 id="bodpr"
+                class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                Características <i class="fi fi-sr-star-shooting"></i></h1>
+        </center>
+
+        <br>
+        <br>
+
+
+        <center>
+
+            <br>
+            <br>
+            <div class="container mx-auto p-6">
+                <a
+                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-music mr-2"></i>Client do YouTube Music com Material Design 3</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Descubra a experiência definitiva do YouTube Music no Android com nossa aplicação desenhada
+                        meticulosamente, com os princípios do Material Design 3. Esta aplicação lhe ofrece uma interface
+                        elegante, intuitiva e moderna, otimizada para proporcionar uma experiência de usuario
+                        excepcional e funcionalidade avançada.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-palette mr-2"></i>Design moderno e atrativo</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        A aplicação se destaca por seu design baseado no Material Design 3, que garante uma interface
+                        visualmente harmoniosa, com transições suaves e uma disposição de elementos que segue os padrões
+                        de design mais atuais da Google. Cores vivas e tipografias modernas, cuidadosamente selecionadas
+                        para providenciar uma experiência estética e atrativa.
+                    </p>
+                </a>
+
+                <a h
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-cogs mr-2"></i>Interface Intuitiva e Personalizável</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Navegue facilmente através de uma interface simplificada que permite um acceso rápido à todas as
+                        funções do YouTube Music. Personalize sua experiência, ajustando temas e configurações de
+                        visualização seguindo suas preferências.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-search mr-2"></i>Explore e Descubra Músicas</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Acesse um vasto catálogo de músicas, desde os últimos lançamentos, até seus clássicos favoritos.
+                        Utilize a função de pesquisa avançada para encontrar canções, álbuns e artistas rápidamente, con
+                        sugestões inteligentes baseadas em suas prefêrencias e hábitos de escuta.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-volume-up mr-2"></i>Reprodução de Alta Qualidade</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Desfrute a sua música com uma qualidade de som excepcional, otimizada para diferentes
+                        dispositivos e condiçõnes de rede. A aplicação suporta diferentes formatos de audio e
+                        configurações de qualidade para se adaptar às suas necesidades.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-list-ul mr-2"></i>Listas de Reproduções e Downloads</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Crie, edite e organize suas listas de reprodução de maneira simples, para ter suas músicas
+                        favoritas sempre em mãos. Baixe canções e albuns completos para escutar sem conexão, ideal para
+                        momentos em que uma conexão com a internet não está disponível.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-sync mr-2"></i>Integração Completa com o YouTube Music</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Sincronize sua conta do YouTube Music para acessar as suas bibliotecas de música, listas de
+                        reprodução e recomendações personalizadas. Receba notificações sobre novos lançamentos,
+                        concertos e eventos de seus artistas favoritos.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-tools mr-2"></i>Funcionalidades Avançadas</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Controle a reprodução com comandos de voz, gestos e controles na tela, para uma experiência com
+                        mãos livres e conveniente. Aproveite o suporte para dispositivos Chromecast e Bluetooth,
+                        permitindo transmitir sua música para uma ampla gama de dispositivos externos.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-folder-open mr-2"></i>Gestão Eficiente da Biblioteca</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Organize e gerencie sua biblioteca de música com ferramentas avançadas de filtragem e
+                        categorização. Acesse rapidamente suas canções recentes, albuns guardados e listas de reprodução
+                        mais populares.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-language mr-2"></i>Soporte Multilingue</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        Desfrute da aplição em multiplos idiomas, com suporte para traduções precisas e localização
+                        culturalmente relevante.
+                    </p>
+                </a>
+
+                <a
+                    class="block max-w-sm p-6 mt-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                            class="fas fa-sync-alt mr-2"></i>Atualizações e Melhorias Contínuas</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400">
+                        A aplicação é atualizada regularmente para incorporar novas funções, melhorar a segurança e
+                        otimizar o desempenho, garantizando sempre a melhor experiência posível.
+                    </p>
+                </a>
+            </div>
+
+
+
+            <ul
+                class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Reproduza
+                    canções do YT/YT Music sem anúncios
+                </li>
+
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Reprodução em segundo plano
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Busque canções, vídeos,
+                    álbuns e listas de reprodução do YouTube Music
+                </li>
+
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Gestão de biblioteca
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Armazenar em cache e
+                    baixar canções para reproduzir sem conexão
+
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Letras sincronizadas
+
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Tradutor de letras
+                    (experimental)
+
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Ajuste o tempo/tom
+
+                </li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Tema dinâmico
+
+                </li>
+                <li class="w-full px-4 py-2 rounded-b-lg">Suporte para início de sessão
+                </li>
+            </ul>
+
+
+            <br>
+            <br>
+
+            <center>
+                <h1 id="bodpr"
+                    class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                    Sponsor <i class="fi fi-sr-hand-holding-heart"></i></h1>
+            </center>
+
+            <br>
+            <br>
+
+            <br>
+            <br>
+
+            <a href="https://www.buymeacoffee.com/ArturoCervantes"><img
+                    src="https://img.buymeacoffee.com/button-api/?text=Sponsor me&emoji=❤️&slug=ArturoCervantes&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
+            <br>
+            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+
+            </div>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div class="grid gap-4">
+
+                </div>
+            </div>
+
+            <br>
+
+
+            <!-- Gallery -->
+
+
+            <style>
+                .carousel-image {
+                    width: calc(50vw - 20px);
+                    /* Ancho dinámico: mitad del viewport menos márgenes */
+                    height: calc((50vw - 20px) * (2460 / 1080));
+                    /* Altura proporcional */
+                    max-width: 300px;
+                    /* Máximo ancho de imagen */
+                    max-height: calc(300px * (2460 / 1080));
+                    /* Máxima altura de imagen */
+                    transition: transform 0.5s ease-in-out;
+                    /* Transición suave */
+                }
+
+                @media (min-width: 768px) {
+                    .carousel-image {
+                        width: 200px;
+                        /* Ancho fijo en pantallas más grandes */
+                        height: calc(200px * (2460 / 1080));
+                        /* Altura proporcional */
+                    }
+                }
+
+                @media (min-width: 1024px) {
+                    .carousel-image {
+                        width: 300px;
+                        /* Ancho más grande en pantallas grandes */
+                        height: calc(300px * (2460 / 1080));
+                        /* Altura proporcional */
+                    }
+                }
+
+                .carousel-container {
+                    width: 100vw;
+                    /* Ancho del contenedor para toda la pantalla */
+                    max-width: 1200px;
+                    /* Ancho máximo */
+                    overflow: hidden;
+                    /* Ocultar desbordamiento */
+                }
+
+                .carousel-image:hover {
+                    transform: scale(1.05);
+                    /* Agranda ligeramente la imagen al pasar el cursor */
+                }
+            </style>
+
+
+            <div id="carouselExample" class="relative carousel-container mx-auto">
+                <div class="flex gap-x-4 transition-transform duration-700 ease-in-out">
+                    <!-- Slides -->
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/10.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/11.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/1.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/2.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/3.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/4.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/5.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/6.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/7.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/8.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/9.webp');"></div>
+
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/12.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/13.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/14.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/15.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/16.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/17.webp');"></div>
+                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
+                        style="background-image: url('/img/18.webp');"></div>
+                </div>
+
+                <!-- Controls -->
+                <button id="prev"
+                    class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">
+                    &#10094;
+                </button>
+                <button id="next"
+                    class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">
+                    &#10095;
+                </button>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const carousel = document.querySelector('#carouselExample .flex');
+                    const images = document.querySelectorAll('.carousel-image');
+                    const imageWidth = images[0].offsetWidth; // Obtiene el ancho de la imagen
+                    const visibleImages = 2; // Número de imágenes visibles al mismo tiempo
+                    const gap = 16; // Espacio entre imágenes (gap-x-4)
+                    let index = 0;
+                    let startX = 0;
+                    let endX = 0;
+
+                    document.getElementById('next').addEventListener('click', () => {
+                        if (index < images.length - visibleImages) {
+                            index++;
+                            carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+                        }
+                    });
+
+                    document.getElementById('prev').addEventListener('click', () => {
+                        if (index > 0) {
+                            index--;
+                            carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+                        }
+                    });
+
+                    // Detección del gesto de deslizamiento (swipe)
+                    carousel.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                    });
+
+                    carousel.addEventListener('touchend', (e) => {
+                        endX = e.changedTouches[0].clientX;
+                        handleSwipe();
+                    });
+
+                    function handleSwipe() {
+                        const swipeDistance = startX - endX;
+                        const minSwipeDistance = 50; // Distancia mínima para considerar un gesto de deslizamiento
+
+                        if (swipeDistance > minSwipeDistance) {
+                            // Swipe hacia la izquierda (siguiente imagen)
+                            if (index < images.length - visibleImages) {
+                                index++;
+                                carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+                            }
+                        } else if (swipeDistance < -minSwipeDistance) {
+                            // Swipe hacia la derecha (imagen anterior)
+                            if (index > 0) {
+                                index--;
+                                carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            <!-- FIN Gallery -->
+
+            <br>
+            <br>
+
+            <a
+                class="block max-w-sm p-6 bg-white border border-red-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-red-700 dark:hover:bg-gray-700">
+
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                        class="fi fi-sr-diamond-exclamation"></i> Aviso: </h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Se o OpenTune não funcionar, é possível que
+                    seja necessário a ativação do Proxy 🔓, já que o OpenTune não funciona em alguns países.
+
+                    <br>
+                    Introduza o seguinte Proxy para o OpenTune funcionar corretamente:
+                </p>
+                <br>
+
+                <div class="grid grid-cols-8 gap-2 w-full max-w-[23rem]">
+                    <label for="npm-install" class="sr-only">Label</label>
+                    <input id="npm-install" type="text"
+                        class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="186.96.50.113:999" disabled readonly>
+                    <button data-copy-to-clipboard-target="npm-install"
+                        class="col-span-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
+                        <span id="default-message">Copiar</span>
+                        <span id="success-message" class="hidden inline-flex items-center">
+                            <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                            </svg>
+                            Copied!
+                        </span>
+                    </button>
+                </div>
+
+            </a>
+
+            <hr id="downloadapk" class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+
+
+            <br>
+            <span
+                class="whitespace-nowrap rounded-full bg-purple-100 text-2xl font-extrabold px-2.5 py-0.5 text-sm text-purple-700">
+                Baixar <i class="fi fi-sr-file-download"></i>
+            </span>
+            <br>
+            <br>
+            <span
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">Versão
+                estável</span>
+            <br>
+            <br>
+
+            <a
+                class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                        class="fi fi-brands-android"></i></h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Baixe a Versão para
+                    Android <strong>(APK)</strong> do OpenTune sem erros ou bugs. <br>
+                    <!-- <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">Cambios:
+                                            <br>
+                                            <br>
+                                            - rediseño el icono de casa en la barra de busqueda
+                                            <br>
+                                            - Se añadio tarjetas con informacion importante 
+                                        </span> -->
+                    <br>
+
+                </p>
+
+            </a>
+            <br>
+
+            <a href="https://github.com/Arturo254/InnerTune/releases/download/1.1.0/app-foss-release.apk"><button
+                    type="button"
+                    class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"
+                    onclick="showPopup()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.71em" height="1em" viewBox="0 0 256 150">
+                        <path fill="#34a853"
+                            d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.119 128.119 0 0 0-12.794-38.288a128.778 128.778 0 0 0-23.45-31.86a129.166 129.166 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386a11.776 11.776 0 0 0 .662-10.484a11.668 11.668 0 0 0-4.823-5.536a11.85 11.85 0 0 0-5.004-1.61a11.963 11.963 0 0 0-2.218.018a11.738 11.738 0 0 0-8.968 5.798c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467c-.392-.157-.78-.313-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119.434 119.434 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915.27 3915.27 0 0 1-5.439-9.386A11.736 11.736 0 0 0 48.5.048a11.71 11.71 0 0 0-5.01 1.612a11.716 11.716 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.808 11.808 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973.32 3973.32 0 0 1 5.439 9.386c2.53 4.357 5.054 8.713 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129.184 129.184 0 0 0 45.32 64.38a129.693 129.693 0 0 0-22.2 24.015a127.737 127.737 0 0 0-9.34 15.24a128.238 128.238 0 0 0-10.843 28.764a130.743 130.743 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A124.978 124.978 0 0 0 0 149.118h256a130.44 130.44 0 0 0-.734-5.636z" />
+                        <path fill="#202124"
+                            d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" />
+                    </svg>
+                    &nbsp; Baixar
+                </button>
+
+                <br>
+                <br>
+
+                <div id="popup" class="hidden space-y-5">
+                    <div class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 dark:bg-teal-800/30" role="alert">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <span
+                                    class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
+                                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z">
+                                        </path>
+                                        <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="ms-3">
+                                <h3 class="text-gray-800 font-semibold dark:text-white">
+                                    Atualizado com sucesso!.
+                                </h3>
+                                <p class="text-sm text-gray-700 dark:text-gray-400">
+                                    Obrigado por atualizar para a última versão <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="3em" height="3em" viewBox="0 0 24 24">
+                                        <rect width="24" height="24" fill="none" />
+                                        <path fill="none" stroke="#ffdd00" stroke-dasharray="32" stroke-dashoffset="32"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16">
+                                            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s"
+                                                values="32;0" />
+                                            <animate attributeName="d" dur="1.7s" repeatCount="indefinite"
+                                                values="M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16;M12 7L10.82 10.38L7.24 10.45L10.1 12.62L9.06 16.05L12 14M12 7L13.18 10.38L16.76 10.45L13.9 12.62L14.94 16.05L12 14;M12 3L9.65 8.76L3.44 9.22L8.2 13.24L6.71 19.28L12 16M12 3L14.35 8.76L20.56 9.22L15.8 13.24L17.29 19.28L12 16" />
+                                        </path>
+                                    </svg>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function showPopup() {
+                        const popup = document.getElementById("popup");
+                        popup.classList.remove("hidden");
+                        setTimeout(function () {
+                            popup.classList.add("hidden");
+                        }, 6000);
+                    }
+                </script>
+            </a>
+
+
+
+        </center>
+
+        <br>
+        <br>
+
+        <br>
+        <span
+            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Versão
+            Beta</span>
+        <br>
+        <br>
+
+        <a
+            class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
+                    class="fi fi-brands-android"></i></h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Baixe a versão para Android
+                <strong>(APK)</strong> do OpenTune com funções e Características experimentais
+            </p>
+
+        </a>
+        <br>
+        <div style="max-width: 600px; margin: 0 auto; padding: 10px;" class="bg-yellow-50 border border-yellow-200 text-sm text-yellow-800 rounded-lg p-4 dark:bg-yellow-800/10 dark:border-yellow-900 dark:text-yellow-500"
+            role="alert">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="flex-shrink-0 size-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                    </svg>
+                </div>
+                <div class="ms-4">
+                    <h3 class="text-sm font-semibold">
+                        IMPORTANTE
+                    </h3>
+                    <div class="mt-1 text-sm text-yellow-700">
+                        Esta é uma versão beta do OpenTune. Se tiver problemas com o aplocativo, por favor reporta-los
+                        no
+                        repositório do GitHub. <a href="https://github.com/Arturo254/OpenTune/issues"
+                            class="font-semibold underline">Reportar um problema</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <a href="https://github.com/Arturo254/OpenTune/releases/download/0.8.3/app-foss-release-0.8.3.Beta.apk"><button
+                type="button"
+                class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.71em" height="1em" viewBox="0 0 256 150">
+                    <path fill="#34a853"
+                        d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.119 128.119 0 0 0-12.794-38.288a128.778 128.778 0 0 0-23.45-31.86a129.166 129.166 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386a11.776 11.776 0 0 0 .662-10.484a11.668 11.668 0 0 0-4.823-5.536a11.85 11.85 0 0 0-5.004-1.61a11.963 11.963 0 0 0-2.218.018a11.738 11.738 0 0 0-8.968 5.798c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467c-.392-.157-.78-.313-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119.434 119.434 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915.27 3915.27 0 0 1-5.439-9.386A11.736 11.736 0 0 0 48.5.048a11.71 11.71 0 0 0-5.01 1.612a11.716 11.716 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.808 11.808 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973.32 3973.32 0 0 1 5.439 9.386c2.53 4.357 5.054 8.713 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129.184 129.184 0 0 0 45.32 64.38a129.693 129.693 0 0 0-22.2 24.015a127.737 127.737 0 0 0-9.34 15.24a128.238 128.238 0 0 0-10.843 28.764a130.743 130.743 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A124.978 124.978 0 0 0 0 149.118h256a130.44 130.44 0 0 0-.734-5.636z" />
+                    <path fill="#202124"
+                        d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" />
+                </svg>
+                &nbsp; Baixar </button>
+        </a>
+
+
+
+    </center>
+    <br>
+    <br>
+
+    <center>
+
+
+
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <a>
+                <img class="rounded-t-lg" src="/./img/translate.jpeg" alt="" />
+            </a>
+            <div class="p-5">
+                <a>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Deseas Traducir
+                        OpenTune?</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Clique para começar a contribuir om a
+                    rdução do OpenTune.</p lauguage-picker>
+                </p>
+                <a href="https://forms.gle/xuUdaJP12SZ2owPV9"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Traducir
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+            
+    </center>
+
+
+    </center>
+
+
+    <!-- Footer -->
+
+
+    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="./index.html" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="./icon/favicon.ico"
+                        class="h-8" alt="Flowbite Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OpenTune</span>
+                </a>
+                <ul
+                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="https://github.com/Arturo254/" class="hover:underline me-4 md:me-6">Dev</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Arturo254/OpenTune" class="hover:underline me-4 md:me-6">Código do
+                            Projeto</a>
+                    </li>
+                    <li>
+                        <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE"
+                            class="hover:underline me-4 md:me-6">Licensa</a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/5576847925" class="hover:underline">Contato</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
+                    href="https://flowbite.com/" class="hover:underline">Arturo.inc™</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+
+    <!-- Fin Footer -->
+</body>
+
+</html>
