@@ -177,23 +177,24 @@
             padding: 0;
             /* Elimina padding para una mejor alineación */
         }
+
         .div-gradient-bottom {
-  position: relative;
-  background: linear-gradient(to bottom, transparent, rgba(17, 24, 39, 0.9));
-  padding-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
+            position: relative;
+            background: linear-gradient(to bottom, transparent, rgba(17, 24, 39, 0.9));
+            padding-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
 
-.gradient-bottom {
-  position: relative;
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-  padding-bottom: 50px; /* Ajusta el padding según sea necesario */
-}
+        .gradient-bottom {
+            position: relative;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+            padding-bottom: 50px;
+            /* Ajusta el padding según sea necesario */
+        }
 
-.shadow-bottom {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
+        .shadow-bottom {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
     </style>
     <header class="blur-bg shadow-lg sticky top-0 z-50 rounded-lg">
         <nav class="border-gray-200 px-4 lg:px-6 py-4">
@@ -392,93 +393,82 @@
             </button>
         </div>
         <section
-            class="m-auto flex max-w-screen-2xl grow flex-col justify-center  lg:flex-row dark:text-gray-400 dark:bg-gray-800">
-            <div class="relative bg-white dark:bg-gray-900">
+            class="m-auto flex max-w-screen-2xl grow flex-col justify-center lg:flex-row bg-white dark:bg-gray-900">
+            <div class="relative bg-white dark:bg-gray-900 ">
                 <!-- Blur background -->
                 <div class="absolute inset-0 m-auto max-w-xs h-[357px] blur-[118px] sm:max-w-md md:max-w-lg" style="
-                  background: linear-gradient(
-                    106.89deg,
-                    rgba(192, 132, 252, 0.11) 15.73%,
-                    rgba(14, 165, 233, 0.41) 15.74%,
-                    rgba(232, 121, 249, 0.26) 56.49%,
-                    rgba(79, 70, 229, 0.4) 115.91%
-                  );
-                "></div>
-                <div class="relative z-10">
-                    </a>
-
-                    <div class="lg:mt-0 lg:col-span-5 lg:flex fade-in">
-                        <img src="./img/mock.png" alt="mockup" class="w-full h-auto max-w-xl mx-auto">
-                    </div>
+                    background: linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%);
+                    border-radius: 1rem; /* Aplica el border-radius para suavizar las esquinas */
+                    ">
+                </div>
+                <div class="relative z-10 fade-in">
+                    <img src="./img/mock.png" alt="mockup" class="w-full h-auto max-w-xl mx-auto rounded-md shadow-md">
                 </div>
             </div>
 
             <div
-                class="flex flex-1 flex-col items-center lg:items-start gap-12 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-12 text-center lg:text-left md:gap-8 lg:py-16 lg:pb-0 xl:pt-24 2xl:gap-12 px-3 sm:px-8 lg:px-16 xl:px-32 rounded-lg shadow-lg">
-               
+                class="flex flex-1 flex-col items-center lg:items-start gap-8 from-gray-900 via-gray-800 to-gray-900 py-12 text-center lg:text-left lg:py-16 lg:pb-0 xl:pt-24 px-6 sm:px-10 lg:px-16 xl:px-32 rounded-lg shadow-2xl">
                 <span
-                    class="inline-flex rounded-full border text-center font-semibold transition-all duration-300 ease-in-out h-7 px-4 py-1 text-sm border-blue-300 bg-blue-100 dark:bg-blue-800 dark:text-blue-200 text-blue-600">OpenTune
-                    1.1.0</span>
-                <div class="flex max-w-lg flex-col gap-6">
+                    class="inline-flex rounded-full border text-center font-semibold transition-all duration-300 ease-in-out h-7 px-4 py-1 text-sm border-blue-300 bg-blue-100 dark:bg-blue-800 dark:text-blue-200 text-blue-600">
+                    OpenTune 1.1.0
+                </span>
+                <div class="flex max-w-lg flex-col gap-4">
                     <h3 class="text-5xl md:text-7xl font-extrabold text-slate-950 dark:text-white leading-tight">
-                        OpenTune</h3>
-                    <h4 class="text-lg font-normal leading-7 text-slate-500 dark:text-gray-400">Un cliente de YouTube
-                        Music con Material Design 3, para Android.</h4>
+                        OpenTune
+                    </h3>
+                    <h4 class="text-lg font-normal leading-7 text-slate-500 dark:text-gray-400">
+                        Un cliente de YouTube Music con Material Design 3, para Android.
+                    </h4>
                 </div>
                 <div class="flex flex-col gap-8">
                     <div class="flex gap-4 justify-center lg:justify-start">
-                        <button type="button" aria-disabled="false"
-                            class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed bg-blue-700 stroke-white px-6 text-white hover:bg-blue-950 h-[42px] min-w-[42px] gap-2 shadow-md hover:shadow-xl">
+                        <button type="button"
+                            class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 text-sm font-semibold transition-all duration-300 ease-in-out bg-blue-700 text-white hover:bg-blue-800 shadow-md hover:shadow-lg px-6 gap-2">
                             Descargar
                         </button>
-                        <button type="button" aria-disabled="false"
-                            class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-blue-700 px-6 text-blue-700 dark:text-blue-300 h-[42px] min-w-[42px] gap-2 border-2 border-blue-700 dark:border-blue-300 hover:bg-blue-50 hover:stroke-blue-950 hover:text-blue-950 dark:hover:bg-blue-900">
+                        <button type="button"
+                            class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 text-sm font-semibold transition-all duration-300 ease-in-out border-2 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900 px-6 gap-2">
                             Open Source ⭐
                         </button>
                     </div>
-                    <div class="flex flex-col gap-4 md:flex-row md:gap-0">
+
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-6">
                         <div class="flex items-center justify-center -space-x-4">
+                            <!-- Avatar List -->
                             <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white drop-shadow-md border-[3px] bg-white dark:bg-gray-700 z-20">
+                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
                                 <img src="https://avatars.githubusercontent.com/u/87346871?v=4" alt=""
                                     class="aspect-square w-10 h-10">
                             </div>
                             <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white drop-shadow-md border-[3px] bg-white dark:bg-gray-700 z-10">
+                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-10">
                                 <img src="https://avatars.githubusercontent.com/u/138934847?v=4" alt=""
                                     class="aspect-square w-10 h-10">
                             </div>
                             <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white drop-shadow-md border-[3px] bg-white dark:bg-gray-700 z-0">
+                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-0">
                                 <img src="https://avatars.githubusercontent.com/u/31427850?v=4" alt=""
                                     class="aspect-square w-10 h-10">
                             </div>
                         </div>
-                       
 
-                        <div class="flex flex-col items-center justify-center md:items-start">
-                        
-                            <div class="flex gap-2">
-                                <div class="flex items-center justify-center gap-0.5">
-                                    <div class="relative">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
-                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"
-                                            class="fill-amber-300 stroke-amber-300">
-                                            <path
-                                                d="M12 3L14.781 8.59516L21 9.4979L16.5 13.8507L17.562 20L12 17.0952L6.438 20L7.5 13.8507L3 9.4979L9.219 8.59516L12 3Z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <div class="flex gap-2 items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    class="text-amber-300">
+                                    <path
+                                        d="M12 3L14.781 8.59516L21 9.4979L16.5 13.8507L17.562 20L12 17.0952L6.438 20L7.5 13.8507L3 9.4979L9.219 8.59516L12 3Z">
+                                    </path>
+                                </svg>
                                 <p class="text-base font-semibold dark:text-gray-200">4.95/5</p>
                             </div>
-                            <p class="text-sm text-slate-500 dark:text-gray-400">Base on over 256+ reviews</p>
+                            <p class="text-sm text-slate-500 dark:text-gray-400">Basado en más de 256 reseñas</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
         <br>
         <center>
