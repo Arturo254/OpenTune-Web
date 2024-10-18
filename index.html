@@ -493,20 +493,8 @@
                 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
                 Caracteristicas <i class="fi fi-sr-star-shooting"></i></h1>
         </center>
-
-        <br>
-        <br>
-
-
         <center>
 
-
-
-
-
-
-            <br>
-            <br>
             <div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 backdrop-blur-2xl">
                 <!-- Tarjeta 1 -->
                 <a
@@ -843,7 +831,77 @@
                 type="button">
                 Ver cambios de la última versión
             </button>
+<br>
 
+            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"> 
+
+
+            <div class="relative inline-block text-left">
+                <button id="popupButton" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  Versiones Anteriores
+                  <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              
+                <!-- Popup menu -->
+                <div id="popup" class="hidden absolute right-0 z-10 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-700 dark:border-gray-600">
+                  <ul id="popupList" class="text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white">
+                    <!-- Aquí se insertarán las versiones dinámicamente -->
+                    <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Cargando versiones...</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <script>
+              // Función para obtener las releases de GitHub
+              async function fetchReleases() {
+                const url = 'https://api.github.com/repos/Arturo254/InnerTune/releases';
+                const response = await fetch(url);
+                const releases = await response.json();
+              
+                const popupList = document.getElementById('popupList');
+                popupList.innerHTML = ''; // Limpiar lista
+              
+                // Iterar sobre las releases y agregarlas al popup
+                releases.forEach((release, index) => {
+                  const listItem = document.createElement('li');
+                  listItem.classList.add('w-full', 'px-4', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-600', 'cursor-pointer', 'hover:bg-gray-100', 'dark:hover:bg-gray-600');
+                  
+                  if (index === 0) {
+                    listItem.classList.add('rounded-t-lg');
+                  }
+                  if (index === releases.length - 1) {
+                    listItem.classList.remove('border-b');
+                    listItem.classList.add('rounded-b-lg');
+                  }
+              
+                  listItem.textContent = release.name;
+              
+                  // Redirigir al hacer clic en cada release
+                  listItem.addEventListener('click', () => {
+                    window.open(release.html_url, '_blank'); // Abrir en una nueva pestaña
+                  });
+              
+                  popupList.appendChild(listItem);
+                });
+              }
+              
+              // Mostrar/ocultar popup y cargar versiones
+              document.getElementById('popupButton').addEventListener('click', function () {
+                const popup = document.getElementById('popup');
+                popup.classList.toggle('hidden');
+                
+                // Cargar versiones solo si el popup está visible
+                if (!popup.classList.contains('hidden')) {
+                  fetchReleases();
+                }
+              });
+              </script>
+
+            
+
+            <br>
             <!-- Main modal -->
             <div id="default-modal" tabindex="-1" aria-hidden="true"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -987,7 +1045,7 @@
 
         <br>
 
-        <a href="https://github.com/Arturo254/OpenTune/releases/download/0.8.3/app-foss-release-0.8.3.Beta.apk"><button
+        <a href="./404.html"><button
                 type="button"
                 class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.71em" height="1em" viewBox="0 0 256 150">
