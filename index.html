@@ -834,10 +834,7 @@
                     if (latestVersion !== currentVersion) {
                         downloadText.textContent = 'Nueva versión disponible!';
                         downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-foss-release.apk`;
-                    } else {
-                        downloadText.textContent = 'Descargar';
-                        downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-foss-release.apk`;
-                    }
+                    } 
                 }
         
                 // Verificar al cargar la página
