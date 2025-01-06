@@ -73,7 +73,7 @@
             // Verifica el tema actual y alterna entre claro y oscuro
             if (document.body.classList.contains('dark')) {
                 document.body.classList.remove('dark');
-                localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
+                localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
                 themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
             } else {
                 document.body.classList.add('dark');
