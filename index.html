@@ -44,82 +44,126 @@
 </head>
 
 <body>
-    <header id="header"
-        class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
-        <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2">
-            <button class="circle transparent beer-btn beer-btn-primary"></button>
-            <h5 class="beer-title">OpenTune</h5>
-            <button id="languageSelector" class="beer-btn beer-btn-secondary beer-flex beer-items-center">
+    <header id="header" class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
+        <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
+            <!-- Título centrado -->
+            <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
+    
+            <!-- Selector de idioma -->
+            <button id="languageSelector"
+                class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-rounded">
                 <span id="languageText">Español</span>
                 <i class="material-icons">arrow_drop_down</i>
             </button>
+    
+            <!-- Selector de tema (lado derecho) -->
+            <button id="themeSelector"
+                class="transparent circle beer-flex beer-items-center beer-space-x-2 beer-rounded-full beer-shadow-md beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700 beer-px-2">
+                <i class="material-icons-outlined" id="themeIcon">brightness_6</i>
+            </button>
         </nav>
     </header>
+    
+    <script>
+        // Función para alternar entre temas
+        const themeSelector = document.getElementById('themeSelector');
+        const themeIcon = document.getElementById('themeIcon');
+    
+        themeSelector.addEventListener('click', () => {
+            // Verifica el tema actual y alterna entre claro y oscuro
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
+                themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
+                themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+            }
+        });
+    
+        // Verifica si hay una preferencia guardada y aplica el tema
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+            } else {
+                document.body.classList.remove('dark');
+                themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+            }
+        });
+    </script>
 
     <!-- Dialog para seleccionar idioma -->
-    <dialog id="languageDialog">
-        <main>
-            <center>
-                <ul>
-                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Español', 'index.html')">
-                            <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español"
-                                style="width: 20px; height: auto; margin-right: 8px;"> Español
-                        </button></li>
-                    <br>
-                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('English', 'en.html')">
-                            <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"
-                                style="width: 20px; height: auto; margin-right: 8px;"> English
-                        </button></li>
-                    <br>
-                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
-                            <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
-                                style="width: 20px; height: auto; margin-right: 8px;"> Português
-                        </button></li>
-                    <br>
-                </ul>
-            </center>
-        </main>
-        <footer>
-            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
-        </footer>
-    </dialog>
+    <!-- Dialog para seleccionar idioma -->
+<dialog id="languageDialog">
+    <main>
+        <center>
+            <ul>
+                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Español', 'index.html')">
+                        <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español"
+                            style="width: 20px; height: auto; margin-right: 8px;"> Español
+                    </button></li>
+                <br>
+                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('English', 'en.html')">
+                        <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"
+                            style="width: 20px; height: auto; margin-right: 8px;"> English
+                    </button></li>
+                <br>
+                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
+                        <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
+                            style="width: 20px; height: auto; margin-right: 8px;"> Português
+                    </button></li>
+                <br>
+            </ul>
+        </center>
+    </main>
+    <footer>
+        <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
+    </footer>
+</dialog>
 
-    <script>
-        // Detectar el idioma actual según el archivo HTML
-        function detectLanguage() {
-            const currentPage = window.location.pathname.split('/').pop();
-
-            if (currentPage === 'index.html') {
-                document.getElementById('languageText').textContent = 'Español';
-            } else if (currentPage === 'en.html') {
-                document.getElementById('languageText').textContent = 'English';
-            } else if (currentPage === 'Pt_BR.html') {
-                document.getElementById('languageText').textContent = 'Português';
-            }
+<script>
+    // Función para detectar el idioma del navegador
+    function detectLanguage() {
+        const userLang = navigator.language || navigator.userLanguage;  // Obtiene el idioma del navegador
+        const languageText = document.getElementById('languageText');
+        
+        if (userLang.startsWith('es')) {
+            languageText.textContent = 'Español';
+        } else if (userLang.startsWith('en')) {
+            languageText.textContent = 'English';
+        } else if (userLang.startsWith('pt')) {
+            languageText.textContent = 'Português';
+        } else {
+            languageText.textContent = 'Español';  // Por defecto
         }
+    }
 
-        // Función para abrir el dialog
-        document.getElementById('languageSelector').addEventListener('click', function () {
-            const languageDialog = document.getElementById('languageDialog');
-            languageDialog.showModal();
-        });
+    // Función para abrir el dialog
+    document.getElementById('languageSelector').addEventListener('click', function () {
+        const languageDialog = document.getElementById('languageDialog');
+        languageDialog.showModal();
+    });
 
-        // Función para cerrar el dialog
-        function closeDialog() {
-            const languageDialog = document.getElementById('languageDialog');
-            languageDialog.close();
-        }
+    // Función para cerrar el dialog
+    function closeDialog() {
+        const languageDialog = document.getElementById('languageDialog');
+        languageDialog.close();
+    }
 
-        // Función para establecer el idioma y redirigir
-        function setLanguage(language, url) {
-            document.getElementById('languageText').textContent = language;
-            closeDialog();
-            window.location.href = url;  // Redirigir a la página seleccionada
-        }
+    // Función para establecer el idioma y redirigir
+    function setLanguage(language, url) {
+        document.getElementById('languageText').textContent = language;
+        closeDialog();
+        window.location.href = url;  // Redirigir a la página seleccionada
+    }
 
-        // Detectar el idioma al cargar la página
-        window.onload = detectLanguage;
-    </script>
+    // Detectar el idioma al cargar la página
+    window.onload = detectLanguage;
+</script>
+
 
 
     <!-- Hero Section -->
