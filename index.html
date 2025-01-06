@@ -47,10 +47,6 @@
     <header id="header"
     class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
     <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
-        <!-- Botón izquierdo (si es necesario) -->
-        
-
-        <!-- Título centrado -->
         <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
 
         <!-- Selector de idioma -->
@@ -59,45 +55,11 @@
             <span id="languageText">Español</span>
             <i class="material-icons">arrow_drop_down</i>
         </button>
-
-        <!-- Selector de tema -->
-       
     </nav>
 </header>
 
 
 
-
-<script>
-    // Función para alternar entre temas
-    const themeSelector = document.getElementById('themeSelector');
-    const themeIcon = document.getElementById('themeIcon');
-
-    themeSelector.addEventListener('click', () => {
-        // Verifica el tema actual y alterna entre claro y oscuro
-        if (document.body.classList.contains('dark')) {
-            document.body.classList.remove('dark');
-            localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
-            themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
-            themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
-        }
-    });
-
-    // Verifica si hay una preferencia guardada y aplica el tema
-    window.addEventListener('load', () => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark');
-            themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
-        } else {
-            document.body.classList.remove('dark');
-            themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
-        }
-    });
-</script>
 
 
     <!-- Dialog para seleccionar idioma -->
@@ -165,6 +127,7 @@
         window.onload = detectLanguage;
     </script>
 
+<br>
 
     <!-- Hero Section -->
     <section class="hero">
