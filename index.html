@@ -65,7 +65,14 @@
     </header>
     
     <script>
-        // Función para alternar entre temas
+        // Detecta la preferencia de tema del sistema
+        function detectThemePreference() {
+            const themePreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.body.classList.add(themePreference);
+            localStorage.setItem('theme', themePreference); // Guardar la preferencia del tema en localStorage
+        }
+    
+        // Alternar entre temas manualmente
         const themeSelector = document.getElementById('themeSelector');
         const themeIcon = document.getElementById('themeIcon');
     
@@ -73,7 +80,7 @@
             // Verifica el tema actual y alterna entre claro y oscuro
             if (document.body.classList.contains('dark')) {
                 document.body.classList.remove('dark');
-                localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
+                localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
                 themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
             } else {
                 document.body.classList.add('dark');
@@ -85,15 +92,21 @@
         // Verifica si hay una preferencia guardada y aplica el tema
         window.addEventListener('load', () => {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark');
-                themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark');
+                    themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+                } else {
+                    document.body.classList.remove('dark');
+                    themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+                }
             } else {
-                document.body.classList.remove('dark');
-                themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+                // Si no hay preferencia guardada, se detecta la preferencia del sistema
+                detectThemePreference();
             }
         });
     </script>
+    
 
     <!-- Dialog para seleccionar idioma -->
     <!-- Dialog para seleccionar idioma -->
