@@ -76,7 +76,7 @@
                                 style="width: 20px; height: auto; margin-right: 8px;"> English
                         </button></li>
                     <br>
-                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html ' , 'pt_br ' )">
                             <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
                                 style="width: 20px; height: auto; margin-right: 8px;"> Portugues
                         </button></li>
@@ -94,11 +94,11 @@
         function detectLanguage() {
             const currentPage = window.location.pathname.split('/').pop();
 
-            if (currentPage === 'index.html ') {
+            if (currentPage === 'index.html') {
                 document.getElementById('languageText').textContent = 'Español';
-            } else if (currentPage === 'en.html , en') {
+            } else if (currentPage === 'en.html') {
                 document.getElementById('languageText').textContent = 'English';
-            } else if (currentPage === ' pt_br') {
+            } else if (currentPage === 'Pt_BR.html') {
                 document.getElementById('languageText').textContent = 'Português';
             }
         }
