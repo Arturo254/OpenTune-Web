@@ -44,18 +44,73 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="beer-nav beer-shadow beer-rounded">
-            <button class="circle transparent beer-btn beer-btn-primary">
-            </button>
-            <h5 class="max  beer-title">OpenTune</h5>
-            <button id="languageSelector" class="beer-btn beer-btn-secondary">
-                <span id="languageText">Español</span>
-                <i class="material-icons">arrow_drop_down</i>
-            </button>
-        </nav>
-    </header>
+    <header id="header"
+    class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
+    <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
+        <!-- Botón de menú hamburguesa (solo visible en pantallas pequeñas) -->
+        <button id="hamburgerMenu" class="beer-btn beer-btn-tertiary beer-flex beer-items-center beer-rounded beer-shadow beer-transition-all beer-md-hidden">
+            <i class="material-icons">menu</i>
+        </button>
+        
+        <!-- Título centrado (en pantallas pequeñas ocupará todo el espacio) -->
+        <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
+
+        <!-- Selector de idioma (visible en pantallas grandes) -->
+        <button id="languageSelector"
+            class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-hidden beer-md-flex">
+            <span id="languageText">Español</span>
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+    </nav>
+</header>
+
+<!-- Dialog con el selector de tema -->
+<dialog id="themeDialog" class="beer-dialog beer-rounded beer-shadow beer-p-4 beer-w-full beer-max-w-md">
+    <h3 class="beer-text-center">Seleccionar Tema</h3>
+    <button id="themeLight" class="beer-btn beer-btn-tertiary beer-w-full beer-flex beer-items-center">
+        <i class="material-icons">light_mode</i> Tema Claro
+    </button>
+    <br>
+    <br>
+    <button id="themeDark" class="beer-btn beer-btn-tertiary beer-w-full beer-flex beer-items-center">
+        <i class="material-icons">dark_mode</i> Tema Oscuro
+    </button>
+</dialog>
+
+<script>
+    // Función para alternar entre temas
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const themeDialog = document.getElementById('themeDialog');
+    const themeLight = document.getElementById('themeLight');
+    const themeDark = document.getElementById('themeDark');
+
+    hamburgerMenu.addEventListener('click', () => {
+        themeDialog.showModal();
+    });
+
+    themeLight.addEventListener('click', () => {
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeDialog.close();
+    });
+
+    themeDark.addEventListener('click', () => {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeDialog.close();
+    });
+
+    // Verifica si hay una preferencia guardada y aplica el tema
+    window.addEventListener('load', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    });
+</script>
+
 
     <!-- Dialog para seleccionar idioma -->
     <dialog id="languageDialog">
@@ -1021,7 +1076,7 @@
             justify-content: center;
             text-align: center;
 
-            color: white;
+            
             padding: 20px;
         }
 
