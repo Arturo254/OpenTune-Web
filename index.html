@@ -55,6 +55,65 @@
             <span id="languageText">Español</span>
             <i class="material-icons">arrow_drop_down</i>
         </button>
+        <button id="themeSelector"
+        class="transparent circle beer-flex beer-items-center beer-space-x-2 beer-rounded-full beer-shadow-md beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700">
+    <i class="material-icons-outlined" id="themeIcon">brightness_6</i>
+</button>
+
+
+<script>
+
+    // Función para alternar entre temas
+const themeSelector = document.getElementById('themeSelector');
+const themeIcon = document.getElementById('themeIcon');
+
+themeSelector.addEventListener('click', () => {
+    // Verifica el tema actual y alterna entre claro y oscuro
+    if (document.body.classList.contains('dark')) {
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
+        themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
+    } else {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
+        themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+    }
+});
+
+// Verifica si hay una preferencia guardada y aplica el tema
+window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+    } else {
+        document.body.classList.remove('dark');
+        themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+    }
+});
+
+</script>
+<style>
+
+
+
+#themeSelector:hover {
+    border-color: rgba(255, 255, 255, 1); /* Borde más visible al pasar el ratón */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efecto sombra al pasar el ratón */
+}
+
+#themeSelector i {
+    font-size: 24px; /* Tamaño de íconos ajustado */
+    transition: transform 0.3s ease; /* Transición suave en los íconos */
+}
+
+/* Efecto al hacer clic en el botón */
+#themeSelector:active i {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño del ícono al hacer clic */
+}
+
+</style>
+
     </nav>
 </header>
 
@@ -128,6 +187,7 @@
     </script>
 
 <br>
+
 
     <!-- Hero Section -->
     <section class="hero">
