@@ -94,11 +94,11 @@
         function detectLanguage() {
             const currentPage = window.location.pathname.split('/').pop();
 
-            if (currentPage === 'index.html') {
+            if (currentPage === 'index.html ') {
                 document.getElementById('languageText').textContent = 'Español';
-            } else if (currentPage === 'en.html') {
+            } else if (currentPage === 'en.html , en') {
                 document.getElementById('languageText').textContent = 'English';
-            } else if (currentPage === 'Pt_BR.html') {
+            } else if (currentPage === 'Pt_BR.html, pt_br') {
                 document.getElementById('languageText').textContent = 'Português';
             }
         }
