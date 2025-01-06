@@ -45,6 +45,7 @@
 </head>
 
 <body>
+    <!-- Header -->
     <header id="header"
     class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
     <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
@@ -56,12 +57,9 @@
             <span id="languageText">Español</span>
             <i class="material-icons">arrow_drop_down</i>
         </button>
+        
     </nav>
 </header>
-
-
-
-
 
     <!-- Dialog para seleccionar idioma -->
     <dialog id="languageDialog">
@@ -80,14 +78,14 @@
                     <br>
                     <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
                             <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
-                                style="width: 20px; height: auto; margin-right: 8px;"> Português
+                                style="width: 20px; height: auto; margin-right: 8px;"> Portugues
                         </button></li>
                     <br>
                 </ul>
             </center>
         </main>
         <footer>
-            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
+            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Fechar</button>
         </footer>
     </dialog>
 
@@ -128,7 +126,7 @@
         window.onload = detectLanguage;
     </script>
 
-<br>
+
     <!-- Hero Section -->
     <section class="hero">
         <img src="./img/mock.png" width="400" alt="">
