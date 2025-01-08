@@ -57,7 +57,7 @@
         class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
         <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
             <!-- Título centrado -->
-            <h5 class="beer-title beer-flex-1 beer-text-center">Contribuidores <span
+            <h5 class="beer-title beer-flex-1 beer-text-center">Colab <span
                     class="material-symbols-rounded">groups</span></h5>
 
             <!-- Selector de idioma -->
@@ -193,6 +193,7 @@
     <br>
     <br>
     <center>
+        <section class="beer-grid beer-gap-4 beer-mt-4" style="--beer-grid-columns: repeat(auto-fit, minmax(250px, 1fr));"> 
         <!-- Primer artículo -->
         <article class="round elevation-1 card-animation">
             <div class="row">
@@ -312,6 +313,7 @@
                 </a>
             </nav>
         </article>
+        </section>
     </center>
 
     <!-- Dialog para mostrar la imagen -->
@@ -368,6 +370,18 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
+          @media (min-width: 768px) {
+        article.round {
+            height: 200px; /* Cards más cortas en pantallas grandes */
+        }
+    }
+
+    @media (max-width: 768px) {
+        article.round {
+            height: auto; /* Altura automática para móviles */
+        }
+    }
     </style>
 
 </body>
