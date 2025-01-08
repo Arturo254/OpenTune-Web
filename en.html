@@ -1,32 +1,40 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-6JTGMLLK8S');
-</script>
+        gtag('config', 'G-6JTGMLLK8S');
+    </script>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- pagedone -->
-    <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.1/src/js/pagedone.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.1/src/css/pagedone.css" />
-    <!-- pagedone -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js"></script>
+
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=translate" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&family=Roboto+Serif:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -41,1238 +49,1145 @@
 
     <meta name="description" content="Un cliente de YouTube Music con Material Design 3, para Android">
     <title>OpenTune</title>
+
 </head>
 
+<body>
+    <header id="header"
+        class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
+        <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
+            <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
 
-<body class="bg-white dark:bg-gray-900">
+            <button id="languageSelector"
+                class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-rounded">
+                <span id="languageText">English</span>
+                <i class="material-icons">arrow_drop_down</i>
+            </button>
 
-    <style>
-        .blur-bg {
-            backdrop-filter: blur(10px);
-            background-color: rgba(17, 24, 39, 0.8);
-        }
-
-        .blur-bg-light {
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-            background-color: rgba(31, 41, 55, 0.7);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 4s ease-in-out;
-        }
-
-        .carousel-image {
-            width: calc(50vw - 20px);
-            height: calc((50vw - 20px) * (2460 / 1080));
-            max-width: 300px;
-            max-height: calc(300px * (2460 / 1080));
-            transition: transform 0.5s ease-in-out;
-        }
-
-        @media (min-width: 768px) {
-            .carousel-image {
-                width: 200px;
-                height: calc(200px * (2460 / 1080));
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .carousel-image {
-                width: 300px;
-                height: calc(300px * (2460 / 1080));
-            }
-        }
-
-        .carousel-container {
-            width: 100vw;
-            max-width: 1200px;
-            overflow: hidden;
-        }
-
-        .carousel-image:hover {
-            transform: scale(1.05);
-        }
-
-        .blur-bgimg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .full-image {
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-
-        /* Estilo adicional para el fondo del modal */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        /* Asegurar que el texto no se salga del modal */
-        #changelog {
-
-            overflow-y: auto;
-            /* Agrega scroll si el contenido es demasiado largo */
-            word-wrap: break-word;
-            /* Asegura que las palabras largas se dividan */
-            line-height: 1.5;
-            /* Mejora la legibilidad */
-            white-space: pre-wrap;
-            /* Mantiene los saltos de línea */
-        }
-
-        /* Formato de texto para mejorar la alineación */
-        pre {
-            margin: 0;
-            /* Elimina margen para una mejor alineación */
-            padding: 0;
-            /* Elimina padding para una mejor alineación */
-        }
-
-        .div-gradient-bottom {
-            position: relative;
-            background: linear-gradient(to bottom, transparent, rgba(17, 24, 39, 0.9));
-            padding-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .gradient-bottom {
-            position: relative;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-            padding-bottom: 50px;
-            /* Ajusta el padding según sea necesario */
-        }
-
-        .shadow-bottom {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-    </style>
-    <header class="blur-bg shadow-lg sticky top-0 z-50 rounded-lg">
-        <nav class="border-gray-200 px-4 lg:px-6 py-4">
-            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl ">
-                <a href="#" class="flex items-center">
-                    <img src="./icon/icon-512.png" class="mr-3 h-8 sm:h-10" alt="OpenTune Logo" />
-                    <span id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                        class="self-center text-2xl font-semibold whitespace-nowrap text-white">OpenTune &nbsp;<i
-                            class="fi fi-br-waveform-path"></i></span>
-                </a>
-                <br>
-                <!-- Dropdown menu -->
-                <div id="dropdown"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                            <a href="./PdP.html"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Politica
-                                de Privacidad</a>
-                        </li>
-                        <li>
-                            <a href="https://forms.gle/TynrLxqa2Jq9dskr5"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acceso
-                                Beta</a>
-                        </li>
-                        <li>
-                            <a href="./contribuidores.html"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contribuidores</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Dropdown menu -->
-                <div class="flex absolute top-3 right-0">
-
-                    <button id="dropdown-button-2" data-dropdown-toggle="dropdown-search-city"
-                        class="flex items-center py-2 px-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                        type="button">
-                        <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full me-2"
-                        xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
-                        viewBox="0 0 512 512">
-                        <g fill-rule="evenodd">
-                            <g stroke-width="1pt">
-                                <path fill="#bd3d44"
-                                    d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                    transform="scale(3.9385)" />
-                                <path fill="#fff"
-                                    d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                    transform="scale(3.9385)" />
-                            </g>
-                            <path fill="#192f5d" d="M0 0h98.8v70H0z"
-                                transform="scale(3.9385)" />
-                            <path fill="#fff"
-                                d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
-                                transform="scale(3.9385)" />
-                        </g>
-                    </svg>
-                        &nbsp;English </button>
-                    <div id="dropdown-search-city"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button-2">
-                            <li>
-                                <a href="./index.html"><button type="button"
-                                    class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">
-                                    <div class="inline-flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                            viewBox="0 0 64 64">
-                                            <rect width="64" height="64" fill="none" />
-                                            <path fill="#ed4c5c"
-                                                d="M62 32c0-13.1-8.3-24.2-20-28.3v56.6C53.7 56.2 62 45.1 62 32" />
-                                            <path fill="#75a843"
-                                                d="M2 32c0 13.1 8.4 24.2 20 28.3V3.7C10.4 7.8 2 18.9 2 32" />
-                                            <path fill="#fff"
-                                                d="M42 3.7C38.9 2.6 35.5 2 32 2s-6.9.6-10 1.7v56.6c3.1 1.1 6.5 1.7 10 1.7s6.9-.6 10-1.7z" />
-                                            <path fill="#75a843"
-                                                d="M40.7 31.7c-.1-.3-.2.1-.2.2c0-.3-.1-.5-.3-.8c-.3.3-.4.7-.4 1.1c-.1-.3-.2-.6-.5-.7c.2.3.1.5.1.8c0 .4.3.7.3 1.1c0 .4-.2.7-.5 1v-.3c-1 .4-.8.9-.8 1.8s-.5.7-1.1 1.2c.1-.2.1-.5 0-.7c0 .6-.8.6-.9 1.1c-.1.2 0 .6-.3.7c-.2.1-.5.3-.5.5c-.2-.1-.4-.1-.7-.1c.1-.1.2-.1.3-.2c-1-.5-1.3.6-2.2.7c-.3 0-1-.4-1 0c.9 0 1.3.8 2 .8c.6 0 1.1-.5 1.7-.5c-.1 0-.4-.2-.7-.2c.5-.3.8-.9 1.4-.9c1 0 1.5-.2 1.8-1.2c-.1 0-.2 0-.3.1c0-.4.4-.9.8-1.1c1-.2.9-1 1.5-1.7c-.2 0-.4.1-.6.3c0-.6-.1-1.2.4-1.6c1-.5.9-.7.7-1.4m-17.4 0c-.2.8-.3 1 .5 1.5c.6.4.4 1 .4 1.6c-.2-.2-.3-.3-.6-.3c.6.6.5 1.5 1.5 1.7c.3.2.8.7.8 1.1c-.1 0-.2-.1-.3-.1c.3 1 .8 1.2 1.8 1.2c.6 0 .9.6 1.4.9c-.3 0-.6.1-.7.2c.6 0 1.1.6 1.7.5c.7 0 1.2-.8 2-.8c0-.4-.7 0-1 0c-.8-.2-1.1-1.2-2.2-.8c.1.1.2.2.3.2c-.2 0-.5-.1-.7.1c-.1-.2-.3-.4-.5-.5c-.2-.2-.2-.5-.3-.7c-.2-.5-.9-.6-.9-1.1c-.1.2-.1.5 0 .7c-.6-.5-1.1-.3-1.1-1.2c0-.8.2-1.4-.8-1.8v.3c-.3-.3-.5-.5-.5-1c0-.4.4-.7.3-1.1c0-.3-.1-.5.1-.8c-.3.1-.4.4-.5.7c0-.4-.1-.8-.4-1.1c-.1.2-.2.5-.3.8c.1-.2 0-.5 0-.2m2.3 5" />
-                                            <path fill="#428bc1"
-                                                d="M34.7 37.7c-.2 0-.3-.2-.4-.3c0-.2.8-.4.9-.4v-.2c-1.3.4-5.2.7-6-.7c-.4.6-1.1.2-1.8-.3c.1.2.5 1.2.5 1.1c.2.1 1.5.4 1.5.7l-.3.3c2.1.7 3.4.9 5.6-.2" />
-                                            <path fill="#ed4c5c"
-                                                d="M33.4 37.7c.1-.1.1-.2.1-.4l-.1-.3c.2-.2 0-.7-.3-.6c-.2.1-.1.1-.3 0c-.1 0-.1-.1-.2-.1h-1.8c-.2 0-.2-.1-.4-.1c-.2-.1-.3.1-.4.2c0 .2.1.2.1.3c0 .1-.1.2-.1.4s.1.3.2.4c-.4.3 0 .8.4.5c.1.2.4.2.7.2h1.1c.2 0 .6.1.7-.2c.3.5.7-.1.3-.3" />
-                                            <path fill="#428bc1"
-                                                d="M36.6 35.1c-.8-1-1.2.5-2.1.4c.2-1.2-1.6-.8-2.1-.5c.1-.1.2-.3.3-.5c-.4 0-.9.2-1.2-.1c-.6-.4-1.4-.6-1.9.1c-.4-.6-1.5-1.2-2.1-.6c0-.6-.6-1.5-1.3-1.4c-.8.1-.5 1.1-.1 1.5c.3.3.7.4 1.1.4c0 .2.1.3.2.4c.5.4 1.5.5 2 .1c0 1 2 1 2.5.5c-.2.5-.4 1.5.3 1.5c.6 0 .4-.6.9-.8c.4-.2.9-.3 1.3-.1c.7.4 2.9.3 2.2-.9" />
-                                            <g fill="#75a843">
-                                                <path
-                                                    d="M28.4 32.6c-.1-.2-.3-.4-.3-.4c-.4.1-.4-.2-.5-.5c-.1-.5-.8-.7-.8-1.1c0-.4.4-.8.1-1.2c-.3-.4-.8-.6-.8-.4c-.1.2.4.2.4.7c0 .6-.6 1.1.1 1.6c.4.6.4 1.7 1.1 1.7c.3 0 .6-.1.7-.4" />
-                                                <path
-                                                    d="M29.9 32.1c-.2-.4 0-1-.4-1.3c-.5-.4-1.5.4-1.6-.6c0-.2 1.1-1.4 1.3-1.5c.3-.4.2-1.1-.1-1.3c-.4-.2-.5 0-.8.4c.1.1.5.3.5.4c-.3.7-1.2.8-1.4 1.5c-.2.5-.1 1.3.4 1.6c.3.2.5.2.8.2c.9-.1.4.1.5.3c0 .2.3.9.8.3m-3-4.9c0 .6.6.5 1 .4c0-.2 0-.4.1-.6c-.2.1-.5.1-.6 0c-.3-.2.7-.6.6-.6c0 0-1 .5-.6-.1c.1-.2.3-.4.4-.6c.1-.2-.3 0-.3 0c-.1 0-.2 0-.3.1c-.6.5-.4.8-.3 1.4" />
-                                            </g>
-                                            <path fill="#89664c"
-                                                d="M37.5 27.2c-.5-.7-2.4-3-5.1-3.2c-.3 0-1.1.3-1.4.4c-.9.6 1 1.1 1.1 1.5c0 .2.1.3.1.5c-.3-.5-.6-.8-.7-1c-.5.2-1.3-.1-1.4-.6c-.1.2-.1.3-.3.5c0-.3-.1-.3-.2-.5c0 .3 0 .7-.3.8c.1-.2 0-.4-.1-.6c0 .3 0 .5-.2.7c.1-.2-.1-.3-.1-.5c-.1.8-1.2 1.1-.1 1.4c.4.1.6 0 1 .2c.1.1.3.3.3.2c0 .1-.4.5-.1.6c-.1.1-.4.7-.4.7c.3 0 .1.2-.1.4c-.3.5 0 1 .1 1.6c0-.2.3.1.3.4c0 .4.4.6.5.9c-.5-.5-.6 0 0 .3c-.5 0-.6.3-.1.5c-1.2 0-.2.5 0 .6c.8.2 1.4-.4 1.4-.5c0 0 1.6 1.6 1.7 1.6c.1 0 .9-.4 1.1-.2c.2.3.4 0 .6.1c.2.2 1 0 1.2-.1c.1 0 1.1-.2.9-.4c-.5-.4-1.1-.8-1.6-1.2c-.5-.4-1-.7-1.4-1.1c-.2-.2-.2-.6-.3-.9c.9.9 1.8 1.4 1.7-.3c.6.5 1.8 3.3 1.9 3.3c.3 0 0-3 0-3.3c.4.4.4 3.7.5 3.7c.5.1 1.2-4.3-.5-6.5" />
-                                            <path fill="#ffce31"
-                                                d="M30.3 32.3c-.1 0-.6-.7-.6-.8c.3 1.2-.9.5-.6 0c-.4-.1-1.4.5-1 1.1c-.2.4 1.4.1 1.5-.1c.4.9 1.4-.1.7-.2m4.7 3c.5-.7-1.6-.9-1.4-1.7c-.3.2-.7.9-1.1.7c-.2-.1-1 .4-.6.7c0-.4.2-.1.5-.2c-.1.3-.4.6.1.8c-.2-.6.6-.3.5-.6c-.2-.2.7-.2.8-.2c.3 0 1.3.3.9.6c0 0 .2 0 .3-.1m-6.7-8.6c-.1.2-.5.5-.5.8c0 .2.5.7.7.4c-.6-.4.1-.7.4-.7c.1 0 .1.2.1.2c.1.1.9-.2.8-.4c.1-.4-1.2-.4-1.5-.3m0 0" />
-                                        </svg>
-                                        &nbsp; Spanish
-                                    </div>
-                                </button></a>
-                            </li>
-                            <li>
-                                <a href="./en.html"><button type="button"
-                                        class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">
-                                        <div class="inline-flex items-center">
-                                            <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full me-2"
-                                                xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
-                                                viewBox="0 0 512 512">
-                                                <g fill-rule="evenodd">
-                                                    <g stroke-width="1pt">
-                                                        <path fill="#bd3d44"
-                                                            d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                                            transform="scale(3.9385)" />
-                                                        <path fill="#fff"
-                                                            d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
-                                                            transform="scale(3.9385)" />
-                                                    </g>
-                                                    <path fill="#192f5d" d="M0 0h98.8v70H0z"
-                                                        transform="scale(3.9385)" />
-                                                    <path fill="#fff"
-                                                        d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
-                                                        transform="scale(3.9385)" />
-                                                </g>
-                                            </svg>
-                                            English
-                                        </div>
-                                    </button></a>
-                            </li>
-                            <li>
-                                <a href="./pt_BR.html"><button type="button"
-                                        class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">
-                                        <div class="inline-flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 512 512">
-                                                <mask id="IconifyId18f58df65399e66ff0">
-                                                    <circle cx="256" cy="256" r="256" fill="#fff" />
-                                                </mask>
-                                                <g mask="url(#IconifyId18f58df65399e66ff0)">
-                                                    <path fill="#6da544" d="M0 0h512v512H0z" />
-                                                    <path fill="#ffda44" d="M256 100.2L467.5 256L256 411.8L44.5 256z" />
-                                                    <path fill="#eee"
-                                                        d="M174.2 221a87 87 0 0 0-7.2 36.3l162 49.8a88.5 88.5 0 0 0 14.4-34c-40.6-65.3-119.7-80.3-169.1-52z" />
-                                                    <path fill="#0052b4"
-                                                        d="M255.7 167a89 89 0 0 0-41.9 10.6a89 89 0 0 0-39.6 43.4a181.7 181.7 0 0 1 169.1 52.2a89 89 0 0 0-9-59.4a89 89 0 0 0-78.6-46.8M212 250.5a149 149 0 0 0-45 6.8a89 89 0 0 0 10.5 40.9a89 89 0 0 0 120.6 36.2a89 89 0 0 0 30.7-27.3A151 151 0 0 0 212 250.5" />
-                                                </g>
-                                            </svg>
-                                            &nbsp;Brasil (PR)
-                                        </div>
-                                    </button></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <button id="themeSelector"
+                class="transparent circle beer-flex beer-items-center beer-space-x-2 beer-rounded-full beer-shadow-md beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700 beer-px-2">
+                <i class="material-icons-outlined" id="themeIcon">brightness_6</i>
+            </button>
         </nav>
     </header>
 
+    <script>
+        // Detecta la preferencia de tema del sistema
+        function detectThemePreference() {
+            const themePreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.body.classList.add(themePreference);
+            localStorage.setItem('theme', themePreference); // Guardar la preferencia del tema en localStorage
+        }
+
+        // Alternar entre temas manualmente
+        const themeSelector = document.getElementById('themeSelector');
+        const themeIcon = document.getElementById('themeIcon');
+
+        themeSelector.addEventListener('click', () => {
+            // Verifica el tema actual y alterna entre claro y oscuro
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light'); // Guardar la preferencia en localStorage
+                themeIcon.textContent = 'dark_mode'; // Cambiar el ícono a luna
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark'); // Guardar la preferencia en localStorage
+                themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+            }
+        });
+
+        // Verifica si hay una preferencia guardada y aplica el tema
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark');
+                    themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+                } else {
+                    document.body.classList.remove('dark');
+                    themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+                }
+            } else {
+                // Si no hay preferencia guardada, se detecta la preferencia del sistema
+                detectThemePreference();
+            }
+        });
+    </script>
+
+
+    <!-- Dialog para seleccionar idioma -->
+    <!-- Dialog para seleccionar idioma -->
+    <dialog id="languageDialog">
+        <main>
+            <center>
+                <ul>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('English', 'en.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"
+                                style="width: 20px; height: auto; margin-right: 8px;"> English
+                        </button></li>
+                    <br>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Español', 'index.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español"
+                                style="width: 20px; height: auto; margin-right: 8px;"> Español
+                        </button></li>
+                    <br>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
+                                style="width: 20px; height: auto; margin-right: 8px;"> Português
+                        </button></li>
+                </ul>
+            </center>
+        </main>
+        <footer>
+            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Close</button>
+        </footer>
+    </dialog>
+
+    <script>
+        // Función para detectar el idioma del navegador
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;  // Obtiene el idioma del navegador
+            const languageText = document.getElementById('languageText');
+
+            if (userLang.startsWith('es')) {
+                languageText.textContent = 'English';
+            } else if (userLang.startsWith('en')) {
+                languageText.textContent = 'English';
+            } else if (userLang.startsWith('pt')) {
+                languageText.textContent = 'PT';
+            } else {
+                languageText.textContent = 'Español';  // Por defecto
+            }
+        }
+
+        // Función para abrir el dialog
+        document.getElementById('languageSelector').addEventListener('click', function () {
+            const languageDialog = document.getElementById('languageDialog');
+            languageDialog.showModal();
+        });
+
+        // Función para cerrar el dialog
+        function closeDialog() {
+            const languageDialog = document.getElementById('languageDialog');
+            languageDialog.close();
+        }
+
+        // Función para establecer el idioma y redirigir
+        function setLanguage(language, url) {
+            document.getElementById('languageText').textContent = language;
+            closeDialog();
+            window.location.href = url;  // Redirigir a la página seleccionada
+        }
+
+        // Detectar el idioma al cargar la página
+        window.onload = detectLanguage;
+    </script>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="./img/mock.png" width="300" alt="OpenTune mockup">
+        <h1>OpenTune</h1>
+        <p>A YouTube Music client with Material Design 3 for Android.</p>
+        <a href="#downloadapk"><button class="primary cta">Download</button></a>
+    </section>
+
+    <!-- Features Section -->
+    <section>
+        <center>
+            <h2 class="text-3xl text-center mt-10">
+                Features
+                <span class="material-symbols-rounded">star</span>
+            </h2>
+        </center>
+        <div class="cards">
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">music_note</span> Material Design 3 YouTube Music Client
+                </h5>
+                <p>Offers a modern and elegant YouTube Music experience on Android, with an intuitive interface
+                    optimized according to Material Design 3.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">palette</span> Modern and Attractive Design</h5>
+                <p>Based on Material Design 3, with vibrant colors, modern typography, and smooth transitions, creating
+                    an aesthetic and attractive experience.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">settings</span> Intuitive and Customizable Interface
+                </h5>
+                <p>Simplified interface for quick access to all YouTube Music features, with customization options
+                    according to preferences.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">search</span> Explore and Discover Music</h5>
+                <p>Access to a wide music catalog with advanced search and intelligent recommendations based on
+                    preferences and listening habits.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">volume_up</span> High-Quality Playback</h5>
+                <p>High-quality music, optimized for different devices and network conditions, with support for various
+                    audio formats.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">playlist_add</span> Playlists and Downloads</h5>
+                <p>Create and organize playlists, and download songs and albums for offline listening.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">sync</span> Complete YouTube Music Integration</h5>
+                <p>Sync your YouTube Music account to access your libraries and receive notifications about releases and
+                    events.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">build</span> Advanced Features</h5>
+                <p>Voice playback control, gestures, and support for Chromecast and Bluetooth, allowing streaming to
+                    external devices.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">folder</span> Efficient Library Management</h5>
+                <p>Organize your music with advanced filtering and categorization tools, quickly accessing songs and
+                    albums.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">translate</span> Multilingual Support</h5>
+                <p>Available in multiple languages with accurate translations and culturally relevant localization.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">update</span> Continuous Updates and Improvements</h5>
+                <p>Regular updates for new features, security improvements, and performance optimization.</p>
+            </article>
+
+            <article>
+                <h5><span class="material-symbols-rounded mr-2">headphones</span> Optimized User Experience</h5>
+                <p>Intuitive navigation and agile performance, with a user-friendly interface that enhances the user
+                    experience.</p>
+            </article>
+        </div>
+    </section>
+
+
+
+
+    <!-- Carousel Section -->
+    <section class="carousel-container">
+        <div class="carousel">
+            <img src="./img/1.webp" alt="img1" class="carousel-image">
+            <img src="./img/2.webp" alt="img2" class="carousel-image">
+            <img src="./img/3.webp" alt="img3" class="carousel-image">
+            <img src="./img/4.webp" alt="img4" class="carousel-image">
+            <img src="./img/5.webp" alt="img5" class="carousel-image">
+            <img src="./img/6.webp" alt="img6" class="carousel-image">
+            <img src="./img/7.webp" alt="img7" class="carousel-image">
+            <img src="./img/8.webp" alt="img8" class="carousel-image">
+            <img src="./img/9.webp" alt="img9" class="carousel-image">
+            <img src="./img/10.webp" alt="img10" class="carousel-image">
+            <img src="./img/11.webp" alt="img11" class="carousel-image">
+            <img src="./img/12.webp" alt="img12" class="carousel-image">
+            <img src="./img/13.webp" alt="img13" class="carousel-image">
+            <img src="./img/14.webp" alt="img14" class="carousel-image">
+            <img src="./img/15.webp" alt="img15" class="carousel-image">
+            <img src="./img/16.webp" alt="img16" class="carousel-image">
+            <img src="./img/17.webp" alt="img17" class="carousel-image">
+            <img src="./img/18.webp" alt="img18" class="carousel-image">
+            <img src="./img/19.webp" alt="img19" class="carousel-image">
+            <img src="./img/20.webp" alt="img20" class="carousel-image">
+        </div>
+    </section>
+
+    <!-- Popup for Image View -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <span class="close-popup" id="closePopup">&#10005;</span>
+            <img src="" id="popupImage" class="popup-image" alt="popup image">
+        </div>
+    </div>
+
+
+
+
+    <br>
+    <center>
+        <article class="card shadow-md round beer-card" style="max-width: 300px;">
+            <div class="beer-card-header">
+                <i class="fi fi-sr-exclamation text-yellow-500"></i>
+                <h5>Notice:</h5>
+            </div>
+            <p class="beer-card-body text-sm">
+                If OpenTune isn't working, activate a proxy. Use the following for it to work correctly:
+            </p>
+            <div class="field border beer-field">
+                <input type="text" value="186.96.50.113:999" id="inputField" disabled class="beer-input w-full" />
+
+                <button class="beer-btn beer-btn-primary" onclick="copyText()">
+
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <script>
+                function copyText() {
+                    const inputField = document.getElementById('inputField');
+                    navigator.clipboard.writeText(inputField.value)
+                        .then(() => {
+                            alert('¡Texto copiado al portapapeles!');
+                        })
+                        .catch(err => {
+                            alert('Error al copiar al portapapeles: ' + err);
+                        });
+                }
+            </script>
+        </article>
+    </center>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+    <!-- Downloads Section -->
+    <section id="downloadapk">
+        <center>
+            <h2 class="text-3xl text-center mt-10">Downloads <i
+                    class="material-icons left text-3xl text-center mt-10">download</i></h2>
+        </center>
+        <br>
+
+
+        <center>
+
+            <!-- Android Card -->
+            <article>
+                <div class="card small">
+                    <div>
+                        <div class="col s12">
+                            <center>
+                                <div class="header">
+                                    <h5 class="title">
+                                        <i class="material-icons left">android</i> Android
+                                    </h5>
+                                    <p class="small">OpenTune for Android. Download the latest stable version.</p>
+                                </div>
+                                <div class="content">
+                                    <div class="chip success small m-top-1">Stable Version</div>
+                                    <div id="currentVersion" class="chip small m-top-1">Cargando...</div>
+                                </div>
+                                <script>
+                                    // Función para obtener la versión más reciente de OpenTune desde GitHub
+                                    async function getLatestVersion() {
+                                        try {
+                                            const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+                                            const data = await response.json();
+                                            const latestVersion = data.tag_name;  // Obtenemos la versión más reciente
+                                            document.getElementById('currentVersion').textContent = latestVersion;  // Actualizamos el texto del div
+                                        } catch (error) {
+                                            console.error('Error obteniendo la versión:', error);
+                                            document.getElementById('currentVersion').textContent = 'Error al obtener versión';  // Mensaje en caso de error
+                                        }
+                                    }
+
+                                    // Llamamos a la función cuando la página cargue
+                                    getLatestVersion();
+                                </script>
+
+                                <br>
+                                <div class="action-bar m-top-1">
+                                    <button class="button small" onclick="changelog.show()">
+                                        <i class="material-icons">list</i> Changelog
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <button class="button small" onclick="versions.show()">
+                                        <i class="material-icons">history</i> Versions
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <a id="downloadBtn" class="button filled primary small m-top-2" href="" download>
+                                        <i class="material-icons">download</i> <span id="downloadText">Download
+                                            APK</span>
+                                    </a>
+
+
+
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            </div>
+
+
+            <!-- Changelog Dialog -->
+            <dialog id="changelog">
+                <nav>
+                    <h5>Notas de la versión</h5>
+                    <button class="transparent circle" onclick="changelog.close()">
+                        <i class="material-icons">close</i>
+                    </button>
+
+                </nav>
+                <main>
+                    <article>
+                        <div id="changelogContent" class="content">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <footer>
+                    <button class="button" onclick="changelog.close()">Cerrar</button>
+                </footer>
+            </dialog>
+
+            <!-- Versions Dialog -->
+            <dialog id="versions" class="medium">
+                <nav>
+                    <h5>Versiones</h5>
+                    <button class="transparent circle" onclick="versions.close()">
+                        <i class="material-icons">close</i>
+                    </button>
+
+                </nav>
+                <main>
+                    <article>
+                        <div id="versionsList" class="content">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <footer>
+                    <button class="button" onclick="versions.close()">Cerrar</button>
+                </footer>
+            </dialog>
+
+
+
+
+
+            <br>
+            <br>
+
+            <article>
+                <div>
+                    <div>
+                        <div class="col s12 m8">
+                            <div class="header">
+                                <h5 class="title">
+                                    <i class="material-icons left">laptop_windows</i> Windows
+                                </h5>
+                                <p class="small">OpenTune for Windows. Download the latest stable version.</p>
+                            </div>
+                            <div class="content">
+                                <div class="chip success small m-top-1">Stable Version</div>
+                                <div id="currentVersionWindows" class="chip small m-top-2">Cargando...</div>
+                            </div>
+                            <script>
+
+                                // Función para verificar nueva versión
+                                async function checkNewVersionWindows() {
+                                    try {
+                                        const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune-Desktop/releases/latest');
+                                        const data = await response.json();
+                                        const currentVersionElement = document.getElementById('currentVersionWindows');
+                                        const downloadBtn = document.getElementById('downloadBtnWindows');
+
+                                        // Actualizar la versión
+                                        currentVersionElement.textContent = data.tag_name;
+
+                                        // Actualizar el botón de descarga
+                                        downloadBtn.href = `https://github.com/Arturo254/OpenTune-Desktop/releases/download/${data.tag_name}/OpenTune-Desktop-${data.tag_name}.exe`;
+
+                                    } catch (error) {
+                                        console.error('Error checking version:', error);
+                                        document.getElementById('currentVersionWindows').textContent = 'Error al obtener la versión';
+                                    }
+                                }
+
+                                // Llamada inicial al cargar la página
+                                checkNewVersionWindows();
+
+                                // Verificar cada hora
+                                setInterval(checkNewVersionWindows, 60 * 60 * 1000);
+
+
+
+                            </script>
+
+                            <br>
+                            <div class="action-bar m-top-2">
+                                <button class="button small" onclick="showChangelogWindows()">
+                                    <i class="material-icons">list</i> Changelog
+                                </button>
+                                <br>
+                                <br>
+                                <button class="button small" onclick="showVersionsWindows()">
+                                    <i class="material-icons">history</i> Versions
+                                </button>
+                                <br>
+                                <br>
+                                <a id="downloadBtnWindows" class="button filled primary small m-top-2" href="" download>
+                                    <i class="material-icons">download</i> Download EXE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Changelog Dialog for Windows -->
+            <dialog id="changelogWindows">
+                <nav>
+                    <h5>Notas de la versión</h5>
+                    <button class="transparent circle" onclick="closeChangelogWindows()">
+                        <i class="material-icons">close</i>
+                    </button>
+
+                </nav>
+                <main>
+                    <article>
+                        <div id="changelogContentWindows" class="content markdown">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <footer>
+                    <button class="button" onclick="closeChangelogWindows()">Cerrar</button>
+                </footer>
+            </dialog>
+
+            <!-- Versions Dialog for Windows -->
+            <dialog id="versionsWindows">
+                <nav>
+                    <h5>Versiones </h5>
+                    <button class="transparent circle" onclick="closeVersionsWindows()">
+                        <i class="material-icons">close</i>
+                    </button>
+
+                </nav>
+                <main>
+                    <article>
+                        <div id="versionsListWindows" class="content">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+                <footer>
+                    <button class="button" onclick="closeVersionsWindows()">Cerrar</button>
+                </footer>
+            </dialog>
+
+
+
+
+
+        </center>
+
+
+
+
+
+    </section>
+    <br>
+    <br>
     <center>
 
 
-        <br>
-
-        <!-- 
-        <div id="toast-success"
-            class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-            role="alert">
-            <div
-                class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                <span class="sr-only">Check icon</span>
-            </div>
-            <div class="ms-3 text-sm font-normal">Good News! .The version 1.9.2.Beta284- of OpenTune has arrived.</div>
-            <button type="button"
-                class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                data-dismiss-target="#toast-success" aria-label="Close">
-                <span class="sr-only">Close</span>
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-            </button>
-        </div>
-        -->
-        <section
-            class="m-auto flex max-w-screen-2xl grow flex-col justify-center lg:flex-row bg-white dark:bg-gray-900">
-            <div class="relative bg-white dark:bg-gray-900 ">
-                <!-- Blur background -->
-                <div class="absolute inset-0 m-auto max-w-xs h-[357px] blur-[118px] sm:max-w-md md:max-w-lg" style="
-                    background: linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%);
-                    border-radius: 1rem; /* Aplica el border-radius para suavizar las esquinas */
-                    ">
-                </div>
-                <div class="relative z-10 fade-in">
-                    <img src="./img/mock.png" alt="mockup" class="w-full h-auto max-w-xl mx-auto rounded-md ">
-                </div>
-            </div>
-
-            <div
-                class="flex flex-1 flex-col items-center lg:items-start gap-8  from-gray-900 via-gray-800 to-gray-900 py-12 text-center lg:text-left lg:py-16 lg:pb-0 xl:pt-24 px-6 sm:px-10 lg:px-16 xl:px-32 rounded-lg ">
-                <span
-                    class="inline-flex rounded-full border text-center font-semibold transition-all duration-300 ease-in-out h-7 px-4 py-1 text-sm border-blue-300 bg-blue-100 dark:bg-blue-800 dark:text-blue-200 text-blue-600">
-                    OpenTune 1.9.2.Beta2
-                </span>
-                <div class="flex max-w-lg flex-col gap-4">
-                    <h3 class="text-5xl md:text-7xl font-extrabold text-slate-950 dark:text-white leading-tight">
-                        OpenTune
-                    </h3>
-                    <h4 class="text-lg font-normal leading-7 text-slate-500 dark:text-gray-400">
-                        A Youtube Music Client with Material Design 3, for Android.
-                    </h4>
-                </div>
-                <div class="flex flex-col gap-8">
-                    <div class="flex gap-4 justify-center lg:justify-start">
-                        <a href="#downloadapk"><button type="button"
-                                class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 text-sm font-semibold transition-all duration-300 ease-in-out bg-blue-700 text-white hover:bg-blue-800 shadow-md hover:shadow-lg px-6 gap-2">
-                                Download
-                            </button></a>
-
-
-
-                        <button data-popover-target="popover-default" type="button"
-                            class="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 text-sm font-semibold transition-all duration-300 ease-in-out border-2 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900 px-6 gap-2">
-                            Open Source ⭐
-                        </button>
-                        <div data-popover id="popover-default" role="tooltip"
-                            class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                            <div
-                                class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                                <h3 class="font-semibold text-gray-900 dark:text-white">Open Source</h3>
-                            </div>
-                            <div class="px-3 py-2">
-                                <p>Open Source is a Software Development Model where the source code is
-                                    publicly accesible for modification and distribution.</p>
-                            </div>
-                            <div data-popper-arrow></div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row gap-4 md:gap-6">
-                        <div class="flex items-center justify-center -space-x-4">
-                            <!-- Avatar List -->
-                            <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
-                                <img src="https://avatars.githubusercontent.com/u/87346871?v=4" alt=""
-                                    class="aspect-square w-10 h-10">
-                            </div>
-                            <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-10">
-                                <img src="https://avatars.githubusercontent.com/u/138934847?v=4" alt=""
-                                    class="aspect-square w-10 h-10">
-                            </div>
-                            <div
-                                class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-0">
-                                <img src="https://avatars.githubusercontent.com/u/31427850?v=4" alt=""
-                                    class="aspect-square w-10 h-10">
-                            </div>
-
-                            <!-- Nuevos Avatares (comentados) -->
-                            <!--
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
-                                <img src="https://avatars.githubusercontent.com/u/1?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-10">
-                                <img src="https://avatars.githubusercontent.com/u/2?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-0">
-                                <img src="https://avatars.githubusercontent.com/u/3?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
-                                <img src="https://avatars.githubusercontent.com/u/4?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-10">
-                                <img src="https://avatars.githubusercontent.com/u/5?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-0">
-                                <img src="https://avatars.githubusercontent.com/u/6?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
-                                <img src="https://avatars.githubusercontent.com/u/7?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-10">
-                                <img src="https://avatars.githubusercontent.com/u/8?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-0">
-                                <img src="https://avatars.githubusercontent.com/u/9?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            <div class="relative box-content flex items-center justify-center overflow-hidden rounded-full border-white shadow-md border-2 bg-white dark:bg-gray-700 z-20">
-                                <img src="https://avatars.githubusercontent.com/u/10?v=4" alt="" class="aspect-square w-10 h-10">
-                            </div>
-                            -->
-                        </div>
-                    </div>
-
-
-                    <div class="flex flex-col items-center md:items-start">
-                        <div class="flex gap-2 items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-amber-300">
-                                <path
-                                    d="M12 3L14.781 8.59516L21 9.4979L16.5 13.8507L17.562 20L12 17.0952L6.438 20L7.5 13.8507L3 9.4979L9.219 8.59516L12 3Z">
-                                </path>
-                            </svg>
-                            <p class="text-base font-semibold dark:text-gray-200">4.95/5</p>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-gray-400">Based on more than 5776 reviews.</p>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-
-        <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
-        <br>
-        <center>
-            <h1 id="bodpr"
-                class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-                Features <i class="fi fi-sr-star-shooting"></i></h1>
-        </center>
-        <center>
-
-            <div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 backdrop-blur-2xl">
-                <!-- Tarjeta 1 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-music mr-2"></i>Youtube Music Client with Material Design 3</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Discover the Youtube Music definitive experience on Android with our app, precisely designed with the Material Design 3 principies. This app offer an elegant, intuitive, modern and optimized interface to provide an exceptional user experience and advanced functionality.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 2 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-palette mr-2"></i>Modern Design and Attractive</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-The app stands out for its design based on Material Design 3, which grants an visually harmonius interface, with soft transitions and an elements dispositions who follows the latest design patterns of Google. Vivid colors y modern typographies, carefully selected to bring an estetic and attractive experience.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 3 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-cogs mr-2"></i>Customizable and Intuitive Interface</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Browse easily across a simplified interface who allows a fast access to all Youtube Music features. Personalize your experience adjusting themes and display settings according to your preferences.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 4 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-search mr-2"></i>Explore and Discover Music</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Access to a wide music catalogue since the latest hits until your favorite classics. Use the search advanced search feature to find songs, albums and artists quickly, with intelligent suggestions based on your preferences and listening habits.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 5 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-volume-up mr-2"></i>High Quality Reproduction</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Enjoy the music with an exceptional sound quality, optimized for differents
-                        devices and network connections. The app supports different audio formats and
-                        Quality configurations to suit your needs.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 6 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-list-ul mr-2"></i>Playlists and Downloads</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      Create, edit, and organize your playlists easily, so you're always at hand
-                      your favorite music. Download songs and full albums for offline listening, ideal
-                      for times when you don't have an internet connection.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 7 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-sync mr-2"></i>Complete Integration with Youtube Music</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      Sync your YouTube Music account to access your music libraries, playlists, playlists, playlists
-                      reproduction and personalized recommendations. Get notified about new releases,
-                      concerts and events of your favorite artists.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 8 -->
-                <!--  
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-tools mr-2"></i>Advanced Features</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Control playback with voice commands, gestures, and on-screen controls, for a
-                        Hands-free and convenient experience. Take advantage of support for Chromecast devices and
-                        Bluetooth, allowing you to stream your music to a wide range of external devices.
-                    </p>
-                </a>-->
-
-                <!-- Tarjeta 9 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-folder-open mr-2"></i>Efficient Library Management</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      Organize and manage your music library with advanced filtering and
-                      categorization. Quickly access your recent songs, saved albums, and playlists
-                      most popular reproductions.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 10 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-language mr-2"></i>Multilingual Support</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      Enjoy the app in multiple languages, with support for accurate translations and
-                      culturally relevant location.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 11 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-sync-alt mr-2"></i>Continuous Updates and Improvements</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      The app is regularly updated to incorporate new features, improve security, and
-                      optimize performance, always ensuring the best possible experience.
-                    </p>
-                </a>
-
-                <!-- Tarjeta 12 -->
-                <a
-                    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                            class="fas fa-headphones mr-2"></i>Optimized User Experience</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">
-                      Every detail of the app is designed to deliver an unparalleled user experience,
-                      with intuitive navigation, snappy performance, and a friendly interface.
-                    </p>
-                </a>
-            </div>
-
-
-
-
-
-            <br>
-            <br>
-
-            <center>
-                <h1 id="bodpr"
-                    class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-                    Sponsor <i class="fi fi-sr-hand-holding-heart"></i></h1>
-            </center <br>
-            <br>
-
-            <a href="https://www.buymeacoffee.com/ArturoCervantes"><img
-                    src="https://img.buymeacoffee.com/button-api/?text=Sponsor me&emoji=❤️&slug=ArturoCervantes&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
-            <br>
-            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
-
-            </div>
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-                <div class="grid gap-4">
-
-                </div>
-            </div>
-
-
-
-            <a href="./problem_solver.html"><button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Troubleshooter</button></a>
-            <br>
-
-
-            <br>
-
-
-            <!-- Gallery -->
-
-
-
-            <div id="carouselExample" class="relative carousel-container mx-auto">
-                <div class="flex gap-x-4 transition-transform duration-700 ease-in-out">
-                    <!-- Slides -->
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/10.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/11.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/1.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/2.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/3.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/4.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/5.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/6.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/7.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/8.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/9.webp');"></div>
-
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/12.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/13.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/14.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/15.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/16.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/17.webp');"></div>
-                    <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/18.webp');"></div>
-                        <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/19.webp');"></div>
-                        <div class="carousel-image flex-shrink-0 bg-cover bg-center rounded-lg"
-                        style="background-image: url('/img/20.webp');"></div>
-                </div>
-
-                <button id="prev"
-                    class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 blur-bg text-white rounded-full ">
-                    &#10094;
-                </button>
-                <button id="next"
-                    class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 blur-bg text-white rounded-full">
-                    &#10095;
-                </button>
-            </div>
-
-
-            <div id="blurBg" class="blur-bgimg">
-                <img id="fullImage" class="full-image rounded-lg" src="" alt="Full Image">
-            </div>
-
-
-            <!-- FIN Gallery -->
-
-
-
-            <br>
-            <br>
-
-            <a
-                class="block max-w-sm p-6 bg-white border border-red-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-red-700 dark:hover:bg-gray-700">
-
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                        class="fi fi-sr-diamond-exclamation"></i> Warning: </h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">If OpenTune isn't working, you maybe
-                    will have to enable a proxy 🔓. as OpenTune does not work in some countries.
-                    <br>
-                    Enter the following proxy for OpenTune to work properly:
-                </p>
+        <footer class="beer-footer beer-bg-light beer-shadow beer-rounded beer-m-4">
+            <div class="container mx-auto p-4 md:py-8">
                 <br>
 
-                <div class="grid grid-cols-8 gap-2 w-full max-w-[23rem]">
-                    <label for="npm-install" class="sr-only">Label</label>
-                    <input id="npm-install" type="text"
-                        class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        value="186.96.50.113:999" disabled readonly>
-                    <button data-copy-to-clipboard-target="npm-install"
-                        class="col-span-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
-                        <span id="default-message">Copy</span>
-                        <span id="success-message" class="hidden inline-flex items-center">
-                            <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 16 12">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
-                            </svg>
-                            Copied!
-                        </span>
-                    </button>
-                </div>
-
-            </a>
-
-
-
-            <hr id="downloadapk" class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
-
-
-            <br>
-            <span
-                class="whitespace-nowrap rounded-full bg-purple-100 text-2xl font-extrabold px-2.5 py-0.5 text-sm text-purple-700">
-                Download <i class="fi fi-sr-file-download"></i>
-            </span>
-            <br>
-            <br>
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">Stable
-                Version</span>
-            <br>
-            <br>
-
-            <a
-                class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                        class="fi fi-brands-android"></i></h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Download the Android
-                  version <strong>(APK)</strong> of OpenTune without errors or bugs. <br>
-
-
-
-                    <br>
-
-                </p>
-
-            </a>
-            <br>
-
-            <a href="https://github.com/Arturo254/OpenTune/releases/download/1.9.2.Beta2/app-foss-release.apk"><button
-                    type="button"
-                    class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"
-                    onclick="showPopup()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.71em" height="1em" viewBox="0 0 256 150">
-                        <path fill="#34a853"
-                            d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.119 128.119 0 0 0-12.794-38.288a128.778 128.778 0 0 0-23.45-31.86a129.166 129.166 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386a11.776 11.776 0 0 0 .662-10.484a11.668 11.668 0 0 0-4.823-5.536a11.85 11.85 0 0 0-5.004-1.61a11.963 11.963 0 0 0-2.218.018a11.738 11.738 0 0 0-8.968 5.798c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467c-.392-.157-.78-.313-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119.434 119.434 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915.27 3915.27 0 0 1-5.439-9.386A11.736 11.736 0 0 0 48.5.048a11.71 11.71 0 0 0-5.01 1.612a11.716 11.716 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.808 11.808 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973.32 3973.32 0 0 1 5.439 9.386c2.53 4.357 5.054 8.713 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129.184 129.184 0 0 0 45.32 64.38a129.693 129.693 0 0 0-22.2 24.015a127.737 127.737 0 0 0-9.34 15.24a128.238 128.238 0 0 0-10.843 28.764a130.743 130.743 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A124.978 124.978 0 0 0 0 149.118h256a130.44 130.44 0 0 0-.734-5.636z" />
-                        <path fill="#202124"
-                            d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" />
-                    </svg>
-                    &nbsp; Download
-                </button></a>
-
-
-            <br>
-            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
-
-
-
-            <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-                class="block mx-auto mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="button">
-                View changes from the latest version
-            </button>
-            <br>
-
-            <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
-
-
-            <div class="relative inline-block text-left">
-                <button id="popupButton"
-                    class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Previous Versions
-                    <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-
-                <!-- Popup menu -->
-                <div id="popup"
-                    class="hidden absolute right-0 z-10 w-48 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-700 dark:border-gray-600">
-                    <ul id="popupList"
-                        class="text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white">
-                        <!-- Aquí se insertarán las versiones dinámicamente -->
-                        <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Loading
-                            versions...</li>
-                    </ul>
-                </div>
-            </div>
-
-
-
-
-
-            <br>
-            <!-- Main modal -->
-            <div id="default-modal" tabindex="-1" aria-hidden="true"
-                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative p-4 w-full max-w-2xl max-h-full">
-                    <!-- Modal content -->
-                    <div class="relative bg-white dark:bg-gray-900 rounded-lg shadow">
-                        <!-- Modal header -->
-                        <div
-                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Lastest Changes
-                            </h3>
-                            <button type="button"
-                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="default-modal">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                </svg>
-                                <span class="sr-only">Close Modal</span>
-                            </button>
-                        </div>
-                        <!-- Modal body -->
-                        <div id="changelog"
-                            class="p-4 md:p-5 bg-gray-50 dark:bg-gray-800 rounded-lg text-sm text-gray-900 dark:text-white">
-                            Loading changes...
-                        </div>
-                        <!-- Modal footer -->
-                        <div
-                            class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <button data-modal-hide="default-modal" type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Aceptar</button>
-                            <button data-modal-hide="default-modal" type="button"
-                                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            </a>
-
-            <br>
-
-        </center>
-
-        <!-- Windows -->
-
-        <a
-            class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                    class="fi fi-brands-windows"></i></h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Download the Windows Version
-                <strong>(EXE)</strong> of OpenTune <span
-                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Beta</span><br>
-
-
-
-            </p>
-
-        </a>
-        <br>
-
-        <a
-            href="https://github.com/Arturo254/OpenTune-Desktop/releases/download/1.10.4/opentunev1.10.4.exe"><button
-                type="button"
-                class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"
-                onclick="showPopup()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 256 256">
-                    <rect width="256" height="256" fill="none" />
-                    <g fill="none">
-                        <g clip-path="url(#skillIconsWindowsDark0)">
-                            <path fill="#242938"
-                                d="M196 0H60C26.863 0 0 26.863 0 60v136c0 33.137 26.863 60 60 60h136c33.137 0 60-26.863 60-60V60c0-33.137-26.863-60-60-60" />
-                            <path fill="#00adef"
-                                d="m40 65.663l70.968-9.665l.032 68.455l-70.934.404zm70.935 66.677l.055 68.515l-70.934-9.753l-.004-59.221zm8.602-77.607L213.636 41v82.582l-94.099.748zm94.121 78.251l-.022 82.211l-94.099-13.281l-.131-69.083z" />
-                        </g>
-                        <defs>
-                            <clipPath id="skillIconsWindowsDark0">
-                                <path fill="#fff" d="M0 0h256v256H0z" />
-                            </clipPath>
-                        </defs>
-                    </g>
-                </svg>
-                &nbsp; Download
-            </button></a>
-
-
-        <!-- Windows -->
-
-        <br>
-        <br>
-
-        <br>
-        <span
-            class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Beta
-            Version (Closed )</span>
-        <br>
-        <br>
-
-        <a
-            class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><i
-                    class="fi fi-brands-android"></i></h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Download the Android Version
-                <strong>(APK)</strong> of OpenTune with Experimental Features and Functions
-            </p>
-
-        </a>
-        <br>
-        <div style="max-width: 600px; margin: 0 auto; padding: 10px;">
-            <div class="bg-yellow-50 border border-yellow-200 text-sm text-yellow-800 rounded-lg p-4 dark:bg-yellow-800/10 dark:border-yellow-900 dark:text-yellow-500"
-                role="alert">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="flex-shrink-0 size-4 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                            <path d="M12 9v4" />
-                            <path d="M12 17h.01" />
-                        </svg>
-                    </div>
-                    <div class="ms-4">
-                        <h3 class="text-sm font-semibold">
-                            IMPORTANT
-                        </h3>
-                        <div class="mt-1 text-sm text-yellow-700">
-                            This is a Beta version of OpenTune, If you have problems with the app, please report them
-                            on
-                            the Github repository <a href="https://github.com/Arturo254/OpenTune/issues"
-                                class="font-semibold underline">Report Problem</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br>
-
-        <a href="./404.html"><button type="button"
-                class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.71em" height="1em" viewBox="0 0 256 150">
-                    <path fill="#34a853"
-                        d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.119 128.119 0 0 0-12.794-38.288a128.778 128.778 0 0 0-23.45-31.86a129.166 129.166 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386a11.776 11.776 0 0 0 .662-10.484a11.668 11.668 0 0 0-4.823-5.536a11.85 11.85 0 0 0-5.004-1.61a11.963 11.963 0 0 0-2.218.018a11.738 11.738 0 0 0-8.968 5.798c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467c-.392-.157-.78-.313-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119.434 119.434 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915.27 3915.27 0 0 1-5.439-9.386A11.736 11.736 0 0 0 48.5.048a11.71 11.71 0 0 0-5.01 1.612a11.716 11.716 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.808 11.808 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973.32 3973.32 0 0 1 5.439 9.386c2.53 4.357 5.054 8.713 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129.184 129.184 0 0 0 45.32 64.38a129.693 129.693 0 0 0-22.2 24.015a127.737 127.737 0 0 0-9.34 15.24a128.238 128.238 0 0 0-10.843 28.764a130.743 130.743 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A124.978 124.978 0 0 0 0 149.118h256a130.44 130.44 0 0 0-.734-5.636z" />
-                    <path fill="#202124"
-                        d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" />
-                </svg>
-                &nbsp; Download </button>
-        </a>
-
-
-
-    </center>
-    <br>
-    <br>
-
-
-
-    <center>
-
-
-
-        <br>
-        <br>
-
-    </center>
-
-    <center>
-
-
-
-        <div class="max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
-            <a>
-                <img class="rounded-t-lg" src="/./img/translate.jpeg" alt="" />
-            </a>
-            <div class="p-5 rounded-xl">
-                <a>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Do you want to translate
-                        OpenTune?</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Click to start contributing with
-                  OpenTune translation.</p lauguage-picker>
-                </p>
-                <a href="https://forms.gle/xuUdaJP12SZ2owPV9"
-                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Translate
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-
-    </center>
-
-    <br>
-    <br>
-
-    </center>
-    <!-- Footer -->
-
-
-    <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
-        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="./index.html" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="./icon/favicon.ico" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OpenTune</span>
-                </a>
-                <ul
-                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                    <li>
-                        <a href="https://github.com/Arturo254/" class="hover:underline me-4 md:me-6">Dev</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/Arturo254/OpenTune" class="hover:underline me-4 md:me-6">Project
-                            Code</a>
-                    </li>
-                    <li>
+                <div class="sm:flex sm:items-center sm:justify-between mt-4">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://github.com/Arturo254/" class="chip round beer-btn beer-btn-primary">
+                            <i class="primary-text">developer_mode</i>
+                            <span>Dev</span>
+                        </a>
+                        <br>
+                        <br>
+                        <a href="https://github.com/Arturo254/OpenTune" class="chip round beer-btn beer-btn-primary">
+                            <i class="primary-text">code</i>
+                            <span>Project Code</span>
+                        </a>
+                        <br>
+                        <br>
                         <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE"
-                            class="hover:underline me-4 md:me-6">Licensing</a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/5576847925" class="hover:underline">Contact</a>
-                    </li>
-                </ul>
+                            class="chip round beer-btn beer-btn-primary">
+                            <i class="primary-text">description</i>
+                            <span>Licensing</span>
+                        </a>
+                        <br>
+                        <br>
+                        <a href="https://wa.me/5576847925" class="chip round beer-btn beer-btn-primary">
+                            <i class="primary-text">phone_in_talk</i>
+                            <span>Contact</span>
+                        </a>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+
+                <hr class="my-6 beer-border-gray-200 sm:mx-auto beer-border-darkgray lg:my-8" />
+
+                <div class="text-center">
+                    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+                        © 2024 <a href="https://github.com/Arturo254" class="hover:underline">Arturo.inc™</a>. All
+                        Rights Reserved.
+                    </span>
+                </div>
             </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
-                    href="https://github.com/Arturo254" class="hover:underline">Arturo.inc™</a>. All Rights
-                Reserved.</span>
-        </div>
-    </footer>
+        </footer>
+    </center>
 
-
-    <!-- Fin Footer -->
-
-    <!-- Scripts -->
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const changelogContainer = document.getElementById('changelog');
 
-            // Función para abrir el modal y obtener los cambios
-            document.querySelector('[data-modal-toggle="default-modal"]').addEventListener('click', () => {
-                fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.body) {
-                            // Convertir Markdown a HTML usando marked.parse
-                            changelogContainer.innerHTML = marked.parse(data.body);
-                        } else {
-                            changelogContainer.innerText = 'No se encontraron cambios para la última versión.';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener los cambios:', error);
-                        changelogContainer.innerText = 'Error al cargar los cambios.';
-                    });
-            });
+
+
+        // Llamada inicial al cargar la página
+        checkNewVersionWindows();
+
+        // Verificar cada hora
+        setInterval(checkNewVersionWindows, 60 * 60 * 1000);
+
+
+        // Llamada inicial al cargar la página
+        checkNewVersionWindows();
+
+        // Verificar cada hora
+        setInterval(checkNewVersionWindows, 60 * 60 * 1000);
+
+
+
+        //Markdown  De OpenTune Android (cambios)
+
+        // Configuración de marked.js
+        marked.setOptions({
+            breaks: true, // Permitir saltos de línea simples
+            gfm: true,    // Activar el estilo GitHub Flavored Markdown (GFM)
+            headerIds: false, // Desactiva IDs automáticos en encabezados
         });
-    </script>
 
+        const changelog = {
+            element: document.getElementById('changelog'),
+            show: function () {
+                this.element.showModal();
+                this.loadChangelog();
+            },
+            close: function () {
+                this.element.close();
+            },
+            async loadChangelog() {
+                const content = document.getElementById('changelogContent');
+                try {
+                    const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+                    const data = await response.json();
 
-    <script>
-        function showPopup() {
-            const popup = document.getElementById("popup");
-            popup.classList.remove("hidden");
-            setTimeout(function () {
-                popup.classList.add("hidden");
-            }, 6000);
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousel = document.querySelector('#carouselExample .flex');
-            const images = document.querySelectorAll('.carousel-image');
-            const imageWidth = images[0].offsetWidth;
-            const visibleImages = 2;
-            const gap = 16;
-            let index = 0;
-            let startX = 0;
-            let endX = 0;
-
-            document.getElementById('next').addEventListener('click', () => {
-                if (index < images.length - visibleImages) {
-                    index++;
-                    carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
-                }
-            });
-
-            document.getElementById('prev').addEventListener('click', () => {
-                if (index > 0) {
-                    index--;
-                    carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
-                }
-            });
-
-            carousel.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            });
-
-            carousel.addEventListener('touchend', (e) => {
-                endX = e.changedTouches[0].clientX;
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                const swipeDistance = startX - endX;
-                const minSwipeDistance = 50;
-
-                if (swipeDistance > minSwipeDistance) {
-                    if (index < images.length - visibleImages) {
-                        index++;
-                        carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta de la API');
                     }
-                } else if (swipeDistance < -minSwipeDistance) {
-                    if (index > 0) {
-                        index--;
-                        carousel.style.transform = `translateX(-${index * (imageWidth + gap)}px)`;
+
+                    // Verificar si la respuesta contiene el campo body
+                    if (!data.body) {
+                        throw new Error('No se encontraron notas disponibles');
                     }
+
+                    console.log(data); // Ver los datos de la API en la consola para depuración
+
+                    // Procesar y mostrar las notas de la versión
+                    content.innerHTML = `
+                        <div class="card">
+                            <div class="header">
+                                <div class="title">Versión ${data.tag_name}</div>
+                                <div class="subtitle">${new Date(data.published_at).toLocaleDateString()}</div>
+                            </div>
+                            <div class="content markdown">
+                                ${marked.parse(data.body || 'No hay notas disponibles')}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error:', error); // Ver el error en consola
+                    content.innerHTML = '<div class="error-text">Error cargando los cambios: ' + error.message + '</div>';
                 }
             }
+        };
 
-            images.forEach(image => {
-                image.addEventListener('click', () => {
-                    const bgImage = image.style.backgroundImage;
-                    const imageUrl = bgImage.slice(5, bgImage.length - 2);
-                    const blurBg = document.getElementById('blurBg');
-                    const fullImage = document.getElementById('fullImage');
-                    fullImage.src = imageUrl;
-                    blurBg.style.display = 'flex';
-                });
-            });
+        // Markdown  De OpenTune Android (versiones)
+        const versions = {
+            element: document.getElementById('versions'),
+            show: function () {
+                this.element.showModal();
+                this.loadVersions();
+            },
+            close: function () {
+                this.element.close();
+            },
+            async loadVersions() {
+                const list = document.getElementById('versionsList');
+                try {
+                    const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases');
+                    const releases = await response.json();
+                    list.innerHTML = releases.map(release => `
+            <div class="card m-bottom-2">
+                <div class="header">
+                    <div class="title">${release.tag_name}</div>
+                    <div class="subtitle">${new Date(release.published_at).toLocaleDateString()}</div>
+                </div>
+                <div class="action-bar">
+                    <a href="${release.assets[0]?.browser_download_url || '#'}" class="button">
+                        <i class="material-icons">download</i> Descargar
+                    </a>
+                </div>
+            </div>
+        `).join('');
+                } catch (error) {
+                    list.innerHTML = '<div class="error-text">Error cargando las versiones</div>';
+                }
+            }
+        };
 
-            document.getElementById('blurBg').addEventListener('click', () => {
-                document.getElementById('blurBg').style.display = 'none';
+        async function checkNewVersion() {
+            try {
+                const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+                const data = await response.json();
+                const currentVersion = document.getElementById('currentVersion');
+                currentVersion.textContent = data.tag_name;
+            } catch (error) {
+                console.error('Error checking version:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkNewVersion();
+        });
+
+
+        // obtener version actual OpenTune Desktop:
+
+
+        let currentVersionWindows = '1.9.0';
+        let latestVersionWindows = '1.9.0';
+
+        // Función para verificar nueva versión para Windows
+        async function checkNewVersionWindows() {
+            try {
+                const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune-Desktop/releases/latest');
+                const data = await response.json();
+                latestVersionWindows = data.tag_name;
+                updateDownloadButtonWindows();
+            } catch (error) {
+                console.error('Error checking version for Windows:', error);
+            }
+        }
+
+        // Función para actualizar el botón de descarga para Windows
+        function updateDownloadButtonWindows() {
+            const downloadTextWindows = document.getElementById('downloadTextWindows');
+            const downloadBtnWindows = document.getElementById('downloadBtnWindows');
+
+            if (latestVersionWindows !== currentVersionWindows) {
+                downloadBtnWindows.href = `https://github.com/Arturo254/OpenTune-Desktop/releases/download/${latestVersionWindows}/OpenTune-Desktop-${latestVersionWindows}.exe`;
+            } else {
+                downloadBtnWindows.href = `https://github.com/Arturo254/OpenTune-Desktop/releases/download/${currentVersionWindows}/OpenTune-Desktop-${currentVersionWindows}.exe`;
+            }
+        }
+
+        // Verificar al cargar la página
+        checkNewVersionWindows();
+
+        // Verificar cada hora
+        setInterval(checkNewVersionWindows, 60 * 60 * 1000);
+
+        // Funciones para mostrar y cerrar los diálogos de "Cambios" y "Versiones"
+        function showChangelogWindows() {
+            const changelogElement = document.getElementById('changelogWindows');
+            changelogElement.showModal();
+            loadChangelogWindows();
+        }
+
+        function closeChangelogWindows() {
+            const changelogElement = document.getElementById('changelogWindows');
+            changelogElement.close();
+        }
+        // Función para mostrar y cerrar los diálogos de "Cambios" y "Versiones"
+
+
+        async function loadChangelogWindows() {
+            const content = document.getElementById('changelogContentWindows');
+            try {
+                const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune-Desktop/releases/latest');
+                const data = await response.json();
+                content.innerHTML = `
+                <div class="card">
+                    <div class="header">
+                        <div class="title">Versión ${data.tag_name}</div>
+                        <div class="subtitle">${new Date(data.published_at).toLocaleDateString()}</div>
+                    </div>
+                    <div class="content markdown">
+                        ${marked.parse(data.body || 'No hay notas disponibles')}
+                    </div>
+                </div>
+            `;
+            } catch (error) {
+                content.innerHTML = '<div class="error-text">Error cargando los cambios</div>';
+            }
+        }
+
+        function showVersionsWindows() {
+            const versionsElement = document.getElementById('versionsWindows');
+            versionsElement.showModal();
+            loadVersionsWindows();
+        }
+
+        function closeVersionsWindows() {
+            const versionsElement = document.getElementById('versionsWindows');
+            versionsElement.close();
+        }
+
+        async function loadVersionsWindows() {
+            const list = document.getElementById('versionsListWindows');
+            try {
+                const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune-Desktop/releases');
+                const releases = await response.json();
+                list.innerHTML = releases.map(release => `
+                <div class="card m-bottom-2">
+                    <div class="header">
+                        <div class="title">${release.tag_name}</div>
+                        <div class="subtitle">${new Date(release.published_at).toLocaleDateString()}</div>
+                    </div>
+                    <div class="action-bar">
+                        <a href="${release.assets[0]?.browser_download_url || '#'}" class="button">
+                            <i class="material-icons">download</i> Descargar
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            } catch (error) {
+                list.innerHTML = '<div class="error-text">Error cargando las versiones</div>';
+            }
+        }
+
+        // carosel popup:
+
+
+        // Variables
+        const images = document.querySelectorAll('.carousel-image');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupImage = document.getElementById('popupImage');
+        const closePopup = document.getElementById('closePopup');
+
+        // Open popup when image is clicked
+        images.forEach((image) => {
+            image.addEventListener('click', (e) => {
+                popupImage.src = e.target.src;
+                popupOverlay.style.display = 'flex';
             });
         });
-    </script>
 
-<script>
-    async function fetchAllReleases() {
-      const url = 'https://api.github.com/repos/Arturo254/OpenTune/releases';
-      let page = 1;
-      let releases = [];
-      let moreReleases = true;
-    
-      // Fetch releases from all pages
-      while (moreReleases) {
-        const response = await fetch(`${url}?page=${page}&per_page=30`); // Per page can be adjusted
-        const data = await response.json();
-        
-        // If there are no more releases in this page, stop the loop
-        if (data.length === 0) {
-          moreReleases = false;
-        } else {
-          releases = releases.concat(data); // Append results to the total list
-          page++;
-        }
-      }
-    
-      return releases;
-    }
-    
-    async function populateReleases() {
-      const releases = await fetchAllReleases();
-    
-      const popupList = document.getElementById('popupList');
-      popupList.innerHTML = ''; // Limpiar lista
-    
-      // Iterar sobre las releases y agregarlas al popup
-      releases.forEach((release, index) => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('w-full', 'px-4', 'py-2', 'border-b', 'border-gray-200', 'dark:border-gray-600', 'cursor-pointer', 'hover:bg-gray-100', 'dark:hover:bg-gray-600');
-        
-        if (index === 0) {
-          listItem.classList.add('rounded-t-lg');
-        }
-        if (index === releases.length - 1) {
-          listItem.classList.remove('border-b');
-          listItem.classList.add('rounded-b-lg');
-        }
-    
-        listItem.textContent = release.name;
-    
-        // Redirigir al hacer clic en cada release
-        listItem.addEventListener('click', () => {
-          window.open(release.html_url, '_blank'); // Abrir en una nueva pestaña
+        // Close popup when clicking outside of the image
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+            }
         });
-    
-        popupList.appendChild(listItem);
-      });
-    }
-    
-    // Mostrar/ocultar popup y cargar versiones
-    document.getElementById('popupButton').addEventListener('click', function () {
-      const popup = document.getElementById('popup');
-      popup.classList.toggle('hidden');
-      
-      // Cargar versiones solo si el popup está visible
-      if (!popup.classList.contains('hidden')) {
-        populateReleases();
-      }
-    });
+
+        // Close popup when close button is clicked
+        closePopup.addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+        });
+
+        // Swipe functionality for the popup
+        let startX;
+        popupOverlay.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        popupOverlay.addEventListener('touchend', (e) => {
+            let endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) {
+                // Swipe left, show next image
+                nextImage();
+            } else if (endX - startX > 50) {
+                // Swipe right, show previous image
+                prevImage();
+            }
+        });
+
+        // Function to show the next image
+        function nextImage() {
+            let currentIndex = Array.from(images).findIndex((img) => img.src === popupImage.src);
+            let nextIndex = (currentIndex + 1) % images.length;
+            popupImage.src = images[nextIndex].src;
+        }
+
+        // Function to show the previous image
+        function prevImage() {
+            let currentIndex = Array.from(images).findIndex((img) => img.src === popupImage.src);
+            let prevIndex = (currentIndex - 1 + images.length) % images.length;
+            popupImage.src = images[prevIndex].src;
+        }
+        // descarga de versiones OpenTune Android:
+
+        let currentVersion = '1.9.0';
+        let latestVersion = '1.9.0';
+        let isDownloading = false;
+
+        // Función para verificar nueva versión
+        async function checkNewVersion() {
+            try {
+                const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+                const data = await response.json();
+                latestVersion = data.tag_name;
+                updateDownloadButton();
+            } catch (error) {
+                console.error('Error checking version:', error);
+            }
+        }
+
+        // Función para actualizar el botón
+        function updateDownloadButton() {
+            const downloadText = document.getElementById('downloadText');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            if (latestVersion !== currentVersion) {
+                downloadText.textContent = 'Nueva versión disponible!';
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-foss-release.apk`;
+            } else {
+                downloadText.textContent = 'Descargar APK';
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-foss-release.apk`;
+            }
+        }
+
+        // Verificar al cargar la página
+        checkNewVersion();
+
+        // Verificar cada hora
+        setInterval(checkNewVersion, 60 * 60 * 1000);
+
+
     </script>
 
-    <!-- Scripts -->
+
+
+
+
+    <!-- Beer CSS Styles -->
+    <style>
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .carousel-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: none;
+        }
+
+        .carousel-image:hover {
+            transform: scale(1.1);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .popup-content {
+            position: relative;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .popup-image {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .carousel {
+            border-radius: 15px;
+
+        }
+
+        header {
+            border-radius: 12px;
+            /* Redondeo del header */
+            overflow: hidden;
+
+
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero .cta {
+            font-size: 1.1rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .carousel img {
+            flex: 0 0 auto;
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+            scroll-snap-align: center;
+        }
+
+        .downloads {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Aplicar la fuente Roboto como fuente predeterminada */
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            /* Peso predeterminado */
+            line-height: 1.5;
+            /* Altura de línea para mejor legibilidad */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para encabezados */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            /* Usar peso negrita para encabezados */
+            line-height: 1.25;
+            margin: 0;
+        }
+
+        /* Estilo para texto en código o consola */
+        code,
+        pre {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 400;
+        }
+
+        /* Estilo opcional para citas o textos destacados */
+        blockquote {
+            font-family: 'Roboto Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #555;
+            /* Color gris para diferenciar */
+            border-left: 4px solid #ccc;
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        /* Asegurar compatibilidad con Material Symbols */
+        .material-symbols-rounded {
+            font-family: 'Material Symbols Rounded';
+            font-weight: 400;
+            font-style: normal;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
 
 </body>
 
