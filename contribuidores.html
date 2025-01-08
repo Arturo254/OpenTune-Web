@@ -48,7 +48,7 @@
     <link rel="apple-touch-icon" href="./icon/icon-512.png">
 
     <meta name="description" content="Un cliente de YouTube Music con Material Design 3, para Android">
-    <title>Colabordores</title>
+    <title>Colaboradores</title>
 </head>
 
 <body>
@@ -188,6 +188,55 @@
         window.onload = detectLanguage;
     </script>
 
+<a href="https://github.com/Arturo254/OpenTune/fork"><button class="extend circle floating-button" id="floatingButton">
+    <i>add</i>
+    <span>Contribuir?</span>
+  </button></a>
+  
+  <style>
+    .floating-button {
+      position: fixed;
+      bottom: 5rem; /* Distancia desde abajo */
+      right: 1.5rem; /* Distancia desde la derecha */
+      z-index: 10;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 1; /* Opacidad completa por defecto */
+    }
+  
+    .floating-button.hidden {
+      opacity: 0.5; /* Semitransparente */
+    }
+  
+    .floating-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+  
+  <script>
+    const floatingButton = document.getElementById('floatingButton');
+  
+    let timeoutId;
+  
+    const resetTransparency = () => {
+      // Restablece la opacidad y cancela el temporizador anterior
+      floatingButton.classList.remove('hidden');
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        // Cambia a semitransparente si no hay interacción en 2 segundos
+        floatingButton.classList.add('hidden');
+      }, 1000);
+    };
+  
+    // Agrega eventos para interacción
+    floatingButton.addEventListener('click', resetTransparency);
+    floatingButton.addEventListener('mouseover', resetTransparency);
+  
+    // Inicia el temporizador al cargar la página
+    resetTransparency();
+  </script>
+  
 
 
     <br>
