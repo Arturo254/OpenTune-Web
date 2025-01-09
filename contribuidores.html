@@ -57,8 +57,10 @@
         class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
         <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
             <!-- Título centrado -->
-            <a href="./index.html"><h5 class="beer-title beer-flex-1 beer-text-center">Colab <span
-                    class="material-symbols-rounded">groups</span></h5></a>
+            <a href="./index.html">
+                <h5 class="beer-title beer-flex-1 beer-text-center">Colab <span
+                        class="material-symbols-rounded">groups</span></h5>
+            </a>
 
             <!-- Selector de idioma -->
             <button id="languageSelector"
@@ -188,180 +190,186 @@
         window.onload = detectLanguage;
     </script>
 
-<a href="https://github.com/Arturo254/OpenTune/fork"><button class="extend circle floating-button" id="floatingButton">
-    <i>add</i>
-    <span>Contribuir?</span>
-  </button></a>
-  
-  <style>
-    .floating-button {
-      position: fixed;
-      bottom: 5rem; /* Distancia desde abajo */
-      right: 1.5rem; /* Distancia desde la derecha */
-      z-index: 10;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 1; /* Opacidad completa por defecto */
-    }
-  
-    .floating-button.hidden {
-      opacity: 0.5; /* Semitransparente */
-    }
-  
-    .floating-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
-  </style>
-  
-  <script>
-    const floatingButton = document.getElementById('floatingButton');
-  
-    let timeoutId;
-  
-    const resetTransparency = () => {
-      // Restablece la opacidad y cancela el temporizador anterior
-      floatingButton.classList.remove('hidden');
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        // Cambia a semitransparente si no hay interacción en 2 segundos
-        floatingButton.classList.add('hidden');
-      }, 1000);
-    };
-  
-    // Agrega eventos para interacción
-    floatingButton.addEventListener('click', resetTransparency);
-    floatingButton.addEventListener('mouseover', resetTransparency);
-  
-    // Inicia el temporizador al cargar la página
-    resetTransparency();
-  </script>
-  
+    <a href="https://github.com/Arturo254/OpenTune/fork"><button class="extend circle floating-button"
+            id="floatingButton">
+            <i>add</i>
+            <span>Contribuir?</span>
+        </button></a>
+
+    <style>
+        .floating-button {
+            position: fixed;
+            bottom: 5rem;
+            /* Distancia desde abajo */
+            right: 1.5rem;
+            /* Distancia desde la derecha */
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 1;
+            /* Opacidad completa por defecto */
+        }
+
+        .floating-button.hidden {
+            opacity: 0.5;
+            /* Semitransparente */
+        }
+
+        .floating-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+
+    <script>
+        const floatingButton = document.getElementById('floatingButton');
+
+        let timeoutId;
+
+        const resetTransparency = () => {
+            // Restablece la opacidad y cancela el temporizador anterior
+            floatingButton.classList.remove('hidden');
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                // Cambia a semitransparente si no hay interacción en 2 segundos
+                floatingButton.classList.add('hidden');
+            }, 1000);
+        };
+
+        // Agrega eventos para interacción
+        floatingButton.addEventListener('click', resetTransparency);
+        floatingButton.addEventListener('mouseover', resetTransparency);
+
+        // Inicia el temporizador al cargar la página
+        resetTransparency();
+    </script>
+
 
 
     <br>
     <br>
     <center>
-        <section class="beer-grid beer-gap-4 beer-mt-4" style="--beer-grid-columns: repeat(auto-fit, minmax(250px, 1fr));"> 
-        <!-- Primer artículo -->
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/87346871?v=4"
-                    alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>Arturo Cervantes</h5>
-                    <p>Desarrollador principal</p>
+        <section class="beer-grid beer-gap-4 beer-mt-4"
+            style="--beer-grid-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <!-- Primer artículo -->
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/87346871?v=4"
+                        alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>Arturo Cervantes</h5>
+                        <p>Desarrollador principal</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/Arturo254">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
+                <nav>
+                    <a href="https://github.com/Arturo254">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
 
-        <br>
+            <br>
 
-        <!-- Segundo artículo -->
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/138934847?v=4"
-                    alt="Foto de Fabiano Júnior" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>Fabiano Júnior</h5>
-                    <p>Traductor al Portugués (BR)</p>
+            <!-- Segundo artículo -->
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/138934847?v=4"
+                        alt="Foto de Fabiano Júnior" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>Fabiano Júnior</h5>
+                        <p>Traductor al Portugués (BR)</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/Fabito02">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
-        <br>
+                <nav>
+                    <a href="https://github.com/Fabito02">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
+            <br>
 
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/31427850?v=4"
-                    alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>Imgbot</h5>
-                    <p>Optimizacion de Imagenes</p>
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/31427850?v=4"
+                        alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>Imgbot</h5>
+                        <p>Optimizacion de Imagenes</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/ImgBotApp">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
-        <br>
+                <nav>
+                    <a href="https://github.com/ImgBotApp">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
+            <br>
 
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/40720048?v=4"
-                    alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>Alessandro Angelo</h5>
-                    <p>Barra de busqueda en las Playlist</p>
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/40720048?v=4"
+                        alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>Alessandro Angelo</h5>
+                        <p>Barra de busqueda en las Playlist</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/AlessandroGalvan">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
-        <br>
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/106829560?v=4"
-                    alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>Derpachi</h5>
-                    <p>Traductor Ruso</p>
+                <nav>
+                    <a href="https://github.com/AlessandroGalvan">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
+            <br>
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/106829560?v=4"
+                        alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>Derpachi</h5>
+                        <p>Traductor Ruso</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/Derpachi">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
-        <br>
-        <article class="round elevation-1 card-animation">
-            <div class="row">
-                <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/111314382?v=4"
-                    alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
-                <div class="max">
-                    <h5>รiłѵα'.ぁ™</h5>
-                    <p>Traducción y correcciones al portugués (BR)</p>
+                <nav>
+                    <a href="https://github.com/Derpachi">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
+            <br>
+            <article class="round elevation-1 card-animation">
+                <div class="row">
+                    <img class="circle large img-animation" src="https://avatars.githubusercontent.com/u/111314382?v=4"
+                        alt="Foto de Arturo Cervantes" onclick="showImageDialog(this)">
+                    <div class="max">
+                        <h5>รiłѵα'.ぁ™</h5>
+                        <p>Traducción y correcciones al portugués (BR)</p>
+                    </div>
                 </div>
-            </div>
-            <nav>
-                <a href="https://github.com/avlis84">
-                    <button class="btn-animation">
-                        <i class="material-icons">code</i>
-                        GitHub
-                    </button>
-                </a>
-            </nav>
-        </article>
+                <nav>
+                    <a href="https://github.com/avlis84">
+                        <button class="btn-animation">
+                            <i class="material-icons">code</i>
+                            GitHub
+                        </button>
+                    </a>
+                </nav>
+            </article>
         </section>
     </center>
 
@@ -420,17 +428,76 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-          @media (min-width: 768px) {
-        article.round {
-            height: 200px; /* Cards más cortas en pantallas grandes */
+        @media (min-width: 768px) {
+            article.round {
+                height: 200px;
+                /* Cards más cortas en pantallas grandes */
+            }
         }
-    }
 
-    @media (max-width: 768px) {
-        article.round {
-            height: auto; /* Altura automática para móviles */
+        @media (max-width: 768px) {
+            article.round {
+                height: auto;
+                /* Altura automática para móviles */
+            }
         }
-    }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            /* Peso predeterminado */
+            line-height: 1.5;
+            /* Altura de línea para mejor legibilidad */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para encabezados */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            /* Usar peso negrita para encabezados */
+            line-height: 1.25;
+            margin: 0;
+        }
+
+        /* Estilo para texto en código o consola */
+        code,
+        pre {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 400;
+        }
+
+        /* Estilo opcional para citas o textos destacados */
+        blockquote {
+            font-family: 'Roboto Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #555;
+            /* Color gris para diferenciar */
+            border-left: 4px solid #ccc;
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        /* Asegurar compatibilidad con Material Symbols */
+        .material-symbols-rounded {
+            font-family: 'Material Symbols Rounded';
+            font-weight: 400;
+            font-style: normal;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
     </style>
 
 </body>
