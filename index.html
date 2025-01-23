@@ -56,7 +56,53 @@
     <header id="header" class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
         <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
             <!-- Título centrado -->
-            <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
+            <style>
+                .beer-title {
+                  transition: opacity 1s ease;
+                }
+              
+                .logo {
+                  display: none;
+                  transition: opacity 1s ease;
+                  border-radius: 40%;
+                }
+              </style>
+              
+              <center>
+                <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
+                <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40"> <!-- Cambia el src a la ruta de tu logo -->
+              </center>
+              
+              <script>
+                function toggleTitleLogo() {
+                  const title = document.querySelector('.beer-title');
+                  const logo = document.getElementById('logo');
+              
+                  // Cambiar a logo
+                  title.style.opacity = 0;
+                  setTimeout(() => {
+                    title.style.display = 'none'; // Oculta el título
+                    logo.style.display = 'inline-block'; // Muestra el logo
+                    logo.style.opacity = 1;
+                  }, 1000);
+              
+                  // Después de 5 segundos, cambiar a título
+                  setTimeout(() => {
+                    logo.style.opacity = 0; // Oculta el logo
+                    setTimeout(() => {
+                      logo.style.display = 'none'; // El logo se oculta completamente
+                      title.style.display = 'inline-block'; // Vuelve a mostrar el título
+                      title.style.opacity = 1;
+                    }, 1000);
+                  }, 4500); // 5 segundos antes de volver a mostrar el título
+                }
+              
+                // Llamar a la función cada 10 segundos para un ciclo infinito
+                setInterval(toggleTitleLogo, 10000);
+              </script>
+              
+              
+              
     
             <!-- Selector de idioma -->
             <button id="languageSelector"
@@ -192,6 +238,16 @@
     <section class="hero">
         <img src="./img/mock.png" width="300" alt="">
         <h1>OpenTune</h1>
+    
+          
+          <center>
+            <button class="chip fill">
+              <i>code</i>
+              <span>Dev By Arthur Dev Studio</span>
+            </button>
+          </center>
+          
+        
         <p>Un cliente de YouTube Music con Material Design 3, para Android.</p>
         <a href="#downloadapk"><button class="primary cta">Descargar</button></a>
         <br>
@@ -1195,6 +1251,47 @@
             direction: ltr;
             -webkit-font-smoothing: antialiased;
         }
+        .chip.fill {
+              position: relative;
+              overflow: hidden;
+            }
+          
+            .chip.fill::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: -150%;
+              width: 200%;
+              height: 100%;
+              background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+              animation: shine 5s infinite ease-in-out;
+            }
+          
+            @keyframes shine {
+              0% {
+                left: -150%;
+              }
+              50% {
+                left: -50%;
+              }
+              100% {
+                left: 150%;
+              }
+            }
+          
+            /* Efecto aleatorio */
+            .chip.fill {
+              animation: delay-animation 10s infinite;
+            }
+          
+            @keyframes delay-animation {
+              0%, 20% {
+                opacity: 1;
+              }
+              21%, 100% {
+                opacity: 1; /* Controla cuándo el brillo se muestra */
+              }
+            }
     </style>
 
 </body>
