@@ -3,14 +3,14 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-6JTGMLLK8S');
-</script>
+        gtag('config', 'G-6JTGMLLK8S');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,64 +53,97 @@
 </head>
 
 <body>
-    <header id="header" class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
+    <header id="header"
+        class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
         <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
             <!-- Título centrado -->
-            <style>
-                .beer-title {
-                  transition: opacity 1s ease;
-                }
-              
-                .logo {
-                  display: none;
-                  transition: opacity 1s ease;
-                  border-radius: 40%;
-                }
-              </style>
-              
-              <center>
-                <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
-                <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40"> <!-- Cambia el src a la ruta de tu logo -->
-              </center>
-              
-              <script>
-                function toggleTitleLogo() {
-                  const title = document.querySelector('.beer-title');
-                  const logo = document.getElementById('logo');
-              
-                  // Cambiar a logo
-                  title.style.opacity = 0;
-                  setTimeout(() => {
-                    title.style.display = 'none'; // Oculta el título
-                    logo.style.display = 'inline-block'; // Muestra el logo
-                    logo.style.opacity = 1;
-                  }, 1000);
-              
-                  // Después de 5 segundos, cambiar a título
-                  setTimeout(() => {
-                    logo.style.opacity = 0; // Oculta el logo
-                    setTimeout(() => {
-                      logo.style.display = 'none'; // El logo se oculta completamente
-                      title.style.display = 'inline-block'; // Vuelve a mostrar el título
-                      title.style.opacity = 1;
-                    }, 1000);
-                  }, 4500); // 5 segundos antes de volver a mostrar el título
-                }
-              
-                // Llamar a la función cada 10 segundos para un ciclo infinito
-                setInterval(toggleTitleLogo, 10000);
-              </script>
-              
-              
-              
-    
-            <!-- Selector de idioma -->
+
+            <!-- Asegúrate de tener la imagen y el contenedor correctos -->
+<center>
+    <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40">
+  </center>
+  
+  <script>
+    // Esperamos a que la imagen cargue
+    window.onload = () => {
+      const logo = document.getElementById('logo');
+  
+      // Creamos un canvas para obtener los colores de la imagen
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = logo.src;
+  
+      img.onload = () => {
+        // Establecer el tamaño del canvas para la imagen
+        canvas.width = img.width;
+        canvas.height = img.height;
+  
+        // Dibujamos la imagen en el canvas
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  
+        // Obtenemos el color promedio de todos los píxeles
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+  
+        // Variables para acumular los colores
+        let r = 0, g = 0, b = 0, total = 0;
+  
+        // Iteramos sobre todos los píxeles para calcular el color promedio
+        for (let i = 0; i < pixels.length; i += 4) {
+          r += pixels[i];     // Red
+          g += pixels[i + 1]; // Green
+          b += pixels[i + 2]; // Blue
+          total++;
+        }
+  
+        // Calculamos el color promedio
+        r = Math.floor(r / total);
+        g = Math.floor(g / total);
+        b = Math.floor(b / total);
+  
+        // Creamos un color compuesto para el resplandor
+        const glowColor = `rgb(${r}, ${g}, ${b})`;
+  
+        // Aplicamos el color de resplandor al logo
+        logo.style.setProperty('--logo-glow-color', glowColor);
+      };
+    };
+  </script>
+  
+  <style>
+    .logo {
+      animation: logoGlow 4s ease-in-out infinite;
+      filter: brightness(1.1); /* Brillo base */
+      transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 40%;
+    }
+  
+    @keyframes logoGlow {
+      0% {
+        opacity: 0.8;
+        filter: brightness(1.1); /* Brillo inicial */
+        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5)); /* Resplandor suave */
+      }
+      50% {
+        opacity: 1;
+        filter: brightness(1.3); /* Aumenta ligeramente el brillo */
+        box-shadow: 0 0 20px var(--logo-glow-color, rgba(255, 255, 255, 0.8)), 0 0 30px var(--logo-glow-color, rgba(255, 255, 255, 0.6)); /* Brillo más intenso */
+      }
+      100% {
+        opacity: 0.8;
+        filter: brightness(1.1); /* Vuelve al brillo inicial */
+        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5)); /* Resplandor suave */
+      }
+    }
+  </style>
+  
             <button id="languageSelector"
                 class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-rounded">
                 <span id="languageText">Español</span>
                 <i class="material-icons">arrow_drop_down</i>
             </button>
-    
+
             <!-- Selector de tema (lado derecho) -->
             <button id="themeSelector"
                 class="transparent circle beer-flex beer-items-center beer-space-x-2 beer-rounded-full beer-shadow-md beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700 beer-px-2">
@@ -118,7 +151,7 @@
             </button>
         </nav>
     </header>
-    
+
     <script>
         // Detecta la preferencia de tema del sistema
         function detectThemePreference() {
@@ -126,11 +159,11 @@
             document.body.classList.add(themePreference);
             localStorage.setItem('theme', themePreference); // Guardar la preferencia del tema en localStorage
         }
-    
+
         // Alternar entre temas manualmente
         const themeSelector = document.getElementById('themeSelector');
         const themeIcon = document.getElementById('themeIcon');
-    
+
         themeSelector.addEventListener('click', () => {
             // Verifica el tema actual y alterna entre claro y oscuro
             if (document.body.classList.contains('dark')) {
@@ -143,7 +176,7 @@
                 themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
             }
         });
-    
+
         // Verifica si hay una preferencia guardada y aplica el tema
         window.addEventListener('load', () => {
             const savedTheme = localStorage.getItem('theme');
@@ -161,76 +194,76 @@
             }
         });
     </script>
-    
+
 
     <!-- Dialog para seleccionar idioma -->
     <!-- Dialog para seleccionar idioma -->
-<dialog id="languageDialog">
-    <main>
-        <center>
-            <ul>
-                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Español', 'index.html')">
-                        <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español"
-                            style="width: 20px; height: auto; margin-right: 8px;"> Español
-                    </button></li>
-                <br>
-                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('English', 'en.html')">
-                        <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"
-                            style="width: 20px; height: auto; margin-right: 8px;"> English
-                    </button></li>
-                <br>
-                <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
-                        <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
-                            style="width: 20px; height: auto; margin-right: 8px;"> Português
-                    </button></li>
-                <br>
-            </ul>
-        </center>
-    </main>
-    <footer>
-        <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
-    </footer>
-</dialog>
+    <dialog id="languageDialog">
+        <main>
+            <center>
+                <ul>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Español', 'index.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español"
+                                style="width: 20px; height: auto; margin-right: 8px;"> Español
+                        </button></li>
+                    <br>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('English', 'en.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"
+                                style="width: 20px; height: auto; margin-right: 8px;"> English
+                        </button></li>
+                    <br>
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
+                                style="width: 20px; height: auto; margin-right: 8px;"> Português
+                        </button></li>
+                    <br>
+                </ul>
+            </center>
+        </main>
+        <footer>
+            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
+        </footer>
+    </dialog>
 
-<script>
-    // Función para detectar el idioma del navegador
-    function detectLanguage() {
-        const userLang = navigator.language || navigator.userLanguage;  // Obtiene el idioma del navegador
-        const languageText = document.getElementById('languageText');
-        
-        if (userLang.startsWith('es')) {
-            languageText.textContent = 'Español';
-        } else if (userLang.startsWith('en')) {
-            languageText.textContent = 'English';
-        } else if (userLang.startsWith('pt')) {
-            languageText.textContent = 'Português';
-        } else {
-            languageText.textContent = 'Español';  // Por defecto
+    <script>
+        // Función para detectar el idioma del navegador
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;  // Obtiene el idioma del navegador
+            const languageText = document.getElementById('languageText');
+
+            if (userLang.startsWith('es')) {
+                languageText.textContent = 'Español';
+            } else if (userLang.startsWith('en')) {
+                languageText.textContent = 'English';
+            } else if (userLang.startsWith('pt')) {
+                languageText.textContent = 'Português';
+            } else {
+                languageText.textContent = 'Español';  // Por defecto
+            }
         }
-    }
 
-    // Función para abrir el dialog
-    document.getElementById('languageSelector').addEventListener('click', function () {
-        const languageDialog = document.getElementById('languageDialog');
-        languageDialog.showModal();
-    });
+        // Función para abrir el dialog
+        document.getElementById('languageSelector').addEventListener('click', function () {
+            const languageDialog = document.getElementById('languageDialog');
+            languageDialog.showModal();
+        });
 
-    // Función para cerrar el dialog
-    function closeDialog() {
-        const languageDialog = document.getElementById('languageDialog');
-        languageDialog.close();
-    }
+        // Función para cerrar el dialog
+        function closeDialog() {
+            const languageDialog = document.getElementById('languageDialog');
+            languageDialog.close();
+        }
 
-    // Función para establecer el idioma y redirigir
-    function setLanguage(language, url) {
-        document.getElementById('languageText').textContent = language;
-        closeDialog();
-        window.location.href = url;  // Redirigir a la página seleccionada
-    }
+        // Función para establecer el idioma y redirigir
+        function setLanguage(language, url) {
+            document.getElementById('languageText').textContent = language;
+            closeDialog();
+            window.location.href = url;  // Redirigir a la página seleccionada
+        }
 
-    // Detectar el idioma al cargar la página
-    window.onload = detectLanguage;
-</script>
+        // Detectar el idioma al cargar la página
+        window.onload = detectLanguage;
+    </script>
 
 
 
@@ -238,16 +271,16 @@
     <section class="hero">
         <img src="./img/mock.png" width="300" alt="">
         <h1>OpenTune</h1>
-    
-          
-          <center>
+
+
+        <center>
             <button class="chip fill">
-              <i>code</i>
-              <span>Dev By Arthur Dev Studio</span>
+                <i>code</i>
+                <span>Dev By Arthur Dev Studio</span>
             </button>
-          </center>
-          
-        
+        </center>
+
+
         <p>Un cliente de YouTube Music con Material Design 3, para Android.</p>
         <a href="#downloadapk"><button class="primary cta">Descargar</button></a>
         <br>
@@ -1251,47 +1284,55 @@
             direction: ltr;
             -webkit-font-smoothing: antialiased;
         }
+
         .chip.fill {
-              position: relative;
-              overflow: hidden;
-            }
-          
-            .chip.fill::before {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: -150%;
-              width: 200%;
-              height: 100%;
-              background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-              animation: shine 5s infinite ease-in-out;
-            }
-          
-            @keyframes shine {
-              0% {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chip.fill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 5s infinite ease-in-out;
+        }
+
+        @keyframes shine {
+            0% {
                 left: -150%;
-              }
-              50% {
+            }
+
+            50% {
                 left: -50%;
-              }
-              100% {
+            }
+
+            100% {
                 left: 150%;
-              }
             }
-          
-            /* Efecto aleatorio */
-            .chip.fill {
-              animation: delay-animation 10s infinite;
-            }
-          
-            @keyframes delay-animation {
-              0%, 20% {
+        }
+
+        /* Efecto aleatorio */
+        .chip.fill {
+            animation: delay-animation 10s infinite;
+        }
+
+        @keyframes delay-animation {
+
+            0%,
+            20% {
                 opacity: 1;
-              }
-              21%, 100% {
-                opacity: 1; /* Controla cuándo el brillo se muestra */
-              }
             }
+
+            21%,
+            100% {
+                opacity: 1;
+                /* Controla cuándo el brillo se muestra */
+            }
+        }
     </style>
 
 </body>
