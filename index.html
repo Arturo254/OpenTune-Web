@@ -35,6 +35,7 @@
         rel="stylesheet">
 
 
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -59,85 +60,94 @@
             <!-- Título centrado -->
 
             <!-- Asegúrate de tener la imagen y el contenedor correctos -->
-<center>
-    <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40">
-  </center>
-  
-  <script>
-    // Esperamos a que la imagen cargue
-    window.onload = () => {
-      const logo = document.getElementById('logo');
-  
-      // Creamos un canvas para obtener los colores de la imagen
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.src = logo.src;
-  
-      img.onload = () => {
-        // Establecer el tamaño del canvas para la imagen
-        canvas.width = img.width;
-        canvas.height = img.height;
-  
-        // Dibujamos la imagen en el canvas
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  
-        // Obtenemos el color promedio de todos los píxeles
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const pixels = imageData.data;
-  
-        // Variables para acumular los colores
-        let r = 0, g = 0, b = 0, total = 0;
-  
-        // Iteramos sobre todos los píxeles para calcular el color promedio
-        for (let i = 0; i < pixels.length; i += 4) {
-          r += pixels[i];     // Red
-          g += pixels[i + 1]; // Green
-          b += pixels[i + 2]; // Blue
-          total++;
-        }
-  
-        // Calculamos el color promedio
-        r = Math.floor(r / total);
-        g = Math.floor(g / total);
-        b = Math.floor(b / total);
-  
-        // Creamos un color compuesto para el resplandor
-        const glowColor = `rgb(${r}, ${g}, ${b})`;
-  
-        // Aplicamos el color de resplandor al logo
-        logo.style.setProperty('--logo-glow-color', glowColor);
-      };
-    };
-  </script>
-  
-  <style>
-    .logo {
-      animation: logoGlow 4s ease-in-out infinite;
-      filter: brightness(1.1); /* Brillo base */
-      transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 40%;
-    }
-  
-    @keyframes logoGlow {
-      0% {
-        opacity: 0.8;
-        filter: brightness(1.1); /* Brillo inicial */
-        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5)); /* Resplandor suave */
-      }
-      50% {
-        opacity: 1;
-        filter: brightness(1.3); /* Aumenta ligeramente el brillo */
-        box-shadow: 0 0 20px var(--logo-glow-color, rgba(255, 255, 255, 0.8)), 0 0 30px var(--logo-glow-color, rgba(255, 255, 255, 0.6)); /* Brillo más intenso */
-      }
-      100% {
-        opacity: 0.8;
-        filter: brightness(1.1); /* Vuelve al brillo inicial */
-        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5)); /* Resplandor suave */
-      }
-    }
-  </style>
-  
+            <center>
+                <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40">
+            </center>
+
+            <script>
+                // Esperamos a que la imagen cargue
+                window.onload = () => {
+                    const logo = document.getElementById('logo');
+
+                    // Creamos un canvas para obtener los colores de la imagen
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    const img = new Image();
+                    img.src = logo.src;
+
+                    img.onload = () => {
+                        // Establecer el tamaño del canvas para la imagen
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+
+                        // Dibujamos la imagen en el canvas
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        // Obtenemos el color promedio de todos los píxeles
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const pixels = imageData.data;
+
+                        // Variables para acumular los colores
+                        let r = 0, g = 0, b = 0, total = 0;
+
+                        // Iteramos sobre todos los píxeles para calcular el color promedio
+                        for (let i = 0; i < pixels.length; i += 4) {
+                            r += pixels[i];     // Red
+                            g += pixels[i + 1]; // Green
+                            b += pixels[i + 2]; // Blue
+                            total++;
+                        }
+
+                        // Calculamos el color promedio
+                        r = Math.floor(r / total);
+                        g = Math.floor(g / total);
+                        b = Math.floor(b / total);
+
+                        // Creamos un color compuesto para el resplandor
+                        const glowColor = `rgb(${r}, ${g}, ${b})`;
+
+                        // Aplicamos el color de resplandor al logo
+                        logo.style.setProperty('--logo-glow-color', glowColor);
+                    };
+                };
+            </script>
+
+            <style>
+                .logo {
+                    animation: logoGlow 4s ease-in-out infinite;
+                    filter: brightness(1.1);
+                    /* Brillo base */
+                    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+                    border-radius: 40%;
+                }
+
+                @keyframes logoGlow {
+                    0% {
+                        opacity: 0.8;
+                        filter: brightness(1.1);
+                        /* Brillo inicial */
+                        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5));
+                        /* Resplandor suave */
+                    }
+
+                    50% {
+                        opacity: 1;
+                        filter: brightness(1.3);
+                        /* Aumenta ligeramente el brillo */
+                        box-shadow: 0 0 20px var(--logo-glow-color, rgba(255, 255, 255, 0.8)), 0 0 30px var(--logo-glow-color, rgba(255, 255, 255, 0.6));
+                        /* Brillo más intenso */
+                    }
+
+                    100% {
+                        opacity: 0.8;
+                        filter: brightness(1.1);
+                        /* Vuelve al brillo inicial */
+                        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5));
+                        /* Resplandor suave */
+                    }
+                }
+            </style>
+
             <button id="languageSelector"
                 class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-rounded">
                 <span id="languageText">Español</span>
@@ -282,7 +292,13 @@
 
 
         <p>Un cliente de YouTube Music con Material Design 3, para Android.</p>
-        <a href="#downloadapk"><button class="primary cta">Descargar</button></a>
+        <div style="display: flex; gap: 10px;">
+            <a href="#downloadapk">
+                <button class="primary cta"> <i>download</i> Descargar</button>
+            </a>
+            <button id="triggerDialogButtonHero"> <i>play_circle</i> Probar Demo</button>
+        </div>
+        
         <br>
     </section>
 
@@ -374,38 +390,64 @@
 
 
 
-    <!-- Carousel Section -->
-    <section class="carousel-container">
-        <div class="carousel">
-            <img src="./img/1.webp" alt="img1" class="carousel-image">
-            <img src="./img/2.webp" alt="img2" class="carousel-image">
-            <img src="./img/3.webp" alt="img3" class="carousel-image">
-            <img src="./img/4.webp" alt="img4" class="carousel-image">
-            <img src="./img/5.webp" alt="img5" class="carousel-image">
-            <img src="./img/6.webp" alt="img6" class="carousel-image">
-            <img src="./img/7.webp" alt="img7" class="carousel-image">
-            <img src="./img/8.webp" alt="img8" class="carousel-image">
-            <img src="./img/9.webp" alt="img9" class="carousel-image">
-            <img src="./img/10.webp" alt="img10" class="carousel-image">
-            <img src="./img/11.webp" alt="img11" class="carousel-image">
-            <img src="./img/12.webp" alt="img12" class="carousel-image">
-            <img src="./img/13.webp" alt="img13" class="carousel-image">
-            <img src="./img/14.webp" alt="img14" class="carousel-image">
-            <img src="./img/15.webp" alt="img15" class="carousel-image">
-        </div>
-    </section>
+ <br>
+ <br>
 
-    <!-- Popup for Image View -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-content">
-            <span class="close-popup" id="closePopup">&#10005;</span>
-            <img src="" id="popupImage" class="popup-image" alt="popup image">
-        </div>
-    </div>
+ <center>
+    <button id="triggerDialogButton"> <i>play_circle</i> Probar Demo</button>
+
+    <div class="overlay blur" id="dialogOverlay"></div>
+    
+    <dialog id="warningDialog">
+      <h5> <i>Warning</i>  &nbsp;Aviso de Redirección</h5>
+      <div>Serás redirigido fuera de OpenTune Web</div>
+      <nav class="right-align no-space">
+        <button class="transparent link" id="dismissButton">Cancelar</button>
+        <button class="transparent link" id="proceedButton">Confirmar</button>
+      </nav>
+    </dialog>
+    
+    <script>
+      document.getElementById("triggerDialogButton").addEventListener("click", function() {
+        var dialogWindow = document.getElementById("warningDialog");
+        var overlayElement = document.getElementById("dialogOverlay");
+        dialogWindow.showModal();
+        overlayElement.style.display = 'block';
+      });
+    
+      document.getElementById("dismissButton").addEventListener("click", function() {
+        var dialogWindow = document.getElementById("warningDialog");
+        var overlayElement = document.getElementById("dialogOverlay");
+        dialogWindow.close();
+        overlayElement.style.display = 'none';
+      });
+    
+      document.getElementById("proceedButton").addEventListener("click", function() {
+        window.location.href = "https://appetize.io/app/b_jgo6uw6ua63obyt4q57fbpxsui?device=pixel8pro&osVersion=14.0";
+      });
+    </script>
+    
+    <style>
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        display: none;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+      dialog {
+        z-index: 20;
+      }
+    </style>
+</center>
 
 
-
-
+    <br>
     <br>
     <center>
         <article class="card shadow-md round beer-card" style="max-width: 300px;">
