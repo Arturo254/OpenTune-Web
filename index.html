@@ -1103,16 +1103,17 @@
         }
 
         // Función para actualizar el botón
-        function updateDownloadButton() {
+
+          function updateDownloadButton() {
             const downloadText = document.getElementById('downloadText');
             const downloadBtn = document.getElementById('downloadBtn');
 
             if (latestVersion !== currentVersion) {
                 downloadText.textContent = 'Nueva versión disponible!';
-                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-foss-release.apk`;
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
             } else {
                 downloadText.textContent = 'Descargar APK';
-                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-foss-release.apk`;
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-release.apk`;
             }
         }
 
