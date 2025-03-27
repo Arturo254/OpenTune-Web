@@ -520,16 +520,20 @@
                                 <script>
                                     // Función para obtener la versión más reciente de OpenTune desde GitHub
                                     async function getLatestVersion() {
-                                        try {
-                                            const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
-                                            const data = await response.json();
-                                            const latestVersion = data.tag_name;  // Obtenemos la versión más reciente
-                                            document.getElementById('currentVersion').textContent = latestVersion;  // Actualizamos el texto del div
-                                        } catch (error) {
-                                            console.error('Error obteniendo la versión:', error);
-                                            document.getElementById('currentVersion').textContent = 'Error al obtener versión';  // Mensaje en caso de error
-                                        }
-                                    }
+    try {
+        const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+        const data = await response.json();
+        const latestVersion = data.tag_name;
+        document.getElementById('currentVersion').textContent = latestVersion;
+        document.getElementById('downloadBtn').href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
+    } catch (error) {
+        console.error('Error obteniendo la versión:', error);
+        document.getElementById('currentVersion').textContent = 'Error al obtener versión';
+    }
+}
+
+// Llamamos a la función cuando la página cargue
+getLatestVersion();
 
                                     // Llamamos a la función cuando la página cargue
                                     getLatestVersion();
@@ -548,12 +552,8 @@
                                     <br>
                                     <br>
                                     <a id="downloadBtn" class="button filled primary small m-top-2" href="" download>
-                                        <i class="material-icons">download</i> <span id="downloadText">Descargar
-                                            APK</span>
+                                        <i class="material-icons">download</i> <span id="downloadText">Descargar APK</span>
                                     </a>
-
-
-
                                 </div>
                             </center>
                         </div>
@@ -1086,8 +1086,8 @@
         }
         // descarga de versiones OpenTune Android:
 
-        let currentVersion = '1.9.0';
-        let latestVersion = '1.9.0';
+        let currentVersion = '1.9.6';
+        let latestVersion = '1.9.6';
         let isDownloading = false;
 
         // Función para verificar nueva versión
