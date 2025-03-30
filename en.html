@@ -230,21 +230,7 @@
     </dialog>
 
     <script>
-        // Función para detectar el idioma del navegador
-        function detectLanguage() {
-            const userLang = navigator.language || navigator.userLanguage;  // Obtiene el idioma del navegador
-            const languageText = document.getElementById('languageText');
-
-            if (userLang.startsWith('es')) {
-                languageText.textContent = 'English';
-            } else if (userLang.startsWith('en')) {
-                languageText.textContent = 'English';
-            } else if (userLang.startsWith('pt')) {
-                languageText.textContent = 'PT';
-            } else {
-                languageText.textContent = 'Español';  // Por defecto
-            }
-        }
+        
 
         // Función para abrir el dialog
         document.getElementById('languageSelector').addEventListener('click', function () {

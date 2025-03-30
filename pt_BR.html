@@ -3,14 +3,14 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-6JTGMLLK8S');
-</script>
+        gtag('config', 'G-6JTGMLLK8S');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +35,7 @@
         rel="stylesheet">
 
 
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -56,21 +57,120 @@
     <header id="header"
         class="beer-nav beer-shadow beer-rounded beer-position-fixed beer-top-0 beer-left-0 beer-right-0 beer-transition-all beer-duration-300">
         <nav class="beer-flex beer-items-center beer-justify-between beer-px-4 beer-py-2 beer-flex-wrap">
-            <h5 class="beer-title beer-flex-1 beer-text-center">OpenTune</h5>
+            <!-- Título centrado -->
+
+            <!-- Asegúrate de tener la imagen y el contenedor correctos -->
+            <center>
+                <img id="logo" class="logo" src="./icon/icon-512-maskable.png" alt="Logo" width="40">
+            </center>
+
+            <script>
+                // Esperamos a que la imagen cargue
+                window.onload = () => {
+                    const logo = document.getElementById('logo');
+
+                    // Creamos un canvas para obtener los colores de la imagen
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    const img = new Image();
+                    img.src = logo.src;
+
+                    img.onload = () => {
+                        // Establecer el tamaño del canvas para la imagen
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+
+                        // Dibujamos la imagen en el canvas
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        // Obtenemos el color promedio de todos los píxeles
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const pixels = imageData.data;
+
+                        // Variables para acumular los colores
+                        let r = 0, g = 0, b = 0, total = 0;
+
+                        // Iteramos sobre todos los píxeles para calcular el color promedio
+                        for (let i = 0; i < pixels.length; i += 4) {
+                            r += pixels[i];     // Red
+                            g += pixels[i + 1]; // Green
+                            b += pixels[i + 2]; // Blue
+                            total++;
+                        }
+
+                        // Calculamos el color promedio
+                        r = Math.floor(r / total);
+                        g = Math.floor(g / total);
+                        b = Math.floor(b / total);
+
+                        // Creamos un color compuesto para el resplandor
+                        const glowColor = `rgb(${r}, ${g}, ${b})`;
+
+                        // Aplicamos el color de resplandor al logo
+                        logo.style.setProperty('--logo-glow-color', glowColor);
+                    };
+                };
+            </script>
+
+            <style>
+                .logo {
+                    animation: logoGlow 4s ease-in-out infinite;
+                    filter: brightness(1.1);
+                    /* Brillo base */
+                    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+                    border-radius: 40%;
+                }
+
+                @keyframes logoGlow {
+                    0% {
+                        opacity: 0.8;
+                        filter: brightness(1.1);
+                        /* Brillo inicial */
+                        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5));
+                        /* Resplandor suave */
+                    }
+
+                    50% {
+                        opacity: 1;
+                        filter: brightness(1.3);
+                        /* Aumenta ligeramente el brillo */
+                        box-shadow: 0 0 20px var(--logo-glow-color, rgba(255, 255, 255, 0.8)), 0 0 30px var(--logo-glow-color, rgba(255, 255, 255, 0.6));
+                        /* Brillo más intenso */
+                    }
+
+                    100% {
+                        opacity: 0.8;
+                        filter: brightness(1.1);
+                        /* Vuelve al brillo inicial */
+                        box-shadow: 0 0 10px var(--logo-glow-color, rgba(255, 255, 255, 0.5));
+                        /* Resplandor suave */
+                    }
+                }
+            </style>
+
             <button id="languageSelector"
                 class="beer-btn beer-btn-secondary beer-flex beer-items-center beer-space-x-2 beer-mr-4 beer-rounded">
-                <span id="languageText">pt-BR</span>
+                <span id="languageText">Português</span>
                 <i class="material-icons">arrow_drop_down</i>
             </button>
+
+            <!-- Selector de tema (lado derecho) -->
             <button id="themeSelector"
-                class="transparent circle beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700 ">
+                class="transparent circle beer-flex beer-items-center beer-space-x-2 beer-rounded-full beer-shadow-md beer-transition-all hover:beer-bg-neutral-200 dark:hover:beer-bg-neutral-700 beer-px-2">
                 <i class="material-icons-outlined" id="themeIcon">brightness_6</i>
             </button>
         </nav>
     </header>
 
     <script>
-        // Función para alternar entre temas
+        // Detecta la preferencia de tema del sistema
+        function detectThemePreference() {
+            const themePreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.body.classList.add(themePreference);
+            localStorage.setItem('theme', themePreference); // Guardar la preferencia del tema en localStorage
+        }
+
+        // Alternar entre temas manualmente
         const themeSelector = document.getElementById('themeSelector');
         const themeIcon = document.getElementById('themeIcon');
 
@@ -90,15 +190,21 @@
         // Verifica si hay una preferencia guardada y aplica el tema
         window.addEventListener('load', () => {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark');
-                themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+            if (savedTheme) {
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark');
+                    themeIcon.textContent = 'light_mode'; // Cambiar el ícono a sol
+                } else {
+                    document.body.classList.remove('dark');
+                    themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+                }
             } else {
-                document.body.classList.remove('dark');
-                themeIcon.textContent = 'brightness_6'; // Cambiar el ícono a luna
+                // Si no hay preferencia guardada, se detecta la preferencia del sistema
+                detectThemePreference();
             }
         });
     </script>
+
 
     <!-- Dialog para seleccionar idioma -->
     <dialog id="languageDialog">
@@ -115,33 +221,21 @@
                                 style="width: 20px; height: auto; margin-right: 8px;"> English
                         </button></li>
                     <br>
-                    <li><button class="beer-btn beer-btn-secondary"
-                            onclick="setLanguage('Português', 'Pt_BR.html ' , 'pt_br ' )">
+                    <li><button class="beer-btn beer-btn-secondary" onclick="setLanguage('Português', 'Pt_BR.html')">
                             <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português"
-                                style="width: 20px; height: auto; margin-right: 8px;"> Portugues
+                                style="width: 20px; height: auto; margin-right: 8px;"> Português
                         </button></li>
                     <br>
                 </ul>
             </center>
         </main>
         <footer>
-            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Fechar</button>
+            <button class="beer-btn beer-btn-secondary" onclick="closeDialog()">Cerrar</button>
         </footer>
     </dialog>
 
     <script>
-        // Detectar el idioma actual según el archivo HTML
-        function detectLanguage() {
-            const currentPage = window.location.pathname.split('/').pop();
-
-            if (currentPage === 'index.html') {
-                document.getElementById('languageText').textContent = 'Español';
-            } else if (currentPage === 'en.html') {
-                document.getElementById('languageText').textContent = 'English';
-            } else if (currentPage === 'Pt_BR.html') {
-                document.getElementById('languageText').textContent = 'pt-BR';
-            }
-        }
+        
 
         // Función para abrir el dialog
         document.getElementById('languageSelector').addEventListener('click', function () {
@@ -167,171 +261,198 @@
     </script>
 
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="./img/mock.png" width="300" alt="">
-        <h1>OpenTune</h1>
-        <p>Um client do YouTube Music com Material Design 3, para Android.</p>
-        <a href="#downloadapk"><button class="primary cta">Baixar</button></a>
-        <br>
-    </section>
 
+    <!-- Seção Hero -->
+<section class="hero">
+    <img src="./img/mock.png" width="350" alt="">
+    <h1>OpenTune</h1>
 
-    <!-- Features Section -->
-    <!-- Features Section -->
-    <section>
-        <center>
-            <h2 class="text-3xl text-center mt-10">
-                Características
-                <span class="material-symbols-rounded">star</span>
-            </h2>
-        </center>
-        <br>
-        <div class="cards">
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">music_note</span> Client do YouTube Music com Material
-                    Design 3</h5>
-                <p>Oferece uma experiência moderna e elegante do YouTube Music no Android, com uma interface intuitiva e
-                    otimizada seguindo o Material Design 3.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">palette</span> Design Moderno e Atrativo</h5>
-                <p>Baseado no Material Design 3, com cores vivas, tipografia moderna e transições suaves, criando uma
-                    experiência estética e chamativa.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">settings</span> Interface Intuitiva e Personalizável
-                </h5>
-                <p>Interface simplificada para um acesso rápido em todas as funções do YouTube Music, com opções de
-                    personalização segundo as suas preferências.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">search</span> Explore e Descubra Músicas</h5>
-                <p>Acesso a um amplo catálogo musical com busca avançada e recomendações inteligentes baseadas nas
-                    preferências e hábitos de escuta.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">volume_up</span> Reprodução de Alta Qualidade</h5>
-                <p>Música de alta qualidade, otimizada para diferentes dispositivos e condições de rede, com suporte
-                    para vários formatos de áudio.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">playlist_add</span> Listas de Reprodução e Download
-                </h5>
-                <p>Crie e organize listas de reprodução, e faça o download de canções e álbuns para escutar sem conexão.
-                </p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">sync</span> Integração Completa com o YouTube Music</h5>
-                <p>Sincronize sua conta do YouTube Music para acessar suas bibliotecas e receber notificações sobre
-                    lançamentos e eventos.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">build</span> Funcionalidades Avançadas</h5>
-                <p>Controle de reprodução com voz, gestos e suporte para Chromecast e Bluetooth, permitiendo transmitir
-                    para dispositivos externos.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">folder</span> Gestão Eficiente da Biblioteca</h5>
-                <p>Organize sua música con ferramentas avançadas de filtragem e categorização, acessando rápido
-                    músicas e álbuns.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">translate</span> Suporte a multilinguagens</h5>
-                <p>Disponível em vários idiomas com traduções precisas e localização culturalmente relevante.</p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">update</span> Atualizações e Melhoras Contínuas</h5>
-                <p>Aatualizações regulares para novas funções, mejoras de segurança e otimização do rendimiento.
-                </p>
-            </article>
-
-            <article>
-                <h5><span class="material-symbols-rounded mr-2">headphones</span> Experiência de Usuário Otimizada</h5>
-                <p>Navegação intuitiva e um desempenho ágil, com uma interface amigável que melhora a experiência do
-                    usuário.</p>
-            </article>
-        </div>
-    </section>
-
-
-
-
-    <!-- Carousel Section -->
-    <section class="carousel-container">
-        <div class="carousel">
-            <img src="./img/1.webp" alt="img1" class="carousel-image">
-            <img src="./img/2.webp" alt="img2" class="carousel-image">
-            <img src="./img/3.webp" alt="img3" class="carousel-image">
-            <img src="./img/4.webp" alt="img4" class="carousel-image">
-            <img src="./img/5.webp" alt="img5" class="carousel-image">
-            <img src="./img/6.webp" alt="img6" class="carousel-image">
-            <img src="./img/7.webp" alt="img7" class="carousel-image">
-            <img src="./img/8.webp" alt="img8" class="carousel-image">
-            <img src="./img/9.webp" alt="img9" class="carousel-image">
-            <img src="./img/10.webp" alt="img10" class="carousel-image">
-            <img src="./img/11.webp" alt="img11" class="carousel-image">
-            <img src="./img/12.webp" alt="img12" class="carousel-image">
-            <img src="./img/13.webp" alt="img13" class="carousel-image">
-            <img src="./img/14.webp" alt="img14" class="carousel-image">
-            <img src="./img/15.webp" alt="img15" class="carousel-image">
-        </div>
-    </section>
-
-    <!-- Popup for Image View -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-content">
-            <span class="close-popup" id="closePopup">&#10005;</span>
-            <img src="" id="popupImage" class="popup-image" alt="popup image">
-        </div>
-    </div>
-
-
-
-
-    <br>
     <center>
-        <article class="card shadow-md round beer-card" style="max-width: 300px;">
-            <div class="beer-card-header">
-                <i class="fi fi-sr-exclamation text-yellow-500"></i>
-                <h5>Aviso:</h5>
-            </div>
-            <p class="beer-card-body text-sm">
-                Se o OpenTune não funciona, ative um proxy. Use o seguinte para que funcione corretamente:
-            </p>
-            <div class="field border beer-field">
-                <input type="text" value="186.96.50.113:999" id="inputField" disabled class="beer-input w-full" />
-
-                <button class="beer-btn beer-btn-primary" onclick="copyText()">
-
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <script>
-                function copyText() {
-                    const inputField = document.getElementById('inputField');
-                    navigator.clipboard.writeText(inputField.value)
-                        .then(() => {
-                            alert('¡Texto copiado al portapapeles!');
-                        })
-                        .catch(err => {
-                            alert('Error al copiar al portapapeles: ' + err);
-                        });
-                }
-            </script>
-        </article>
+        <a href="https://g.dev/Arturo254">
+            <button class="chip fill">
+                <i>code</i>
+                <span>Desenvolvido por Arthur Dev Studio</span>
+            </button>
+        </a>
     </center>
 
+    <p>Um cliente do YouTube Music com Material Design 3, para Android.</p>
+    <div style="display: flex; gap: 10px;">
+        <a href="#downloadapk">
+            <button class="primary cta"> <i>download</i> Baixar</button>
+        </a>
+        <button id="triggerDialogButton"> <i>play_circle</i> Testar Demo</button>
+    </div>
+    
+    <br>
+</section>
+
+<!-- Seção de Recursos -->
+<section>
+    <center>
+        <h2 class="text-3xl text-center mt-10">
+            Características
+            <span class="material-symbols-rounded">star</span>
+        </h2>
+    </center>
+    <br>
+    <div class="cards">
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">music_note</span> Cliente do YouTube Music com Material Design 3</h5>
+            <p>Oferece uma experiência moderna e elegante do YouTube Music no Android, com uma interface intuitiva e otimizada segundo o Material Design 3.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">palette</span> Design Moderno e Atraente</h5>
+            <p>Baseado no Material Design 3, com cores vibrantes, tipografia moderna e transições suaves, criando uma experiência estética e envolvente.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">settings</span> Interface Intuitiva e Personalizável</h5>
+            <p>Interface simplificada para acesso rápido a todas as funções do YouTube Music, com opções de personalização conforme suas preferências.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">search</span> Explore e Descubra Músicas</h5>
+            <p>Acesse um vasto catálogo musical com busca avançada e recomendações inteligentes baseadas em suas preferências e hábitos de escuta.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">volume_up</span> Reprodução em Alta Qualidade</h5>
+            <p>Música de alta qualidade, otimizada para diferentes dispositivos e condições de rede, com suporte a vários formatos de áudio.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">playlist_add</span> Playlists e Downloads</h5>
+            <p>Crie e organize suas playlists, baixe músicas e álbuns para ouvir offline.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">sync</span> Integração Completa com o YouTube Music</h5>
+            <p>Sincronize sua conta do YouTube Music para acessar suas bibliotecas e receber notificações sobre lançamentos e eventos.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">build</span> Funcionalidades Avançadas</h5>
+            <p>Controle de reprodução por voz, gestos e suporte para Chromecast e Bluetooth, permitindo transmitir para dispositivos externos.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">folder</span> Gerenciamento Eficiente da Biblioteca</h5>
+            <p>Organize sua música com ferramentas avançadas de filtragem e categorização, acessando rapidamente suas canções e álbuns favoritos.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">translate</span> Suporte Multilíngue</h5>
+            <p>Disponível em vários idiomas com traduções precisas e localização culturalmente relevante.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">update</span> Atualizações e Melhorias Contínuas</h5>
+            <p>Atualizações regulares com novos recursos, melhorias de segurança e otimização de desempenho.</p>
+        </article>
+
+        <article>
+            <h5><span class="material-symbols-rounded mr-2">headphones</span> Experiência do Usuário Otimizada</h5>
+            <p>Navegação intuitiva e desempenho ágil, com uma interface amigável que melhora a experiência do usuário.</p>
+        </article>
+    </div>
+</section>
+
+<br>
+<br>
+
+<center>
+    <a href="./from.html">
+        <button> <i>play_circle</i> Enviar Solicitação ou Relatar um Problema</button>
+    </a>
+
+    <div class="overlay blur" id="dialogOverlay"></div>
+    
+    <dialog id="warningDialog">
+        <h5> <i>Warning</i> &nbsp;Aviso de Redirecionamento</h5>
+        <div>Você será redirecionado para fora do OpenTune Web</div>
+        <nav class="right-align no-space">
+            <button class="transparent link" id="dismissButton">Cancelar</button>
+            <button class="transparent link" id="proceedButton">Confirmar</button>
+        </nav>
+    </dialog>
+</center>
+
+    
+    <script>
+      document.getElementById("triggerDialogButton").addEventListener("click", function() {
+        var dialogWindow = document.getElementById("warningDialog");
+        var overlayElement = document.getElementById("dialogOverlay");
+        dialogWindow.showModal();
+        overlayElement.style.display = 'block';
+      });
+    
+      document.getElementById("dismissButton").addEventListener("click", function() {
+        var dialogWindow = document.getElementById("warningDialog");
+        var overlayElement = document.getElementById("dialogOverlay");
+        dialogWindow.close();
+        overlayElement.style.display = 'none';
+      });
+    
+      document.getElementById("proceedButton").addEventListener("click", function() {
+        window.location.href = "https://appetize.io/app/b_dfzx6aiin4tiita4axmxt4yze4";
+      });
+    </script>
+    
+    <style>
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        display: none;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+      dialog {
+        z-index: 20;
+      }
+    </style>
+</center>
+
+
+<br>
+<br>
+<center>
+    <article class="card shadow-md round beer-card" style="max-width: 300px;">
+        <div class="beer-card-header">
+            <i class="fi fi-sr-exclamation text-yellow-500"></i>
+            <h5>Aviso:</h5>
+        </div>
+        <p class="beer-card-body text-sm">
+            Se o OpenTune não funcionar, ative um proxy. Use o seguinte para que funcione corretamente:
+        </p>
+        <div class="field border beer-field">
+            <input type="text" value="186.96.50.113:999" id="inputField" disabled class="beer-input w-full" />
+
+            <button class="beer-btn beer-btn-primary" onclick="copyText()">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+        <script>
+            function copyText() {
+                const inputField = document.getElementById('inputField');
+                navigator.clipboard.writeText(inputField.value)
+                    .then(() => {
+                        alert('Texto copiado para a área de transferência!');
+                    })
+                    .catch(err => {
+                        alert('Erro ao copiar para a área de transferência: ' + err);
+                    });
+            }
+        </script>
+    </article>
+</center>
+
 
     <br>
     <br>
@@ -342,147 +463,139 @@
 
 
 
-    <!-- Downloads Section -->
-    <section id="downloadapk">
-        <center>
-            <h2 class="text-3xl text-center mt-10">Downloads <i
-                    class="material-icons left text-3xl text-center mt-10">download</i></h2>
-        </center>
-        <br>
+  <!-- Seção de Downloads -->
+<section id="downloadapk">
+    <center>
+        <h2 class="text-3xl text-center mt-10">Downloads <i
+                class="material-icons left text-3xl text-center mt-10">download</i></h2>
+    </center>
+    <br>
 
+    <center>
+        <article>
+            <div class="card small">
+                <div>
+                    <div class="col s12">
+                        <center>
+                            <div class="header">
+                                <h5 class="title">
+                                    <i class="material-icons left">android</i> Android
+                                </h5>
+                                <p class="small">OpenTune para Android. Baixe a versão estável mais recente.</p>
+                            </div>
+                            <div class="content">
+                                <div class="chip success small m-top-1">Versão Estável</div>
+                                <div id="currentVersion" class="chip small m-top-1">Carregando...</div>
+                            </div>
 
-        <center>
-
-            <!-- Android Card -->
-            <article>
-                <div class="card small">
-                    <div>
-                        <div class="col s12">
-                            <center>
-                                <div class="header">
-                                    <h5 class="title">
-                                        <i class="material-icons left">android</i> Android
-                                    </h5>
-                                    <p class="small">OpenTune para Android. Baixe a última versão estável.</p>
-                                </div>
-                                <div class="content">
-                                    <div class="chip success small m-top-1">Versão estável</div>
-                                    <div id="currentVersion" class="chip small m-top-1">Carregando...</div>
-                                </div>
                                 <script>
                                     // Función para obtener la versión más reciente de OpenTune desde GitHub
                                     async function getLatestVersion() {
-                                        try {
-                                            const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
-                                            const data = await response.json();
-                                            const latestVersion = data.tag_name;  // Obtenemos la versión más reciente
-                                            document.getElementById('currentVersion').textContent = latestVersion;  // Actualizamos el texto del div
-                                        } catch (error) {
-                                            console.error('Error obteniendo la versión:', error);
-                                            document.getElementById('currentVersion').textContent = 'Erro ao obter a versão';  // Mensaje en caso de error
-                                        }
-                                    }
+    try {
+        const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+        const data = await response.json();
+        const latestVersion = data.tag_name;
+        document.getElementById('currentVersion').textContent = latestVersion;
+        document.getElementById('downloadBtn').href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
+    } catch (error) {
+        console.error('Error obteniendo la versión:', error);
+        document.getElementById('currentVersion').textContent = 'Error al obtener versión';
+    }
+}
+
+// Llamamos a la función cuando la página cargue
+getLatestVersion();
 
                                     // Llamamos a la función cuando la página cargue
                                     getLatestVersion();
                                 </script>
 
-                                <br>
-                                <div class="action-bar m-top-1">
-                                    <button class="button small" onclick="changelog.show()">
-                                        <i class="material-icons">list</i> Alterações
-                                    </button>
-                                    <br>
-                                    <br>
-                                    <button class="button small" onclick="versions.show()">
-                                        <i class="material-icons">history</i> Versões
-                                    </button>
-                                    <br>
-                                    <br>
-                                    <a id="downloadBtn" class="button filled primary small m-top-2" href="" download>
-                                        <i class="material-icons">download</i> <span id="downloadText">Download
-                                            APK</span>
-                                    </a>
+<br>
+<div class="action-bar m-top-1">
+    <button class="button small" onclick="changelog.show()">
+        <i class="material-icons">list</i> Alterações
+    </button>
+    <br>
+    <br>
+    <button class="button small" onclick="versions.show()">
+        <i class="material-icons">history</i> Versões
+    </button>
+    <br>
+    <br>
+    <a id="downloadBtn" class="button filled primary small m-top-2" href="" download>
+        <i class="material-icons">download</i> <span id="downloadText">Baixar APK</span>
+    </a>
+</div>
+</center>
+</div>
+</div>
+</div>
+</article>
 
+</div>
 
-
-                                </div>
-                            </center>
-                        </div>
-                    </div>
+<!-- Diálogo de Alterações -->
+<dialog id="changelog">
+    <nav>
+        <h5>Notas da Versão</h5>
+        <button class="transparent circle" onclick="changelog.close()">
+            <i class="material-icons">close</i>
+        </button>
+    </nav>
+    <main>
+        <article>
+            <div id="changelogContent" class="content">
+                <div class="progress">
+                    <div class="indeterminate"></div>
                 </div>
-            </article>
-
             </div>
+        </article>
+    </main>
+    <footer>
+        <button class="button" onclick="changelog.close()">Fechar</button>
+    </footer>
+</dialog>
 
+<!-- Diálogo de Versões -->
+<dialog id="versions" class="medium">
+    <nav>
+        <h5>Versões</h5>
+        <button class="transparent circle" onclick="versions.close()">
+            <i class="material-icons">close</i>
+        </button>
+    </nav>
+    <main>
+        <article>
+            <div id="versionsList" class="content">
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <button class="button" onclick="versions.close()">Fechar</button>
+    </footer>
+</dialog>
 
-            <!-- Changelog Dialog -->
-            <dialog id="changelog">
-                <nav>
-                    <h5>Notas da versão</h5>
-                    <button class="transparent circle" onclick="changelog.close()">
-                        <i class="material-icons">close</i>
-                    </button>
+<br>
+<br>
 
-                </nav>
-                <main>
-                    <article>
-                        <div id="changelogContent" class="content">
-                            <div class="progress">
-                                <div class="indeterminate"></div>
-                            </div>
-                        </div>
-                    </article>
-                </main>
-                <footer>
-                    <button class="button" onclick="changelog.close()">Fechar</button>
-                </footer>
-            </dialog>
+<article>
+    <div>
+        <div>
+            <div class="col s12 m8">
+                <div class="header">
+                    <h5 class="title">
+                        <i class="material-icons left">laptop_windows</i> Windows
+                    </h5>
+                    <p>OpenTune para Windows. Baixe a versão estável mais recente.</p>
+                </div>
+                <div class="content">
+                    <div class="chip success small m-top-2">Versão Estável</div>
+                    <div id="currentVersionWindows" class="chip small m-top-2">Carregando...</div>
+                </div>
 
-            <!-- Versions Dialog -->
-            <dialog id="versions" class="medium">
-                <nav>
-                    <h5>Versões</h5>
-                    <button class="transparent circle" onclick="versions.close()">
-                        <i class="material-icons">close</i>
-                    </button>
-
-                </nav>
-                <main>
-                    <article>
-                        <div id="versionsList" class="content">
-                            <div class="progress">
-                                <div class="indeterminate"></div>
-                            </div>
-                        </div>
-                    </article>
-                </main>
-                <footer>
-                    <button class="button" onclick="versions.close()">Fechar</button>
-                </footer>
-            </dialog>
-
-
-
-
-
-            <br>
-            <br>
-
-            <article>
-                <div>
-                    <div>
-                        <div class="col s12 m8">
-                            <div class="header">
-                                <h5 class="title">
-                                    <i class="material-icons left">laptop_windows</i> Windows
-                                </h5>
-                                <p>OpenTune para Windows. Baixe a última versão estável.</p>
-                            </div>
-                            <div class="content">
-                                <div class="chip success small m-top-2">Versão Estável</div>
-                                <div id="currentVersionWindows" class="chip small m-top-2">Carregando...</div>
-                            </div>
                             <script>
 
                                 // Función para verificar nueva versión
@@ -555,7 +668,7 @@
                     </article>
                 </main>
                 <footer>
-                    <button class="button" onclick="closeChangelogWindows()">Fechar</button>
+                    <button class="button" onclick="closeChangelogWindows()">Cerrar</button>
                 </footer>
             </dialog>
 
@@ -578,7 +691,7 @@
                     </article>
                 </main>
                 <footer>
-                    <button class="button" onclick="closeVersionsWindows()">Fechar</button>
+                    <button class="button" onclick="closeVersionsWindows()">Cerrar</button>
                 </footer>
             </dialog>
 
@@ -626,6 +739,12 @@
                         <a href="https://wa.me/5576847925" class="chip round beer-btn beer-btn-primary">
                             <i class="primary-text">phone_in_talk</i>
                             <span>Contact</span>
+                        </a>
+                        <br>
+                        <br>
+                        <a href="./contribuidores.html" class="chip round beer-btn beer-btn-primary">
+                            <i class="primary-text">groups</i>
+                            <span>Contribuidores</span>
                         </a>
                         <br>
                         <br>
@@ -934,8 +1053,8 @@
         }
         // descarga de versiones OpenTune Android:
 
-        let currentVersion = '1.9.0';
-        let latestVersion = '1.9.0';
+        let currentVersion = '1.9.6';
+        let latestVersion = '1.9.6';
         let isDownloading = false;
 
         // Función para verificar nueva versión
@@ -951,16 +1070,17 @@
         }
 
         // Función para actualizar el botón
-        function updateDownloadButton() {
+
+          function updateDownloadButton() {
             const downloadText = document.getElementById('downloadText');
             const downloadBtn = document.getElementById('downloadBtn');
 
             if (latestVersion !== currentVersion) {
                 downloadText.textContent = 'Nueva versión disponible!';
-                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-foss-release.apk`;
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
             } else {
                 downloadText.textContent = 'Descargar APK';
-                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-foss-release.apk`;
+                downloadBtn.href = `https://github.com/Arturo254/OpenTune/releases/download/${currentVersion}/app-release.apk`;
             }
         }
 
@@ -1060,7 +1180,6 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-
             padding: 20px;
         }
 
@@ -1171,6 +1290,55 @@
             word-wrap: normal;
             direction: ltr;
             -webkit-font-smoothing: antialiased;
+        }
+
+        .chip.fill {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chip.fill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 5s infinite ease-in-out;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -150%;
+            }
+
+            50% {
+                left: -50%;
+            }
+
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* Efecto aleatorio */
+        .chip.fill {
+            animation: delay-animation 10s infinite;
+        }
+
+        @keyframes delay-animation {
+
+            0%,
+            20% {
+                opacity: 1;
+            }
+
+            21%,
+            100% {
+                opacity: 1;
+                /* Controla cuándo el brillo se muestra */
+            }
         }
     </style>
 
