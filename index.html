@@ -236,7 +236,7 @@
     </dialog>
 
     <script>
-    
+
 
         // Función para abrir el dialog
         document.getElementById('languageSelector').addEventListener('click', function () {
@@ -271,9 +271,9 @@
 
         <center>
             <a href="https://g.dev/Arturo254"><button class="chip fill">
-                <i>code</i>
-                <span>Dev By Arthur Dev Studio</span>
-            </button></a>
+                    <i>code</i>
+                    <span>Dev By Arthur Dev Studio</span>
+                </button></a>
         </center>
 
 
@@ -284,7 +284,7 @@
             </a>
             <button id="triggerDialogButton"> <i>play_circle</i> Probar Demo</button>
         </div>
-        
+
         <br>
     </section>
 
@@ -376,61 +376,62 @@
 
 
 
- <br>
- <br>
+    <br>
+    <br>
 
- <center>
-    <a href="./from.html"><button> <i>play_circle</i> Enviar Solicitud o repotar problema</button></a>
+    <center>
+        <a href="./from.html"><button> <i>play_circle</i> Enviar Solicitud o repotar problema</button></a>
 
-    <div class="overlay blur" id="dialogOverlay"></div>
-    
-    <dialog id="warningDialog">
-      <h5> <i>Warning</i>  &nbsp;Aviso de Redirección</h5>
-      <div>Serás redirigido fuera de OpenTune Web</div>
-      <nav class="right-align no-space">
-        <button class="transparent link" id="dismissButton">Cancelar</button>
-        <button class="transparent link" id="proceedButton">Confirmar</button>
-      </nav>
-    </dialog>
-    
-    <script>
-      document.getElementById("triggerDialogButton").addEventListener("click", function() {
-        var dialogWindow = document.getElementById("warningDialog");
-        var overlayElement = document.getElementById("dialogOverlay");
-        dialogWindow.showModal();
-        overlayElement.style.display = 'block';
-      });
-    
-      document.getElementById("dismissButton").addEventListener("click", function() {
-        var dialogWindow = document.getElementById("warningDialog");
-        var overlayElement = document.getElementById("dialogOverlay");
-        dialogWindow.close();
-        overlayElement.style.display = 'none';
-      });
-    
-      document.getElementById("proceedButton").addEventListener("click", function() {
-        window.location.href = "https://appetize.io/app/b_dfzx6aiin4tiita4axmxt4yze4";
-      });
-    </script>
-    
-    <style>
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 10;
-        display: none;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-      }
-      dialog {
-        z-index: 20;
-      }
-    </style>
-</center>
+        <div class="overlay blur" id="dialogOverlay"></div>
+
+        <dialog id="warningDialog">
+            <h5> <i>Warning</i> &nbsp;Aviso de Redirección</h5>
+            <div>Serás redirigido fuera de OpenTune Web</div>
+            <nav class="right-align no-space">
+                <button class="transparent link" id="dismissButton">Cancelar</button>
+                <button class="transparent link" id="proceedButton">Confirmar</button>
+            </nav>
+        </dialog>
+
+        <script>
+            document.getElementById("triggerDialogButton").addEventListener("click", function () {
+                var dialogWindow = document.getElementById("warningDialog");
+                var overlayElement = document.getElementById("dialogOverlay");
+                dialogWindow.showModal();
+                overlayElement.style.display = 'block';
+            });
+
+            document.getElementById("dismissButton").addEventListener("click", function () {
+                var dialogWindow = document.getElementById("warningDialog");
+                var overlayElement = document.getElementById("dialogOverlay");
+                dialogWindow.close();
+                overlayElement.style.display = 'none';
+            });
+
+            document.getElementById("proceedButton").addEventListener("click", function () {
+                window.location.href = "https://appetize.io/app/b_dfzx6aiin4tiita4axmxt4yze4";
+            });
+        </script>
+
+        <style>
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 10;
+                display: none;
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
+            dialog {
+                z-index: 20;
+            }
+        </style>
+    </center>
 
 
     <br>
@@ -506,20 +507,20 @@
                                 <script>
                                     // Función para obtener la versión más reciente de OpenTune desde GitHub
                                     async function getLatestVersion() {
-    try {
-        const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
-        const data = await response.json();
-        const latestVersion = data.tag_name;
-        document.getElementById('currentVersion').textContent = latestVersion;
-        document.getElementById('downloadBtn').href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
-    } catch (error) {
-        console.error('Error obteniendo la versión:', error);
-        document.getElementById('currentVersion').textContent = 'Error al obtener versión';
-    }
-}
+                                        try {
+                                            const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+                                            const data = await response.json();
+                                            const latestVersion = data.tag_name;
+                                            document.getElementById('currentVersion').textContent = latestVersion;
+                                            document.getElementById('downloadBtn').href = `https://github.com/Arturo254/OpenTune/releases/download/${latestVersion}/app-release.apk`;
+                                        } catch (error) {
+                                            console.error('Error obteniendo la versión:', error);
+                                            document.getElementById('currentVersion').textContent = 'Error al obtener versión';
+                                        }
+                                    }
 
-// Llamamos a la función cuando la página cargue
-getLatestVersion();
+                                    // Llamamos a la función cuando la página cargue
+                                    getLatestVersion();
 
                                     // Llamamos a la función cuando la página cargue
                                     getLatestVersion();
@@ -538,7 +539,8 @@ getLatestVersion();
                                     <br>
                                     <br>
                                     <a id="downloadBtn" class="button filled primary small m-top-2" href="" download>
-                                        <i class="material-icons">download</i> <span id="downloadText">Descargar APK</span>
+                                        <i class="material-icons">download</i> <span id="downloadText">Descargar
+                                            APK</span>
                                     </a>
                                 </div>
                             </center>
@@ -1090,7 +1092,7 @@ getLatestVersion();
 
         // Función para actualizar el botón
 
-          function updateDownloadButton() {
+        function updateDownloadButton() {
             const downloadText = document.getElementById('downloadText');
             const downloadBtn = document.getElementById('downloadBtn');
 
