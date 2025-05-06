@@ -372,51 +372,6 @@
     <br>
 
 
-
-
-    <br>
-    <center>
-        <article class="card shadow-md round beer-card" style="max-width: 300px;">
-            <div class="beer-card-header">
-                <i class="fi fi-sr-exclamation text-yellow-500"></i>
-                <h5>Notice:</h5>
-            </div>
-            <p class="beer-card-body text-sm">
-                If OpenTune isn't working, activate a proxy. Use the following for it to work correctly:
-            </p>
-            <div class="field border beer-field">
-                <input type="text" value="186.96.50.113:999" id="inputField" disabled class="beer-input w-full" />
-
-                <button class="beer-btn beer-btn-primary" onclick="copyText()">
-
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <script>
-                function copyText() {
-                    const inputField = document.getElementById('inputField');
-                    navigator.clipboard.writeText(inputField.value)
-                        .then(() => {
-                            alert('¡Texto copiado al portapapeles!');
-                        })
-                        .catch(err => {
-                            alert('Error al copiar al portapapeles: ' + err);
-                        });
-                }
-            </script>
-        </article>
-    </center>
-
-
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-
-
-
    <!-- Downloads Section -->
 <section id="downloadapk">
     <center>
