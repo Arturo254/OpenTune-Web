@@ -534,36 +534,120 @@ class AndroidVersionHandler extends BaseVersionHandler {
   /**
    * Carga la lista de versiones en el diálogo correspondiente
    */
-  async loadVersions() {
+async loadVersions() {
     const list = document.getElementById(this.elements.versionsList);
     if (!list) return;
 
     try {
-      const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases`);
-      if (!response.ok) {
-        throw new Error(`Error de API: ${response.status}`);
-      }
+        const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases`);
+        if (!response.ok) {
+            throw new Error(`Error de API: ${response.status}`);
+        }
 
-      const releases = await response.json();
+        const releases = await response.json();
 
-      list.innerHTML = releases.map(release => `
-        <div class="card m-bottom-2">
-          <div class="header">
-            <div class="title">${release.tag_name}</div>
-            <div class="subtitle">${new Date(release.published_at).toLocaleDateString()}</div>
-          </div>
-          <div class="action-bar">
-            <a href="${release.assets[0]?.browser_download_url || '#'}" class="button">
-              <i class="material-icons">download</i> Descargar
-            </a>
-          </div>
-        </div>
-      `).join('');
+        list.innerHTML = releases.map(release => {
+            // Determinar el tipo de versión (estable, beta, alpha)
+            let versionType = 'stable';
+            if (release.prerelease) versionType = 'beta';
+            if (release.tag_name.toLowerCase().includes('alpha')) versionType = 'alpha';
+            
+            // Formatear la fecha
+            const releaseDate = new Date(release.published_at).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            return `
+                <div class="version-card">
+                    <div class="version-info">
+                        <h3 class="version-title">${release.tag_name}</h3>
+                        <span class="version-date">${releaseDate}</span>
+                        <div class="version-badges">
+                            <span class="version-badge ${versionType}">${versionType === 'stable' ? 'Estable' : (versionType === 'beta' ? 'Beta' : 'Alpha')}</span>
+                            ${release.tag_name === releases[0].tag_name ? '<span class="version-badge latest">Más reciente</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="version-actions">
+                        <button class="text-button" onclick="changelog.show(); loadChangelog('${release.tag_name}')">
+                            <span class="material-symbols-rounded">list</span>
+                            <span>Ver cambios</span>
+                        </button>
+                        <a href="${release.assets[0]?.browser_download_url || '#'}" class="primary-button small">
+                            <span class="material-symbols-rounded">download</span>
+                            <span>Descargar</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
     } catch (error) {
-      console.error('Error al cargar las versiones:', error);
-      list.innerHTML = `<div class="error-text">Error cargando las versiones: ${error.message}</div>`;
+        console.error('Error al cargar las versiones:', error);
+        list.innerHTML = `
+            <div class="error-message">
+                <span class="material-symbols-rounded">error</span>
+                <p>Error cargando las versiones: ${error.message}</p>
+            </div>
+        `;
     }
-  }
+}
+}
+
+
+async function loadChangelog(version) {
+    const changelogContent = document.getElementById('changelogContent');
+    if (!changelogContent) return;
+    
+    changelogContent.innerHTML = `
+        <div class="loading-indicator">
+            <div class="circular-progress"></div>
+        </div>
+    `;
+    
+    try {
+        const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases/tags/${version}`);
+        if (!response.ok) {
+            throw new Error(`Error de API: ${response.status}`);
+        }
+        
+        const release = await response.json();
+        
+        // Formatear la fecha
+        const releaseDate = new Date(release.published_at).toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Convertir markdown a HTML (si usas marked.js)
+        const releaseNotes = marked.parse(release.body || 'No hay notas de la versión disponibles.');
+        
+        changelogContent.innerHTML = `
+            <div class="version-header">
+                <h3 class="version-title">${release.tag_name}</h3>
+                <span class="version-date">${releaseDate}</span>
+                <span class="version-badge ${release.prerelease ? 'beta' : 'stable'}">${release.prerelease ? 'Beta' : 'Estable'}</span>
+            </div>
+            <div class="changelog-list">
+                ${releaseNotes}
+            </div>
+            <div class="download-action">
+                <a href="${release.assets[0]?.browser_download_url || '#'}" class="primary-button full-width">
+                    <span class="material-symbols-rounded">download</span>
+                    <span>Descargar ${release.tag_name}</span>
+                </a>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error al cargar el changelog:', error);
+        changelogContent.innerHTML = `
+            <div class="error-message">
+                <span class="material-symbols-rounded">error</span>
+                <p>Error cargando las notas de la versión: ${error.message}</p>
+            </div>
+        `;
+    }
 }
 
 /**
