@@ -849,3 +849,71 @@ document.addEventListener('DOMContentLoaded', () => {
     app.carouselManager.init();
   }
 });
+
+
+   // Theme management
+    const themeSelector = document.getElementById('themeSelector');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement; // Trabajaremos con el elemento html
+
+    const themes = [
+        { name: 'light', icon: 'light_mode' },
+        { name: 'dark', icon: 'dark_mode' },
+    ];
+
+    let currentThemeIndex = 0;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('opentune-theme') || 'light';
+    const savedIndex = themes.findIndex(theme => theme.name === savedTheme);
+    if (savedIndex !== -1) {
+        currentThemeIndex = savedIndex;
+    }
+
+    // Apply theme
+    function applyTheme(themeName) {
+        // Eliminar todas las clases de tema existentes
+        themes.forEach(theme => {
+            htmlElement.classList.remove(theme.name);
+        });
+        
+        // Aplicar la nueva clase de tema
+        htmlElement.classList.add(themeName);
+        
+        // Actualizar el icono
+        const theme = themes.find(t => t.name === themeName);
+        if (theme) {
+            themeIcon.textContent = theme.icon;
+        }
+        
+        // Guardar en localStorage
+        localStorage.setItem('opentune-theme', themeName);
+    }
+
+    // Initialize theme
+    applyTheme(themes[currentThemeIndex].name);
+
+    // Theme selector click handler
+    themeSelector.addEventListener('click', () => {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(themes[currentThemeIndex].name);
+    });
+
+    // Language selector
+    const languageSelector = document.getElementById('languageSelector');
+    const languageDialog = document.getElementById('languageDialog');
+
+    languageSelector.addEventListener('click', () => {
+        languageDialog.showModal();
+    });
+
+    function closeDialog() {
+        languageDialog.close();
+    }
+
+    function setLanguage(language, url) {
+        document.getElementById('languageText').textContent = language;
+        languageDialog.close();
+        // Aquí normalmente redirigirías a la versión en el idioma apropiado
+        // window.location.href = url;
+    }
