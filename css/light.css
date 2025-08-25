@@ -6,24 +6,24 @@
   --md-sys-color-on-primary-container: rgb(40 71 119);
   --md-sys-color-secondary: rgb(86 95 113);
   --md-sys-color-on-secondary: rgb(255 255 255);
-  --md-sys-color-secondary-container: rgb(218 226 249);
-  --md-sys-color-on-secondary-container: rgb(62 71 89);
+  --md-sys-color-secondary-container: rgb(232 238 252);
+  --md-sys-color-on-secondary-container: rgb(45 54 71);
   --md-sys-color-tertiary: rgb(112 85 117);
   --md-sys-color-on-tertiary: rgb(255 255 255);
   --md-sys-color-tertiary-container: rgb(250 216 253);
-  --md-sys-color-on-tertiary-container: rgb(87 62 92);
+  --md-sys-color-on-tertiary-container: rgb(70 45 75);
   --md-sys-color-error: rgb(186 26 26);
   --md-sys-color-on-error: rgb(255 255 255);
   --md-sys-color-error-container: rgb(255 218 214);
-  --md-sys-color-on-error-container: rgb(147 0 10);
-  --md-sys-color-background: rgb(249 249 255);
+  --md-sys-color-on-error-container: rgb(105 0 5);
+  --md-sys-color-background: rgb(250 250 255);
   --md-sys-color-on-background: rgb(25 28 32);
-  --md-sys-color-surface: rgb(249 249 255);
+  --md-sys-color-surface: rgb(250 250 255);
   --md-sys-color-on-surface: rgb(25 28 32);
-  --md-sys-color-surface-variant: rgb(224 226 236);
-  --md-sys-color-on-surface-variant: rgb(68 71 78);
-  --md-sys-color-outline: rgb(116 119 127);
-  --md-sys-color-outline-variant: rgb(196 198 208);
+  --md-sys-color-surface-variant: rgb(228 230 240);
+  --md-sys-color-on-surface-variant: rgb(65 68 76);
+  --md-sys-color-outline: rgb(110 113 121);
+  --md-sys-color-outline-variant: rgb(195 197 207);
   --md-sys-color-shadow: rgb(0 0 0);
   --md-sys-color-scrim: rgb(0 0 0);
   --md-sys-color-inverse-surface: rgb(46 48 54);
@@ -41,11 +41,110 @@
   --md-sys-color-on-tertiary-fixed: rgb(40 19 46);
   --md-sys-color-tertiary-fixed-dim: rgb(221 188 224);
   --md-sys-color-on-tertiary-fixed-variant: rgb(87 62 92);
-  --md-sys-color-surface-dim: rgb(217 217 224);
-  --md-sys-color-surface-bright: rgb(249 249 255);
+  --md-sys-color-surface-dim: rgb(220 220 227);
+  --md-sys-color-surface-bright: rgb(250 250 255);
   --md-sys-color-surface-container-lowest: rgb(255 255 255);
-  --md-sys-color-surface-container-low: rgb(243 243 250);
-  --md-sys-color-surface-container: rgb(237 237 244);
-  --md-sys-color-surface-container-high: rgb(231 232 238);
-  --md-sys-color-surface-container-highest: rgb(226 226 233);
+  --md-sys-color-surface-container-low: rgb(245 245 252);
+  --md-sys-color-surface-container: rgb(240 240 247);
+  --md-sys-color-surface-container-high: rgb(235 235 242);
+  --md-sys-color-surface-container-highest: rgb(229 229 236);
+}
+
+/* Estilos adicionales para mejorar la visualización en modo claro */
+.light .feature-card,
+.light .download-card,
+.light .support-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.light .top-app-bar {
+  background-color: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.light .icon-button:hover,
+.light .text-button:hover {
+  background-color: rgba(65, 95, 145, 0.08);
+}
+
+.light .primary-button {
+  box-shadow: 0 2px 4px rgba(65, 95, 145, 0.2);
+}
+
+.light .outlined-button {
+  border-color: var(--md-sys-color-outline);
+}
+
+.light .footer {
+  background-color: var(--md-sys-color-surface-container);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.light .md3-dialog {
+  background-color: var(--md-sys-color-surface-container-low);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.light .list-item:hover {
+  background-color: rgba(65, 95, 145, 0.06);
+}
+
+/* Mejoras de contraste para texto */
+.light .hero-description,
+.light .feature-description,
+.light .download-info p {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Ajustes específicos para elementos que podrían tener problemas de contraste */
+.light .version-badge {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 500;
+}
+
+.light .developer-chip {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.light .footer-chip {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.light .footer-chip:hover {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* Mejora de sombras para mejor profundidad visual */
+.light .mockup-image {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.light .feature-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Ajustes para el modo claro en elementos de formulario */
+.light input,
+.light textarea,
+.light select {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface);
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 2px rgba(65, 95, 145, 0.2);
 }
