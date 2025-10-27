@@ -89,15 +89,15 @@
 5. Abre un Pull Request
 
 ### 🐛 Reportar Problemas
-- [Reportar un bug](https://opentune.arturodev.com/from.html)
-- [Solicitar una característica](https://opentune.arturodev.com/from.html)
+- [Reportar un bug](https://opentune.netlify.app/from.html)
+- [Solicitar una característica](https://opentune.netlify.app/from)
 
 ## 📞 Contacto y Soporte
 
 - **Desarrollador**: [Arthur Dev Studio](https://g.dev/Arturo254)
 - **WhatsApp**: [+55 76 8479-25](https://wa.me/5576847925)
 - **GitHub**: [@Arturo254](https://github.com/Arturo254)
-- **Sitio Web**: [opentune.arturodev.com](https://opentune.netlfy.app)
+- **Sitio Web**: [opentune.netlify.app](https://opentune.netlfy.app)
 
 ## 📄 Licencia
 
@@ -105,7 +105,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 
 ## 🙏 Agradecimientos
 
-- Gracias a todos los [contribuidores](./contribuidores/contribuidores.html) que han hecho posible este proyecto
+- Gracias a todos los [contribuidores](https://opentune.netlify.app/contribuidores/contribuidores) que han hecho posible este proyecto
 - Material Design team por las guías de diseño
 - Comunidad de YouTube Music por el feedback
 
