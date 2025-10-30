@@ -440,7 +440,7 @@ class BaseVersionHandler {
     this.downloadBtn.href = downloadUrl;
 
     if (this.downloadText && this.latestVersion !== this.currentVersion) {
-      this.downloadText.textContent = 'Nueva versión disponible!';
+      this.downloadText.textContent = `Nueva versión disponible! (${this.latestVersion})`;
     }
   }
 }
