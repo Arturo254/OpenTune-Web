@@ -15,8 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Scripts originales -->
-    <script src="script.js"></script>
+    <!-- script.js con defer — carga después del parse del HTML, no duplicado -->
+    <script src="script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -24,9 +24,8 @@
     <!-- Material Design 3 CSS Files -->
     <link rel="stylesheet" href="css/light.css">
     <link rel="stylesheet" href="css/dark.css">
-    <script src="script.js"></script>
 
-    <!-- Material Icons -->
+    <!-- Material Symbols -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -135,108 +134,73 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">music_note</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">music_note</span></div>
                     <h3 class="feature-title">Cliente de YouTube Music con Material Design 3</h3>
                     <p class="feature-description">Ofrece una experiencia moderna y elegante de YouTube Music en
                         Android, con una interfaz intuitiva y optimizada según Material Design 3.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">palette</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">palette</span></div>
                     <h3 class="feature-title">Diseño Moderno y Atractivo</h3>
                     <p class="feature-description">Basado en Material Design 3, con colores vivos, tipografía moderna y
                         transiciones suaves, creando una experiencia estética y atractiva.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">settings</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">settings</span></div>
                     <h3 class="feature-title">Interfaz Intuitiva y Personalizable</h3>
                     <p class="feature-description">Interfaz simplificada para un acceso rápido a todas las funciones de
                         YouTube Music, con opciones de personalización según preferencias.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">search</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">search</span></div>
                     <h3 class="feature-title">Explora y Descubre Música</h3>
                     <p class="feature-description">Acceso a un amplio catálogo musical con búsqueda avanzada y
                         recomendaciones inteligentes basadas en preferencias y hábitos de escucha.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">volume_up</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">volume_up</span></div>
                     <h3 class="feature-title">Reproducción de Alta Calidad</h3>
                     <p class="feature-description">Música de alta calidad, optimizada para diferentes dispositivos y
                         condiciones de red, con soporte para varios formatos de audio.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">playlist_add</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">playlist_add</span></div>
                     <h3 class="feature-title">Listas de Reproducción y Descargas</h3>
                     <p class="feature-description">Crea y organiza listas de reproducción, y descarga canciones y
                         álbumes para escuchar sin conexión.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">sync</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">sync</span></div>
                     <h3 class="feature-title">Integración Completa con YouTube Music</h3>
                     <p class="feature-description">Sincroniza tu cuenta de YouTube Music para acceder a tus bibliotecas
                         y recibir notificaciones sobre lanzamientos y eventos.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">build</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">build</span></div>
                     <h3 class="feature-title">Funcionalidades Avanzadas</h3>
                     <p class="feature-description">Control de reproducción con voz, gestos y soporte para Chromecast y
                         Bluetooth, permitiendo transmitir a dispositivos externos.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">folder</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">folder</span></div>
                     <h3 class="feature-title">Gestión Eficiente de la Biblioteca</h3>
                     <p class="feature-description">Organiza tu música con herramientas avanzadas de filtrado y
                         categorización, accediendo rápido a canciones y álbumes.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">translate</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">translate</span></div>
                     <h3 class="feature-title">Soporte Multilingüe</h3>
                     <p class="feature-description">Disponible en varios idiomas con traducciones precisas y localización
                         culturalmente relevante.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">update</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">update</span></div>
                     <h3 class="feature-title">Actualizaciones y Mejoras Continuas</h3>
                     <p class="feature-description">Actualizaciones regulares para nuevas funciones, mejoras de seguridad
                         y optimización del rendimiento.</p>
                 </div>
-
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <span class="material-symbols-rounded">headphones</span>
-                    </div>
+                    <div class="feature-icon"><span class="material-symbols-rounded">headphones</span></div>
                     <h3 class="feature-title">Experiencia de Usuario Optimizada</h3>
                     <p class="feature-description">Navegación intuitiva y un rendimiento ágil, con una interfaz amigable
                         que mejora la experiencia de usuario.</p>
@@ -277,12 +241,10 @@
                             <p>OpenTune para Android. Descarga la última versión estable.</p>
                         </div>
                     </div>
-
                     <div class="download-badges">
                         <span class="version-badge stable">Versión Estable</span>
                         <span id="currentVersion" class="version-badge">Cargando...</span>
                     </div>
-
                     <div class="download-actions">
                         <button class="text-button" onclick="changelog.show()">
                             <span class="material-symbols-rounded">list</span>
@@ -310,12 +272,10 @@
                             <p>OpenTune para Windows. Descarga la última versión estable.</p>
                         </div>
                     </div>
-
                     <div class="download-badges">
                         <span class="version-badge stable">Cerrado</span>
                         <span id="currentVersionWindows" class="version-badge">Cargando...</span>
                     </div>
-
                     <div class="download-actions">
                         <button class="text-button" onclick="showChangelogWindows()">
                             <span class="material-symbols-rounded">list</span>
@@ -375,69 +335,65 @@
         </div>
     </dialog>
 
-
-    <center>
-        <!-- Versions Dialog -->
-        <dialog id="versions" class="md3-dialog large">
-            <div class="dialog-header">
-                <h2 class="dialog-title">Versiones</h2>
-                <button class="icon-button" onclick="versions.close()">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
-            </div>
-            <div class="dialog-content">
-                <div id="versionsList" class="versions-content">
-                    <div class="loading-indicator">
-                        <div class="circular-progress"></div>
-                    </div>
+    <!-- Versions Dialog -->
+    <dialog id="versions" class="md3-dialog large">
+        <div class="dialog-header">
+            <h2 class="dialog-title">Versiones</h2>
+            <button class="icon-button" onclick="versions.close()">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </div>
+        <div class="dialog-content">
+            <div id="versionsList" class="versions-content">
+                <div class="loading-indicator">
+                    <div class="circular-progress"></div>
                 </div>
             </div>
-            <div class="dialog-actions">
-                <button class="text-button" onclick="versions.close()">Cerrar</button>
-            </div>
-        </dialog>
+        </div>
+        <div class="dialog-actions">
+            <button class="text-button" onclick="versions.close()">Cerrar</button>
+        </div>
+    </dialog>
 
-        <!-- Windows Changelog Dialog -->
-        <dialog id="changelogWindows" class="md3-dialog large">
-            <div class="dialog-header">
-                <h2 class="dialog-title">Notas de la versión</h2>
-                <button class="icon-button" onclick="closeChangelogWindows()">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
-            </div>
-            <div class="dialog-content">
-                <div id="changelogContentWindows" class="changelog-content">
-                    <div class="loading-indicator">
-                        <div class="circular-progress"></div>
-                    </div>
+    <!-- Windows Changelog Dialog -->
+    <dialog id="changelogWindows" class="md3-dialog large">
+        <div class="dialog-header">
+            <h2 class="dialog-title">Notas de la versión</h2>
+            <button class="icon-button" onclick="closeChangelogWindows()">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </div>
+        <div class="dialog-content">
+            <div id="changelogContentWindows" class="changelog-content">
+                <div class="loading-indicator">
+                    <div class="circular-progress"></div>
                 </div>
             </div>
-            <div class="dialog-actions">
-                <button class="text-button" onclick="closeChangelogWindows()">Cerrar</button>
-            </div>
-        </dialog>
+        </div>
+        <div class="dialog-actions">
+            <button class="text-button" onclick="closeChangelogWindows()">Cerrar</button>
+        </div>
+    </dialog>
 
-        <!-- Windows Versions Dialog -->
-        <dialog id="versionsWindows" class="md3-dialog large">
-            <div class="dialog-header">
-                <h2 class="dialog-title">Versiones</h2>
-                <button class="icon-button" onclick="closeVersionsWindows()">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
-            </div>
-            <div class="dialog-content">
-                <div id="versionsListWindows" class="versions-content">
-                    <div class="loading-indicator">
-                        <div class="circular-progress"></div>
-                    </div>
+    <!-- Windows Versions Dialog -->
+    <dialog id="versionsWindows" class="md3-dialog large">
+        <div class="dialog-header">
+            <h2 class="dialog-title">Versiones</h2>
+            <button class="icon-button" onclick="closeVersionsWindows()">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </div>
+        <div class="dialog-content">
+            <div id="versionsListWindows" class="versions-content">
+                <div class="loading-indicator">
+                    <div class="circular-progress"></div>
                 </div>
             </div>
-            <div class="dialog-actions">
-                <button class="text-button" onclick="closeVersionsWindows()">Cerrar</button>
-            </div>
-        </dialog>
-
-    </center>
+        </div>
+        <div class="dialog-actions">
+            <button class="text-button" onclick="closeVersionsWindows()">Cerrar</button>
+        </div>
+    </dialog>
 
     <!-- Footer -->
     <footer class="footer">
@@ -464,9 +420,7 @@
                     <span>Contribuidores</span>
                 </a>
             </div>
-
             <div class="footer-divider"></div>
-
             <div class="footer-copyright">
                 <p>© 2024 <a href="https://github.com/Arturo254">Arturo.inc™</a>. All Rights Reserved.</p>
             </div>
@@ -475,7 +429,7 @@
 
     <!-- Material Design 3 Styles -->
     <style>
-        /* Root Variables and Base Styles */
+        /* ── Reset & Base ── */
         * {
             margin: 0;
             padding: 0;
@@ -487,10 +441,26 @@
             background-color: var(--md-sys-color-background);
             color: var(--md-sys-color-on-background);
             line-height: 1.5;
-            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            transition: background-color 0.3s cubic-bezier(0.2, 0, 0, 1), color 0.3s cubic-bezier(0.2, 0, 0, 1);
         }
 
-        /* Top App Bar */
+        .material-symbols-rounded {
+            font-family: 'Material Symbols Rounded';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ── Top App Bar ── */
         .top-app-bar {
             position: fixed;
             top: 0;
@@ -500,8 +470,7 @@
             background-color: var(--md-sys-color-surface);
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
             z-index: 10;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+           --webkit-backdrop-filter: blur(10px),
         }
 
         .app-bar-container {
@@ -522,23 +491,8 @@
 
         .app-bar-logo {
             border-radius: 20%;
-        
             filter: brightness(1.1);
             transition: transform 0.3s ease;
-        }
-
-        @keyframes logoGlow {
-
-            0%,
-            100% {
-                opacity: 0.9;
-                box-shadow: 0 0 10px var(--md-sys-color-primary, rgba(103, 80, 164, 0.3));
-            }
-
-            50% {
-                opacity: 1;
-                box-shadow: 0 0 20px var(--md-sys-color-primary, rgba(103, 80, 164, 0.5));
-            }
         }
 
         .app-bar-title {
@@ -553,7 +507,7 @@
             gap: 8px;
         }
 
-        /* Buttons */
+        /* ── Buttons ── */
         .icon-button {
             width: 40px;
             height: 40px;
@@ -568,7 +522,7 @@
             gap: 4px;
             padding: 0 8px;
             min-width: auto;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
         }
 
         .icon-button:hover {
@@ -593,13 +547,19 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            letter-spacing: 0.1px;
+            transition: box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1), transform 0.2s;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
         }
 
         .primary-button:hover {
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
             transform: translateY(-1px);
+        }
+
+        .primary-button.small {
+            padding: 8px 16px;
+            font-size: 13px;
         }
 
         .outlined-button {
@@ -615,7 +575,8 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            letter-spacing: 0.1px;
+            transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s;
         }
 
         .outlined-button:hover {
@@ -635,7 +596,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            letter-spacing: 0.1px;
+            transition: background-color 0.2s cubic-bezier(0.2, 0, 0, 1);
         }
 
         .text-button:hover {
@@ -651,10 +613,15 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            letter-spacing: 0.1px;
+            transition: box-shadow 0.2s;
         }
 
-        /* Main Content */
+        .filled-button:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ── Main Content ── */
         .main-content {
             margin-top: 64px;
             max-width: 1200px;
@@ -663,7 +630,7 @@
             padding: 0 16px;
         }
 
-        /* Hero Section */
+        /* ── Hero Section ── */
         .hero-section {
             padding: 80px 0;
             text-align: center;
@@ -731,7 +698,7 @@
             justify-content: center;
         }
 
-        /* Features Section */
+        /* ── Features Section ── */
         .features-section {
             padding: 80px 0;
         }
@@ -762,8 +729,8 @@
             background-color: var(--md-sys-color-surface-container-low);
             border-radius: 16px;
             padding: 24px;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
             border: 1px solid var(--md-sys-color-outline-variant);
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
         }
 
         .feature-card:hover {
@@ -788,7 +755,7 @@
             font-size: 1.25rem;
             font-weight: 500;
             color: var(--md-sys-color-on-surface);
-            margin: 0 0 8px 0;
+            margin: 0 0 8px;
         }
 
         .feature-description {
@@ -798,7 +765,7 @@
             margin: 0;
         }
 
-        /* Support Section */
+        /* ── Support Section ── */
         .support-section {
             padding: 40px 0;
         }
@@ -816,15 +783,15 @@
         .support-card h3 {
             font-size: 1.5rem;
             font-weight: 500;
-            margin: 0 0 8px 0;
+            margin: 0 0 8px;
         }
 
         .support-card p {
-            margin: 0 0 24px 0;
+            margin: 0 0 24px;
             opacity: 0.8;
         }
 
-        /* Downloads Section */
+        /* ── Downloads Section ── */
         .downloads-section {
             padding: 80px 0;
         }
@@ -840,7 +807,7 @@
             border-radius: 16px;
             padding: 24px;
             border: 1px solid var(--md-sys-color-outline-variant);
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            transition: background-color 0.2s, box-shadow 0.2s;
         }
 
         .download-card:hover {
@@ -862,7 +829,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
         }
 
         .download-icon.android {
@@ -879,7 +845,7 @@
             font-size: 1.25rem;
             font-weight: 500;
             color: var(--md-sys-color-on-surface);
-            margin: 0 0 4px 0;
+            margin: 0 0 4px;
         }
 
         .download-info p {
@@ -909,6 +875,16 @@
             color: var(--md-sys-color-on-tertiary-container);
         }
 
+        .version-badge.latest {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        .version-badge.beta {
+            background-color: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
+        }
+
         .download-actions {
             display: flex;
             flex-direction: column;
@@ -919,14 +895,43 @@
             align-self: flex-start;
         }
 
-        /* Dialogs */
+        /* ── Version List (in dialog) ── */
+        .version-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 12px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .version-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .version-list-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .version-tag {
+            font: 500 15px/20px 'Roboto', sans-serif;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .version-date {
+            font: 400 12px/16px 'Roboto', sans-serif;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        /* ── Dialogs ── */
         .md3-dialog {
             position: fixed;
-            /* se posiciona respecto a la ventana */
             inset: 0;
-            /* top:0; right:0; bottom:0; left:0 */
             margin: auto;
-            /* lo centra automáticamente */
             border: none;
             border-radius: 24px;
             background-color: var(--md-sys-color-surface-container-high);
@@ -937,19 +942,17 @@
             overflow: hidden;
         }
 
-
         .md3-dialog.large {
             width: 600px;
         }
 
         .md3-dialog::backdrop {
             background-color: rgba(0, 0, 0, 0.5);
-            -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(4px);
+           --webkit-backdrop-filter: blur(4px),
         }
 
         .dialog-header {
-            padding: 24px 24px 0 24px;
+            padding: 24px 24px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -972,13 +975,13 @@
         }
 
         .dialog-actions {
-            padding: 0 24px 24px 24px;
+            padding: 0 24px 24px;
             display: flex;
             justify-content: flex-end;
             gap: 8px;
         }
 
-        /* Language Options */
+        /* ── Language Options ── */
         .language-options {
             display: flex;
             flex-direction: column;
@@ -1011,7 +1014,7 @@
             border-radius: 2px;
         }
 
-        /* Loading Indicator */
+        /* ── Loading ── */
         .loading-indicator {
             display: flex;
             justify-content: center;
@@ -1037,7 +1040,34 @@
             }
         }
 
-        /* Footer */
+        /* ── Markdown ── */
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3 {
+            margin: 16px 0 8px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .markdown-body p,
+        .markdown-body li {
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.6;
+        }
+
+        .markdown-body ul,
+        .markdown-body ol {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        .markdown-body code {
+            background-color: var(--md-sys-color-surface-variant);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        /* ── Footer ── */
         .footer {
             background-color: var(--md-sys-color-surface-container);
             margin-top: 80px;
@@ -1069,7 +1099,7 @@
             gap: 8px;
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            transition: background-color 0.2s, color 0.2s, transform 0.2s;
         }
 
         .footer-chip:hover {
@@ -1099,7 +1129,7 @@
             text-decoration: underline;
         }
 
-        /* Overlay */
+        /* ── Overlay ── */
         .overlay {
             position: fixed;
             top: 0;
@@ -1109,16 +1139,20 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 10;
             display: none;
-            -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(4px);
         }
 
         .overlay.blur {
-            -webkit-backdrop-filter: blur(4px);
-            backdrop-filter: blur(10px);
+           --webkit-backdrop-filter: blur(10px),
         }
 
-        /* Responsive Design */
+        /* ── Focus ── */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--md-sys-color-primary);
+            outline-offset: 2px;
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
             .app-bar-title {
                 font-size: 18px;
@@ -1168,24 +1202,6 @@
                 flex-direction: column;
                 align-items: center;
             }
-
-            .md3-dialog {
-                position: fixed;
-                /* se posiciona respecto a la ventana */
-                inset: 0;
-                /* top:0; right:0; bottom:0; left:0 */
-                margin: auto;
-                /* lo centra automáticamente */
-                border: none;
-                border-radius: 24px;
-                background-color: var(--md-sys-color-surface-container-high);
-                color: var(--md-sys-color-on-surface);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-                max-width: 90vw;
-                max-height: 90vh;
-                overflow: hidden;
-            }
-
         }
 
         @media (max-width: 480px) {
@@ -1206,19 +1222,10 @@
             }
         }
 
-        /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Focus styles for accessibility */
-        button:focus-visible,
-        a:focus-visible {
-            outline: 2px solid var(--md-sys-color-primary);
-            outline-offset: 2px;
-        }
-
-        /* High contrast adjustments */
         @media (prefers-contrast: high) {
 
             .feature-card,
@@ -1228,20 +1235,16 @@
             }
         }
 
-        /* Reduced motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
 
             *,
             ::before,
             ::after {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
     </style>
-
-    <!-- Theme Toggle Script -->
 
 </body>
 

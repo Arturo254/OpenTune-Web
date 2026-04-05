@@ -21,6 +21,7 @@
       {
         "aria-required-parent": "off"
       }
-    ]
+    ],
+    "button-type": "off"
   }
 }
