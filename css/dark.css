@@ -48,4 +48,8 @@
   --md-sys-color-surface-container: rgb(29 32 36);
   --md-sys-color-surface-container-high: rgb(40 42 47);
   --md-sys-color-surface-container-highest: rgb(51 53 58);
+  --md-extended-color-custom-color1-color: rgb(161 202 253);
+  --md-extended-color-custom-color1-on-color: rgb(0 50 89);
+  --md-extended-color-custom-color1-color-container: rgb(26 73 117);
+  --md-extended-color-custom-color1-on-color-container: rgb(209 228 255);
 }
