@@ -9,7 +9,7 @@ const APP_CONFIG = {
     android: {
       repo: 'Arturo254/OpenTune',
       currentVersion: '1.9.8',
-      downloadFormat: '{version}/app-release.apk',
+      downloadFormat: '{version}/app-universal-release.apk',
       elements: {
         version: 'currentVersion',
         download: 'downloadBtn',
