@@ -261,8 +261,8 @@
                     </div>
                 </div>
 
-                <!-- Windows Download -->
-                <div class="download-card">
+                <!-- Windows Download (Disabled) -->
+                <div class="download-card disabled" aria-disabled="true">
                     <div class="download-header">
                         <div class="download-icon windows">
                             <span class="material-symbols-rounded">laptop_windows</span>
@@ -272,23 +272,27 @@
                             <p>OpenTune para Windows. Descarga la última versión estable.</p>
                         </div>
                     </div>
+
                     <div class="download-badges">
                         <span class="version-badge stable">Cerrado</span>
-                        <span id="currentVersionWindows" class="version-badge">Cargando...</span>
+                        <span id="currentVersionWindows" class="version-badge">No disponible</span>
                     </div>
+
                     <div class="download-actions">
-                        <button class="text-button" onclick="showChangelogWindows()">
+                        <button class="text-button" disabled>
                             <span class="material-symbols-rounded">list</span>
                             <span>Ver cambios</span>
                         </button>
-                        <button class="text-button" onclick="showVersionsWindows()">
+
+                        <button class="text-button" disabled>
                             <span class="material-symbols-rounded">history</span>
                             <span>Versiones anteriores</span>
                         </button>
-                        <a id="downloadBtnWindows" class="primary-button download-button" href="" download>
-                            <span class="material-symbols-rounded">download</span>
-                            <span>Descargar EXE</span>
-                        </a>
+
+                        <button class="primary-button download-button" disabled>
+                            <span class="material-symbols-rounded">block</span>
+                            <span>No disponible</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -470,7 +474,7 @@
             background-color: var(--md-sys-color-surface);
             border-bottom: 1px solid var(--md-sys-color-outline-variant);
             z-index: 10;
-           --webkit-backdrop-filter: blur(10px),
+            --webkit-backdrop-filter: blur(10px),
         }
 
         .app-bar-container {
@@ -948,7 +952,7 @@
 
         .md3-dialog::backdrop {
             background-color: rgba(0, 0, 0, 0.5);
-           --webkit-backdrop-filter: blur(4px),
+            --webkit-backdrop-filter: blur(4px),
         }
 
         .dialog-header {
@@ -1142,7 +1146,7 @@
         }
 
         .overlay.blur {
-           --webkit-backdrop-filter: blur(10px),
+            --webkit-backdrop-filter: blur(10px),
         }
 
         /* ── Focus ── */
@@ -1244,6 +1248,27 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+
+
+        /* Disabled Download Card */
+.download-card.disabled {
+  opacity: 0.6;
+  filter: grayscale(0.4);
+  pointer-events: none;
+  --webkit-user-select: none;
+}
+
+/* Botones disabled estilo M3 */
+.download-card.disabled button,
+.download-card.disabled a {
+  cursor: not-allowed;
+}
+
+/* Opcional: icono más tenue */
+.download-card.disabled .download-icon {
+  opacity: 0.7;
+}
     </style>
 
 </body>
