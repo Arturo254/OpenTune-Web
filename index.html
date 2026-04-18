@@ -269,12 +269,12 @@
                         </div>
                         <div class="download-info">
                             <h3>Windows</h3>
-                            <p>OpenTune para Windows. Descarga la última versión estable.</p>
+                            <p>OpenTune para Windows. El desarrollo está cerrado actualmente.</p>
                         </div>
                     </div>
 
                     <div class="download-badges">
-                        <span class="version-badge stable">Cerrado</span>
+                        <span class="version-badge">Cerrado</span>
                         <span id="currentVersionWindows" class="version-badge">No disponible</span>
                     </div>
 
@@ -1251,24 +1251,69 @@
 
 
 
-        /* Disabled Download Card */
-.download-card.disabled {
-  opacity: 0.6;
-  filter: grayscale(0.4);
-  pointer-events: none;
-  --webkit-user-select: none;
-}
+        /* ── Disabled Download Card ── */
+        .download-card.disabled {
+            background-color: var(--md-sys-color-surface-container-low);
+            border: 1px dashed var(--md-sys-color-outline-variant);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
 
-/* Botones disabled estilo M3 */
-.download-card.disabled button,
-.download-card.disabled a {
-  cursor: not-allowed;
-}
+        .download-card.disabled::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                var(--md-sys-color-surface-variant) 10px,
+                var(--md-sys-color-surface-variant) 20px
+            );
+            opacity: 0.3;
+            pointer-events: none;
+        }
 
-/* Opcional: icono más tenue */
-.download-card.disabled .download-icon {
-  opacity: 0.7;
-}
+        .download-card.disabled:hover {
+            background-color: var(--md-sys-color-surface-container-low);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .download-card.disabled .download-info h3,
+        .download-card.disabled .download-info p {
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .download-card.disabled .download-icon {
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .download-card.disabled .version-badge {
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            opacity: 0.8;
+        }
+
+        /* Botones disabled estilo M3 */
+        .download-card.disabled button,
+        .download-card.disabled a {
+            cursor: not-allowed;
+            pointer-events: none; /* El cursor lo maneja la tarjeta */
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+        
+        .download-card.disabled .primary-button {
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            box-shadow: none;
+        }
     </style>
 
 </body>
