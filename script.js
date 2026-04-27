@@ -809,7 +809,7 @@ async function fetchContributors() {
   if (!contributorsGrid) return;
 
   try {
-    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contributors?per_page=6`);
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contributors?per_page=100`);
     if (!response.ok) throw new Error('Error al obtener contribuidores');
     const contributors = await response.json();
 
