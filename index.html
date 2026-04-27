@@ -184,11 +184,10 @@
                 externa proporcionada por Appetize.io.</p>
         </div>
         <div class="dialog-actions">
-            <button id="dismiss-btn" class="dialog-text-btn">Cancelar</button>
-            <button id="proceed-btn" class="dialog-filled-btn">Continuar</button>
+            <button id="dismissBtn" class="dialog-text-btn">Cancelar</button>
+            <button id="proceedBtn" class="dialog-filled-btn">Continuar</button>
         </div>
     </dialog>
-
 
 
     <!-- ═══════════════════════ NAVIGATION ═══════════════════════ -->
@@ -272,7 +271,8 @@
                             Descargar APK
                         </a>
                         <button id="hero-demo-btn"
-                            class="bg-surface-container-high text-on-surface px-10 py-4 rounded-full font-label-lg text-lg border border-outline-variant/30 hover:bg-surface-container-highest transition-all flex items-center gap-2">
+                            class="bg-surface-container-high text-on-surface px-10 py-4 rounded-full font-label-lg text-lg border border-outline-variant/30 hover:bg-surface-container-highest transition-all flex items-center gap-2"
+                            onclick="document.getElementById('warning-dialog').showModal()">
                             <span class="material-symbols-outlined">play_circle</span>
                             Probar Demo
                         </button>
@@ -472,52 +472,56 @@
         </section>
 
         <!-- ─── SCREENSHOTS (ACORDION - COLAPSADO POR DEFECTO) ─── -->
-<section id="screenshots" class="px-margin-horizontal py-24 bg-surface">
-    <div class="max-w-7xl mx-auto">
-        <!-- Header con botón colapsable -->
-        <div class="mb-16">
-            <div class="flex items-center justify-between cursor-pointer group" id="screenshots-header">
-                <div>
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface">La Interfaz</h2>
-                    <p class="text-on-surface-variant mt-2">Un vistazo a la experiencia de OpenTune.</p>
+        <section id="screenshots" class="px-margin-horizontal py-24 bg-surface">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header con botón colapsable -->
+                <div class="mb-16">
+                    <div class="flex items-center justify-between cursor-pointer group" id="screenshots-header">
+                        <div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface">La Interfaz</h2>
+                            <p class="text-on-surface-variant mt-2">Un vistazo a la experiencia de OpenTune.</p>
+                        </div>
+                        <button id="screenshots-toggle" class="p-3 rounded-full hover:bg-white/10 transition-colors"
+                            aria-label="Expandir/Colapsar">
+                            <span id="screenshots-icon"
+                                class="material-symbols-outlined text-on-surface-variant rotated">
+                                expand_more
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <button id="screenshots-toggle" class="p-3 rounded-full hover:bg-white/10 transition-colors"
-                    aria-label="Expandir/Colapsar">
-                    <span id="screenshots-icon" class="material-symbols-outlined text-on-surface-variant rotated">
-                        expand_more
-                    </span>
-                </button>
-            </div>
-        </div>
 
-        <!-- Contenido colapsable (colapsado por defecto) -->
-        <div id="screenshots-content" class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px] collapsed">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="space-y-6">
-                    <div
-                        class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                        <img alt="Player Screen" class="w-full h-full object-cover" src="./img/reproductor.webp">
+                <!-- Contenido colapsable (colapsado por defecto) -->
+                <div id="screenshots-content"
+                    class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px] collapsed">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div class="space-y-6">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Player Screen" class="w-full h-full object-cover"
+                                    src="./img/reproductor.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Reproductor Inmersivo</p>
+                        </div>
+                        <div class="space-y-6 lg:mt-12">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Library Screen" class="w-full h-full object-cover"
+                                    src="./img/biblioteca.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Biblioteca Inteligente</p>
+                        </div>
+                        <div class="space-y-6 lg:mt-24">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Settings Screen" class="w-full h-full object-cover" src="./img/ajustes.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Configuración Avanzada</p>
+                        </div>
                     </div>
-                    <p class="text-center font-title-md text-secondary">Reproductor Inmersivo</p>
-                </div>
-                <div class="space-y-6 lg:mt-12">
-                    <div
-                        class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                        <img alt="Library Screen" class="w-full h-full object-cover" src="./img/biblioteca.webp">
-                    </div>
-                    <p class="text-center font-title-md text-secondary">Biblioteca Inteligente</p>
-                </div>
-                <div class="space-y-6 lg:mt-24">
-                    <div
-                        class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                        <img alt="Settings Screen" class="w-full h-full object-cover" src="./img/ajustes.webp">
-                    </div>
-                    <p class="text-center font-title-md text-secondary">Configuración Avanzada</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- ─── SUPPORT ─── -->
         <section class="px-margin-horizontal py-20">

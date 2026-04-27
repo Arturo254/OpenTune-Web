@@ -1005,3 +1005,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+
+// ============================================
+// DEMO - DIÁLOGO DE ADVERTENCIA
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos
+    const demoBtn = document.getElementById('hero-demo-btn');
+    const warningDialog = document.getElementById('warning-dialog');
+    const proceedBtn = document.getElementById('proceedBtn');
+    const dismissBtn = document.getElementById('dismissBtn');
+    
+    // Abrir diálogo al hacer clic en "Probar Demo"
+    if (demoBtn && warningDialog) {
+        demoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            warningDialog.showModal();
+        });
+    }
+    
+    // Ir a la demo al hacer clic en "Continuar"
+    if (proceedBtn) {
+        proceedBtn.addEventListener('click', function() {
+            window.location.href = 'https://appetize.io/app/b_yb62tcjuqzqjvctnswv3krpnmm';
+        });
+    }
+    
+    // Cerrar diálogo al hacer clic en "Cancelar"
+    if (dismissBtn) {
+        dismissBtn.addEventListener('click', function() {
+            warningDialog.close();
+        });
+    }
+    
+    // Cerrar diálogo al hacer clic fuera de él
+    if (warningDialog) {
+        warningDialog.addEventListener('click', function(e) {
+            if (e.target === warningDialog) {
+                warningDialog.close();
+            }
+        });
+    }
+    
+    // Cerrar con la tecla ESC (por defecto funciona, pero lo aseguramos)
+    if (warningDialog) {
+        warningDialog.addEventListener('cancel', function(e) {
+            warningDialog.close();
+        });
+    }
+});
