@@ -11,13 +11,13 @@ const APP_CONFIG = {
       currentVersion: '1.9.8',
       downloadFormat: '{version}/app-universal-release.apk',
       elements: {
-        version: 'currentVersion',
-        download: 'downloadBtn',
-        text: 'downloadText',
-        changelog: 'changelog',
-        versions: 'versions',
-        changelogContent: 'changelogContent',
-        versionsList: 'versionsList'
+        version: 'android-version-badge',
+        download: 'android-download-btn',
+        text: 'android-download-text',
+        changelog: 'changelog-dialog',
+        versions: 'versions-dialog',
+        changelogContent: 'changelog-content',
+        versionsList: 'versions-list'
       }
     },
     windows: {
@@ -41,7 +41,7 @@ const APP_CONFIG = {
   },
   elements: {
     theme: { selector: 'themeSelector', icon: 'themeIcon' },
-    language: { selector: 'languageSelector', dialog: 'languageDialog', text: 'languageText' },
+    language: { selector: 'language-btn', dialog: 'languageDialog', text: 'languageText' },
     warning: { button: 'triggerDialogButton', dialog: 'warningDialog', overlay: 'dialogOverlay', dismiss: 'dismissButton', proceed: 'proceedButton' },
     logo: 'logo'
   },
@@ -90,28 +90,28 @@ class ThemeManager {
     this.selector = selector;
     this.icon = icon;
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.applyTheme(savedTheme);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.applyTheme(prefersDark ? 'dark' : 'light');
-    }
+    // Detectar tema actual basado en las clases del root
+    const isLightMode = document.documentElement.classList.contains('light-mode');
+    this.updateIcon(isLightMode ? 'light' : 'dark');
 
     selector.addEventListener('click', () => this.toggleTheme());
   }
 
   applyTheme(theme) {
-    const body = document.body;
-    if (theme === 'dark') {
-      body.classList.add('dark');
-      body.classList.remove('light');
+    const root = document.documentElement;
+
+    if (theme === 'light') {
+      root.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
     } else {
-      body.classList.add('light');
-      body.classList.remove('dark');
+      root.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
     }
-    localStorage.setItem('theme', theme);
+
     this.updateIcon(theme);
+
+    // Disparar evento para que otros componentes se actualicen si es necesario
+    window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
   }
 
   updateIcon(theme) {
@@ -121,8 +121,8 @@ class ThemeManager {
   }
 
   toggleTheme() {
-    const isDark = document.body.classList.contains('dark');
-    this.applyTheme(isDark ? 'light' : 'dark');
+    const isLightMode = document.documentElement.classList.contains('light-mode');
+    this.applyTheme(isLightMode ? 'dark' : 'light');
   }
 }
 
@@ -137,10 +137,30 @@ class LanguageManager {
     const selector = document.getElementById(this.selectorId);
     const dialog = document.getElementById(this.dialogId);
     const text = document.getElementById(this.textId);
+
     if (!selector || !dialog) return;
 
-    selector.addEventListener('click', () => dialog.showModal());
+    // Abrir diálogo al hacer clic en el botón
+    selector.addEventListener('click', () => {
+      dialog.showModal();
+    });
 
+    // Cerrar diálogo con el botón X o el botón Cancelar
+    const closeButtons = dialog.querySelectorAll('[data-close]');
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        dialog.close();
+      });
+    });
+
+    // Cerrar al hacer clic fuera del diálogo
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) {
+        dialog.close();
+      }
+    });
+
+    // Configurar funciones globales para cambio de idioma (si existen)
     window.closeDialog = () => dialog.close();
     window.setLanguage = (language, url) => {
       if (text) text.textContent = language;
@@ -210,7 +230,7 @@ class LogoManager {
           const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
           let r = 0, g = 0, b = 0, total = 0;
           for (let i = 0; i < pixels.length; i += 4) { r += pixels[i]; g += pixels[i + 1]; b += pixels[i + 2]; total++; }
-          logo.style.setProperty('--logo-glow-color', `rgb(${Math.floor(r/total)},${Math.floor(g/total)},${Math.floor(b/total)})`);
+          logo.style.setProperty('--logo-glow-color', `rgb(${Math.floor(r / total)},${Math.floor(g / total)},${Math.floor(b / total)})`);
         } catch (e) {
           logo.style.setProperty('--logo-glow-color', 'rgba(255,255,255,0.5)');
         }
@@ -467,5 +487,521 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelectorAll('.carousel-image').length && document.getElementById('popupOverlay')) {
     app.carouselManager = new CarouselManager();
     app.carouselManager.init();
+  }
+});
+
+
+// Mostrar versión en el badge OSS
+(async function updateOssVersion() {
+  const badge = document.getElementById('oss-version-badge');
+  if (!badge) return;
+
+  try {
+    const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+    const data = await response.json();
+    badge.textContent = data.tag_name || 'Error';
+  } catch (error) {
+    console.error('Error al cargar versión:', error);
+    badge.textContent = 'Error';
+  }
+})();
+
+
+// ============================================
+// CONFIGURACIÓN DE DIÁLOGOS ANDROID
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+  // Elementos de la tarjeta Android
+  const changelogTrigger = document.getElementById('changelog-trigger');
+  const versionsTrigger = document.getElementById('versions-trigger');
+  const changelogDialog = document.getElementById('changelog-dialog');
+  const versionsDialog = document.getElementById('versions-dialog');
+  const closeChangelogBtn = document.getElementById('close-changelog-btn');
+  const closeVersionsBtn = document.getElementById('close-versions-btn');
+
+  // Función para abrir changelog
+  if (changelogTrigger && changelogDialog) {
+    changelogTrigger.addEventListener('click', function () {
+      changelogDialog.showModal();
+      // Cargar el changelog automáticamente
+      loadChangelogContent();
+    });
+  }
+
+  // Función para abrir versiones
+  if (versionsTrigger && versionsDialog) {
+    versionsTrigger.addEventListener('click', function () {
+      versionsDialog.showModal();
+      // Cargar las versiones automáticamente
+      loadVersionsList();
+    });
+  }
+
+  // Cerrar diálogos con los botones X
+  if (closeChangelogBtn && changelogDialog) {
+    closeChangelogBtn.addEventListener('click', function () {
+      changelogDialog.close();
+    });
+  }
+
+  if (closeVersionsBtn && versionsDialog) {
+    closeVersionsBtn.addEventListener('click', function () {
+      versionsDialog.close();
+    });
+  }
+
+  // Cerrar diálogo haciendo clic fuera (opcional)
+  if (changelogDialog) {
+    changelogDialog.addEventListener('click', function (e) {
+      if (e.target === changelogDialog) {
+        changelogDialog.close();
+      }
+    });
+  }
+
+  if (versionsDialog) {
+    versionsDialog.addEventListener('click', function (e) {
+      if (e.target === versionsDialog) {
+        versionsDialog.close();
+      }
+    });
+  }
+});
+
+// Función para cargar el changelog
+async function loadChangelogContent() {
+  const content = document.getElementById('changelog-content');
+  if (!content) return;
+
+  content.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+
+  try {
+    const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const data = await response.json();
+    const date = new Date(data.published_at).toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    // Verificar si marked está disponible
+    const markdownContent = typeof marked !== 'undefined' ? marked.parse(data.body || 'Sin notas disponibles.') : data.body || 'Sin notas disponibles.';
+
+    content.innerHTML = `
+            <div class="changelog-meta">
+                <span class="changelog-date">📅 ${date}</span>
+            </div>
+            <div class="markdown-body">${markdownContent}</div>
+        `;
+  } catch (error) {
+    content.innerHTML = `<p style="color: #cf6679; padding: 16px;">Error al cargar cambios: ${error.message}</p>`;
+  }
+}
+
+// Función para cargar lista de versiones
+async function loadVersionsList() {
+  const list = document.getElementById('versions-list');
+  if (!list) return;
+
+  list.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+
+  try {
+    const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    const releases = await response.json();
+
+    if (releases.length === 0) {
+      list.innerHTML = '<p class="text-on-surface-variant" style="padding: 16px;">No hay versiones disponibles.</p>';
+      return;
+    }
+
+    list.innerHTML = releases.map((release, index) => {
+      const date = new Date(release.published_at).toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      const downloadUrl = release.assets[0]?.browser_download_url || '#';
+      const isLatest = index === 0;
+
+      return `
+                <div class="version-list-item">
+                    <div class="version-list-info">
+                        <div class="version-meta-row">
+                            <span class="version-tag">${release.tag_name}</span>
+                            ${isLatest ? '<span class="version-chip version-chip--latest">Más reciente</span>' : ''}
+                        </div>
+                        <span class="version-date">${date}</span>
+                    </div>
+                    <a href="${downloadUrl}" class="version-dl-btn" download>
+                        <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                        Descargar
+                    </a>
+                </div>
+            `;
+    }).join('');
+
+  } catch (error) {
+    list.innerHTML = `<p style="color: #cf6679; padding: 16px;">Error al cargar versiones: ${error.message}</p>`;
+  }
+}
+
+// Diagnóstico del LanguageManager
+document.addEventListener('DOMContentLoaded', function () {
+  const langBtn = document.getElementById('languageSelector');
+  const langDialog = document.getElementById('language-dialog');
+
+  console.log('Botón idioma:', langBtn);
+  console.log('Diálogo idioma:', langDialog);
+
+  if (langBtn && langDialog) {
+    // Forzar el evento manualmente
+    langBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log('Botón clickeado - abriendo diálogo');
+      langDialog.showModal();
+    });
+  } else {
+    console.error('No se encontraron los elementos de idioma');
+  }
+});
+
+// ============================================
+// ACCORDION PARA LA SECCIÓN DE SCREENSHOTS
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+  const screenshotsContent = document.getElementById('screenshots-content');
+  const screenshotsToggle = document.getElementById('screenshots-toggle');
+  const screenshotsIcon = document.getElementById('screenshots-icon');
+
+  if (screenshotsContent && screenshotsToggle) {
+
+    const savedState = localStorage.getItem('screenshotsCollapsed');
+
+    if (savedState === 'false') {
+      // Si el usuario lo expandió antes, lo abrimos
+      screenshotsContent.classList.remove('collapsed');
+      if (screenshotsIcon) screenshotsIcon.classList.remove('rotated');
+    }
+
+
+    screenshotsToggle.addEventListener('click', function () {
+      screenshotsContent.classList.toggle('collapsed');
+      if (screenshotsIcon) screenshotsIcon.classList.toggle('rotated');
+
+      // Guardar estado
+      const isCollapsed = screenshotsContent.classList.contains('collapsed');
+      localStorage.setItem('screenshotsCollapsed', isCollapsed);
+    });
+  }
+});
+
+// ============================================
+// OBTENER DATOS REALES DE GITHUB API (VERSIÓN MEJORADA) (Contribuidores.html)
+// ============================================
+const REPO_OWNER = 'Arturo254';
+const REPO_NAME = 'OpenTune';
+
+async function fetchGitHubStats() {
+  try {
+    // Obtener datos del repositorio
+    const repoResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
+    if (!repoResponse.ok) throw new Error('Error al obtener repositorio');
+    const repoData = await repoResponse.json();
+
+    // Stars
+    document.querySelector('#stats-stars .font-headline-md').textContent = formatNumber(repoData.stargazers_count);
+
+    // Forks
+    document.querySelector('#stats-forks .font-headline-md').textContent = formatNumber(repoData.forks_count);
+
+    // Issues
+    document.querySelector('#stats-issues .font-headline-md').textContent = formatNumber(repoData.open_issues_count);
+
+    // Total Commits - usando el endpoint de commits
+    await fetchTotalCommits();
+
+  } catch (error) {
+    console.error('Error:', error);
+    document.querySelectorAll('.stats-number').forEach(el => el.textContent = 'Error');
+  }
+}
+
+async function fetchTotalCommits() {
+  try {
+    // Método: obtener la página 1 con per_page=1 y leer el header Link
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=1`);
+    const linkHeader = response.headers.get('Link');
+
+    let totalCommits = 'N/A';
+    if (linkHeader) {
+      const lastPageMatch = linkHeader.match(/page=(\d+)>; rel="last"/);
+      if (lastPageMatch) {
+        totalCommits = formatNumber(parseInt(lastPageMatch[1]));
+      }
+    }
+
+    document.querySelector('#stats-commits .font-headline-md').textContent = totalCommits;
+  } catch (error) {
+    console.error('Error al obtener commits:', error);
+    document.querySelector('#stats-commits .font-headline-md').textContent = 'N/A';
+  }
+}
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+  return num.toString();
+}
+
+// Ejecutar
+document.addEventListener('DOMContentLoaded', fetchGitHubStats);
+
+// ============================================
+// OBTENER DATOS REALES DE GITHUB API
+// ============================================
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+  return num.toString();
+}
+
+async function fetchGitHubStats() {
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
+    if (!response.ok) throw new Error('Error al obtener repositorio');
+    const data = await response.json();
+
+    document.querySelector('#stats-stars .font-headline-md').textContent = formatNumber(data.stargazers_count);
+    document.querySelector('#stats-forks .font-headline-md').textContent = formatNumber(data.forks_count);
+    document.querySelector('#stats-issues .font-headline-md').textContent = formatNumber(data.open_issues_count);
+
+    // Total Commits
+    const commitsResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=1`);
+    const linkHeader = commitsResponse.headers.get('Link');
+    let totalCommits = 'N/A';
+    if (linkHeader) {
+      const lastPageMatch = linkHeader.match(/page=(\d+)>; rel="last"/);
+      if (lastPageMatch) totalCommits = formatNumber(parseInt(lastPageMatch[1]));
+    }
+    document.querySelector('#stats-commits .font-headline-md').textContent = totalCommits;
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function getContributorRole(contributions, login) {
+  if (login === 'Arturo254') return 'Lead Developer';
+  if (contributions > 100) return 'Core Contributor';
+  if (contributions > 30) return 'Major Contributor';
+  if (contributions > 10) return 'Contributor';
+  return 'Supporter';
+}
+
+async function fetchContributors() {
+  const contributorsGrid = document.getElementById('contributors-grid');
+  if (!contributorsGrid) return;
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contributors?per_page=6`);
+    if (!response.ok) throw new Error('Error al obtener contribuidores');
+    const contributors = await response.json();
+
+    if (contributors.length === 0) return;
+
+    contributorsGrid.innerHTML = contributors.map(contributor => {
+      const role = getContributorRole(contributor.contributions, contributor.login);
+      return `
+            <div class="group bg-surface-container-low p-4 rounded-lg flex items-center gap-4 border border-white/5 hover:bg-surface-container-high transition-all hover:scale-[1.02] duration-200">
+              <img alt="${contributor.login}"
+                class="w-16 h-16 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all ring-2 ring-transparent group-hover:ring-primary/50"
+                src="${contributor.avatar_url}&s=64" />
+              <div class="flex-1">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <h3 class="font-title-md text-title-md text-primary group-hover:text-primary-fixed-dim transition-colors">${contributor.login}</h3>
+                  <span class="text-on-surface-variant font-label-sm text-label-sm bg-surface-container-high px-2 py-1 rounded-full">${contributor.contributions} commits</span>
+                </div>
+                <div class="mt-2 flex gap-1 flex-wrap">
+                  <span class="bg-primary/10 text-primary-fixed-dim px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">${role}</span>
+                </div>
+              </div>
+              <a href="${contributor.html_url}" target="_blank" class="opacity-0 group-hover:opacity-100 transition-all">
+                <span class="material-symbols-outlined text-on-surface-variant hover:text-primary text-[18px]">open_in_new</span>
+              </a>
+            </div>
+          `;
+    }).join('');
+
+  } catch (error) {
+    console.error('Error al cargar contribuidores:', error);
+  }
+}
+
+async function fetchLatestActivity() {
+  const activityContainer = document.getElementById('latest-activity');
+  if (!activityContainer) return;
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=4`);
+    if (!response.ok) throw new Error('Error al obtener actividad');
+    const commits = await response.json();
+
+    activityContainer.innerHTML = commits.map(commit => `
+          <div class="flex gap-4">
+            <div class="mt-1">
+              <div class="bg-primary/20 p-2 rounded-full">
+                <span class="material-symbols-outlined text-primary text-[20px]">commit</span>
+              </div>
+            </div>
+            <div>
+              <p class="font-title-md text-title-md text-on-surface">${commit.commit.message.split('\n')[0].substring(0, 60)}</p>
+              <p class="font-label-sm text-label-sm text-on-surface-variant">by <span class="text-primary-fixed-dim">${commit.author?.login || commit.commit.author.name}</span> • ${new Date(commit.commit.author.date).toLocaleDateString()}</p>
+            </div>
+          </div>
+        `).join('');
+
+  } catch (error) {
+    console.error('Error al cargar actividad:', error);
+    activityContainer.innerHTML = '<p class="text-on-surface-variant text-center">Error loading activity</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchGitHubStats();
+  fetchContributors();
+  fetchLatestActivity();
+});
+
+
+
+// ============================================
+// FORMULARIO DE CONTACTO - ENVÍO A FORMSPREE
+// ============================================
+
+// Esperar a que el DOM esté listo
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Seleccionar el formulario
+  const contactForm = document.querySelector('form');
+  const submitButton = contactForm?.querySelector('button[type="submit"]');
+
+  // Crear elemento para mensaje de éxito
+  const successMessage = document.createElement('div');
+  successMessage.id = 'successMessage';
+  successMessage.style.cssText = `
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(208, 188, 255, 0.1);
+            border-radius: 24px;
+            border: 1px solid rgba(208, 188, 255, 0.3);
+            margin-top: 20px;
+        `;
+  successMessage.innerHTML = `
+            <span class="material-symbols-outlined" style="font-size: 48px; color: #d0bcff; margin-bottom: 16px;">check_circle</span>
+            <h3 style="color: #e9ddff; font-family: Epilogue; font-size: 24px; margin-bottom: 8px;">¡Mensaje enviado!</h3>
+            <p style="color: #cac4d0; margin-bottom: 24px;">Gracias por contactarnos. Te responderemos pronto.</p>
+            <button onclick="location.reload()" style="background: #d0bcff; color: #37265e; border: none; padding: 12px 24px; border-radius: 9999px; font-weight: 600; cursor: pointer;">Enviar otro mensaje</button>
+        `;
+
+  // Insertar mensaje de éxito después del formulario
+  if (contactForm) {
+    contactForm.parentNode.appendChild(successMessage);
+  }
+
+  // Función para mostrar loading
+  function setLoading(isLoading) {
+    if (!submitButton) return;
+    if (isLoading) {
+      submitButton.disabled = true;
+      submitButton.style.opacity = '0.7';
+      submitButton.style.cursor = 'not-allowed';
+      const originalText = submitButton.innerHTML;
+      submitButton.setAttribute('data-original-text', originalText);
+      submitButton.innerHTML = '<span></span><span>Enviando...</span><span class="material-symbols-outlined" style="animation: spin 1s linear infinite;">hourglass_empty</span>';
+
+      // Agregar animación spin si no existe
+      if (!document.querySelector('#spin-style')) {
+        const style = document.createElement('style');
+        style.id = 'spin-style';
+        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
+      }
+    } else {
+      submitButton.disabled = false;
+      submitButton.style.opacity = '1';
+      submitButton.style.cursor = 'pointer';
+      const originalText = submitButton.getAttribute('data-original-text');
+      if (originalText) {
+        submitButton.innerHTML = originalText;
+      }
+    }
+  }
+
+  // Manejar envío del formulario
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Obtener valores
+      const nombreInput = document.querySelector('input[placeholder="Escribe tu nombre aquí"]');
+      const emailInput = document.querySelector('input[type="email"]');
+      const descripcionTextarea = document.querySelector('textarea');
+      const tipoMensajeSelected = document.querySelector('input[name="message_type"]:checked');
+
+      const nombre = nombreInput?.value || '';
+      const email = emailInput?.value || '';
+      const descripcion = descripcionTextarea?.value || '';
+      const tipo_mensaje = tipoMensajeSelected?.closest('label')?.querySelector('.font-title-md')?.innerText || 'Comentario';
+
+      // Validar
+      if (!nombre || !email || !descripcion) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        alert('Por favor, ingresa un email válido.');
+        return;
+      }
+
+      // Mostrar loading
+      setLoading(true);
+
+      try {
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('email', email);
+        formData.append('tipo_mensaje', tipo_mensaje);
+        formData.append('descripcion', descripcion);
+
+        const response = await fetch('https://formspree.io/f/xgvallrq', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Ocultar formulario, mostrar éxito
+          contactForm.style.display = 'none';
+          successMessage.style.display = 'block';
+        } else {
+          throw new Error('Error en el envío');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
+      } finally {
+        setLoading(false);
+      }
+    });
   }
 });
