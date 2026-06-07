@@ -10,6 +10,7 @@ dist
 # Generated files
 next-env.d.ts
 *.d.ts
+*.tsbuildinfo
 
 # Config & lock files
 package-lock.json
