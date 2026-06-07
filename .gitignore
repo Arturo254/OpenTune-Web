@@ -37,6 +37,7 @@ yarn-error.log*
 # local
 attached_assets
 old-site
+*.zip
 .agents
 .vercel
 
