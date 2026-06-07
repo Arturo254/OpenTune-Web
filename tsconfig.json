@@ -31,7 +31,9 @@
       "@lib/*":   ["./src/lib/*"],
       "@config/*":["./src/config/*"],
       "@msg/*":   ["./src/messages/*"],
-      "@dialog/*":["./src/components/dialogs/*"]
+      "@dialog/*":["./src/components/dialogs/*"],
+      "@icon/*":  ["./src/components/icons/*"],
+      "@icons":   ["./src/components/icons/_index.ts"]
     }
   },
   "include": [
