@@ -25,14 +25,15 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*":      ["./src/*"],
-      "@t/*":     ["./src/types/*"],
-      "@ui/*":    ["./src/components/ui/*"],
-      "@cmp/*":   ["./src/components/*"],
       "@lib/*":   ["./src/lib/*"],
+      "@t/*":     ["./src/types/*"],
       "@config/*":["./src/config/*"],
       "@msg/*":   ["./src/messages/*"],
-      "@dialog/*":["./src/components/dialogs/*"],
+      "@test/*":  ["./src/app/~test/*"],
+      "@cmp/*":   ["./src/components/*"],
+      "@ui/*":    ["./src/components/ui/*"],
       "@icon/*":  ["./src/components/icons/*"],
+      "@dialog/*":["./src/components/dialogs/*"],
       "@icons":   ["./src/components/icons/_index.ts"]
     }
   },
