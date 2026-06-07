@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+
+# Next.js
+.next
+out
+build
+dist
+
+# Generated files
+next-env.d.ts
+*.d.ts
+
+# Config & lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Env files
+.env
+.env.*
+
+# Public assets
+public
+
+# Cache / local
+.cache
+.turbo
+.local
+old-site/
