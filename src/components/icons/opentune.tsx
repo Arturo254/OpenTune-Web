@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { DEFAULT_SIZE } from '@icon/_base';
+import { DEFAULT_SIZE, COLOR } from '@icon/_base';
 import type { IconProps, MulIconProps } from '@icon/_types';
 
 export const Opentune = forwardRef<SVGSVGElement, IconProps>(
@@ -10,7 +10,7 @@ export const Opentune = forwardRef<SVGSVGElement, IconProps>(
       width={size}
       height={size}
       viewBox="0 0 500 500"
-      fill={color ?? 'currentColor'}
+      fill={color ?? COLOR}
       className={className}
       {...props}
     >
