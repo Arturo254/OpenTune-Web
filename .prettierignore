@@ -27,4 +27,5 @@ public
 .cache
 .turbo
 .local
+.agents
 old-site/

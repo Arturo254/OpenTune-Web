@@ -1,6 +1,11 @@
 allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
   sharp: true
   unrs-resolver: true
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+minimumReleaseAgeExclude:
+  - knip@6.16.0
+  - knip@6.16.1

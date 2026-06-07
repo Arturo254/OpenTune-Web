@@ -35,12 +35,15 @@ yarn-error.log*
 !.env.example
 
 # local
+attached_assets
 old-site
+.agents
 .vercel
 
 # Editor / IDE
 .idea/
 .replit
+replit.nix
 *.suo
 *.ntvs*
 *.njsproj
