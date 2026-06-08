@@ -6,6 +6,7 @@
     "download": "Download"
   },
   "lang": {
+    "title": "Language",
     "select": "Select Language",
     "close": "Close"
   },
@@ -81,6 +82,7 @@
     "changelog": "View changes",
     "versions": "Previous versions",
     "download_apk": "Download APK",
+    "download": "Download",
     "android_req": "Requires Android 8.0+",
     "windows_title": "Windows",
     "windows_subtitle": "Development is currently closed.",
@@ -92,7 +94,9 @@
     "title": "Changelog"
   },
   "versions": {
-    "title": "Previous Versions"
+    "title": "Previous Versions",
+    "stable": "Stable",
+    "latest": "Latest"
   },
   "footer": {
     "copyright": "© 2024",
@@ -168,5 +172,9 @@
     "title": "404 Not Found",
     "body": "Whoops! That page doesn't exist.",
     "home": "Go to Home"
+  },
+  "common": {
+    "home": "Home",
+    "community": "Community"
   }
 }

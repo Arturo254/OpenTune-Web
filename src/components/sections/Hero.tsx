@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useRef } from 'react';
+import { Code, Download, Play } from '@icons';
 import WarningDialog from '@dialog/WarningDialog';
 import { type Locale } from '@config/locales';
 
@@ -30,7 +31,7 @@ export default function Hero({ locale }: { locale: Locale }) {
           {/* Text */}
           <div className="flex-1 text-center lg:text-left z-10">
             <div className="developer-chip inline-flex items-center gap-2 bg-[#4a4359] text-[#bab1ca] px-4 py-2 rounded-full text-[11px] font-medium mb-6">
-              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>code</span>
+              <Code size={16} />
               {t('hero.badge')}
             </div>
 
@@ -46,14 +47,14 @@ export default function Hero({ locale }: { locale: Locale }) {
                 href={`/${locale}#downloads`}
                 className="bg-[#e9ddff] text-[#37265e] px-10 py-4 rounded-full text-sm font-medium text-lg flex items-center gap-2 ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline"
               >
-                <span className="material-symbols-outlined">download</span>
+                <Download size={20} />
                 {t('hero.download_apk')}
               </Link>
               <button
                 onClick={openDemo}
                 className="bg-[#2b292d] text-[#e5e1e7] px-10 py-4 rounded-full text-sm font-medium text-lg border border-[#49454f]/30 hover:bg-[#353438] transition-all flex items-center gap-2"
               >
-                <span className="material-symbols-outlined">play_circle</span>
+                <Play size={20} />
                 {t('hero.try_demo')}
               </button>
             </div>

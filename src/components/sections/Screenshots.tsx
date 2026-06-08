@@ -3,11 +3,12 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { ChevronDown } from '@icons';
 
 const SHOTS = [
-  { src: '/img/reproductor.webp', labelKey: 'screenshots.player',   alt: 'Player Screen' },
-  { src: '/img/biblioteca.webp',  labelKey: 'screenshots.library',  alt: 'Library Screen' },
-  { src: '/img/ajustes.webp',     labelKey: 'screenshots.settings', alt: 'Settings Screen' },
+  { src: '/img/reproductor.webp', labelKey: 'screenshots.player', alt: 'Player Screen' },
+  { src: '/img/biblioteca.webp', labelKey: 'screenshots.library', alt: 'Library Screen' },
+  { src: '/img/ajustes.webp', labelKey: 'screenshots.settings', alt: 'Settings Screen' },
 ];
 
 export default function Screenshots() {
@@ -16,7 +17,8 @@ export default function Screenshots() {
   const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
-    const saved = typeof window !== 'undefined' ? localStorage.getItem('screenshotsCollapsed') : null;
+    const saved =
+      typeof window !== 'undefined' ? localStorage.getItem('screenshotsCollapsed') : null;
     if (saved === 'false') setCollapsed(false);
   }, []);
 
@@ -49,11 +51,15 @@ export default function Screenshots() {
             <button
               className="p-3 rounded-full hover:bg-white/10 transition-colors"
               aria-label={t('screenshots.expand')}
-              onClick={(e) => { e.stopPropagation(); toggle(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggle();
+              }}
             >
-              <span className={`material-symbols-outlined text-[#cac4d0]${collapsed ? '' : ' rotated'}`}>
-                expand_more
-              </span>
+              <ChevronDown
+                size={24}
+                className={`text-[#cac4d0] transition-transform duration-300 ${collapsed ? '' : 'rotate-180'}`}
+              />
             </button>
           </div>
         </div>
@@ -61,7 +67,10 @@ export default function Screenshots() {
         <div ref={contentRef} className={collapsed ? 'collapsed' : ''}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {SHOTS.map((shot, i) => (
-              <div key={shot.src} className={`space-y-6${i === 1 ? ' lg:mt-12' : i === 2 ? ' lg:mt-24' : ''}`}>
+              <div
+                key={shot.src}
+                className={`space-y-6${i === 1 ? ' lg:mt-12' : i === 2 ? ' lg:mt-24' : ''}`}
+              >
                 <div className="rounded-2xl overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
                   <Image
                     src={shot.src}
@@ -72,7 +81,9 @@ export default function Screenshots() {
                     loading="lazy"
                   />
                 </div>
-                <p className="text-center font-medium text-base text-[#ccc2dc]">{t(shot.labelKey as Parameters<typeof t>[0])}</p>
+                <p className="text-center font-medium text-base text-[#ccc2dc]">
+                  {t(shot.labelKey as any)}
+                </p>
               </div>
             ))}
           </div>

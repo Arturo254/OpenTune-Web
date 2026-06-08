@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
+import { Android, Windows, Download, FileText, History, Ban } from '@icons';
 import ChangelogDialog from '@dialog/ChangelogDialog';
 import VersionsDialog from '@dialog/VersionsDialog';
 import { type Locale } from '@config/locales';
@@ -28,12 +29,11 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
           {/* Android Card */}
           <div className="glass-card rounded-[3rem] p-8 border border-white/5">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-[#efb8c8]/20 text-[#ffd9e3] flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined">android</span>
+                <Android size={24} />
               </div>
               <div>
                 <h3 className="text-[#e5e1e7] font-medium text-[22px] leading-7">Android</h3>
@@ -58,7 +58,7 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
                 target={downloadUrl !== '#' ? '_blank' : undefined}
                 rel="noopener noreferrer"
               >
-                <span className="material-symbols-outlined">download</span>
+                <Download size={20} />
                 {t('downloads.download_apk')}
               </a>
               <p className="text-[#cac4d0] text-[11px] font-medium">{t('downloads.android_req')}</p>
@@ -66,14 +66,19 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
           </div>
 
           {/* Windows Card (Disabled) */}
-          <div className="glass-card rounded-[3rem] border border-white/5 disabled-card" aria-disabled="true">
+          <div
+            className="glass-card rounded-[3rem] border border-white/5 disabled-card"
+            aria-disabled="true"
+          >
             <div className="disabled-card__inner p-8">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-[#201f23] flex items-center justify-center flex-shrink-0">
-                  <span className="material-symbols-outlined text-[#cac4d0]">laptop_windows</span>
+                  <Windows size={24} className="text-[#cac4d0]" />
                 </div>
                 <div>
-                  <h3 className="text-[#cac4d0] font-medium text-[22px] leading-7">{t('downloads.windows_title')}</h3>
+                  <h3 className="text-[#cac4d0] font-medium text-[22px] leading-7">
+                    {t('downloads.windows_title')}
+                  </h3>
                   <p className="text-[#cac4d0] text-sm">{t('downloads.windows_subtitle')}</p>
                 </div>
               </div>
@@ -85,11 +90,11 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
 
               <div className="flex flex-wrap gap-6 mb-8">
                 <span className="flex items-center gap-2 text-[#cac4d0] text-sm font-medium opacity-50">
-                  <span className="material-symbols-outlined" style={{ fontSize: 18 }}>list_alt</span>
+                  <FileText size={18} />
                   {t('downloads.changelog')}
                 </span>
                 <span className="flex items-center gap-2 text-[#cac4d0] text-sm font-medium opacity-50">
-                  <span className="material-symbols-outlined" style={{ fontSize: 18 }}>history</span>
+                  <History size={18} />
                   {t('downloads.versions')}
                 </span>
               </div>
@@ -99,13 +104,12 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
                   disabled
                   className="flex items-center gap-3 bg-[#201f23] text-[#cac4d0] px-8 py-3 rounded-full text-sm font-medium cursor-not-allowed"
                 >
-                  <span className="material-symbols-outlined">block</span>
+                  <Ban size={20} />
                   {t('downloads.not_available')}
                 </button>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

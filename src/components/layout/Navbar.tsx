@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { type Locale, localeConfig, locales } from '@config/locales';
 import { useCallback, useRef } from 'react';
+import { X, Globe, ChevronDown, Download } from '@icons';
 
 export default function Navbar() {
   const t = useTranslations();
@@ -21,9 +22,12 @@ export default function Navbar() {
     dialogRef.current?.close();
   }, []);
 
-  const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDialogElement>) => {
-    if (e.target === dialogRef.current) closeLangDialog();
-  }, [closeLangDialog]);
+  const handleBackdropClick = useCallback(
+    (e: React.MouseEvent<HTMLDialogElement>) => {
+      if (e.target === dialogRef.current) closeLangDialog();
+    },
+    [closeLangDialog],
+  );
 
   return (
     <>
@@ -35,9 +39,15 @@ export default function Navbar() {
         aria-labelledby="lang-dialog-title"
       >
         <div className="dialog-header">
-          <h2 id="lang-dialog-title" className="text-[#e5e1e7] font-medium text-[22px] leading-7">{t('lang.select')}</h2>
-          <button className="dialog-icon-btn" onClick={closeLangDialog} aria-label={t('lang.close')}>
-            <span className="material-symbols-outlined">close</span>
+          <h2 id="lang-dialog-title" className="text-[#e5e1e7] font-medium text-[22px] leading-7">
+            {t('lang.select')}
+          </h2>
+          <button
+            className="dialog-icon-btn"
+            onClick={closeLangDialog}
+            aria-label={t('lang.close')}
+          >
+            <X size={24} />
           </button>
         </div>
         <div className="dialog-content">
@@ -63,7 +73,6 @@ export default function Navbar() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 bg-slate-950/65 backdrop-blur-2xl border-b border-white/10">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3 no-underline">
             <Image
@@ -74,18 +83,29 @@ export default function Navbar() {
               className="rounded-lg"
               priority
             />
-            <span className="text-2xl font-black tracking-tighter text-violet-300 font-['Epilogue']">OpenTune</span>
+            <span className="text-2xl font-black tracking-tighter text-violet-300 font-['Epilogue']">
+              OpenTune
+            </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-8 items-center">
-            <Link href={`/${locale}#features`} className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">
+            <Link
+              href={`/${locale}#features`}
+              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+            >
               {t('nav.features')}
             </Link>
-            <Link href={`/${locale}#screenshots`} className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">
+            <Link
+              href={`/${locale}#screenshots`}
+              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+            >
               {t('nav.screenshots')}
             </Link>
-            <Link href={`/${locale}#downloads`} className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">
+            <Link
+              href={`/${locale}#downloads`}
+              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+            >
               {t('nav.downloads')}
             </Link>
             <a
@@ -105,20 +125,19 @@ export default function Navbar() {
               className="flex items-center gap-1 px-3 py-2 rounded-full hover:bg-white/10 text-[#cac4d0] transition-colors text-sm font-medium"
               aria-label={t('lang.select')}
             >
-              <span className="material-symbols-outlined">language</span>
+              <Globe size={20} />
               <span className="hidden lg:inline text-sm">{locale.toUpperCase()}</span>
-              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>expand_more</span>
+              <ChevronDown size={18} />
             </button>
 
             <Link
               href={`/${locale}#downloads`}
               className="bg-[#d0bcff] text-[#594983] px-5 py-2 rounded-full text-sm font-medium active:scale-95 transition-all duration-200 no-underline hidden sm:inline-flex items-center gap-2"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>download</span>
+              <Download size={18} />
               {t('nav.download')}
             </Link>
           </div>
-
         </div>
       </nav>
     </>

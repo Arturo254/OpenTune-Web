@@ -14,7 +14,9 @@ export function formatNumber(num: number): string {
 
 export async function fetchLatestRelease(repo: string): Promise<GitHubRelease | null> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}/releases/latest`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}/releases/latest`, {
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return null;
     return res.json() as Promise<GitHubRelease>;
   } catch {
@@ -24,7 +26,9 @@ export async function fetchLatestRelease(repo: string): Promise<GitHubRelease | 
 
 export async function fetchAllReleases(repo: string): Promise<GitHubRelease[]> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}/releases?per_page=20`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}/releases?per_page=20`, {
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return [];
     return res.json() as Promise<GitHubRelease[]>;
   } catch {
@@ -44,7 +48,9 @@ export async function fetchRepo(repo: string): Promise<GitHubRepo | null> {
 
 export async function fetchContributors(repo: string): Promise<GitHubContributor[]> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}/contributors?per_page=100`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}/contributors?per_page=100`, {
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return [];
     return res.json() as Promise<GitHubContributor[]>;
   } catch {
@@ -54,7 +60,9 @@ export async function fetchContributors(repo: string): Promise<GitHubContributor
 
 export async function fetchRecentCommits(repo: string, count = 4): Promise<GitHubCommit[]> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=${count}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=${count}`, {
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return [];
     return res.json() as Promise<GitHubCommit[]>;
   } catch {
@@ -64,7 +72,9 @@ export async function fetchRecentCommits(repo: string, count = 4): Promise<GitHu
 
 export async function fetchTotalCommits(repo: string): Promise<string> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=1`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=1`, {
+      next: { revalidate: 3600 },
+    });
     const link = res.headers.get('Link');
     if (link) {
       const match = link.match(/page=(\d+)>; rel="last"/);

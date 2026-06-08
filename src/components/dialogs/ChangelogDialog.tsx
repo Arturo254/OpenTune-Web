@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef, useCallback, useState } from 'react';
+import { FileText, X } from '@icons';
 import { useTranslations } from 'next-intl';
 import type { GitHubRelease } from '@t/github';
 
@@ -8,7 +9,7 @@ interface Props {
   locale: string;
 }
 
-const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale }, ref) => {
+const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale: _locale }, ref) => {
   const t = useTranslations();
   const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState(false);
@@ -32,8 +33,10 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale }, ref) =
       const res = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as GitHubRelease;
-      const dateStr = new Date(data.published_at).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
-        year: 'numeric', month: 'long', day: 'numeric',
+      const dateStr = new Date(data.published_at).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
       });
       setDate(dateStr);
       const body = data.body ?? 'No release notes available.';
@@ -44,7 +47,7 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale }, ref) =
     } finally {
       setLoading(false);
     }
-  }, [content, locale]);
+  }, [content]);
 
   const open = useCallback(() => {
     if (ref && 'current' in ref) {
@@ -59,20 +62,24 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale }, ref) =
         onClick={open}
         className="flex items-center gap-2 text-[#e9ddff] hover:text-[#d0bcff] transition-colors text-sm font-medium"
       >
-        <span className="material-symbols-outlined" style={{ fontSize: 18 }}>list_alt</span>
+        <FileText size={18} />
         {t('downloads.changelog')}
       </button>
 
       <dialog ref={ref} className="glass-dialog glass-dialog--large" onClick={handleBackdrop}>
         <div className="dialog-header">
-          <h3 className="text-[#e5e1e7] font-medium text-[22px] leading-7">{t('changelog.title')}</h3>
+          <h3 className="text-[#e5e1e7] font-medium text-[22px] leading-7">
+            {t('changelog.title')}
+          </h3>
           <button className="dialog-icon-btn" onClick={close} aria-label="Close">
-            <span className="material-symbols-outlined">close</span>
+            <X size={24} />
           </button>
         </div>
         <div className="dialog-content dialog-content--scroll">
           {loading ? (
-            <div className="loading-indicator"><div className="circular-progress" /></div>
+            <div className="loading-indicator">
+              <div className="circular-progress" />
+            </div>
           ) : content ? (
             <div>
               {date && (
@@ -83,7 +90,9 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale }, ref) =
               <div className="markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           ) : (
-            <div className="loading-indicator"><div className="circular-progress" /></div>
+            <div className="loading-indicator">
+              <div className="circular-progress" />
+            </div>
           )}
         </div>
       </dialog>

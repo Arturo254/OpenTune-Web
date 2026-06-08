@@ -41,6 +41,7 @@ src/app/~test/locale
 *.zip
 .agents
 .vercel
+*.log
 
 # Editor / IDE
 .idea/

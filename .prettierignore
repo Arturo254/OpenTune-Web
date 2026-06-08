@@ -30,3 +30,5 @@ public
 .local
 .agents
 old-site/
+
+tsconfig.json

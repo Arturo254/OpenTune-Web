@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Star, BadgeCheck } from '@icons';
 
 const GITHUB = 'https://github.com/Arturo254/OpenTune';
 
@@ -35,7 +36,7 @@ export default function OpenSource() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#e5e1e7] text-[#141317] px-8 py-3 rounded-full text-sm font-medium active:scale-95 transition-all no-underline"
             >
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1", fontSize: 20 }}>star</span>
+              <Star size={20} fill="currentColor" />
               {t('oss.star')}
             </a>
             <div className="flex items-center gap-2 px-6 py-3 border border-[#49454f] rounded-full text-[#e5e1e7]">
@@ -63,7 +64,7 @@ export default function OpenSource() {
           </div>
           <div className="bg-[#2b292d] p-6 rounded-2xl flex items-center gap-4 border border-white/5 md:translate-x-8">
             <div className="w-12 h-12 rounded-full bg-[#4a4359]/60 flex items-center justify-center flex-shrink-0">
-              <span className="material-symbols-outlined text-[#ccc2dc]">verified</span>
+              <BadgeCheck size={24} className="text-[#ccc2dc]" />
             </div>
             <div>
               <p className="text-[#e5e1e7] font-medium text-base">{t('oss.latest_version')}</p>
