@@ -35,7 +35,6 @@ yarn-error.log*
 !.env.example
 
 # local
-src/app/~test
 attached_assets
 old-site
 *.zip
