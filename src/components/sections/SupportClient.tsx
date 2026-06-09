@@ -5,14 +5,14 @@ import { type Locale } from '@config/locales';
 import { useCallback, useRef, useState } from 'react';
 import {
   CheckCircle,
-  User,
-  MessageSquare,
-  Zap,
+  UserRound,
+  MessageSquareText,
+  PackagePlus,
   ShieldCheck,
   Mail,
   Loader2,
   Send,
-  Shield,
+  Bug,
   Clock,
   MessageCircle,
 } from '@icons';
@@ -22,9 +22,9 @@ import MobileBottomNav from '@ui/MobileBottomNav';
 type MessageType = 'comment' | 'request' | 'report';
 
 const TYPE_ICONS: Record<MessageType, React.ComponentType<IconProps>> = {
-  comment: MessageSquare,
-  request: Zap,
-  report: Shield,
+  comment: MessageSquareText,
+  request: PackagePlus,
+  report: Bug,
 };
 
 const TYPE_COLORS: Record<MessageType, string> = {
@@ -58,7 +58,8 @@ export default function SupportClient({ locale }: { locale: Locale }) {
         setError(t('support_page.validation_all'));
         return;
       }
-      if (!email.includes('@')) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
         setError(t('support_page.validation_email'));
         return;
       }
@@ -80,10 +81,10 @@ export default function SupportClient({ locale }: { locale: Locale }) {
         if (res.ok) {
           setSuccess(true);
         } else {
-          throw new Error('Submit failed');
+          throw new Error(t('support_page.failed_submit'));
         }
       } catch {
-        setError('Error sending. Please try again.');
+        setError(t('support_page.error_sending'));
       } finally {
         setLoading(false);
       }
@@ -142,7 +143,7 @@ export default function SupportClient({ locale }: { locale: Locale }) {
                   {t('support_page.name_label')}
                 </label>
                 <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:border-[#d0bcff] transition-all">
-                  <User size={20} className="text-[#d0bcff] mr-4" />
+                  <UserRound size={20} className="text-[#d0bcff] mr-4" />
                   <input
                     ref={nameRef}
                     className="bg-transparent border-none outline-none w-full text-[#e5e1e7] placeholder-[#948f9a] text-base font-medium"

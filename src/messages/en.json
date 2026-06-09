@@ -126,6 +126,7 @@
     "email_label": "Your email (for private response)",
     "email_placeholder": "email@example.com",
     "submit": "Send message",
+    "failed_submit": "Submit failed",
     "sending": "Sending...",
     "success_title": "Message sent!",
     "success_body": "Thank you for contacting us. We'll get back to you soon.",
@@ -136,6 +137,7 @@
     "response_desc": "We normally respond in more than 24 hours due to high demand for requests.",
     "validation_all": "Please fill in all fields.",
     "validation_email": "Please enter a valid email.",
+    "error_sending": "Error sending. Please try again.",
     "nav_home": "Home",
     "nav_support": "Support"
   },
