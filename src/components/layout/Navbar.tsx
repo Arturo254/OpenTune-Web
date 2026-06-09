@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { type Locale, localeConfig, locales } from '@config/locales';
 import { useCallback, useRef } from 'react';
-import { X, Globe, ChevronDown, Download } from '@icons';
+import { MulOpentune, X, Globe, ChevronDown, Download } from '@icons';
 
 export default function Navbar() {
   const t = useTranslations();
@@ -24,7 +24,9 @@ export default function Navbar() {
 
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (e.target === dialogRef.current) {closeLangDialog();}
+      if (e.target === dialogRef.current) {
+        closeLangDialog();
+      }
     },
     [closeLangDialog],
   );
@@ -81,14 +83,15 @@ export default function Navbar() {
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3 no-underline">
-            <Image
+            {/* <Image
               src="/icon/icon-512-maskable.png"
               alt="OpenTune"
               width={34}
               height={34}
               className="rounded-lg"
               priority
-            />
+            /> */}
+            <MulOpentune size={34} className="bg-white/20 p-1 rounded-lg" />
             <span className="text-2xl font-black tracking-tighter text-violet-300 font-epilogue">
               OpenTune
             </span>
@@ -109,10 +112,10 @@ export default function Navbar() {
               {t('nav.screenshots')}
             </Link>
             <Link
-              href={`/${locale}#downloads`}
+              href={`/${locale}/support`}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
-              {t('nav.downloads')}
+              {t('footer.support')}
             </Link>
             <a
               href="https://github.com/Arturo254/OpenTune"
@@ -137,7 +140,9 @@ export default function Navbar() {
             </button>
 
             <Link
-              href={`/${locale}#downloads`}
+              href={
+                'https://github.com/Arturo254/OpenTune/releases/latest/download/app-universal-release.apk'
+              }
               className="bg-[#d0bcff] text-[#594983] px-5 py-2 rounded-full text-sm font-medium active:scale-95 transition-all duration-200 no-underline hidden sm:inline-flex items-center gap-2"
             >
               <Download size={18} />
