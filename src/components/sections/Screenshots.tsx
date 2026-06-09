@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { ChevronDown } from '@icons';
 
 const SHOTS = [
@@ -14,13 +14,11 @@ const SHOTS = [
 export default function Screenshots() {
   const t = useTranslations();
   const contentRef = useRef<HTMLDivElement>(null);
-  const [collapsed, setCollapsed] = useState(true);
 
-  useEffect(() => {
-    const saved =
-      typeof window !== 'undefined' ? localStorage.getItem('screenshotsCollapsed') : null;
-    if (saved === 'false') setCollapsed(false);
-  }, []);
+  const [collapsed, setCollapsed] = useState<boolean>(() => {
+    if (typeof window === 'undefined') { return true; }
+    return localStorage.getItem('screenshotsCollapsed') !== 'false';
+  });
 
   const toggle = useCallback(() => {
     setCollapsed((prev) => {
@@ -82,7 +80,7 @@ export default function Screenshots() {
                   />
                 </div>
                 <p className="text-center font-medium text-base text-[#ccc2dc]">
-                  {t(shot.labelKey as any)}
+                  {t(shot.labelKey as Parameters<typeof t>[0])}
                 </p>
               </div>
             ))}
