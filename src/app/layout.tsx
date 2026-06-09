@@ -1,6 +1,19 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import './globals.css';
+import { Epilogue, Be_Vietnam_Pro } from 'next/font/google';
+import '@/app/globals.css';
+
+const epilogue = Epilogue({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-epilogue-next',
+});
+
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-be-vietnam-pro-next',
+});
 
 export const metadata: Metadata = {
   title: 'OpenTune',
@@ -13,15 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" suppressHydrationWarning className={`${epilogue.variable} ${beVietnamPro.variable}`}>
       <body className="min-h-screen">
         {children}
         <Script

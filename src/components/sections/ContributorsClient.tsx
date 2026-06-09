@@ -146,7 +146,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
             <Heart size={16} fill="currentColor" />
             {t('contributors.badge')}
           </div>
-          <h1 className="text-[48px] md:text-[57px] leading-[56px] md:leading-[64px] tracking-[-0.25px] font-bold text-[#e9ddff] font-['Epilogue']">
+          <h1 className="text-[48px] md:text-[57px] leading-[56px] md:leading-[64px] tracking-[-0.25px] font-bold text-[#e9ddff] font-epilogue">
             {t('contributors.title')}
           </h1>
           <p className="text-base text-[#cac4d0] max-w-2xl mx-auto">{t('contributors.subtitle')}</p>
@@ -160,7 +160,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
               className="bg-[#2b292d] p-6 rounded-2xl ambient-glow border border-white/5 flex flex-col items-center text-center gap-2"
             >
               <s.icon size={30} className="text-[#d0bcff]" />
-              <span className="text-[28px] leading-9 font-semibold text-[#e9ddff] font-['Epilogue']">
+              <span className="text-[28px] leading-9 font-semibold text-[#e9ddff] font-epilogue">
                 {s.value}
               </span>
               <span className="text-sm font-medium text-[#cac4d0]">{s.label}</span>
@@ -171,7 +171,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
         {/* Contributors Grid */}
         <section className="space-y-8">
           <div className="flex justify-between items-end">
-            <h2 className="text-[32px] leading-10 font-semibold text-[#e9ddff] font-['Epilogue']">
+            <h2 className="text-[32px] leading-10 font-semibold text-[#e9ddff] font-epilogue">
               {t('contributors.section_title')}
             </h2>
             <a
@@ -261,7 +261,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
           <div className="lg:col-span-2 bg-[#2b292d] rounded-[3rem] p-8 space-y-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#e9ddff]/10 blur-[100px] -mr-32 -mt-32" />
             <div>
-              <h2 className="text-[32px] leading-10 font-semibold text-[#e9ddff] mb-2 font-['Epilogue']">
+              <h2 className="text-[32px] leading-10 font-semibold text-[#e9ddff] mb-2 font-epilogue">
                 {t('contributors.how_title')}
               </h2>
               <p className="text-sm text-[#cac4d0]">{t('contributors.how_subtitle')}</p>
@@ -295,7 +295,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
 
           {/* Latest Activity */}
           <div className="bg-[#1c1b1f] rounded-[3rem] p-6 border border-white/5 space-y-6">
-            <h2 className="text-[28px] leading-9 font-semibold text-[#e9ddff] font-['Epilogue']">
+            <h2 className="text-[28px] leading-9 font-semibold text-[#e9ddff] font-epilogue">
               {t('contributors.activity_title')}
             </h2>
             <div className="space-y-6">

@@ -22,7 +22,7 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
     <section id="downloads" className="px-6 py-24 bg-gradient-to-b from-[#141317] to-slate-950">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-4 font-['Epilogue']">
+          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-4 font-epilogue">
             {t('downloads.title')}
           </h2>
           <p className="text-[#cac4d0] max-w-2xl mx-auto">{t('downloads.subtitle')}</p>

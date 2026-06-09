@@ -16,7 +16,8 @@ function getReleaseType(release: GitHubRelease): 'stable' | 'beta' | 'alpha' {
   return 'stable';
 }
 
-const VersionsDialog = forwardRef<HTMLDialogElement, Props>(({ locale: _locale }, ref) => {
+const VersionsDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale }, ref) => {
+  void $locale;
   const t = useTranslations();
   const [releases, setReleases] = useState<GitHubRelease[]>([]);
   const [loading, setLoading] = useState(false);

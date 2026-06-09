@@ -35,10 +35,10 @@ export default function Hero({ locale }: { locale: Locale }) {
               {t('hero.badge')}
             </div>
 
-            <h1 className="text-[57px] leading-[64px] tracking-[-0.25px] font-bold text-[#e9ddff] mb-6 font-['Epilogue'] leading-tight">
+            <h1 className="text-[57px] leading-[64px] tracking-[-0.25px] font-bold text-[#e9ddff] mb-6 font-epilogue leading-tight">
               OpenTune
             </h1>
-            <p className="text-[28px] leading-9 font-semibold text-[#cac4d0] mb-10 max-w-xl font-['Epilogue']">
+            <p className="text-[28px] leading-9 font-semibold text-[#cac4d0] mb-10 max-w-xl font-epilogue">
               {t('hero.subtitle')}
             </p>
 

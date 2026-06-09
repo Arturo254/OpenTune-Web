@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { AlertCircle, Home, ExternalLink } from '@icons';
 
 export default function NotFound() {
@@ -11,10 +12,10 @@ export default function NotFound() {
             <AlertCircle size={16} />
             Error 404
           </div>
-          <h1 className="text-[72px] md:text-[96px] lg:text-[120px] font-black leading-none text-[#d0bcff] font-['Epilogue'] mb-4">
+          <h1 className="text-[72px] md:text-[96px] lg:text-[120px] font-black leading-none text-[#d0bcff] font-epilogue mb-4">
             404
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#e9ddff] font-['Epilogue'] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#e9ddff] font-epilogue mb-3">
             Page not found
           </h2>
           <p className="text-[#cac4d0] text-base md:text-lg mb-8 leading-relaxed">
@@ -44,11 +45,13 @@ export default function NotFound() {
         <div className="flex-shrink-0 w-full max-w-xs md:max-w-sm lg:max-w-md">
           <div className="relative">
             <div className="absolute inset-0 bg-[#d0bcff]/10 blur-[80px] rounded-full" />
-            <img
+            <Image
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg"
               alt="404 illustration"
+              width={512}
+              height={512}
               className="relative w-full opacity-80"
-              loading="lazy"
+              priority
             />
           </div>
         </div>

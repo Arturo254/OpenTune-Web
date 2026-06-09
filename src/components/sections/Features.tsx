@@ -15,9 +15,10 @@ import {
   ArrowUpCircle,
   Headphones,
 } from '@icons';
+import type { IconProps } from '@icon/_types';
 
 interface Feature {
-  icon: any;
+  icon: React.ComponentType<IconProps>;
   titleKey: string;
   descKey: string;
   color: 'primary' | 'secondary' | 'tertiary';
@@ -101,7 +102,7 @@ export default function Features() {
     <section id="features" className="px-6 py-24 bg-[#0e0e11]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-4 font-['Epilogue']">
+          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-4 font-epilogue">
             {t('features.title')}
           </h2>
           <p className="text-[#cac4d0] max-w-2xl mx-auto">{t('features.subtitle')}</p>
@@ -116,8 +117,12 @@ export default function Features() {
               <div className={`feature-icon-wrap ${colorMap[f.color].wrap}`}>
                 <f.icon size={24} />
               </div>
-              <h3 className="text-[#e5e1e7] font-medium text-base mb-2">{t(f.titleKey as any)}</h3>
-              <p className="text-[#cac4d0] text-sm leading-relaxed">{t(f.descKey as any)}</p>
+              <h3 className="text-[#e5e1e7] font-medium text-base mb-2">
+                {t(f.titleKey as Parameters<typeof t>[0])}
+              </h3>
+              <p className="text-[#cac4d0] text-sm leading-relaxed">
+                {t(f.descKey as Parameters<typeof t>[0])}
+              </p>
             </div>
           ))}
         </div>

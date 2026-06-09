@@ -9,3 +9,4 @@ ignoredBuiltDependencies:
 minimumReleaseAgeExclude:
   - knip@6.16.0
   - knip@6.16.1
+  - prettier@3.8.4

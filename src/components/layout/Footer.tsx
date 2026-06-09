@@ -16,8 +16,8 @@ export default function Footer({ locale }: { locale: Locale }) {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-10">
           <div className="text-center lg:text-left">
-            <span className="text-xl font-black text-slate-100 font-['Epilogue']">OpenTune</span>
-            <p className="text-slate-500 font-['Epilogue'] text-sm mt-1">
+            <span className="text-xl font-black text-slate-100 font-epilogue">OpenTune</span>
+            <p className="text-slate-500 font-epilogue text-sm mt-1">
               {t('footer.copyright')}{' '}
               <a
                 href={GITHUB_DEV}
@@ -59,17 +59,17 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-500 text-sm font-['Epilogue']">{t('footer.license_text')}</p>
+          <p className="text-slate-500 text-sm font-epilogue">{t('footer.license_text')}</p>
           <div className="flex gap-6">
             <Link
               href={`/${locale}#features`}
-              className="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline"
+              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               {t('nav.features')}
             </Link>
             <Link
               href={`/${locale}#downloads`}
-              className="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline"
+              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               {t('nav.downloads')}
             </Link>
@@ -77,7 +77,7 @@ export default function Footer({ locale }: { locale: Locale }) {
               href={GITHUB}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline"
+              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               GitHub
             </a>

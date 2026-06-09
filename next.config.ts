@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
       { protocol: 'https', hostname: 'flagicons.lipis.dev' },
+      { protocol: 'https', hostname: 'flowbite.s3.amazonaws.com' },
     ],
   },
 };

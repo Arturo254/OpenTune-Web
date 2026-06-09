@@ -9,7 +9,8 @@ interface Props {
   locale: string;
 }
 
-const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale: _locale }, ref) => {
+const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale }, ref) => {
+  void $locale;
   const t = useTranslations();
   const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState(false);

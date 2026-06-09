@@ -28,14 +28,14 @@ export default function MobileBottomNav({
         className="flex flex-col items-center justify-center text-zinc-500 hover:text-violet-100 active:scale-90 transition-all duration-200"
       >
         <Home size={24} />
-        <span className="font-['Epilogue'] text-[10px] font-semibold uppercase tracking-tighter mt-1">
+        <span className="font-epilogue text-[10px] font-semibold uppercase tracking-tighter mt-1">
           {homeLabel}
         </span>
       </Link>
 
       <div className="flex flex-col items-center justify-center bg-violet-900/40 text-violet-200 rounded-full px-5 py-1.5 active:scale-90 duration-200">
         <ActiveIcon size={24} />
-        <span className="font-['Epilogue'] text-[10px] font-semibold uppercase tracking-tighter mt-1">
+        <span className="font-epilogue text-[10px] font-semibold uppercase tracking-tighter mt-1">
           {activeLabel}
         </span>
       </div>

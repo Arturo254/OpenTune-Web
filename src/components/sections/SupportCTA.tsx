@@ -15,7 +15,7 @@ export default function SupportCTA({ locale }: { locale: Locale }) {
           <div className="w-16 h-16 bg-[#4a4359]/60 rounded-full flex items-center justify-center mx-auto mb-8">
             <Headset size={26} color="#ccc2dc" />
           </div>
-          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-6 font-['Epilogue']">
+          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-6 font-epilogue">
             {t('support.title')}
           </h2>
           <p className="text-[#cac4d0] text-base mb-10 max-w-lg mx-auto">{t('support.body')}</p>

@@ -61,7 +61,13 @@ export default function Navbar() {
                   className="dialog-list-item"
                   onClick={closeLangDialog}
                 >
-                  <img src={cfg.flag} alt={cfg.id.toUpperCase()} className="flag-icon" />
+                  <Image
+                    src={cfg.flag}
+                    alt={cfg.id.toUpperCase()}
+                    width={24}
+                    height={18}
+                    className="flag-icon"
+                  />
                   <span className="text-[#e5e1e7] text-base font-normal">{cfg.displayName}</span>
                 </Link>
               );
@@ -83,7 +89,7 @@ export default function Navbar() {
               className="rounded-lg"
               priority
             />
-            <span className="text-2xl font-black tracking-tighter text-violet-300 font-['Epilogue']">
+            <span className="text-2xl font-black tracking-tighter text-violet-300 font-epilogue">
               OpenTune
             </span>
           </Link>
@@ -92,19 +98,19 @@ export default function Navbar() {
           <div className="hidden md:flex gap-8 items-center">
             <Link
               href={`/${locale}#features`}
-              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+              className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.features')}
             </Link>
             <Link
               href={`/${locale}#screenshots`}
-              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+              className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.screenshots')}
             </Link>
             <Link
               href={`/${locale}#downloads`}
-              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+              className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.downloads')}
             </Link>
@@ -112,7 +118,7 @@ export default function Navbar() {
               href="https://github.com/Arturo254/OpenTune"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors"
+              className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               GitHub
             </a>

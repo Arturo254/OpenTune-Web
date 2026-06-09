@@ -25,7 +25,7 @@ export default function OpenSource() {
           <span className="inline-block px-4 py-1 rounded-full bg-[#4a4359] text-[#bab1ca] text-[11px] font-medium mb-6">
             {t('oss.badge')}
           </span>
-          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-6 font-['Epilogue']">
+          <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] mb-6 font-epilogue">
             {t('oss.title')}
           </h2>
           <p className="text-[#cac4d0] text-base leading-6 mb-8">{t('oss.body')}</p>

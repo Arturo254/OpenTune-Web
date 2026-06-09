@@ -18,108 +18,70 @@
   --color-on-secondary-container: #bab1ca;
   --color-secondary-fixed: #e9def9;
   --color-secondary-fixed-dim: #ccc2dc;
-  --color-on-secondary-fixed: #1e182b;
-  --color-on-secondary-fixed-variant: #4a4359;
+  --color-on-secondary-fixed: #1e192c;
+  --color-on-secondary-fixed-variant: #4a4459;
 
-  --color-tertiary: #ffd9e3;
+  --color-tertiary: #efb8c8;
   --color-on-tertiary: #492532;
-  --color-tertiary-container: #efb8c8;
-  --color-on-tertiary-container: #704654;
+  --color-tertiary-container: #633b48;
+  --color-on-tertiary-container: #ffd9e3;
   --color-tertiary-fixed: #ffd9e3;
   --color-tertiary-fixed-dim: #efb8c8;
   --color-on-tertiary-fixed: #31111d;
-  --color-on-tertiary-fixed-variant: #633b48;
-
-  --color-surface: #141317;
-  --color-surface-dim: #141317;
-  --color-surface-bright: #3a383d;
-  --color-surface-container-lowest: #0e0e11;
-  --color-surface-container-low: #1c1b1f;
-  --color-surface-container: #201f23;
-  --color-surface-container-high: #2b292d;
-  --color-surface-container-highest: #353438;
-  --color-surface-variant: #353438;
-  --color-surface-tint: #d0bcff;
-  --color-on-surface: #e5e1e7;
-  --color-on-surface-variant: #cac4d0;
-  --color-inverse-surface: #e5e1e7;
-  --color-inverse-on-surface: #313034;
-
-  --color-background: #141317;
-  --color-on-background: #e5e1e7;
-
-  --color-outline: #948f9a;
-  --color-outline-variant: #49454f;
+  --color-on-tertiary-fixed-variant: #633b49;
 
   --color-error: #ffb4ab;
   --color-on-error: #690005;
   --color-error-container: #93000a;
   --color-on-error-container: #ffdad6;
 
-  --font-sans: 'Be Vietnam Pro', sans-serif;
-  --font-display: 'Epilogue', sans-serif;
+  --color-background: #0e0e11;
+  --color-on-background: #e5e1e7;
+  --color-surface: #141317;
+  --color-on-surface: #e5e1e7;
+  --color-surface-variant: #49454f;
+  --color-on-surface-variant: #cac4d0;
+  --color-outline: #948f9a;
+  --color-outline-variant: #49454f;
 
-  --radius: 1rem;
-  --radius-lg: 2rem;
-  --radius-xl: 3rem;
-  --radius-full: 9999px;
-
-  --spacing-margin-horizontal: 24px;
-  --spacing-base: 8px;
-  --spacing-list-item-gap: 12px;
-  --spacing-gutter-grid: 16px;
+  --font-epilogue: var(--font-epilogue-next);
+  --font-be-vietnam-pro: var(--font-be-vietnam-pro-next);
 }
 
-/* ─── Base ─── */
-html {
-  scroll-behavior: smooth;
-}
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-}
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-on-background);
-  font-family: var(--font-sans);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: #e5e1e7;
+    font-family: var(--font-be-vietnam-pro), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-::selection {
-  background-color: var(--color-primary-container);
-  color: var(--color-on-primary-container);
-}
-
-/* ─── Glass Card ─── */
+/* ─── Shared Components ─── */
 .glass-card {
-  background: rgba(20, 19, 23, 0.45);
+  background: rgba(43, 41, 45, 0.4);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* ─── Ambient Glow ─── */
-.ambient-glow {
-  box-shadow: 0 0 40px 0 rgba(208, 188, 255, 0.15);
-}
-
-/* ─── Feature Icon Wrapper ─── */
 .feature-icon-wrap {
   width: 48px;
   height: 48px;
-  border-radius: 9999px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
-  flex-shrink: 0;
+  margin-bottom: 20px;
 }
 
-/* ─── Version Chips ─── */
+/* ─── Chips ─── */
 .version-chip {
   display: inline-flex;
   align-items: center;
@@ -129,7 +91,7 @@ body {
   color: #cac4d0;
   font-size: 11px;
   font-weight: 500;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   line-height: 16px;
 }
 .version-chip--stable {
@@ -159,7 +121,7 @@ body {
   border: 1px solid rgba(73, 69, 79, 0.5);
   color: #948f9a;
   font-size: 13px;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   font-weight: 500;
   transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
   text-decoration: none;
@@ -267,7 +229,7 @@ body {
   background: transparent;
   border: none;
   color: #d0bcff;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: 10px 20px;
@@ -282,7 +244,7 @@ body {
   background: #d0bcff;
   border: none;
   color: #37265e;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: 10px 24px;
@@ -304,7 +266,7 @@ body {
   padding: 12px 16px;
   border-radius: 1rem;
   color: #e5e1e7;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   transition: background 0.2s;
   cursor: pointer;
   text-decoration: none;
@@ -346,7 +308,7 @@ body {
 .markdown-body h2,
 .markdown-body h3 {
   color: #e5e1e7;
-  font-family: 'Epilogue', sans-serif;
+  font-family: var(--font-epilogue), sans-serif;
   margin: 20px 0 10px;
 }
 .markdown-body h1 {
@@ -421,7 +383,7 @@ body {
 .changelog-date {
   font-size: 13px;
   color: #948f9a;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
 }
 
 /* ─── Version List ─── */
@@ -453,12 +415,12 @@ body {
   font-size: 15px;
   font-weight: 500;
   color: #e5e1e7;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
 }
 .version-date {
   font-size: 12px;
   color: #948f9a;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
 }
 .version-dl-btn {
   display: inline-flex;
@@ -471,7 +433,7 @@ body {
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 500;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: var(--font-be-vietnam-pro), sans-serif;
   text-decoration: none;
   transition: all 0.2s;
   flex-shrink: 0;

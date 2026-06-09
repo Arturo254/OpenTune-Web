@@ -41,7 +41,7 @@ export default function Screenshots() {
             onKeyDown={(e) => e.key === 'Enter' && toggle()}
           >
             <div>
-              <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] font-['Epilogue']">
+              <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] font-epilogue">
                 {t('screenshots.title')}
               </h2>
               <p className="text-[#cac4d0] mt-2">{t('screenshots.subtitle')}</p>

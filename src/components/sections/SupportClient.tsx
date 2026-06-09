@@ -16,11 +16,12 @@ import {
   Clock,
   MessageCircle,
 } from '@icons';
+import type { IconProps } from '@icon/_types';
 import MobileBottomNav from '@ui/MobileBottomNav';
 
 type MessageType = 'comment' | 'request' | 'report';
 
-const TYPE_ICONS: Record<MessageType, any> = {
+const TYPE_ICONS: Record<MessageType, React.ComponentType<IconProps>> = {
   comment: MessageSquare,
   request: Zap,
   report: Shield,
@@ -106,7 +107,7 @@ export default function SupportClient({ locale }: { locale: Locale }) {
     <div className="min-h-screen flex flex-col bg-[#141317] text-[#e5e1e7]">
       <main className="flex-grow pt-28 pb-24 px-6 max-w-4xl mx-auto w-full">
         <div className="mb-12 text-center md:text-left">
-          <h1 className="text-[32px] leading-10 font-semibold text-[#e9ddff] mb-4 font-['Epilogue']">
+          <h1 className="text-[32px] leading-10 font-semibold text-[#e9ddff] mb-4 font-epilogue">
             {t('support_page.title')}
           </h1>
           <p className="text-base text-[#cac4d0]">{t('support_page.subtitle')}</p>
@@ -118,7 +119,7 @@ export default function SupportClient({ locale }: { locale: Locale }) {
           {success ? (
             <div className="text-center py-10 px-5 bg-[#d0bcff]/10 rounded-3xl border border-[#d0bcff]/30">
               <CheckCircle size={48} className="text-[#d0bcff] mb-4 mx-auto" />
-              <h3 className="text-[#e9ddff] font-['Epilogue'] text-2xl mb-2">
+              <h3 className="text-[#e9ddff] font-epilogue text-2xl mb-2">
                 {t('support_page.success_title')}
               </h3>
               <p className="text-[#cac4d0] mb-6">{t('support_page.success_body')}</p>
@@ -218,7 +219,7 @@ export default function SupportClient({ locale }: { locale: Locale }) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#d0bcff] text-[#594983] font-semibold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(208,188,255,0.4)] transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed group font-['Epilogue'] text-lg"
+                  className="w-full md:w-auto flex items-center justify-center gap-3 bg-[#d0bcff] text-[#594983] font-semibold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(208,188,255,0.4)] transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed group font-epilogue text-lg"
                 >
                   {loading ? (
                     <>
