@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (e.target === dialogRef.current) closeLangDialog();
+      if (e.target === dialogRef.current) {closeLangDialog();}
     },
     [closeLangDialog],
   );

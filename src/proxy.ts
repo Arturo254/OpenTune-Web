@@ -19,13 +19,13 @@ const LOCALE_PREFIX_RE = new RegExp(`^/(${locales.join('|')})(/|$)`);
  */
 function detectLocale(req: NextRequest): Locale {
   const cookie = req.cookies.get('NEXT_LOCALE')?.value;
-  if (cookie && LOCALE_SET.has(cookie)) return cookie as Locale;
+  if (cookie && LOCALE_SET.has(cookie)) {return cookie as Locale;}
 
   const acceptLang = req.headers.get('accept-language');
   if (acceptLang) {
     for (const seg of acceptLang.split(',')) {
       const tag = seg.split(';')[0]!.trim().split('-')[0]!.toLowerCase();
-      if (LOCALE_SET.has(tag)) return tag as Locale;
+      if (LOCALE_SET.has(tag)) {return tag as Locale;}
     }
   }
 
