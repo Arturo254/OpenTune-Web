@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ChevronDown } from '@icons';
 
 const SHOTS = [
@@ -13,7 +13,6 @@ const SHOTS = [
 
 export default function Screenshots() {
   const t = useTranslations();
-  const contentRef = useRef<HTMLDivElement>(null);
 
   const [collapsed, setCollapsed] = useState<boolean>(() => {
     if (typeof window === 'undefined') {
@@ -40,7 +39,7 @@ export default function Screenshots() {
             role="button"
             aria-expanded={!collapsed}
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && toggle()}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggle()}
           >
             <div>
               <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] font-epilogue">
@@ -50,7 +49,7 @@ export default function Screenshots() {
             </div>
             <button
               className="p-3 rounded-full hover:bg-white/10 transition-colors"
-              aria-label={t('screenshots.expand')}
+              aria-label={collapsed ? t('screenshots.expand') : t('screenshots.collapse')}
               onClick={(e) => {
                 e.stopPropagation();
                 toggle();
@@ -64,7 +63,12 @@ export default function Screenshots() {
           </div>
         </div>
 
-        <div ref={contentRef} className={collapsed ? 'collapsed' : ''}>
+        <div
+          suppressHydrationWarning
+          className={`transition-all duration-500 overflow-hidden ${
+            collapsed ? 'max-h-0 opacity-0' : 'max-h-[2000px] opacity-100'
+          }`}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {SHOTS.map((shot, i) => (
               <div
