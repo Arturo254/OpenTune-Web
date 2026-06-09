@@ -2,12 +2,12 @@
 
 import { useTranslations } from 'next-intl';
 import {
-  Music2,
+  YouTubeMusic,
   Palette,
   Settings,
   Search,
   Volume2,
-  Plus,
+  ListPlus,
   RefreshCw,
   Wrench,
   Folder,
@@ -25,7 +25,12 @@ interface Feature {
 }
 
 const FEATURES: Feature[] = [
-  { icon: Music2, titleKey: 'features.yt_title', descKey: 'features.yt_desc', color: 'primary' },
+  {
+    icon: YouTubeMusic,
+    titleKey: 'features.yt_title',
+    descKey: 'features.yt_desc',
+    color: 'primary',
+  },
   {
     icon: Palette,
     titleKey: 'features.design_title',
@@ -46,7 +51,7 @@ const FEATURES: Feature[] = [
     color: 'secondary',
   },
   {
-    icon: Plus,
+    icon: ListPlus,
     titleKey: 'features.playlist_title',
     descKey: 'features.playlist_desc',
     color: 'tertiary',
