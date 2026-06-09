@@ -178,5 +178,23 @@
   "common": {
     "home": "Home",
     "community": "Community"
+  },
+  "metadata": {
+    "default": {
+      "title": "OpenTune | Modern YouTube Music Client",
+      "description": "A YouTube Music client with Material Design 3 for Android. Open source, elegant, and built for music lovers."
+    },
+    "home": {
+      "title": "OpenTune - YouTube Music Client with Material Design 3",
+      "description": "OpenTune is a modern, elegant, and open-source YouTube Music client for Android, built with Material Design 3."
+    },
+    "contributors": {
+      "title": "Contributors | OpenTune",
+      "description": "Meet the community and contributors building the best open-source music experience for Android."
+    },
+    "support": {
+      "title": "Support | OpenTune",
+      "description": "Need help? Report issues, request features, or contact the development team."
+    }
   }
 }

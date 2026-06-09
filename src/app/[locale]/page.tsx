@@ -1,4 +1,4 @@
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { type Locale } from '@config/locales';
 import Navbar from '@cmp/layout/Navbar';
@@ -10,6 +10,19 @@ import Screenshots from '@cmp/sections/Screenshots';
 import SupportCTA from '@cmp/sections/SupportCTA';
 import Downloads from '@cmp/sections/Downloads';
 import { fetchLatestRelease, buildDownloadUrl, REPOS } from '@lib/github';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata.home' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: {
+      canonical: `/${locale}`,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
