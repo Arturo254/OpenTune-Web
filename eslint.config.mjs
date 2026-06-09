@@ -32,6 +32,9 @@ export default defineConfig([
         },
       ],
 
+      // Discourage unnecessary state updates inside useEffect
+      'react-hooks/set-state-in-effect': 'warn',
+
       // Prefer const when variable isn't reassigned
       'prefer-const': 'error',
     },
