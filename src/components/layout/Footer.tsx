@@ -1,12 +1,12 @@
 import { useTranslations } from 'next-intl';
-import { Monitor, Code, FileText, Smartphone, Users, LifeBuoy } from '@icons';
+import { MobileCode, Code, Scale, Phone, Crowdsource, LifeBuoy } from '@icons';
 import Link from 'next/link';
 import { type Locale } from '@config/locales';
 
 const GITHUB = 'https://github.com/Arturo254/OpenTune';
 const GITHUB_DEV = 'https://github.com/Arturo254/';
 const LICENSE_URL = 'https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE';
-const WHATSAPP = 'https://wa.me/5576847925';
+const WHATSAPP = 'https://wa.me/+525576847925';
 
 export default function Footer({ locale }: { locale: Locale }) {
   const t = useTranslations();
@@ -32,7 +32,7 @@ export default function Footer({ locale }: { locale: Locale }) {
 
           <div className="flex flex-wrap gap-3 justify-center">
             <a href={GITHUB_DEV} target="_blank" rel="noopener noreferrer" className="footer-chip">
-              <Monitor size={16} />
+              <MobileCode size={16} />
               {t('footer.dev')}
             </a>
             <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="footer-chip">
@@ -40,15 +40,15 @@ export default function Footer({ locale }: { locale: Locale }) {
               {t('footer.source')}
             </a>
             <a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" className="footer-chip">
-              <FileText size={16} />
+              <Scale size={16} />
               {t('footer.license')}
             </a>
             <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="footer-chip">
-              <Smartphone size={16} />
+              <Phone size={16} />
               {t('footer.contact')}
             </a>
             <Link href={`/${locale}/contributors`} className="footer-chip">
-              <Users size={16} />
+              <Crowdsource size={16} />
               {t('footer.contributors')}
             </Link>
             <Link href={`/${locale}/support`} className="footer-chip">
