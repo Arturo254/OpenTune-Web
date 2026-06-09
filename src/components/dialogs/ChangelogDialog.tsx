@@ -17,22 +17,30 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale 
   const [date, setDate] = useState('');
 
   const close = useCallback(() => {
-    if (ref && 'current' in ref) {ref.current?.close();}
+    if (ref && 'current' in ref) {
+      ref.current?.close();
+    }
   }, [ref]);
 
   const handleBackdrop = useCallback(
     (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (ref && 'current' in ref && e.target === ref.current) {close();}
+      if (ref && 'current' in ref && e.target === ref.current) {
+        close();
+      }
     },
     [ref, close],
   );
 
   const load = useCallback(async () => {
-    if (content) {return;}
+    if (content) {
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
-      if (!res.ok) {throw new Error(`HTTP ${res.status}`);}
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       const data = (await res.json()) as GitHubRelease;
       const dateStr = new Date(data.published_at).toLocaleDateString('en-US', {
         year: 'numeric',

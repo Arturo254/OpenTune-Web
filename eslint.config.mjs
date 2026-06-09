@@ -40,11 +40,5 @@ export default defineConfig([
     },
   },
 
-  globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-    '.local/**',
-  ]),
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '.local/**']),
 ]);

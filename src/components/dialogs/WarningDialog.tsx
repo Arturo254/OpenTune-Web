@@ -10,7 +10,9 @@ const WarningDialog = forwardRef<HTMLDialogElement>((_, ref) => {
   const t = useTranslations();
 
   const close = useCallback(() => {
-    if (ref && 'current' in ref) {ref.current?.close();}
+    if (ref && 'current' in ref) {
+      ref.current?.close();
+    }
   }, [ref]);
 
   const proceed = useCallback(() => {
@@ -19,7 +21,9 @@ const WarningDialog = forwardRef<HTMLDialogElement>((_, ref) => {
 
   const handleBackdrop = useCallback(
     (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (ref && 'current' in ref && e.target === ref.current) {close();}
+      if (ref && 'current' in ref && e.target === ref.current) {
+        close();
+      }
     },
     [ref, close],
   );

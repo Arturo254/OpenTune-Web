@@ -11,8 +11,12 @@ interface Props {
 }
 
 function getReleaseType(release: GitHubRelease): 'stable' | 'beta' | 'alpha' {
-  if (release.prerelease) {return 'beta';}
-  if (release.tag_name.toLowerCase().includes('alpha')) {return 'alpha';}
+  if (release.prerelease) {
+    return 'beta';
+  }
+  if (release.tag_name.toLowerCase().includes('alpha')) {
+    return 'alpha';
+  }
   return 'stable';
 }
 
@@ -23,22 +27,30 @@ const VersionsDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale }
   const [loading, setLoading] = useState(false);
 
   const close = useCallback(() => {
-    if (ref && 'current' in ref) {ref.current?.close();}
+    if (ref && 'current' in ref) {
+      ref.current?.close();
+    }
   }, [ref]);
 
   const handleBackdrop = useCallback(
     (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (ref && 'current' in ref && e.target === ref.current) {close();}
+      if (ref && 'current' in ref && e.target === ref.current) {
+        close();
+      }
     },
     [ref, close],
   );
 
   const load = useCallback(async () => {
-    if (releases.length > 0) {return;}
+    if (releases.length > 0) {
+      return;
+    }
     setLoading(true);
     try {
       const res = await fetch(`https://api.github.com/repos/${REPOS.android}/releases?per_page=20`);
-      if (!res.ok) {throw new Error(`HTTP ${res.status}`);}
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       setReleases((await res.json()) as GitHubRelease[]);
     } catch {
       setReleases([]);

@@ -16,7 +16,9 @@ export default function Screenshots() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const [collapsed, setCollapsed] = useState<boolean>(() => {
-    if (typeof window === 'undefined') { return true; }
+    if (typeof window === 'undefined') {
+      return true;
+    }
     return localStorage.getItem('screenshotsCollapsed') !== 'false';
   });
 

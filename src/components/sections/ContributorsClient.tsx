@@ -49,7 +49,9 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
         let totalCommits = '—';
         if (link) {
           const match = link.match(/page=(\d+)>; rel="last"/);
-          if (match?.[1]) {totalCommits = formatNumber(parseInt(match[1]!, 10));}
+          if (match?.[1]) {
+            totalCommits = formatNumber(parseInt(match[1]!, 10));
+          }
         }
         setStats({
           stars: formatNumber(data.stargazers_count),
