@@ -7,7 +7,7 @@ import {
   Heart,
   Star,
   GitFork,
-  Shield,
+  OctagonAlert,
   ArrowRight,
   ExternalLink,
   FileCode,
@@ -15,6 +15,9 @@ import {
   Languages,
   Users,
   History,
+  Bug,
+  GitCommitHorizontal,
+  Code,
 } from '@icons';
 import MobileBottomNav from '@ui/MobileBottomNav';
 import { type Locale } from '@config/locales';
@@ -69,7 +72,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
     void (async () => {
       try {
         const res = await fetch(
-          `https://api.github.com/repos/${REPOS.android}/contributors?per_page=100`,
+          `https://api.github.com/repos/${REPOS.android}/contributors?per_page=9`,
         );
         const data = (await res.json()) as GitHubContributor[];
         setContributors(data);
@@ -98,7 +101,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
   const statsData = [
     { id: 'stars', icon: Star, label: t('contributors.stars'), value: stats.stars },
     { id: 'forks', icon: GitFork, label: t('contributors.forks'), value: stats.forks },
-    { id: 'issues', icon: Shield, label: t('contributors.issues'), value: stats.issues },
+    { id: 'issues', icon: OctagonAlert, label: t('contributors.issues'), value: stats.issues },
     { id: 'commits', icon: History, label: t('contributors.commits'), value: stats.commits },
   ];
 
@@ -112,11 +115,11 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
 
   const helpItems: HelpItem[] = [
     {
-      icon: FileCode,
+      icon: Code,
       title: 'contributors.code_title',
       desc: 'contributors.code_desc',
       cta: 'contributors.code_cta',
-      href: 'https://github.com/Arturo254/OpenTune/issues',
+      href: `https://github.com/${REPOS.android}/issues`,
     },
     {
       icon: Palette,
@@ -131,11 +134,11 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
       cta: 'contributors.translate_cta',
     },
     {
-      icon: Shield,
+      icon: Bug,
       title: 'contributors.bugs_title',
       desc: 'contributors.bugs_desc',
       cta: 'contributors.bugs_cta',
-      href: 'https://github.com/Arturo254/OpenTune/issues/new',
+      href: `https://github.com/${REPOS.android}/issues/new`,
     },
   ];
 
@@ -310,7 +313,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
                   <div key={commit.sha} className="flex gap-4">
                     <div className="mt-1">
                       <div className="bg-[#e9ddff]/20 p-2 rounded-full">
-                        <GitFork size={20} className="text-[#e9ddff]" />
+                        <GitCommitHorizontal size={20} className="text-[#e9ddff]" />
                       </div>
                     </div>
                     <div>
