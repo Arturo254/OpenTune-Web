@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {
   Heart,
@@ -14,10 +13,10 @@ import {
   FileCode,
   Palette,
   Languages,
-  Home,
   Users,
   History,
 } from '@icons';
+import MobileBottomNav from '@ui/MobileBottomNav';
 import { type Locale } from '@config/locales';
 import { formatNumber, getContributorRole, REPOS } from '@lib/github';
 import type { GitHubContributor, GitHubCommit, GitHubRepo } from '@t/github';
@@ -341,23 +340,12 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
         </section>
       </div>
 
-      {/* Mobile Bottom Nav */}
-      <nav
-        className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3
-        bg-neutral-950/65 backdrop-blur-3xl text-violet-200 font-['Epilogue'] text-[12px] font-medium border-t border-white/5"
-      >
-        <Link
-          href={`/${locale}`}
-          className="flex flex-col items-center justify-center text-neutral-500 hover:text-violet-100 active:scale-90 transition-transform"
-        >
-          <Home size={24} />
-          <span>{t('common.home')}</span>
-        </Link>
-        <div className="flex flex-col items-center justify-center bg-violet-200/20 text-violet-200 rounded-full px-6 py-2">
-          <Users size={24} />
-          <span>{t('common.community')}</span>
-        </div>
-      </nav>
+      <MobileBottomNav
+        homeHref={`/${locale}`}
+        homeLabel={t('common.home')}
+        activeIcon={Users}
+        activeLabel={t('common.community')}
+      />
     </div>
   );
 }

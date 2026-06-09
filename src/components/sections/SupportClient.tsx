@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { type Locale } from '@config/locales';
 import { useCallback, useRef, useState } from 'react';
 import {
@@ -15,9 +14,9 @@ import {
   Send,
   Shield,
   Clock,
-  Home,
   MessageCircle,
 } from '@icons';
+import MobileBottomNav from '@ui/MobileBottomNav';
 
 type MessageType = 'comment' | 'request' | 'report';
 
@@ -260,23 +259,12 @@ export default function SupportClient({ locale }: { locale: Locale }) {
         </div>
       </main>
 
-      {/* Mobile Bottom Nav */}
-      <nav className="md:hidden bg-zinc-950/80 backdrop-blur-2xl fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pt-3 pb-6 rounded-t-2xl border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
-        <Link href={`/${locale}`}>
-          <button className="flex flex-col items-center justify-center text-zinc-500 hover:text-violet-100 transition-all active:scale-90 duration-200">
-            <Home size={24} />
-            <span className="font-['Epilogue'] text-[10px] font-semibold uppercase tracking-tighter mt-1">
-              {t('support_page.nav_home')}
-            </span>
-          </button>
-        </Link>
-        <button className="flex flex-col items-center justify-center bg-violet-900/40 text-violet-200 rounded-full px-5 py-1.5 active:scale-90 duration-200">
-          <MessageCircle size={24} />
-          <span className="font-['Epilogue'] text-[10px] font-semibold uppercase tracking-tighter mt-1">
-            {t('support_page.nav_support')}
-          </span>
-        </button>
-      </nav>
+      <MobileBottomNav
+        homeHref={`/${locale}`}
+        homeLabel={t('support_page.nav_home')}
+        activeIcon={MessageCircle}
+        activeLabel={t('support_page.nav_support')}
+      />
     </div>
   );
 }
