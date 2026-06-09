@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Star, BadgeCheck } from '@icons';
+import { StarPlus, BadgeCheck } from '@icons';
 
 const GITHUB = 'https://github.com/Arturo254/OpenTune';
 
@@ -36,7 +36,7 @@ export default function OpenSource() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#e5e1e7] text-[#141317] px-8 py-3 rounded-full text-sm font-medium active:scale-95 transition-all no-underline"
             >
-              <Star size={20} fill="currentColor" />
+              <StarPlus size={20} />
               {t('oss.star')}
             </a>
             <div className="flex items-center gap-2 px-6 py-3 border border-[#49454f] rounded-full text-[#e5e1e7]">
