@@ -49,7 +49,7 @@ export default function OpenSource() {
           <div className="bg-[#2b292d] p-6 rounded-2xl flex items-center gap-4 border border-white/5">
             <div className="w-12 h-12 rounded-full bg-[#d0bcff]/20 flex items-center justify-center flex-shrink-0">
               <Image
-                src="https://avatars.githubusercontent.com/u/87346871?v=4"
+                src="https://avatars.githubusercontent.com/u/87346871?s=96"
                 className="rounded-full"
                 alt="Arturo254"
                 width={48}
