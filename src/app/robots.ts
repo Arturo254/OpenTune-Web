@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { DOMAIN } from '@config/links';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://opentune.app/sitemap.xml',
+    sitemap: `${DOMAIN}/sitemap.xml`,
   };
 }

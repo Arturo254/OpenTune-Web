@@ -3,8 +3,7 @@
 import { useCallback, forwardRef } from 'react';
 import { TriangleAlert } from '@icons';
 import { useTranslations } from 'next-intl';
-
-const DEMO_URL = 'https://appetize.io/app/b_yb62tcjuqzqjvctnswv3krpnmm';
+import { EXTERNAL_LINKS } from '@config/links';
 
 const WarningDialog = forwardRef<HTMLDialogElement>((_, ref) => {
   const t = useTranslations();
@@ -16,7 +15,7 @@ const WarningDialog = forwardRef<HTMLDialogElement>((_, ref) => {
   }, [ref]);
 
   const proceed = useCallback(() => {
-    window.location.href = DEMO_URL;
+    window.location.href = EXTERNAL_LINKS.DEMO;
   }, []);
 
   const handleBackdrop = useCallback(

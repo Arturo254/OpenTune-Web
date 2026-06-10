@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Headset, Send } from '@icons';
 import { type Locale } from '@config/locales';
+import { PATHS } from '@config/links';
 
 export default function SupportCTA({ locale }: { locale: Locale }) {
   const t = useTranslations();
@@ -20,7 +21,7 @@ export default function SupportCTA({ locale }: { locale: Locale }) {
           </h2>
           <p className="text-[#cac4d0] text-base mb-10 max-w-lg mx-auto">{t('support.body')}</p>
           <Link
-            href={`/${locale}/support`}
+            href={`/${locale}${PATHS.SUPPORT}`}
             className="inline-flex items-center gap-2 bg-[#d0bcff] text-[#37265e] px-10 py-4 rounded-full text-sm font-medium hover:brightness-110 active:scale-95 transition-all no-underline"
           >
             <Send size={18} />

@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
 import { locales } from '@config/locales';
+import { DOMAIN, PATHS } from '@config/links';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://opentune.app';
-  const routes = ['', '/contributors', '/support'];
+  const baseUrl = DOMAIN;
+  const routes = ['', PATHS.CONTRIBUTORS, PATHS.SUPPORT];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
 

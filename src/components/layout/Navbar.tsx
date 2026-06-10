@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import { type Locale, localeConfig, locales } from '@config/locales';
 import { useCallback, useRef } from 'react';
 import { MulOpentune, X, Globe, ChevronDown, Download } from '@icons';
+import { EXTERNAL_LINKS, PATHS } from '@config/links';
+import { REPOS, buildDownloadUrl } from '@lib/github';
 
 export default function Navbar() {
   const t = useTranslations();
@@ -83,14 +85,6 @@ export default function Navbar() {
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3 no-underline">
-            {/* <Image
-              src="/icon/icon-512-maskable.png"
-              alt="OpenTune"
-              width={34}
-              height={34}
-              className="rounded-lg"
-              priority
-            /> */}
             <MulOpentune size={34} className="bg-white/20 p-1 rounded-lg" />
             <span className="text-2xl font-black tracking-tighter text-violet-300 font-epilogue">
               OpenTune
@@ -100,25 +94,25 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-8 items-center">
             <Link
-              href={`/${locale}#features`}
+              href={`/${locale}${PATHS.FEATURES}`}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.features')}
             </Link>
             <Link
-              href={`/${locale}#screenshots`}
+              href={`/${locale}${PATHS.SCREENSHOTS}`}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.screenshots')}
             </Link>
             <Link
-              href={`/${locale}/support`}
+              href={`/${locale}${PATHS.SUPPORT}`}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('footer.support')}
             </Link>
             <a
-              href="https://github.com/Arturo254/OpenTune"
+              href={EXTERNAL_LINKS.GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
@@ -140,9 +134,7 @@ export default function Navbar() {
             </button>
 
             <Link
-              href={
-                'https://github.com/Arturo254/OpenTune/releases/latest/download/app-universal-release.apk'
-              }
+              href={buildDownloadUrl(REPOS.android, 'latest')}
               className="bg-[#d0bcff] text-[#594983] px-5 py-2 rounded-full text-sm font-medium active:scale-95 transition-all duration-200 no-underline hidden sm:inline-flex items-center gap-2"
             >
               <Download size={18} />

@@ -2,11 +2,7 @@ import { useTranslations } from 'next-intl';
 import { MobileCode, Code, Scale, Phone, Crowdsource, LifeBuoy } from '@icons';
 import Link from 'next/link';
 import { type Locale } from '@config/locales';
-
-const GITHUB = 'https://github.com/Arturo254/OpenTune';
-const GITHUB_DEV = 'https://github.com/Arturo254/';
-const LICENSE_URL = 'https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE';
-const WHATSAPP = 'https://wa.me/+525576847925';
+import { EXTERNAL_LINKS, PATHS } from '@config/links';
 
 export default function Footer({ locale }: { locale: Locale }) {
   const t = useTranslations();
@@ -20,7 +16,7 @@ export default function Footer({ locale }: { locale: Locale }) {
             <p className="text-slate-500 font-epilogue text-sm mt-1">
               {t('footer.copyright')}{' '}
               <a
-                href={GITHUB_DEV}
+                href={EXTERNAL_LINKS.GITHUB_DEV}
                 className="text-violet-300 hover:text-violet-200 no-underline transition-colors"
               >
                 Arturo.inc™
@@ -31,27 +27,47 @@ export default function Footer({ locale }: { locale: Locale }) {
           </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href={GITHUB_DEV} target="_blank" rel="noopener noreferrer" className="footer-chip">
+            <a
+              href={EXTERNAL_LINKS.GITHUB_DEV}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-chip"
+            >
               <MobileCode size={16} />
               {t('footer.dev')}
             </a>
-            <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="footer-chip">
+            <a
+              href={EXTERNAL_LINKS.GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-chip"
+            >
               <Code size={16} />
               {t('footer.source')}
             </a>
-            <a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" className="footer-chip">
+            <a
+              href={EXTERNAL_LINKS.LICENSE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-chip"
+            >
               <Scale size={16} />
               {t('footer.license')}
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="footer-chip">
+            <a
+              href={EXTERNAL_LINKS.WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-chip"
+            >
               <Phone size={16} />
               {t('footer.contact')}
             </a>
-            <Link href={`/${locale}/contributors`} className="footer-chip">
+            <Link href={`/${locale}${PATHS.CONTRIBUTORS}`} className="footer-chip">
               <Crowdsource size={16} />
               {t('footer.contributors')}
             </Link>
-            <Link href={`/${locale}/support`} className="footer-chip">
+            <Link href={`/${locale}${PATHS.SUPPORT}`} className="footer-chip">
               <LifeBuoy size={16} />
               {t('footer.support')}
             </Link>
@@ -62,19 +78,19 @@ export default function Footer({ locale }: { locale: Locale }) {
           <p className="text-slate-500 text-sm font-epilogue">{t('footer.license_text')}</p>
           <div className="flex gap-6">
             <Link
-              href={`/${locale}#features`}
+              href={`/${locale}${PATHS.FEATURES}`}
               className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               {t('nav.features')}
             </Link>
             <Link
-              href={`/${locale}#downloads`}
+              href={`/${locale}${PATHS.DOWNLOADS}`}
               className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               {t('nav.downloads')}
             </Link>
             <a
-              href={GITHUB}
+              href={EXTERNAL_LINKS.GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"

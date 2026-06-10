@@ -5,6 +5,7 @@ import { History, X, Download } from '@icons';
 import { useTranslations } from 'next-intl';
 import type { GitHubRelease } from '@t/github';
 import { buildDownloadUrl, REPOS } from '@lib/github';
+import { EXTERNAL_LINKS } from '@config/links';
 
 interface Props {
   locale: string;
@@ -47,7 +48,7 @@ const VersionsDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale }
     }
     setLoading(true);
     try {
-      const res = await fetch(`https://api.github.com/repos/${REPOS.android}/releases?per_page=20`);
+      const res = await fetch(`${EXTERNAL_LINKS.GITHUB_API}/${REPOS.android}/releases?per_page=20`);
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }

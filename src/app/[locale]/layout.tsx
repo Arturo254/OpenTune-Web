@@ -7,6 +7,7 @@ import Script from 'next/script';
 import { Epilogue, Be_Vietnam_Pro } from 'next/font/google';
 import '@/app/globals.css';
 import { Viewport } from 'next';
+import { DOMAIN, EXTERNAL_LINKS } from '@config/links';
 
 const epilogue = Epilogue({
   subsets: ['latin'],
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: t('title'),
     },
     description: t('description'),
-    metadataBase: new URL('https://opentune.app'),
+    metadataBase: new URL(DOMAIN),
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -120,10 +121,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
         </NextIntlClientProvider>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"
-          strategy="afterInteractive"
-        />
+        <Script src={EXTERNAL_LINKS.GTM} strategy="afterInteractive" />
         <Script id="ga-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6JTGMLLK8S');`}
         </Script>

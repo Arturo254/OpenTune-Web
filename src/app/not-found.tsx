@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { AlertCircle, Home, ExternalLink } from '@icons';
+import { EXTERNAL_LINKS, PATHS } from '@config/links';
 
 export default function NotFound() {
   return (
@@ -23,14 +24,14 @@ export default function NotFound() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link
-              href="/en"
+              href={`/en${PATHS.HOME}`}
               className="inline-flex items-center justify-center gap-2 bg-[#d0bcff] text-[#37265e] font-semibold px-7 py-3.5 rounded-full transition-all hover:brightness-110 active:scale-95 no-underline"
             >
               <Home size={20} />
               Go to Home
             </Link>
             <a
-              href="https://github.com/Arturo254/OpenTune"
+              href={EXTERNAL_LINKS.GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border border-[#49454f] text-[#cac4d0] font-medium px-7 py-3.5 rounded-full transition-all hover:bg-white/5 active:scale-95 no-underline"
@@ -46,7 +47,7 @@ export default function NotFound() {
           <div className="relative">
             <div className="absolute inset-0 bg-[#d0bcff]/10 blur-[80px] rounded-full" />
             <Image
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg"
+              src={EXTERNAL_LINKS.FLOWBITE_404_IMG}
               alt="404 illustration"
               width={512}
               height={512}

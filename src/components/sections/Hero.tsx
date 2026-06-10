@@ -7,6 +7,7 @@ import { useCallback, useRef } from 'react';
 import { Code, ArrowBigDownDash, CirclePlay } from '@icons';
 import WarningDialog from '@dialog/WarningDialog';
 import { type Locale } from '@config/locales';
+import { PATHS } from '@config/links';
 
 export default function Hero({ locale }: { locale: Locale }) {
   const t = useTranslations();
@@ -44,7 +45,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <Link
-                href={`/${locale}#downloads`}
+                href={`/${locale}${PATHS.DOWNLOADS}`}
                 className="bg-[#e9ddff] text-[#37265e] px-10 py-4 rounded-full text-sm font-medium text-lg flex items-center gap-2 ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline"
               >
                 <ArrowBigDownDash size={20} />

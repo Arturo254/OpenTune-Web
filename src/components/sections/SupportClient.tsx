@@ -1,87 +1,51 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { type Locale } from '@config/locales';
-import { useCallback, useRef, useState } from 'react';
-import {
-  CheckCircle,
-  UserRound,
-  MessageSquareText,
-  PackagePlus,
-  ShieldCheck,
-  Mail,
-  Loader2,
-  Send,
-  Bug,
-  Clock,
-  MessageCircle,
-} from '@icons';
-import type { IconProps } from '@icon/_types';
+import { Mail, Send, Loader2, MessageSquareText, ShieldCheck, Clock, MessageCircle } from '@icons';
+import { useState, useRef, useCallback } from 'react';
 import MobileBottomNav from '@ui/MobileBottomNav';
+import type { Locale } from '@config/locales';
+import { EXTERNAL_LINKS, PATHS } from '@config/links';
 
-type MessageType = 'comment' | 'request' | 'report';
+type SupportType = 'bug' | 'feature' | 'question' | 'other';
 
-const TYPE_ICONS: Record<MessageType, React.ComponentType<IconProps>> = {
-  comment: MessageSquareText,
-  request: PackagePlus,
-  report: Bug,
+const TYPE_COLORS: Record<SupportType, string> = {
+  bug: 'bg-[#ffb4ab]/20 text-[#ffb4ab]',
+  feature: 'bg-[#d0bcff]/20 text-[#d0bcff]',
+  question: 'bg-[#fef7ff]/10 text-[#e6e0e9]',
+  other: 'bg-[#ccc2dc]/20 text-[#ccc2dc]',
 };
-
-const TYPE_COLORS: Record<MessageType, string> = {
-  comment: 'text-[#e9ddff] bg-[#e9ddff]/10',
-  request: 'text-[#ffd9e3] bg-[#ffd9e3]/10',
-  report: 'text-[#ffb4ab] bg-[#ffb4ab]/10',
-};
-
-const FORMSPREE_URL = 'https://formspree.io/f/xgvallrq';
 
 export default function SupportClient({ locale }: { locale: Locale }) {
   const t = useTranslations();
-
-  const [messageType, setMessageType] = useState<MessageType>('comment');
+  const [messageType, setMessageType] = useState<SupportType>('bug');
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const descRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
-      const name = nameRef.current?.value.trim() ?? '';
-      const email = emailRef.current?.value.trim() ?? '';
-      const desc = descRef.current?.value.trim() ?? '';
-
-      if (!name || !email || !desc) {
-        setError(t('support_page.validation_all'));
-        return;
-      }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        setError(t('support_page.validation_email'));
-        return;
-      }
-
-      setError('');
       setLoading(true);
-      try {
-        const form = new FormData();
-        form.append('nombre', name);
-        form.append('email', email);
-        form.append('tipo_mensaje', messageType);
-        form.append('descripcion', desc);
+      setError(null);
 
-        const res = await fetch(FORMSPREE_URL, {
+      const email = emailRef.current?.value;
+      const desc = descRef.current?.value;
+
+      try {
+        const response = await fetch(EXTERNAL_LINKS.FORMSPREE, {
           method: 'POST',
-          body: form,
-          headers: { Accept: 'application/json' },
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, message: `Type: ${messageType}\n\n${desc}` }),
         });
-        if (res.ok) {
-          setSuccess(true);
+
+        if (response.ok) {
+          setSubmitted(true);
         } else {
-          throw new Error(t('support_page.failed_submit'));
+          setError(t('support_page.error_sending'));
         }
       } catch {
         setError(t('support_page.error_sending'));
@@ -92,75 +56,56 @@ export default function SupportClient({ locale }: { locale: Locale }) {
     [messageType, t],
   );
 
-  const typeKeys: MessageType[] = ['comment', 'request', 'report'];
-  const typeTitleKeys: Record<MessageType, string> = {
-    comment: 'support_page.comment',
-    request: 'support_page.request',
-    report: 'support_page.report',
+  const typeTitleKeys: Record<SupportType, string> = {
+    bug: 'support_page.report',
+    feature: 'support_page.request',
+    question: 'support_page.comment',
+    other: 'support_page.report',
   };
-  const typeDescKeys: Record<MessageType, string> = {
-    comment: 'support_page.comment_desc',
-    request: 'support_page.request_desc',
-    report: 'support_page.report_desc',
+
+  const typeDescKeys: Record<SupportType, string> = {
+    bug: 'support_page.report_desc',
+    feature: 'support_page.request_desc',
+    question: 'support_page.comment_desc',
+    other: 'support_page.report_desc',
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#141317] text-[#e5e1e7]">
-      <main className="flex-grow pt-28 pb-24 px-6 max-w-4xl mx-auto w-full">
-        <div className="mb-12 text-center md:text-left">
-          <h1 className="text-[32px] leading-10 font-semibold text-[#e9ddff] mb-4 font-epilogue">
+    <div className="min-h-screen bg-[#141317] pb-32">
+      <main className="max-w-4xl mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <h1 className="text-[45px] leading-[52px] font-bold text-[#e5e1e7] mb-4 font-epilogue">
             {t('support_page.title')}
           </h1>
-          <p className="text-base text-[#cac4d0]">{t('support_page.subtitle')}</p>
+          <p className="text-[#cac4d0] text-lg max-w-2xl">{t('support_page.subtitle')}</p>
         </div>
 
-        <div className="bg-[#201f23] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#e9ddff]/10 blur-[100px] rounded-full" />
-
-          {success ? (
-            <div className="text-center py-10 px-5 bg-[#d0bcff]/10 rounded-3xl border border-[#d0bcff]/30">
-              <CheckCircle size={48} className="text-[#d0bcff] mb-4 mx-auto" />
-              <h3 className="text-[#e9ddff] font-epilogue text-2xl mb-2">
-                {t('support_page.success_title')}
-              </h3>
-              <p className="text-[#cac4d0] mb-6">{t('support_page.success_body')}</p>
+        <div className="glass-card rounded-[3rem] p-8 md:p-12 border border-white/5">
+          {submitted ? (
+            <div className="text-center py-12 space-y-6">
+              <div className="w-20 h-20 bg-[#d0bcff]/20 text-[#d0bcff] rounded-full flex items-center justify-center mx-auto">
+                <Send size={40} />
+              </div>
+              <h2 className="text-2xl font-bold text-[#e5e1e7]">{t('support_page.success_title')}</h2>
+              <p className="text-[#cac4d0] max-w-md mx-auto">{t('support_page.success_body')}</p>
               <button
-                onClick={() => setSuccess(false)}
-                className="bg-[#d0bcff] text-[#37265e] border-none px-6 py-3 rounded-full font-semibold cursor-pointer"
+                onClick={() => setSubmitted(false)}
+                className="bg-[#d0bcff] text-[#37265e] px-8 py-3 rounded-full font-medium transition-all hover:scale-105"
               >
                 {t('support_page.success_reset')}
               </button>
             </div>
           ) : (
-            <form
-              className="space-y-10 relative z-10"
-              onSubmit={(e) => {
-                void handleSubmit(e);
-              }}
-            >
-              <div>
-                <label className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
-                  {t('support_page.name_label')}
-                </label>
-                <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:border-[#d0bcff] transition-all">
-                  <UserRound size={20} className="text-[#d0bcff] mr-4" />
-                  <input
-                    ref={nameRef}
-                    className="bg-transparent border-none outline-none w-full text-[#e5e1e7] placeholder-[#948f9a] text-base font-medium"
-                    placeholder={t('support_page.name_placeholder')}
-                    type="text"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-[#cac4d0] mb-4 px-1">
+            <form onSubmit={handleSubmit} className="space-y-10">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-[#cac4d0] px-1">
                   {t('support_page.type_label')}
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {typeKeys.map((type) => {
-                    const Icon = TYPE_ICONS[type];
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {(['bug', 'feature', 'question', 'other'] as SupportType[]).map((type) => {
+                    const Icon = MessageSquareText;
+                    const titleKey = typeTitleKeys[type] as Parameters<typeof t>[0];
+                    const descKey = typeDescKeys[type] as Parameters<typeof t>[0];
                     return (
                       <button
                         key={type}
@@ -173,10 +118,10 @@ export default function SupportClient({ locale }: { locale: Locale }) {
                             <Icon size={24} />
                           </div>
                           <div className="text-[#e5e1e7] font-medium text-base mb-1">
-                            {t(typeTitleKeys[type] as Parameters<typeof t>[0])}
+                            {t(titleKey)}
                           </div>
                           <div className="text-[#cac4d0] text-[11px]">
-                            {t(typeDescKeys[type] as Parameters<typeof t>[0])}
+                            {t(descKey)}
                           </div>
                         </div>
                       </button>
@@ -262,7 +207,7 @@ export default function SupportClient({ locale }: { locale: Locale }) {
       </main>
 
       <MobileBottomNav
-        homeHref={`/${locale}`}
+        homeHref={`/${locale}${PATHS.HOME}`}
         homeLabel={t('support_page.nav_home')}
         activeIcon={MessageCircle}
         activeLabel={t('support_page.nav_support')}

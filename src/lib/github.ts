@@ -1,6 +1,7 @@
 import type { GitHubRelease, GitHubContributor, GitHubCommit, GitHubRepo } from '@t/github';
+import { EXTERNAL_LINKS } from '@config/links';
 
-const GITHUB_API = 'https://api.github.com/repos';
+const GITHUB_API = EXTERNAL_LINKS.GITHUB_API;
 
 export const REPOS = {
   android: 'Arturo254/OpenTune',
@@ -119,5 +120,9 @@ export function getContributorRole(contributions: number, login: string): string
 }
 
 export function buildDownloadUrl(repo: string, version: string): string {
-  return `https://github.com/${repo}/releases/download/${version}/app-universal-release.apk`;
+  const base = EXTERNAL_LINKS.GITHUB_BASE;
+  if (version === 'latest') {
+    return `${base}/${repo}/releases/latest/download/app-universal-release.apk`;
+  }
+  return `${base}/${repo}/releases/download/${version}/app-universal-release.apk`;
 }
