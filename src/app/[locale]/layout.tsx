@@ -37,14 +37,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t('description'),
     metadataBase: new URL(DOMAIN),
     alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        en: '/en',
-        es: '/es',
-        hi: '/hi',
-        pt: '/pt',
-      },
-    },
+       canonical: `/${locale}`,
+       languages: Object.fromEntries(
+         routing.locales.map((lang) => [lang, `/${lang}`])
+       ),
+     },
     robots: {
       index: true,
       follow: true,
