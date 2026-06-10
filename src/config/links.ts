@@ -1,4 +1,4 @@
-export const DOMAIN = 'https://opentune.app';
+export const DOMAIN = 'https://opentune.netlify.app';
 
 export const EXTERNAL_LINKS = {
   GITHUB_REPO: 'https://github.com/Arturo254/OpenTune',
