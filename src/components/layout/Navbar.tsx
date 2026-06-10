@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { Link, usePathname } from '@/i18n/routing';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { type Locale, localeConfig, locales } from '@config/locales';
@@ -13,6 +13,7 @@ import { REPOS, buildDownloadUrl } from '@lib/github';
 export default function Navbar() {
   const t = useTranslations();
   const params = useParams();
+  const pathname = usePathname();
   const locale = (params['locale'] as Locale) ?? 'en';
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -61,7 +62,8 @@ export default function Navbar() {
               return (
                 <Link
                   key={loc}
-                  href={`/${loc}`}
+                  href={pathname || '/'}
+                  locale={loc}
                   className="dialog-list-item"
                   onClick={closeLangDialog}
                 >
@@ -84,7 +86,7 @@ export default function Navbar() {
       <nav className="fixed top-0 w-full z-50 bg-slate-950/65 backdrop-blur-2xl border-b border-white/10">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           {/* Logo */}
-          <Link href={`/${locale}`} className="flex items-center gap-3 no-underline">
+          <Link href="/" className="flex items-center gap-3 no-underline">
             {/* <Image
               src="/icon/icon-512-maskable.png"
               alt="OpenTune"
@@ -102,19 +104,19 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-8 items-center">
             <Link
-              href={`/${locale}${PATHS.FEATURES}`}
+              href={PATHS.FEATURES}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.features')}
             </Link>
             <Link
-              href={`/${locale}${PATHS.SCREENSHOTS}`}
+              href={PATHS.SCREENSHOTS}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('nav.screenshots')}
             </Link>
             <Link
-              href={`/${locale}${PATHS.SUPPORT}`}
+              href={PATHS.SUPPORT}
               className="font-epilogue font-medium text-slate-400 hover:text-slate-100 transition-colors"
             >
               {t('footer.support')}
