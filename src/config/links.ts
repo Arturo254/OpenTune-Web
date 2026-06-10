@@ -17,6 +17,7 @@ export const EXTERNAL_LINKS = {
   FLAG_US: 'https://flagicons.lipis.dev/flags/4x3/us.svg',
   FLAG_ES: 'https://flagicons.lipis.dev/flags/4x3/es.svg',
   FLAG_IN: 'https://flagicons.lipis.dev/flags/4x3/in.svg',
+  FLAG_PT: 'https://flagicons.lipis.dev/flags/4x3/pt.svg',
 } as const;
 
 export const PATHS = {

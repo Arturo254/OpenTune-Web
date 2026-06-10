@@ -41,6 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       languages: {
         en: '/en',
         es: '/es',
+        hi: '/hi',
+        pt: '/pt',
       },
     },
     robots: {
