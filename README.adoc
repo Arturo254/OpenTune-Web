@@ -6,8 +6,8 @@
 :source-highlighter: highlight.js
 
 image:https://img.shields.io/badge/License-GPL--3.0-blue.svg[License: GPL v3, link=https://www.gnu.org/licenses/gpl-3.0]
-image:https://img.shields.io/badge/Next.js-15-black?logo=next.js[Next.js, link=https://nextjs.org/]
-image:https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?logo=tailwind-css[Tailwind CSS, link=https://tailwindcss.com/]
+image:https://img.shields.io/badge/Next.js-16-black?logo=next.js[Next.js, link=https://nextjs.org/]
+image:https://img.shields.io/badge/Tailwind_CSS-4.3-38B2AC?logo=tailwind-css[Tailwind CSS, link=https://tailwindcss.com/]
 image:https://img.shields.io/badge/pnpm-11.5.2-orange?logo=pnpm[pnpm, link=https://pnpm.io/]
 image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[PRs Welcome]
 
@@ -74,7 +74,7 @@ To run the project locally for development or testing:
 . **Clone the repository:**
 [source,bash]
 ----
-git clone https://github.com/RajnishKMehta/opentune-web.git
+git clone https://github.com/arturo254/opentune-web.git
 cd opentune-web
 ----
 
@@ -98,14 +98,17 @@ Navigate to `http://localhost:3000`.
 OpenTune Web is available in several languages. Translations are managed via JSON files in `src/messages/`.
 
 * 🇺🇸 **English:** `en.json` (Source of truth)
-* 🇪🇸 **Spanish:** `es.json` (Currently synchronized with English)
+* 🇪🇸 **Spanish:** `es.json`
 * 🇮🇳 **Hindi:** `hi.json`
 * 🇵🇹 **Portuguese:** `pt.json`
 
 [NOTE]
 ====
-To synchronize Spanish messages before a build, use:
-`cp -f src/messages/en.json src/messages/es.json`
+To add a new language, create a copy of the English messages file:
+
+`cp -f src/messages/en.json src/messages/[lang].json`
+
+Then translate the messages in the newly created file.
 ====
 
 == 🤝 Contributing
@@ -113,15 +116,15 @@ To synchronize Spanish messages before a build, use:
 We love contributions! Whether you're fixing a bug, suggesting a feature, or helping with translations.
 
 1. **Fork** the repository.
-2. Create your **Feature Branch** (`git checkout -b feature/AmazingFeature`).
+2. Create your **Feature Branch** (`git switch -c feature/AmazingFeature`).
 3. **Commit** your changes (`git commit -m 'feat: Add some AmazingFeature'`).
 4. **Push** to the branch (`git push origin feature/AmazingFeature`).
 5. Open a **Pull Request**.
 
 == 🔗 Related Projects
 
-* **OpenTune Android App:** https://github.com/Arturo254/OpenTune[Arturo254/OpenTune]
-* **Documentation:** https://opentune.gitbook.io/[GitBook Docs]
+* **OpenTune Android App:** image:https://img.shields.io/github/v/release/Arturo254/OpenTune?logo=android&label=AndroidApp&color=181717&labelColor=41444a[Arturo254/OpenTune, link=https://github.com/Arturo254/OpenTune/]
+* **Documentation:** image:https://img.shields.io/badge/Documentation-Read_Now-blue?logo=gitbook[Docs, link=https://opentune.gitbook.io/]
 
 == 📜 License
 
