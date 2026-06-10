@@ -77,15 +77,17 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm font-epilogue">{t('footer.text')}</p>
           <div className="flex gap-6">
-            <Link
+            <a
               href={'https://gh-perma.pages.dev?id=87346871'}
-              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-violet-300 hover:text-violet-200 transition-colors font-medium font-epilogue text-sm no-underline"
             >
               Arturo254
-            </Link>
+            </a>
             <Link
               href={`/${locale}${PATHS.DOWNLOADS}`}
-              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
+              className="text-slate-400 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
               {t('nav.downloads')}
             </Link>
@@ -93,7 +95,7 @@ export default function Footer({ locale }: { locale: Locale }) {
               href={'https://gh-perma.pages.dev?id=172272341'}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
+              className="text-violet-300 hover:text-violet-200 transition-colors font-medium font-epilogue text-sm no-underline"
             >
               Rajnish
             </a>
