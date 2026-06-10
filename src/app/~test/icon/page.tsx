@@ -119,11 +119,11 @@ export default function IconTestPage() {
               {(
                 [
                   ['var(--color-primary)', 'primary'],
-                  ['var(--color-inverse-primary', 'inverse'],
+                  ['var(--color-inverse-primary)', 'inverse'],
                   ['var(--color-secondary)', 'secndry'],
                   ['var(--color-tertiary)', 'tertiary'],
                   ['var(--color-error)', 'error'],
-                  ['var(--color-error-container', 'errorCont.'],
+                  ['var(--color-error-container)', 'errorCont.'],
                 ] as [string, string][]
               ).map(([token, label]) => (
                 <div key={label} className="flex flex-col items-center">
