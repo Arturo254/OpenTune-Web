@@ -32,9 +32,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const release = await fetchLatestRelease(REPOS.android);
-  const version = release?.tag_name ?? '';
-  const downloadUrl = version ? buildDownloadUrl(REPOS.android, version) : '#';
+  let release;
+  try {
+    release = await fetchLatestRelease(REPOS.android);
+  } catch (error) {
+    console.error('Failed to fetch latest release:', error);
+    release = null;
+  }
+  const version = release?.tag_name ?? 'latest';
+  const downloadUrl = version ? buildDownloadUrl(REPOS.android, version) : buildDownloadUrl(REPOS.android, 'latest');
 
   return (
     <>
