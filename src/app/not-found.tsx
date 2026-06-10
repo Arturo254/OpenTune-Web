@@ -24,7 +24,7 @@ export default function NotFound() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link
-              href={`/en${PATHS.HOME}`}
+              href={`${PATHS.HOME}`}
               className="inline-flex items-center justify-center gap-2 bg-[#d0bcff] text-[#37265e] font-semibold px-7 py-3.5 rounded-full transition-all hover:brightness-110 active:scale-95 no-underline"
             >
               <Home size={20} />
