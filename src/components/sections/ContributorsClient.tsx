@@ -323,7 +323,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
                           {commit.author?.login ?? commit.commit.author.name}
                         </span>
                         {' • '}
-                        {new Date(commit.commit.author.date).toLocaleDateString('en-US')}
+                        {new Date(commit.commit.author.date).toLocaleDateString(locale)}
                       </p>
                     </div>
                   </div>
