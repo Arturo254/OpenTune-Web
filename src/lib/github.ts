@@ -21,6 +21,7 @@ export async function fetchLatestRelease(repo: string): Promise<GitHubRelease | 
   try {
     const res = await fetch(`${GITHUB_API}/${repo}/releases/latest`, {
       next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) {
       return null;
@@ -35,6 +36,7 @@ export async function fetchAllReleases(repo: string): Promise<GitHubRelease[]> {
   try {
     const res = await fetch(`${GITHUB_API}/${repo}/releases?per_page=20`, {
       next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) {
       return [];
@@ -47,7 +49,10 @@ export async function fetchAllReleases(repo: string): Promise<GitHubRelease[]> {
 
 export async function fetchRepo(repo: string): Promise<GitHubRepo | null> {
   try {
-    const res = await fetch(`${GITHUB_API}/${repo}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${GITHUB_API}/${repo}`, {
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
+    });
     if (!res.ok) {
       return null;
     }
@@ -61,6 +66,7 @@ export async function fetchContributors(repo: string): Promise<GitHubContributor
   try {
     const res = await fetch(`${GITHUB_API}/${repo}/contributors?per_page=100`, {
       next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) {
       return [];
@@ -75,6 +81,7 @@ export async function fetchRecentCommits(repo: string, count = 4): Promise<GitHu
   try {
     const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=${count}`, {
       next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) {
       return [];
@@ -89,6 +96,7 @@ export async function fetchTotalCommits(repo: string): Promise<string> {
   try {
     const res = await fetch(`${GITHUB_API}/${repo}/commits?per_page=1`, {
       next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
     });
     const link = res.headers.get('Link');
     if (link) {
@@ -97,7 +105,8 @@ export async function fetchTotalCommits(repo: string): Promise<string> {
         return formatNumber(parseInt(match[1], 10));
       }
     }
-    return 'N/A';
+    const data = await res.json();
+    return formatNumber(data.length);
   } catch {
     return 'N/A';
   }

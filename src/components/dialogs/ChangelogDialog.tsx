@@ -4,8 +4,6 @@ import { forwardRef, useCallback, useState } from 'react';
 import { FileText, X } from '@icons';
 import { useTranslations } from 'next-intl';
 import type { GitHubRelease } from '@t/github';
-import { EXTERNAL_LINKS } from '@config/links';
-import { REPOS } from '@lib/github';
 
 interface Props {
   locale: string;
@@ -39,7 +37,7 @@ const ChangelogDialog = forwardRef<HTMLDialogElement, Props>(({ locale: $locale 
     }
     setLoading(true);
     try {
-      const res = await fetch(`${EXTERNAL_LINKS.GITHUB_API}/${REPOS.android}/releases/latest`);
+      const res = await fetch("/api/github/releases/latest");
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
