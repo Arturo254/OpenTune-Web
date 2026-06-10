@@ -16,6 +16,7 @@ export const EXTERNAL_LINKS = {
   FLOWBITE_404_IMG: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg',
   FLAG_US: 'https://flagicons.lipis.dev/flags/4x3/us.svg',
   FLAG_ES: 'https://flagicons.lipis.dev/flags/4x3/es.svg',
+  FLAG_IN: 'https://flagicons.lipis.dev/flags/4x3/in.svg',
 } as const;
 
 export const PATHS = {
