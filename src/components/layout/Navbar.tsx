@@ -85,6 +85,14 @@ export default function Navbar() {
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3 no-underline">
+            {/* <Image
+              src="/icon/icon-512-maskable.png"
+              alt="OpenTune"
+              width={34}
+              height={34}
+              className="rounded-lg"
+              priority
+            /> */}
             <MulOpentune size={34} className="bg-white/20 p-1 rounded-lg" />
             <span className="text-2xl font-black tracking-tighter text-violet-300 font-epilogue">
               OpenTune

@@ -1,142 +1,186 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import {
-  Users,
-  Code,
-  Globe,
-  HandHeart,
-  GitCommitHorizontal,
-  ExternalLink,
-  ArrowRight,
-} from '@icons';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import {
-  REPOS,
-  fetchContributors,
-  fetchRecentCommits,
-  fetchRepo,
-  fetchTotalCommits,
-  getContributorRole,
-} from '@lib/github';
-import type { GitHubContributor, GitHubCommit, GitHubRepo } from '@t/github';
+  Heart,
+  Star,
+  GitFork,
+  OctagonAlert,
+  ArrowRight,
+  ExternalLink,
+  FileCode,
+  Palette,
+  Languages,
+  Users,
+  History,
+  Bug,
+  GitCommitHorizontal,
+  Code,
+} from '@icons';
 import MobileBottomNav from '@ui/MobileBottomNav';
-import type { Locale } from '@config/locales';
-import { EXTERNAL_LINKS, PATHS } from '@config/links';
+import { type Locale } from '@config/locales';
+import { formatNumber, getContributorRole, REPOS } from '@lib/github';
+import type { GitHubContributor, GitHubCommit, GitHubRepo } from '@t/github';
 
-const helpItems = [
-  {
-    title: 'contributors.help_code_title',
-    desc: 'contributors.help_code_desc',
-    icon: Code,
-    cta: 'contributors.help_code_cta',
-    href: `${EXTERNAL_LINKS.GITHUB_REPO}/issues`,
-  },
-  {
-    title: 'contributors.help_report_title',
-    desc: 'contributors.help_report_desc',
-    icon: Globe,
-    cta: 'contributors.help_report_cta',
-    href: `${EXTERNAL_LINKS.GITHUB_REPO}/issues/new`,
-  },
-  {
-    title: 'contributors.help_translate_title',
-    desc: 'contributors.help_translate_desc',
-    icon: Globe,
-    cta: 'contributors.help_translate_cta',
-    href: null,
-  },
-  {
-    title: 'contributors.help_donate_title',
-    desc: 'contributors.help_donate_desc',
-    icon: HandHeart,
-    cta: 'contributors.help_donate_cta',
-    href: null,
-  },
-];
+interface Stats {
+  stars: string;
+  forks: string;
+  issues: string;
+  commits: string;
+}
 
 export default function ContributorsClient({ locale }: { locale: Locale }) {
   const t = useTranslations();
+
+  const [stats, setStats] = useState<Stats>({ stars: '—', forks: '—', issues: '—', commits: '—' });
   const [contributors, setContributors] = useState<GitHubContributor[]>([]);
   const [commits, setCommits] = useState<GitHubCommit[]>([]);
-  const [repo, setRepo] = useState<GitHubRepo | null>(null);
-  const [totalCommits, setTotalCommits] = useState('...');
   const [loadingContribs, setLoadingContribs] = useState(true);
   const [loadingCommits, setLoadingCommits] = useState(true);
 
   useEffect(() => {
-    const loadData = async () => {
+    void (async () => {
       try {
-        const [repoData, commitsCount, contribsData] = await Promise.all([
-          fetchRepo(REPOS.android),
-          fetchTotalCommits(REPOS.android),
-          fetchContributors(REPOS.android),
+        const [repoRes, commitsRes] = await Promise.all([
+          fetch(`https://api.github.com/repos/${REPOS.android}`),
+          fetch(`https://api.github.com/repos/${REPOS.android}/commits?per_page=1`),
         ]);
-
-        setRepo(repoData);
-        setTotalCommits(commitsCount);
-        setContributors(contribsData.slice(0, 9));
-        setLoadingContribs(false);
-
-        const commitsData = await fetchRecentCommits(REPOS.android);
-        setCommits(commitsData);
-        setLoadingCommits(false);
-      } catch (error) {
-        console.error('Error fetching contributors data:', error);
-        setLoadingContribs(false);
-        setLoadingCommits(false);
+        const data = (await repoRes.json()) as GitHubRepo;
+        const link = commitsRes.headers.get('Link');
+        let totalCommits = '—';
+        if (link) {
+          const match = link.match(/page=(\d+)>; rel="last"/);
+          if (match?.[1]) {
+            totalCommits = formatNumber(parseInt(match[1]!, 10));
+          }
+        }
+        setStats({
+          stars: formatNumber(data.stargazers_count),
+          forks: formatNumber(data.forks_count),
+          issues: formatNumber(data.open_issues_count),
+          commits: totalCommits,
+        });
+      } catch {
+        /* silently fail */
       }
-    };
-
-    loadData();
+    })();
   }, []);
 
+  useEffect(() => {
+    void (async () => {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${REPOS.android}/contributors?per_page=9`,
+        );
+        const data = (await res.json()) as GitHubContributor[];
+        setContributors(data);
+      } catch {
+        /* silently fail */
+      } finally {
+        setLoadingContribs(false);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPOS.android}/commits?per_page=4`);
+        const data = (await res.json()) as GitHubCommit[];
+        setCommits(data);
+      } catch {
+        /* silently fail */
+      } finally {
+        setLoadingCommits(false);
+      }
+    })();
+  }, []);
+
+  const statsData = [
+    { id: 'stars', icon: Star, label: t('contributors.stat_stars'), value: stats.stars },
+    { id: 'forks', icon: GitFork, label: t('contributors.stat_forks'), value: stats.forks },
+    { id: 'issues', icon: OctagonAlert, label: t('contributors.stat_issues'), value: stats.issues },
+    { id: 'commits', icon: History, label: t('contributors.stat_commits'), value: stats.commits },
+  ];
+
+  type HelpItem = {
+    icon: typeof FileCode;
+    title: Parameters<typeof t>[0];
+    desc: Parameters<typeof t>[0];
+    cta: Parameters<typeof t>[0];
+    href?: string;
+  };
+
+  const helpItems: HelpItem[] = [
+    {
+      icon: Code,
+      title: 'contributors.help_code_title',
+      desc: 'contributors.help_code_desc',
+      cta: 'contributors.help_code_cta',
+      href: `https://github.com/${REPOS.android}/issues`,
+    },
+    {
+      icon: Palette,
+      title: 'contributors.help_design_title',
+      desc: 'contributors.help_design_desc',
+      cta: 'contributors.help_design_cta',
+    },
+    {
+      icon: Languages,
+      title: 'contributors.help_translate_title',
+      desc: 'contributors.help_translate_desc',
+      cta: 'contributors.help_translate_cta',
+    },
+    {
+      icon: Bug,
+      title: 'contributors.help_report_title',
+      desc: 'contributors.help_report_desc',
+      cta: 'contributors.help_report_cta',
+      href: `https://github.com/${REPOS.android}/issues/new`,
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#141317] pb-32">
-      <div className="max-w-7xl mx-auto px-6 pt-32 space-y-24">
-        {/* Hero Section */}
-        <header className="text-center space-y-6 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-[#d0bcff]/10 text-[#d0bcff] px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider">
-            <Users size={16} />
+    <div className="min-h-screen bg-[#141317] text-[#e5e1e7] pb-32 md:pb-0">
+      <div className="max-w-6xl mx-auto px-6 pt-10 pb-8 space-y-16 w-full">
+        {/* Hero */}
+        <section className="text-center space-y-6">
+          <div className="inline-flex items-center gap-2 bg-[#4a4359] text-[#bab1ca] px-4 py-1 rounded-full text-[11px] font-medium">
+            <Heart size={16} fill="currentColor" />
             {t('contributors.badge')}
           </div>
-          <h1 className="text-[57px] leading-[64px] font-bold text-[#e5e1e7] font-epilogue">
+          <h1 className="text-[48px] md:text-[57px] leading-[56px] md:leading-[64px] tracking-[-0.25px] font-bold text-[#e9ddff] font-epilogue">
             {t('contributors.title')}
           </h1>
-          <p className="text-[#cac4d0] text-xl leading-relaxed">{t('contributors.subtitle')}</p>
-        </header>
+          <p className="text-base text-[#cac4d0] max-w-2xl mx-auto">{t('contributors.subtitle')}</p>
+        </section>
 
-        {/* Stats Grid */}
+        {/* Stats */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { label: 'contributors.stat_contributors', value: contributors.length || '...' },
-            { label: 'contributors.stat_commits', value: totalCommits },
-            { label: 'contributors.stat_stars', value: repo?.stargazers_count ?? '...' },
-            { label: 'contributors.stat_forks', value: repo?.forks_count ?? '...' },
-          ].map((stat) => (
+          {statsData.map((s) => (
             <div
-              key={stat.label}
-              className="bg-[#1c1b1f] p-6 rounded-[2rem] border border-white/5 text-center"
+              key={s.id}
+              className="bg-[#2b292d] p-6 rounded-2xl ambient-glow border border-white/5 flex flex-col items-center text-center gap-2"
             >
-              <div className="text-3xl font-bold text-[#d0bcff] font-epilogue mb-1">
-                {stat.value}
-              </div>
-              <div className="text-[#cac4d0] text-xs font-medium uppercase tracking-widest">
-                {t(stat.label)}
-              </div>
+              <s.icon size={30} className="text-[#d0bcff]" />
+              <span className="text-[28px] leading-9 font-semibold text-[#e9ddff] font-epilogue">
+                {s.value}
+              </span>
+              <span className="text-sm font-medium text-[#cac4d0]">{s.label}</span>
             </div>
           ))}
         </section>
 
-        {/* Top Contributors */}
+        {/* Contributors Grid */}
         <section className="space-y-8">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[32px] leading-10 font-semibold text-[#e5e1e7] font-epilogue">
+          <div className="flex justify-between items-end">
+            <h2 className="text-[32px] leading-10 font-semibold text-[#e9ddff] font-epilogue">
               {t('contributors.top_title')}
             </h2>
             <a
-              href={EXTERNAL_LINKS.CONTRIBUTORS_GRAPH}
+              href="https://github.com/Arturo254/OpenTune/graphs/contributors"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#d0bcff] text-sm font-medium flex items-center gap-1 hover:underline"
@@ -161,7 +205,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
                     </div>
                   </div>
                 ))
-              : contributors.slice(0, 9).map((c) => {
+              : contributors.map((c) => {
                   const role = getContributorRole(c.contributions, c.login);
                   return (
                     <div
@@ -290,7 +334,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
               )}
             </div>
             <a
-              href={EXTERNAL_LINKS.COMMITS_MAIN}
+              href="https://github.com/Arturo254/OpenTune/commits/main"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full block text-center border border-[#49454f] text-[#cac4d0] py-3 rounded-full text-sm font-medium hover:bg-white/5 transition-colors no-underline"
@@ -302,7 +346,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
       </div>
 
       <MobileBottomNav
-        homeHref={`/${locale}${PATHS.HOME}`}
+        homeHref={`/${locale}`}
         homeLabel={t('common.home')}
         activeIcon={Users}
         activeLabel={t('common.community')}
