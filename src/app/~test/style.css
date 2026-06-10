@@ -1,3 +1,4 @@
+@import "../globals.css";
 /* ─── Test Environment Styles ─── */
 /* Scoped to ~test routes only. Never import this in globals.css. */
 
