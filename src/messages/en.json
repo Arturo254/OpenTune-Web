@@ -11,7 +11,7 @@
     "close": "Close"
   },
   "hero": {
-    "badge": "Dev By Arthur Dev Studio",
+    "badge": "Developed By Arthur Dev Studio",
     "subtitle": "A YouTube Music client with Material Design 3, for Android.",
     "download_apk": "Download APK",
     "try_demo": "Try Demo"
