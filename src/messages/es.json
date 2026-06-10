@@ -107,7 +107,7 @@
     "contact": "Contacto",
     "contributors": "Colaboradores",
     "support": "Soporte",
-    "license_text": "Bajo la Licencia de Código Abierto GPL-3.0."
+    "text": "Sitio web diseñado por Arturo254 y creado por Rajnish Kumar."
   },
   "support_page": {
     "title": "Enviar Comentarios",
@@ -124,7 +124,7 @@
     "desc_label": "Descripción",
     "desc_placeholder": "Cuéntanos más detalles...",
     "email_label": "Tu correo electrónico (para respuesta privada)",
-    "email_placeholder": "correo@ejemplo.com",
+    "email_placeholder": "RajnishKMehta@ejemplo.com",
     "submit": "Enviar mensaje",
     "failed_submit": "Error al enviar",
     "sending": "Enviando...",

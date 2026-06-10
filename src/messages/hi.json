@@ -107,7 +107,7 @@
     "contact": "संपर्क",
     "contributors": "योगदानकर्ता",
     "support": "सहायता",
-    "license_text": "GPL-3.0 ओपन सोर्स लाइसेंस के तहत लाइसेंस प्राप्त।"
+    "text": "वेबसाइट का डिज़ाइन Arturo254 द्वारा तथा निर्माण Rajnish Kumar द्वारा किया गया है।"
   },
   "support_page": {
     "title": "फीडबैक भेजें",
@@ -124,7 +124,7 @@
     "desc_label": "विवरण",
     "desc_placeholder": "हमें और विवरण बताएं...",
     "email_label": "आपका ईमेल (निजी प्रतिक्रिया के लिए)",
-    "email_placeholder": "email@example.com",
+    "email_placeholder": "RajnishKMehta@proton.me",
     "submit": "संदेश भेजें",
     "failed_submit": "सबमिट विफल रहा",
     "sending": "भेजा जा रहा है...",

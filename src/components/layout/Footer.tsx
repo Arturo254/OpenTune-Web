@@ -75,13 +75,13 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-500 text-sm font-epilogue">{t('footer.license_text')}</p>
+          <p className="text-slate-500 text-sm font-epilogue">{t('footer.text')}</p>
           <div className="flex gap-6">
             <Link
-              href={`/${locale}${PATHS.FEATURES}`}
+              href={'https://gh-perma.pages.dev?id=87346871'}
               className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
-              {t('nav.features')}
+              Arturo254
             </Link>
             <Link
               href={`/${locale}${PATHS.DOWNLOADS}`}
@@ -90,12 +90,12 @@ export default function Footer({ locale }: { locale: Locale }) {
               {t('nav.downloads')}
             </Link>
             <a
-              href={EXTERNAL_LINKS.GITHUB_REPO}
+              href={'https://gh-perma.pages.dev?id=172272341'}
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-500 hover:text-violet-200 transition-colors font-epilogue text-sm no-underline"
             >
-              GitHub
+              Rajnish
             </a>
           </div>
         </div>

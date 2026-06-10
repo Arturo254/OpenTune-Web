@@ -107,7 +107,7 @@
     "contact": "Contato",
     "contributors": "Contribuidores",
     "support": "Suporte",
-    "license_text": "Licenciado sob a Licença de Código Aberto GPL-3.0."
+    "text": "Website projetado por Arturo254 e criado por Rajnish."
   },
   "support_page": {
     "title": "Enviar Feedback",
@@ -124,7 +124,7 @@
     "desc_label": "Descrição",
     "desc_placeholder": "Conte-nos mais detalhes...",
     "email_label": "Seu e-mail (para resposta privada)",
-    "email_placeholder": "email@exemplo.com",
+    "email_placeholder": "RajnishKMehta@exemplo.com",
     "submit": "Enviar mensagem",
     "failed_submit": "Falha ao enviar",
     "sending": "Enviando...",

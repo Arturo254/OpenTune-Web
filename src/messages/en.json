@@ -107,7 +107,7 @@
     "contact": "Contact",
     "contributors": "Contributors",
     "support": "Support",
-    "license_text": "Licensed under GPL-3.0 Open Source License."
+    "text": "Website designed by Arturo254 and developed by Rajnish."
   },
   "support_page": {
     "title": "Send Feedback",
@@ -124,7 +124,7 @@
     "desc_label": "Description",
     "desc_placeholder": "Tell us more details...",
     "email_label": "Your email (for private response)",
-    "email_placeholder": "email@example.com",
+    "email_placeholder": "RajnishKMehta@proton.me",
     "submit": "Send message",
     "failed_submit": "Submit failed",
     "sending": "Sending...",
