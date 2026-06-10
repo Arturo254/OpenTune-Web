@@ -13,7 +13,6 @@ interface DownloadsProps {
   downloadUrl: string;
 }
 
-
 export default function Downloads({ locale, version, downloadUrl }: DownloadsProps) {
   const t = useTranslations();
   const changelogRef = useRef<HTMLDialogElement>(null);
@@ -59,14 +58,14 @@ export default function Downloads({ locale, version, downloadUrl }: DownloadsPro
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 border-t border-white/10">
               <a
-  href={finalDownloadUrl}
-  className="flex items-center gap-3 bg-[#e9ddff] text-[#37265e] px-8 py-3 rounded-full text-sm font-medium ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Download size={20} />
-  {t('downloads.download_apk')}
-</a>
+                href={finalDownloadUrl}
+                className="flex items-center gap-3 bg-[#e9ddff] text-[#37265e] px-8 py-3 rounded-full text-sm font-medium ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download size={20} />
+                {t('downloads.download_apk')}
+              </a>
               <p className="text-[#cac4d0] text-[11px] font-medium">{t('downloads.android_req')}</p>
             </div>
           </div>

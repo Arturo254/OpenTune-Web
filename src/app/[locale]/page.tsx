@@ -40,7 +40,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     release = null;
   }
   const version = release?.tag_name ?? 'latest';
-  const downloadUrl = version ? buildDownloadUrl(REPOS.android, version) : buildDownloadUrl(REPOS.android, 'latest');
+  const downloadUrl = version
+    ? buildDownloadUrl(REPOS.android, version)
+    : buildDownloadUrl(REPOS.android, 'latest');
 
   return (
     <>

@@ -8,7 +8,7 @@
 image:https://img.shields.io/badge/License-GPL--3.0-blue.svg[License: GPL v3, link=https://www.gnu.org/licenses/gpl-3.0]
 image:https://img.shields.io/badge/Next.js-16-black?logo=next.js[Next.js, link=https://nextjs.org/]
 image:https://img.shields.io/badge/Tailwind_CSS-4.3-38B2AC?logo=tailwind-css[Tailwind CSS, link=https://tailwindcss.com/]
-image:https://img.shields.io/badge/pnpm-11.5.2-orange?logo=pnpm[pnpm, link=https://pnpm.io/]
+image:https://img.shields.io/badge/pnpm-11.5.3-orange?logo=pnpm[pnpm, link=https://pnpm.io/]
 image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[PRs Welcome]
 
 Official website and landing page for *OpenTune*, an advanced YouTube Music client for Android featuring Material Design 3.

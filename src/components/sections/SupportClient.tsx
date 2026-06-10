@@ -74,19 +74,24 @@ export default function SupportClient({ locale }: { locale: Locale }) {
         form.append('tipo_mensaje', messageType);
         form.append('descripcion', desc);
 
-        const res = await fetch(FORMSPREE_URL, {
-          const controller = new AbortController();
-       const timeoutId = setTimeout(() => controller.abort(), 10000);
-          method: 'POST',
-          body: form,
-          headers: { Accept: 'application/json' },
-        signal: controller.signal,
-        });
-  clearTimeout(timeoutId);
-        if (res.ok) {
-          setSuccess(true);
-        } else {
-          throw new Error(t('support_page.failed_submit'));
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        try {
+          const res = await fetch(FORMSPREE_URL, {
+            method: 'POST',
+            body: form,
+            headers: { Accept: 'application/json' },
+            signal: controller.signal,
+          });
+
+          if (res.ok) {
+            setSuccess(true);
+          } else {
+            throw new Error(t('support_page.failed_submit'));
+          }
+        } finally {
+          clearTimeout(timeoutId);
         }
       } catch {
         setError(t('support_page.error_sending'));
@@ -144,7 +149,10 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               }}
             >
               <div>
-                <label htmlFor="support-name" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label
+                  htmlFor="support-name"
+                  className="block text-sm font-medium text-[#cac4d0] mb-3 px-1"
+                >
                   {t('support_page.name_label')}
                 </label>
                 <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:border-[#d0bcff] transition-all">
@@ -192,7 +200,10 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               </div>
 
               <div>
-                <label id="support-desc" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label
+                  id="support-desc"
+                  className="block text-sm font-medium text-[#cac4d0] mb-3 px-1"
+                >
                   {t('support_page.desc_label')}
                 </label>
                 <textarea
@@ -206,7 +217,10 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               </div>
 
               <div>
-                <label htmlFor="support-email" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label
+                  htmlFor="support-email"
+                  className="block text-sm font-medium text-[#cac4d0] mb-3 px-1"
+                >
                   {t('support_page.email_label')}
                 </label>
                 <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:ring-2 focus-within:ring-[#d0bcff] transition-all">
