@@ -51,8 +51,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       },
     },
     icons: {
-      icon: '/icon/favicon.ico',
-      apple: '/icon/icon-512.png',
+      icon: [
+        { url: '/icon/favicon.ico', sizes: 'any' },
+        { url: '/icon/icon-192.png', type: 'image/png', sizes: '192x192' },
+        { url: '/icon/icon-512.png', type: 'image/png', sizes: '512x512' },
+      ],
+      apple: [
+        { url: '/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+      other: [
+        {
+          rel: 'mask-icon',
+          url: '/icon/opentune-black.svg',
+        },
+      ],
     },
     openGraph: {
       type: 'website',
