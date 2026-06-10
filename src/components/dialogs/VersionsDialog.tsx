@@ -12,11 +12,11 @@ interface Props {
 }
 
 function getReleaseType(release: GitHubRelease): 'stable' | 'beta' | 'alpha' {
-  if (release.prerelease) {
-    return 'beta';
-  }
   if (release.tag_name.toLowerCase().includes('alpha')) {
     return 'alpha';
+  }
+  if (release.prerelease) {
+    return 'beta';
   }
   return 'stable';
 }
