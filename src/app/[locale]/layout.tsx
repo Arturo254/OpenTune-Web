@@ -6,6 +6,7 @@ import { type Locale } from '@config/locales';
 import Script from 'next/script';
 import { Epilogue, Be_Vietnam_Pro } from 'next/font/google';
 import '@/app/globals.css';
+import { Viewport } from 'next';
 
 const epilogue = Epilogue({
   subsets: ['latin'],
@@ -18,6 +19,10 @@ const beVietnamPro = Be_Vietnam_Pro({
   weight: ['400', '500', '600'],
   variable: '--font-be-vietnam-pro-next',
 });
+
+export const viewport: Viewport = {
+  themeColor: '#d0bcff',
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -35,6 +40,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       languages: {
         en: '/en',
         es: '/es',
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
       },
     },
     icons: {
