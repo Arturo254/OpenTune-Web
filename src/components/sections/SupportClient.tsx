@@ -144,12 +144,13 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               }}
             >
               <div>
-                <label className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label htmlFor="support-name" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
                   {t('support_page.name_label')}
                 </label>
                 <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:border-[#d0bcff] transition-all">
                   <UserRound size={20} className="text-[#d0bcff] mr-4" />
                   <input
+                    id="support-name"
                     ref={nameRef}
                     className="bg-transparent border-none outline-none w-full text-[#e5e1e7] placeholder-[#948f9a] text-base font-medium"
                     placeholder={t('support_page.name_placeholder')}
@@ -191,10 +192,11 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label id="support-desc" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
                   {t('support_page.desc_label')}
                 </label>
                 <textarea
+                  id="support-desc"
                   ref={descRef}
                   className="w-full bg-[#353438] border border-[#49454f]/30 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[#d0bcff] focus:border-transparent transition-all text-[#e5e1e7] placeholder-[#948f9a] text-sm resize-none outline-none"
                   placeholder={t('support_page.desc_placeholder')}
@@ -204,12 +206,13 @@ export default function SupportClient({ locale }: { locale: Locale }) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
+                <label htmlFor="support-email" className="block text-sm font-medium text-[#cac4d0] mb-3 px-1">
                   {t('support_page.email_label')}
                 </label>
                 <div className="flex items-center bg-[#353438] border border-[#49454f]/30 rounded-full px-6 py-4 focus-within:ring-2 focus-within:ring-[#d0bcff] transition-all">
                   <Mail size={20} className="text-[#cac4d0] mr-4" />
                   <input
+                    id="support-email"
                     ref={emailRef}
                     className="bg-transparent border-none outline-none w-full text-[#e5e1e7] placeholder-[#948f9a] text-base font-medium"
                     placeholder={t('support_page.email_placeholder')}
