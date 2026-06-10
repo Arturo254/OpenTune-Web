@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { StarPlus, BadgeCheck } from '@icons';
+import { REPOS } from '@lib/github';
+import { EXTERNAL_LINKS } from '@config/links';
 
 const GITHUB = 'https://github.com/Arturo254/OpenTune';
 
@@ -12,7 +14,7 @@ export default function OpenSource() {
   const [version, setVersion] = useState<string>('');
 
   useEffect(() => {
-    fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest')
+    fetch(`${EXTERNAL_LINKS.GITHUB_API}/${REPOS.android}/releases/latest`)
       .then((r) => r.json())
       .then((d: { tag_name?: string }) => setVersion(d.tag_name ?? 'N/A'))
       .catch(() => setVersion('N/A'));
@@ -49,7 +51,7 @@ export default function OpenSource() {
           <div className="bg-[#2b292d] p-6 rounded-2xl flex items-center gap-4 border border-white/5">
             <div className="w-12 h-12 rounded-full bg-[#d0bcff]/20 flex items-center justify-center flex-shrink-0">
               <Image
-                src="https://avatars.githubusercontent.com/u/87346871?s=96"
+                src={`${EXTERNAL_LINKS.AVATAR_GITHUB}?s=96`}
                 className="rounded-full"
                 alt="Arturo254"
                 width={48}

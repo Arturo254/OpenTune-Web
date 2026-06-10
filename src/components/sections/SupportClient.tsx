@@ -18,6 +18,7 @@ import {
 } from '@icons';
 import type { IconProps } from '@icon/_types';
 import MobileBottomNav from '@ui/MobileBottomNav';
+import { EXTERNAL_LINKS } from '@config/links';
 
 type MessageType = 'comment' | 'request' | 'report';
 
@@ -33,7 +34,7 @@ const TYPE_COLORS: Record<MessageType, string> = {
   report: 'text-[#ffb4ab] bg-[#ffb4ab]/10',
 };
 
-const FORMSPREE_URL = 'https://formspree.io/f/xgvallrq';
+const FORMSPREE_URL = EXTERNAL_LINKS.FORMSPREE;
 
 export default function SupportClient({ locale }: { locale: Locale }) {
   const t = useTranslations();

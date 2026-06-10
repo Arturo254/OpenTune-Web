@@ -10,7 +10,6 @@ import {
   OctagonAlert,
   ArrowRight,
   ExternalLink,
-  FileCode,
   Palette,
   Languages,
   Users,
@@ -21,8 +20,17 @@ import {
 } from '@icons';
 import MobileBottomNav from '@ui/MobileBottomNav';
 import { type Locale } from '@config/locales';
-import { formatNumber, getContributorRole, REPOS } from '@lib/github';
-import type { GitHubContributor, GitHubCommit, GitHubRepo } from '@t/github';
+import {
+  formatNumber,
+  getContributorRole,
+  REPOS,
+  fetchContributors,
+  fetchRecentCommits,
+  fetchRepo,
+  fetchTotalCommits,
+} from '@lib/github';
+import type { GitHubContributor, GitHubCommit } from '@t/github';
+import { EXTERNAL_LINKS } from '@config/links';
 
 interface Stats {
   stars: string;
@@ -43,25 +51,18 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
   useEffect(() => {
     void (async () => {
       try {
-        const [repoRes, commitsRes] = await Promise.all([
-          fetch(`https://api.github.com/repos/${REPOS.android}`),
-          fetch(`https://api.github.com/repos/${REPOS.android}/commits?per_page=1`),
+        const [repo, totalCommits] = await Promise.all([
+          fetchRepo(REPOS.android),
+          fetchTotalCommits(REPOS.android),
         ]);
-        const data = (await repoRes.json()) as GitHubRepo;
-        const link = commitsRes.headers.get('Link');
-        let totalCommits = '—';
-        if (link) {
-          const match = link.match(/page=(\d+)>; rel="last"/);
-          if (match?.[1]) {
-            totalCommits = formatNumber(parseInt(match[1]!, 10));
-          }
+        if (repo) {
+          setStats({
+            stars: formatNumber(repo.stargazers_count),
+            forks: formatNumber(repo.forks_count),
+            issues: formatNumber(repo.open_issues_count),
+            commits: totalCommits,
+          });
         }
-        setStats({
-          stars: formatNumber(data.stargazers_count),
-          forks: formatNumber(data.forks_count),
-          issues: formatNumber(data.open_issues_count),
-          commits: totalCommits,
-        });
       } catch {
         /* silently fail */
       }
@@ -71,11 +72,8 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
   useEffect(() => {
     void (async () => {
       try {
-        const res = await fetch(
-          `https://api.github.com/repos/${REPOS.android}/contributors?per_page=9`,
-        );
-        const data = (await res.json()) as GitHubContributor[];
-        setContributors(data);
+        const data = await fetchContributors(REPOS.android);
+        setContributors(data.slice(0, 9));
       } catch {
         /* silently fail */
       } finally {
@@ -87,8 +85,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
   useEffect(() => {
     void (async () => {
       try {
-        const res = await fetch(`https://api.github.com/repos/${REPOS.android}/commits?per_page=4`);
-        const data = (await res.json()) as GitHubCommit[];
+        const data = await fetchRecentCommits(REPOS.android, 4);
         setCommits(data);
       } catch {
         /* silently fail */
@@ -106,7 +103,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
   ];
 
   type HelpItem = {
-    icon: typeof FileCode;
+    icon: typeof Code;
     title: Parameters<typeof t>[0];
     desc: Parameters<typeof t>[0];
     cta: Parameters<typeof t>[0];
@@ -119,7 +116,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
       title: 'contributors.help_code_title',
       desc: 'contributors.help_code_desc',
       cta: 'contributors.help_code_cta',
-      href: `https://github.com/${REPOS.android}/issues`,
+      href: `${EXTERNAL_LINKS.GITHUB_BASE}/${REPOS.android}/issues`,
     },
     {
       icon: Palette,
@@ -138,7 +135,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
       title: 'contributors.help_report_title',
       desc: 'contributors.help_report_desc',
       cta: 'contributors.help_report_cta',
-      href: `https://github.com/${REPOS.android}/issues/new`,
+      href: `${EXTERNAL_LINKS.GITHUB_BASE}/${REPOS.android}/issues/new`,
     },
   ];
 
@@ -180,7 +177,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
               {t('contributors.top_title')}
             </h2>
             <a
-              href="https://github.com/Arturo254/OpenTune/graphs/contributors"
+              href={EXTERNAL_LINKS.CONTRIBUTORS_GRAPH}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#d0bcff] text-sm font-medium flex items-center gap-1 hover:underline"
@@ -334,7 +331,7 @@ export default function ContributorsClient({ locale }: { locale: Locale }) {
               )}
             </div>
             <a
-              href="https://github.com/Arturo254/OpenTune/commits/main"
+              href={EXTERNAL_LINKS.COMMITS_MAIN}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full block text-center border border-[#49454f] text-[#cac4d0] py-3 rounded-full text-sm font-medium hover:bg-white/5 transition-colors no-underline"

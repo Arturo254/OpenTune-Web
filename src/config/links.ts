@@ -12,7 +12,7 @@ export const EXTERNAL_LINKS = {
   GITHUB_BASE: 'https://github.com',
   CONTRIBUTORS_GRAPH: 'https://github.com/Arturo254/OpenTune/graphs/contributors',
   COMMITS_MAIN: 'https://github.com/Arturo254/OpenTune/commits/main',
-  AVATAR_GITHUB: 'https://avatars.githubusercontent.com/u/87346871?s=96',
+  AVATAR_GITHUB: 'https://avatars.githubusercontent.com/u/87346871',
   FLOWBITE_404_IMG: 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg',
   FLAG_US: 'https://flagicons.lipis.dev/flags/4x3/us.svg',
   FLAG_ES: 'https://flagicons.lipis.dev/flags/4x3/es.svg',

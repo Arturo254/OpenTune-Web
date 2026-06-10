@@ -59,9 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         { url: '/icon/icon-192.png', type: 'image/png', sizes: '192x192' },
         { url: '/icon/icon-512.png', type: 'image/png', sizes: '512x512' },
       ],
-      apple: [
-        { url: '/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-      ],
+      apple: [{ url: '/icon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
       other: [
         {
           rel: 'mask-icon',
