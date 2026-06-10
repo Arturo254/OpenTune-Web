@@ -4,6 +4,7 @@ export const EXTERNAL_LINKS = {
   GITHUB_REPO: 'https://github.com/Arturo254/OpenTune',
   GITHUB_DEV: 'https://github.com/Arturo254',
   WHATSAPP: 'https://wa.me/+525576847925',
+  LATEST_RELEASE_DW: 'https://github.com/Arturo254/OpenTune/releases/latest/download/app-universal-release.apk',
   LICENSE: 'https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE',
   DEMO: 'https://appetize.io/app/b_yb62tcjuqzqjvctnswv3krpnmm',
   FORMSPREE: 'https://formspree.io/f/xgvallrq',
