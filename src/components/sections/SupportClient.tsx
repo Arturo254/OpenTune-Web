@@ -75,10 +75,14 @@ export default function SupportClient({ locale }: { locale: Locale }) {
         form.append('descripcion', desc);
 
         const res = await fetch(FORMSPREE_URL, {
+          const controller = new AbortController();
+       const timeoutId = setTimeout(() => controller.abort(), 10000);
           method: 'POST',
           body: form,
           headers: { Accept: 'application/json' },
+        signal: controller.signal,
         });
+  clearTimeout(timeoutId);
         if (res.ok) {
           setSuccess(true);
         } else {
