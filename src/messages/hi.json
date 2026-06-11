@@ -91,7 +91,7 @@
     "not_available": "उपलब्ध नहीं"
   },
   "changelog": {
-    "title": "चेंजलॉग"
+    "title": "परिवर्तन विवरण"
   },
   "versions": {
     "title": "पिछले संस्करण",
@@ -101,9 +101,9 @@
   "footer": {
     "copyright": "© 2026",
     "rights": "सर्वाधिकार सुरक्षित।",
-    "dev": "देव",
-    "source": "सोर्स कोड",
-    "license": "लाइसेंस",
+    "dev": "निर्माता",
+    "source": "स्रोत कोड",
+    "license": "अनुज्ञप्ति",
     "contact": "संपर्क",
     "contributors": "योगदानकर्ता",
     "support": "सहायता",
