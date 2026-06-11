@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AlertCircle, Home, ExternalLink } from '@icons';
 import { EXTERNAL_LINKS, PATHS } from '@config/links';
+import '@/app/globals.css';
 
 export default function NotFound() {
   return (
