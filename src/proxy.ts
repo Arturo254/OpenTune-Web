@@ -39,7 +39,12 @@ function detectLocale(req: NextRequest): Locale {
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Share-link handler — /?go=<path>  /?go=:lang/<path>
+  // 1. Skip API routes
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
+  // 2. Share-link handler — /?go=<path>  /?go=:lang/<path>
   if (pathname === '/') {
     const go = req.nextUrl.searchParams.get('go');
     if (go !== null) {
