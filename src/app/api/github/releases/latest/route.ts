@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { EXTERNAL_LINKS } from '@config/links';
-import { REPOS } from '@lib/github';
+import { REPOS, fetchWithTimeout } from '@lib/github';
 
 export async function GET() {
   const token = process.env.GITHUB_TOKEN;
@@ -10,9 +10,10 @@ export async function GET() {
   }
 
   try {
-    const res = await fetch(`${EXTERNAL_LINKS.GITHUB_API}/${REPOS.android}/releases/latest`, {
+    const res = await fetchWithTimeout(`${EXTERNAL_LINKS.GITHUB_API}/${REPOS.android}/releases/latest`, {
       headers,
       next: { revalidate: 3600 },
+      timeoutMs: 5000,
     });
 
     if (!res.ok) {
