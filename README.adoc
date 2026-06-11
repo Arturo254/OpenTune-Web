@@ -49,10 +49,10 @@ The website is engineered for speed, responsiveness, and global accessibility.
 | Component | Technology
 
 | **Framework**
-| Next.js 15 (App Router)
+| Next.js 16 (App Router)
 
 | **Styling**
-| Tailwind CSS 4.0
+| Tailwind CSS 4.3
 
 | **Internationalization**
 | `next-intl`
