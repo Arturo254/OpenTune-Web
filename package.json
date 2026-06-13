@@ -7,7 +7,7 @@
     "email": "RajnishKMehta@proton.me",
     "url": "https://github.com/RajnishKMehta"
   },
-  "packageManager": "pnpm@11.5.3",
+  "packageManager": "pnpm@11.6.0",
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
@@ -29,7 +29,7 @@
     ]
   },
   "dependencies": {
-    "lucide-react": "^1.17.0",
+    "lucide-react": "^1.18.0",
     "marked": "^18.0.5",
     "next": "16.2.9",
     "next-intl": "^4.13.0",
@@ -37,7 +37,7 @@
     "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.3",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -47,7 +47,7 @@
     "knip": "^6.16.1",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.4",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.3",
     "typescript": "^6"
   }
 }
