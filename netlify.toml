@@ -1,5 +1,2 @@
 [build]
-command = "pnpm build"
-
-[[plugins]]
-package = "@netlify/plugin-nextjs"
+command = "pnpm install --no-frozen-lockfile && pnpm build"
