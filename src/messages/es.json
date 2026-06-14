@@ -1,0 +1,204 @@
+{
+  "nav": {
+    "features": "Características",
+    "screenshots": "Capturas",
+    "downloads": "Descargas",
+    "download": "Descargar"
+  },
+  "lang": {
+    "title": "Idioma",
+    "select": "Seleccionar idioma",
+    "close": "Cerrar"
+  },
+  "hero": {
+    "badge": "Desarrollado por Arthur Dev Studio",
+    "subtitle": "Un cliente de YouTube Music con Material Design 3, para Android.",
+    "download_apk": "Descargar APK",
+    "try_demo": "Probar Demo"
+  },
+  "warning": {
+    "title": "Aviso de Redirección",
+    "body": "Serás redirigido fuera de OpenTune Web a una demo externa proporcionada por Appetize.io.",
+    "cancel": "Cancelar",
+    "continue": "Continuar"
+  },
+  "features": {
+    "title": "Características",
+    "subtitle": "Descubre todas las funciones que hacen de OpenTune el mejor cliente para tu música.",
+    "yt_title": "Cliente de YouTube Music con Material Design 3",
+    "yt_desc": "Proporciona una experiencia de YouTube Music moderna y elegante en Android, con una interfaz intuitiva y optimizada.",
+    "design_title": "Diseño Moderno y Atractivo",
+    "design_desc": "Basado en Material Design 3, con colores vivos, tipografía moderna y transiciones fluidas.",
+    "ui_title": "Interfaz Intuitiva y Personalizable",
+    "ui_desc": "Interfaz simplificada para un acceso rápido a todas las funciones, con opciones de personalización.",
+    "explore_title": "Explora y Descubre Música",
+    "explore_desc": "Acceso a un vasto catálogo musical con búsqueda avanzada y recomendaciones inteligentes.",
+    "quality_title": "Reproducción de Alta Calidad",
+    "quality_desc": "Música de alta calidad, optimizada para diferentes dispositivos y condiciones de red.",
+    "playlist_title": "Listas de Reproducción y Descargas",
+    "playlist_desc": "Crea y organiza listas de reproducción, y descarga canciones para escuchar sin conexión.",
+    "sync_title": "Integración con YouTube Music",
+    "sync_desc": "Sincroniza tu cuenta de YouTube Music para acceder a tus bibliotecas y recibir notificaciones.",
+    "advanced_title": "Funciones Avanzadas",
+    "advanced_desc": "Control de reproducción por voz y gestos, con soporte para Chromecast y Bluetooth.",
+    "library_title": "Gestión Eficiente de la Biblioteca",
+    "library_desc": "Organiza tu música con herramientas avanzadas de filtrado y categorización.",
+    "multilang_title": "Soporte Multilingüe",
+    "multilang_desc": "Disponible en varios idiomas con traducciones precisas y localización culturalmente relevante.",
+    "updates_title": "Actualizaciones Continuas",
+    "updates_desc": "Actualizaciones regulares con nuevas funciones, mejoras de seguridad y optimización.",
+    "ux_title": "Experiencia de Usuario Optimizada",
+    "ux_desc": "Navegación intuitiva y rendimiento ágil con una interfaz amigable que mejora la experiencia."
+  },
+  "oss": {
+    "badge": "IMPULSADO POR LA COMUNIDAD",
+    "title": "Código Abierto en su Corazón",
+    "body": "OpenTune es creado por amantes de la música para amantes de la música. Contribuye, personaliza y ayúdanos a construir el mejor reproductor de código abierto para Android.",
+    "star": "Estrella en GitHub",
+    "license": "GPL-3.0",
+    "lead": "Desarrollador Principal",
+    "latest_version": "Última versión estable",
+    "loading": "Cargando..."
+  },
+  "screenshots": {
+    "title": "La Interfaz",
+    "subtitle": "Un vistazo a la experiencia OpenTune.",
+    "expand": "Expandir/Colapsar",
+    "player": "Reproductor Inmersivo",
+    "library": "Biblioteca Inteligente",
+    "settings": "Ajustes Avanzados"
+  },
+  "support": {
+    "title": "¿Necesitas ayuda?",
+    "body": "Envía una solicitud o informa de un problema directamente al equipo de desarrollo.",
+    "cta": "Solicitar ayuda"
+  },
+  "downloads": {
+    "title": "Descargas",
+    "subtitle": "Descarga la última versión de OpenTune para tu plataforma.",
+    "android_subtitle": "Descarga la última versión estable.",
+    "stable": "Versión Estable",
+    "loading": "Cargando...",
+    "changelog": "Ver cambios",
+    "versions": "Versiones anteriores",
+    "download_apk": "Descargar APK",
+    "download": "Descargar",
+    "android_req": "Requiere Android 8.0+",
+    "windows_title": "Windows",
+    "windows_subtitle": "El desarrollo está actualmente cerrado.",
+    "closed": "Cerrado",
+    "unavailable": "No disponible",
+    "not_available": "No Disponible"
+  },
+  "changelog": {
+    "title": "Historial de cambios"
+  },
+  "versions": {
+    "title": "Versiones Anteriores",
+    "stable": "Estable",
+    "latest": "Última"
+  },
+  "footer": {
+    "copyright": "© 2026",
+    "rights": "Todos los derechos reservados.",
+    "dev": "Desarrollo",
+    "source": "Código Fuente",
+    "license": "Licencia",
+    "contact": "Contacto",
+    "contributors": "Colaboradores",
+    "support": "Soporte",
+    "text": "Sitio web diseñado por Arturo254 y creado por Rajnish Kumar."
+  },
+  "support_page": {
+    "title": "Enviar Comentarios",
+    "subtitle": "Envía tu problema o describe tu solicitud",
+    "name_label": "Tu nombre",
+    "name_placeholder": "Introduce tu nombre aquí",
+    "type_label": "¿Qué quieres decirnos?",
+    "comment": "Comentario",
+    "comment_desc": "Comparte tu opinión o experiencia",
+    "request": "Solicitud",
+    "request_desc": "Solicitar una nueva función",
+    "report": "Reporte",
+    "report_desc": "Informar de un problema o error",
+    "desc_label": "Descripción",
+    "desc_placeholder": "Cuéntanos más detalles...",
+    "email_label": "Tu correo electrónico (para respuesta privada)",
+    "email_placeholder": "RajnishKMehta@ejemplo.com",
+    "submit": "Enviar mensaje",
+    "failed_submit": "Error al enviar",
+    "sending": "Enviando...",
+    "success_title": "¡Mensaje enviado!",
+    "success_body": "Gracias por contactarnos. Te responderemos pronto.",
+    "success_reset": "Enviar otro mensaje",
+    "privacy_title": "Privacidad Asegurada",
+    "privacy_desc": "Tus datos están protegidos y solo se usarán para contactarte sobre tu reporte.",
+    "response_title": "Tiempo de Respuesta",
+    "response_desc": "Normalmente respondemos en más de 24 horas debido a la alta demanda de solicitudes.",
+    "validation_all": "Por favor, completa todos los campos.",
+    "validation_email": "Por favor, introduce un correo electrónico válido.",
+    "error_sending": "Error al enviar. Por favor, inténtalo de nuevo.",
+    "nav_home": "Inicio",
+    "nav_support": "Soporte"
+  },
+  "contributors": {
+    "badge": "Excelencia en Código Abierto",
+    "title": "Comunidad y Colaboradores",
+    "subtitle": "OpenTune es construido por la comunidad, para la comunidad. Cada commit, reporte de error y traducción nos acerca a la mejor experiencia musical de código abierto.",
+    "stat_stars": "Estrellas",
+    "stat_forks": "Forks",
+    "stat_issues": "Problemas Abiertos",
+    "stat_commits": "Commits Totales",
+    "stat_contributors": "Colaboradores",
+    "top_title": "Principales Colaboradores",
+    "view_all": "Ver Todo",
+    "how_title": "Cómo Ayudar",
+    "how_subtitle": "Elige tu camino y ayúdanos a hacer OpenTune aún mejor.",
+    "help_code_title": "Programación",
+    "help_code_desc": "Implementa nuevas funciones o corrige errores en nuestro código base Kotlin.",
+    "help_code_cta": "Explorar Problemas",
+    "help_design_title": "Diseño UI/UX",
+    "help_design_desc": "Mejora la implementación de Material 3 y el acabado visual.",
+    "help_design_cta": "Unirse a Figma",
+    "help_translate_title": "Traducción",
+    "help_translate_desc": "Ayúdanos a localizar OpenTune para los amantes de la música de todo el mundo.",
+    "help_translate_cta": "Traducir",
+    "help_report_title": "Informar Errores",
+    "help_report_desc": "¿Encontraste un fallo? Los reportes detallados nos ayudan a mantener la estabilidad.",
+    "help_report_cta": "Abrir Problema",
+    "help_donate_title": "Donar",
+    "help_donate_desc": "Apoya el desarrollo de OpenTune con una donación.",
+    "help_donate_cta": "Donar",
+    "activity_title": "Actividad Reciente",
+    "activity_link": "Ver Actividad en GitHub",
+    "error": "Error al cargar datos",
+    "commits_label": "commits"
+  },
+  "not_found": {
+    "title": "404 No Encontrado",
+    "body": "¡Ups! Esa página no existe.",
+    "home": "Ir al Inicio"
+  },
+  "common": {
+    "home": "Inicio",
+    "community": "Comunidad"
+  },
+  "metadata": {
+    "default": {
+      "title": "OpenTune | Cliente Moderno de YouTube Music",
+      "description": "Un cliente de YouTube Music con Material Design 3 para Android. De código abierto, elegante y creado para amantes de la música."
+    },
+    "home": {
+      "title": "OpenTune - Cliente de YouTube Music con Material Design 3",
+      "description": "OpenTune es un cliente de YouTube Music para Android moderno, elegante y de código abierto, basado en Material Design 3."
+    },
+    "contributors": {
+      "title": "Colaboradores | OpenTune",
+      "description": "Conoce a la comunidad y los colaboradores que construyen la mejor experiencia musical de código abierto para Android."
+    },
+    "support": {
+      "title": "Soporte | OpenTune",
+      "description": "¿Necesitas ayuda? Informa de problemas, solicita funciones o contacta con el equipo de desarrollo."
+    }
+  }
+}

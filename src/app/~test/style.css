@@ -1,0 +1,63 @@
+@import '../globals.css';
+/* ─── Test Environment Styles ─── */
+/* Scoped to ~test routes only. Never import this in globals.css. */
+
+.test-page {
+  min-height: 100vh;
+  background-color: var(--color-surface-container-lowest);
+  padding: 2rem 1rem;
+}
+
+.test-section {
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.test-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 1rem;
+  font-family: ui-monospace, 'Courier New', monospace;
+}
+
+.test-label {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.375rem;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.test-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  color: var(--color-primary);
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: ui-monospace, 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+.test-hover-zone {
+  border: 1px dashed var(--color-outline-variant);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  cursor: default;
+}
+
+.test-hover-zone:hover {
+  border-color: var(--color-outline);
+  background-color: color-mix(in srgb, var(--color-primary) 4%, transparent);
+}
