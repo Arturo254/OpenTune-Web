@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html id="app-root" lang="pt-BR">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JTGMLLK8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6JTGMLLK8S');
+    </script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um cliente do YouTube Music com Material Design 3, para Android">
+    <title>OpenTune</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary-container": "#594983",
+                        "secondary": "#ccc2dc",
+                        "inverse-primary": "#665590",
+                        "on-primary-fixed-variant": "#4d3d76",
+                        "on-primary-fixed": "#210f48",
+                        "surface-dim": "#141317",
+                        "tertiary": "#ffd9e3",
+                        "surface-container-lowest": "#0e0e11",
+                        "tertiary-container": "#efb8c8",
+                        "surface-container-low": "#1c1b1f",
+                        "surface": "#141317",
+                        "primary-fixed": "#e9ddff",
+                        "on-secondary": "#332d41",
+                        "on-tertiary-fixed": "#31111d",
+                        "on-tertiary": "#492532",
+                        "on-secondary-fixed-variant": "#4a4359",
+                        "secondary-fixed-dim": "#ccc2dc",
+                        "inverse-on-surface": "#313034",
+                        "on-tertiary-fixed-variant": "#633b48",
+                        "on-surface": "#e5e1e7",
+                        "surface-container": "#201f23",
+                        "surface-container-highest": "#353438",
+                        "on-background": "#e5e1e7",
+                        "secondary-fixed": "#e9def9",
+                        "error-container": "#93000a",
+                        "surface-variant": "#353438",
+                        "on-surface-variant": "#cac4d0",
+                        "on-secondary-container": "#bab1ca",
+                        "primary-container": "#d0bcff",
+                        "primary": "#e9ddff",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#d0bcff",
+                        "tertiary-fixed-dim": "#efb8c8",
+                        "on-primary": "#37265e",
+                        "surface-bright": "#3a383d",
+                        "on-tertiary-container": "#704654",
+                        "tertiary-fixed": "#ffd9e3",
+                        "on-secondary-fixed": "#1e182b",
+                        "surface-tint": "#d0bcff",
+                        "inverse-surface": "#e5e1e7",
+                        "on-error": "#690005",
+                        "outline": "#948f9a",
+                        "background": "#141317",
+                        "outline-variant": "#49454f",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#2b292d",
+                        "secondary-container": "#4a4359"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "player-padding": "32px",
+                        "base": "8px",
+                        "margin-horizontal": "24px",
+                        "list-item-gap": "12px",
+                        "gutter-grid": "16px"
+                    },
+                    fontFamily: {
+                        "title-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "display-lg": ["Epilogue"],
+                        "headline-lg": ["Epilogue"],
+                        "label-lg": ["Be Vietnam Pro"],
+                        "headline-md": ["Epilogue"],
+                        "title-md": ["Be Vietnam Pro"]
+                    },
+                    fontSize: {
+                        "title-lg": ["22px", { lineHeight: "28px", fontWeight: "500" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "label-sm": ["11px", { lineHeight: "16px", fontWeight: "500" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "display-lg": ["57px", { lineHeight: "64px", letterSpacing: "-0.25px", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+                        "label-lg": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+                        "headline-md": ["28px", { lineHeight: "36px", fontWeight: "600" }],
+                        "title-md": ["16px", { lineHeight: "24px", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./icon/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="./icon/icon-512.png">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Marked.js (changelog markdown) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body
+    class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+
+    <!-- ═══════════════════════ DIÁLOGOS ═══════════════════════ -->
+
+    <!-- Diálogo de Idioma -->
+    <dialog id="language-dialog" class="glass-dialog">
+        <div class="dialog-header">
+            <h2 class="font-title-lg text-on-surface">Selecionar Idioma</h2>
+            <button class="dialog-icon-btn" onclick="document.getElementById('language-dialog').close()"
+                aria-label="Fechar">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="dialog-content">
+            <div class="flex flex-col gap-1">
+                <a href="index.html" class="dialog-list-item">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="ES" class="flag-icon">
+                    <span class="text-on-surface font-body-lg">Español</span>
+                </a>
+                <a href="en.html" class="dialog-list-item">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="EN" class="flag-icon">
+                    <span class="text-on-surface font-body-lg">English (US)</span>
+                </a>
+                <a href="Pt_BR.html" class="dialog-list-item">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="PT" class="flag-icon">
+                    <span class="text-on-surface font-body-lg">Português (BR)</span>
+                </a>
+            </div>
+        </div>
+
+    </dialog>
+
+    <!-- Diálogo de Aviso (Redirecionamento da Demo) -->
+    <dialog id="warning-dialog" class="glass-dialog">
+        <div class="dialog-header">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-secondary" style="font-size:20px">warning</span>
+                </div>
+                <h2 class="font-title-lg text-on-surface">Aviso de Redirecionamento</h2>
+            </div>
+        </div>
+        <div class="dialog-content">
+            <p class="text-on-surface-variant font-body-lg">Você será redirecionado para fora do OpenTune Web para uma
+                demonstração externa fornecida pelo Appetize.io.</p>
+        </div>
+        <div class="dialog-actions">
+            <button id="dismissBtn" class="dialog-text-btn">Cancelar</button>
+            <button id="proceedBtn" class="dialog-filled-btn">Continuar</button>
+        </div>
+    </dialog>
+
+
+    <!-- ═══════════════════════ NAVEGAÇÃO ═══════════════════════ -->
+
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/65 backdrop-blur-2xl border-b border-white/10">
+        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 no-underline">
+                <img id="logo" src="./icon/icon-512-maskable.png" alt="OpenTune" width="34" height="34"
+                    class="rounded-lg" onerror="this.style.display='none'">
+                <span class="text-2xl font-black tracking-tighter text-violet-300 font-['Epilogue']">OpenTune</span>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#features"
+                    class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">Recursos</a>
+                <a href="#screenshots"
+                    class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">Capturas de Tela</a>
+                <a href="#downloads"
+                    class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">Downloads</a>
+                <a href="https://github.com/Arturo254/OpenTune" target="_blank"
+                    class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">GitHub</a>
+            </div>
+
+            <!-- Ações -->
+            <div class="flex items-center gap-2">
+
+
+                <button id="languageSelector"
+                    class="flex items-center gap-1 px-3 py-2 rounded-full hover:bg-white/10 text-on-surface-variant transition-colors font-label-lg"
+                    aria-label="Selecionar idioma">
+                    <span class="material-symbols-outlined">language</span>
+                    <span id="languageText" class="hidden lg:inline text-sm">PT</span>
+                    <span class="material-symbols-outlined" style="font-size:18px">expand_more</span>
+                </button>
+
+                <!-- Baixar APK (nav) -->
+                <a id="nav-download-btn" href="#downloads"
+                    class="bg-primary-container text-on-primary-container px-5 py-2 rounded-full font-label-lg active:scale-95 transition-all duration-200 no-underline hidden sm:inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined" style="font-size:18px">download</span>
+                    Baixar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════ CONTEÚDO PRINCIPAL ═══════════════════════ -->
+
+    <main class="pt-24">
+
+        <!-- ─── HERO ─── -->
+        <section class="relative px-margin-horizontal py-20 overflow-hidden">
+            <!-- Brilho de fundo -->
+            <div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
+                <div
+                    class="w-full h-full bg-gradient-to-l from-primary-container to-transparent blur-3xl rounded-full translate-x-1/2">
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+                <!-- Texto -->
+                <div class="flex-1 text-center lg:text-left z-10">
+                    <!-- Chip do desenvolvedor -->
+                    <div
+                        class="developer-chip inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-full font-label-sm mb-6">
+                        <span class="material-symbols-outlined" style="font-size:16px">code</span>
+                        Dev By Arthur Dev Studio
+                    </div>
+
+                    <h1 class="font-display-lg text-display-lg text-primary mb-6 leading-tight">OpenTune</h1>
+                    <p class="font-headline-md text-headline-md text-on-surface-variant mb-10 max-w-xl">
+                        Um cliente do YouTube Music com Material Design 3, para Android.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a id="hero-download-btn" href="#downloads"
+                            class="bg-primary text-on-primary px-10 py-4 rounded-full font-label-lg text-lg flex items-center gap-2 ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline">
+                            <span class="material-symbols-outlined">download</span>
+                            Baixar APK
+                        </a>
+                        <button id="hero-demo-btn"
+                            class="bg-surface-container-high text-on-surface px-10 py-4 rounded-full font-label-lg text-lg border border-outline-variant/30 hover:bg-surface-container-highest transition-all flex items-center gap-2"
+                            onclick="document.getElementById('warning-dialog').showModal()">
+                            <span class="material-symbols-outlined">play_circle</span>
+                            Experimentar Demo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mockup -->
+                <div class="flex-1 relative">
+                    <div
+                        class="relative z-10 rounded-lg overflow-hidden glass-card p-4 ambient-glow transform lg:rotate-3">
+                        <img src="./img/mock.webp" alt="Prévia do App OpenTune" class="w-full rounded-DEFAULT"
+                            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuA8BkCYH4Ou8V-HYKuCcIAjRQrjvcfJiV-lOFjbAI5-KRtxYtaD6doTqytH3ec5uoxkzmd3G624NaCw1cad8yjmDSt5K5xIfOnzhhJVb8FBswNEciIMXjP3VNQUN0MiUxHVQ_AULfM-Z3jQ3rK7n2yat0KcxgxOD7q0GfBjxMZ5kQq93-KSanv5kx9-DED1yxRlbrou6BEzpMaSQnM2D9qGk9mbnIRzCz0lIyzE1XRE10cKFMVWQ5vnuB5Gl14g-0UONC013ukyAKS0'">
+                    </div>
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-tertiary-container/20 rounded-full blur-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── RECURSOS ─── -->
+        <section id="features" class="px-margin-horizontal py-24 bg-surface-container-lowest">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Recursos</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">
+                        Descubra todos os recursos que fazem do OpenTune o melhor cliente para sua música.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Cards de recursos -->
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-primary-container/30 text-primary">
+                            <span class="material-symbols-outlined">music_note</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Cliente do YouTube Music com Material Design 3
+                        </h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Oferece uma experiência moderna e
+                            elegante do YouTube Music no Android, com uma interface intuitiva e otimizada.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-secondary-container/60 text-secondary">
+                            <span class="material-symbols-outlined">palette</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Design Moderno e Atraente</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Baseado no Material Design 3, com
+                            cores vibrantes, tipografia moderna e transições suaves.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-tertiary-container/30 text-tertiary">
+                            <span class="material-symbols-outlined">settings</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Interface Intuitiva e Personalizável</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Interface simplificada para acesso
+                            rápido a todas as funcionalidades, com opções de personalização.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-primary-container/30 text-primary">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Explore e Descubra Música</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Acesso a um vasto catálogo musical
+                            com busca avançada e recomendações inteligentes.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-secondary-container/60 text-secondary">
+                            <span class="material-symbols-outlined">volume_up</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Reprodução de Alta Qualidade</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Música de alta qualidade, otimizada
+                            para diferentes dispositivos e condições de rede.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-tertiary-container/30 text-tertiary">
+                            <span class="material-symbols-outlined">playlist_add</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Playlists e Downloads</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Crie e organize playlists,
+                            e baixe músicas para ouvir offline.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-primary-container/30 text-primary">
+                            <span class="material-symbols-outlined">sync</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Integração com o YouTube Music</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Sincronize sua conta do YouTube Music
+                            para acessar suas bibliotecas e receber notificações.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-secondary-container/60 text-secondary">
+                            <span class="material-symbols-outlined">build</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Funcionalidades Avançadas</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Controle de reprodução por voz e
+                            gestos, com suporte para Chromecast e Bluetooth.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-tertiary-container/30 text-tertiary">
+                            <span class="material-symbols-outlined">folder</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Gerenciamento Eficiente da Biblioteca</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Organize sua música com
+                            ferramentas avançadas de filtragem e categorização.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-primary-container/30 text-primary">
+                            <span class="material-symbols-outlined">translate</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Suporte Multilíngue</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Disponível em vários idiomas
+                            com traduções precisas e localização culturalmente relevante.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-secondary-container/60 text-secondary">
+                            <span class="material-symbols-outlined">update</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Atualizações Contínuas</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Atualizações regulares com novas
+                            funcionalidades, melhorias de segurança e otimização.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-lg hover:bg-surface-container-high transition-colors">
+                        <div class="feature-icon-wrap bg-tertiary-container/30 text-tertiary">
+                            <span class="material-symbols-outlined">headphones</span>
+                        </div>
+                        <h3 class="font-title-md text-on-surface mb-2">Experiência do Usuário Otimizada</h3>
+                        <p class="text-on-surface-variant text-sm leading-relaxed">Navegação intuitiva e desempenho
+                            ágil com uma interface amigável que melhora a experiência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── CÓDIGO ABERTO ─── -->
+        <section class="px-margin-horizontal py-24 relative overflow-hidden">
+            <div
+                class="max-w-7xl mx-auto glass-card rounded-xl p-12 md:p-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="max-w-xl text-center md:text-left">
+                    <span
+                        class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm mb-6">IMPULSIONADO
+                        PELA COMUNIDADE</span>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Código Aberto no Coração</h2>
+                    <p class="text-on-surface-variant font-body-lg mb-8">O OpenTune é construído por amantes de música
+                        para amantes de música. Contribua, personalize e nos ajude a construir o melhor reprodutor
+                        de código aberto para Android.</p>
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a href="https://github.com/Arturo254/OpenTune" target="_blank"
+                            class="flex items-center gap-2 bg-on-surface text-surface px-8 py-3 rounded-full font-label-lg active:scale-95 transition-all no-underline">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1; font-size:20px">star</span>
+                            Favoritar no GitHub
+                        </a>
+                        <div
+                            class="flex items-center gap-2 px-6 py-3 border border-outline-variant rounded-full text-on-surface">
+                            <span class="font-title-md">GPL-3.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 w-full md:w-auto items-center">
+                    <div class="bg-surface-container-high p-6 rounded-lg flex items-center gap-4 border border-white/5">
+                        <div
+                            class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center flex-shrink-0">
+                            <img src="https://avatars.githubusercontent.com/u/87346871?v=4" class="rounded-full" alt="">
+                        </div>
+                        <div>
+                            <p class="text-on-surface font-title-md">Arturo254</p>
+                            <p class="text-on-surface-variant text-sm">Desenvolvedor Principal</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-container-high p-6 rounded-lg flex items-center gap-4 border border-white/5 translate-x-0 md:translate-x-8">
+                        <div
+                            class="w-12 h-12 rounded-full bg-secondary-container/60 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-secondary">verified</span>
+                        </div>
+                        <div>
+                            <p class="text-on-surface font-title-md">Última versão estável</p>
+                            <p id="oss-version-badge" class="text-on-surface-variant text-sm">Carregando...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-3xl -z-0 pointer-events-none">
+            </div>
+        </section>
+
+        <!-- ─── CAPTURAS DE TELA (ACORDEÃO - RECOLHIDO POR PADRÃO) ─── -->
+        <section id="screenshots" class="px-margin-horizontal py-24 bg-surface">
+            <div class="max-w-7xl mx-auto">
+                <!-- Cabeçalho com botão de recolher -->
+                <div class="mb-16">
+                    <div class="flex items-center justify-between cursor-pointer group" id="screenshots-header">
+                        <div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface">A Interface</h2>
+                            <p class="text-on-surface-variant mt-2">Um vislumbre da experiência do OpenTune.</p>
+                        </div>
+                        <button id="screenshots-toggle" class="p-3 rounded-full hover:bg-white/10 transition-colors"
+                            aria-label="Expandir/Recolher">
+                            <span id="screenshots-icon"
+                                class="material-symbols-outlined text-on-surface-variant rotated">
+                                expand_more
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Conteúdo recolhível (recolhido por padrão) -->
+                <div id="screenshots-content"
+                    class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px] collapsed">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div class="space-y-6">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Tela do Reprodutor" class="w-full h-full object-cover"
+                                    src="./img/reproductor.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Reprodutor Imersivo</p>
+                        </div>
+                        <div class="space-y-6 lg:mt-12">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Tela da Biblioteca" class="w-full h-full object-cover"
+                                    src="./img/biblioteca.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Biblioteca Inteligente</p>
+                        </div>
+                        <div class="space-y-6 lg:mt-24">
+                            <div
+                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
+                                <img alt="Tela de Configurações" class="w-full h-full object-cover" src="./img/ajustes.webp">
+                            </div>
+                            <p class="text-center font-title-md text-secondary">Configurações Avançadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── SUPORTE ─── -->
+        <section class="px-margin-horizontal py-20">
+            <div class="max-w-3xl mx-auto">
+                <div class="glass-card rounded-xl p-10 text-center border border-white/5">
+                    <div
+                        class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center mx-auto mb-6">
+                        <span class="material-symbols-outlined text-secondary"
+                            style="font-size:26px">support_agent</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface mb-3">Precisa de Ajuda?</h2>
+                    <p class="text-on-surface-variant font-body-lg mb-8 max-w-md mx-auto">
+                        Envie uma solicitação ou relate um problema diretamente à equipe de desenvolvimento.
+                    </p>
+                    <a href="./from.html"
+                        class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-8 py-3 rounded-full font-label-lg active:scale-95 transition-all hover:brightness-110 no-underline">
+                        <span class="material-symbols-outlined" style="font-size:18px">send</span>
+                        Solicitar Ajuda
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── DOWNLOADS ─── -->
+        <section id="downloads" class="px-margin-horizontal py-24 bg-gradient-to-b from-surface to-slate-950">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Downloads</h2>
+                    <p class="text-on-surface-variant max-w-2xl mx-auto">
+                        Baixe a versão mais recente do OpenTune para sua plataforma.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Card do Android (Ativo) -->
+                    <div class="glass-card rounded-xl p-8 border border-white/5">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined">android</span>
+                            </div>
+                            <div>
+                                <h3 class="font-title-lg text-on-surface">Android</h3>
+                                <p class="text-on-surface-variant text-sm">Baixe a última versão estável.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="version-chip version-chip--stable">Versão Estável</span>
+                            <span id="android-version-badge" class="version-chip">Carregando...</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-6 mb-8">
+                            <button id="changelog-trigger"
+                                class="flex items-center gap-2 text-primary hover:text-on-primary-container transition-colors font-label-lg">
+                                <span class="material-symbols-outlined" style="font-size:18px">list_alt</span>
+                                Ver Alterações
+                            </button>
+                            <button id="versions-trigger"
+                                class="flex items-center gap-2 text-primary hover:text-on-primary-container transition-colors font-label-lg">
+                                <span class="material-symbols-outlined" style="font-size:18px">history</span>
+                                Versões Anteriores
+                            </button>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 border-t border-white/10">
+                            <a id="android-download-btn" href=""
+                                class="flex items-center gap-3 bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline">
+                                <span class="material-symbols-outlined">download</span>
+                                <span id="android-download-text">Baixar APK</span>
+                            </a>
+                            <p class="text-on-surface-variant font-label-sm">Requer Android 8.0+</p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Card do Windows (Desativado) -->
+                    <div class="glass-card rounded-xl border border-white/5 disabled-card" aria-disabled="true">
+                        <div class="disabled-card__inner p-8">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant">laptop_windows</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-title-lg text-on-surface-variant">Windows</h3>
+                                    <p class="text-on-surface-variant text-sm">O desenvolvimento está fechado no momento.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="version-chip">Fechado</span>
+                                <span class="version-chip">Indisponível</span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-6 mb-8">
+                                <span class="flex items-center gap-2 text-on-surface-variant font-label-lg opacity-50">
+                                    <span class="material-symbols-outlined" style="font-size:18px">list_alt</span>
+                                    Ver Alterações
+                                </span>
+                                <span class="flex items-center gap-2 text-on-surface-variant font-label-lg opacity-50">
+                                    <span class="material-symbols-outlined" style="font-size:18px">history</span>
+                                    Versões Anteriores
+                                </span>
+                            </div>
+
+                            <div class="pt-6 border-t border-white/10">
+                                <button disabled
+                                    class="flex items-center gap-3 bg-surface-container text-on-surface-variant px-8 py-3 rounded-full font-label-lg cursor-not-allowed">
+                                    <span class="material-symbols-outlined">block</span>
+                                    Indisponível
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════ RODAPÉ ═══════════════════════ -->
+
+    <footer class="bg-slate-950 w-full py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-8 mb-10">
+                <div class="text-center lg:text-left">
+                    <span class="text-xl font-black text-slate-100 font-['Epilogue']">OpenTune</span>
+                    <p class="text-slate-500 font-['Epilogue'] text-sm mt-1">© 2024 <a
+                            href="https://github.com/Arturo254"
+                            class="text-violet-300 hover:text-violet-200 no-underline transition-colors">Arturo.inc™</a>.
+                        Todos os Direitos Reservados.</p>
+                </div>
+
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <a href="https://github.com/Arturo254/" target="_blank" class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">developer_mode</span>
+                        Dev
+                    </a>
+                    <a href="https://github.com/Arturo254/OpenTune" target="_blank" class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">code</span>
+                        Código-Fonte
+                    </a>
+                    <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE" target="_blank"
+                        class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">description</span>
+                        Licença
+                    </a>
+                    <a href="https://wa.me/5576847925" target="_blank" class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">phone</span>
+                        Contato
+                    </a>
+                    <a href="./contribuidores/contribuidores.html" class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">groups</span>
+                        Contribuidores
+                    </a>
+                    <a href="./from.html" class="footer-chip">
+                        <span class="material-symbols-outlined" style="font-size:16px">support</span>
+                        Suporte
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm font-['Epilogue']">Licenciado sob a Licença de Código Aberto GPL-3.0.</p>
+                <div class="flex gap-6">
+                    <a href="#features"
+                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">Recursos</a>
+                    <a href="#downloads"
+                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">Downloads</a>
+                    <a href="https://github.com/Arturo254/OpenTune" target="_blank"
+                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Diálogo do Registro de Alterações -->
+    <dialog id="changelog-dialog" class="glass-dialog glass-dialog--large">
+        <div class="dialog-header">
+            <h3 class="text-on-surface font-title-md">Registro de Alterações</h3>
+            <button id="close-changelog-btn" class="dialog-icon-btn">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div id="changelog-content" class="dialog-content dialog-content--scroll">
+            <div class="loading-indicator">
+                <div class="circular-progress"></div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Diálogo de Versões Anteriores -->
+    <dialog id="versions-dialog" class="glass-dialog glass-dialog--large">
+        <div class="dialog-header">
+            <h3 class="text-on-surface font-title-md">Versões Anteriores</h3>
+            <button id="close-versions-btn" class="dialog-icon-btn">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div id="versions-list" class="dialog-content dialog-content--scroll">
+            <div class="loading-indicator">
+                <div class="circular-progress"></div>
+            </div>
+        </div>
+    </dialog>
+
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
