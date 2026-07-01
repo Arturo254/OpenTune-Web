@@ -504,32 +504,136 @@
                     </div>
                 </div>
 
-                <!-- Contenido colapsable (colapsado por defecto) -->
+                <!-- Contenido colapsable -->
                 <div id="screenshots-content"
-                    class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px] collapsed">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        <div class="space-y-6">
-                            <div
-                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                                <img alt="Player Screen" class="w-full h-full object-cover"
-                                    src="./img/reproductor.webp">
+                    class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px]">
+                    <div
+                        class="screenshots-shell glass-card rounded-xl border border-white/5 p-5 md:p-8 lg:p-10">
+                        <div class="screenshots-carousel-layout">
+                            <div class="screenshots-hero-panel">
+                                <div class="flex flex-wrap items-start justify-between gap-4 mb-8">
+                                    <div class="max-w-2xl">
+                                        <span
+                                            class="screenshots-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+                                            <span class="material-symbols-outlined text-[18px]">photo_library</span>
+                                            Material 3 Expressive
+                                        </span>
+                                        <h3 id="screenshots-title"
+                                            class="font-headline-md text-headline-md text-on-surface mt-5">
+                                            Reproductor Inmersivo
+                                        </h3>
+                                        <p id="screenshots-description"
+                                            class="text-on-surface-variant font-body-lg mt-3 max-w-xl">
+                                            Portada protagonista, controles amplios y una jerarquía visual centrada en
+                                            la música.
+                                        </p>
+                                    </div>
+                                    <div class="screenshots-counter">
+                                        <span class="text-on-surface-variant text-sm">Vista activa</span>
+                                        <p id="screenshots-current-index"
+                                            class="font-headline-md text-headline-md text-secondary mt-1">
+                                            01
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshots-stage">
+                                    <button id="screenshots-prev" type="button"
+                                        class="screenshots-nav-button"
+                                        aria-label="Ver captura anterior">
+                                        <span class="material-symbols-outlined">chevron_left</span>
+                                    </button>
+
+                                    <div class="screenshots-viewport">
+                                        <div id="screenshots-track" class="screenshots-track">
+                                            <article
+                                                class="screenshots-slide ambient-glow"
+                                                data-title="Reproductor Inmersivo"
+                                                data-description="Portada protagonista, controles amplios y una jerarquía visual centrada en la música.">
+                                                <div class="screenshots-device-frame">
+                                                    <img alt="Player Screen"
+                                                        class="w-full h-full object-cover"
+                                                        src="./img/reproductor.webp">
+                                                </div>
+                                            </article>
+
+                                            <article
+                                                class="screenshots-slide ambient-glow"
+                                                data-title="Biblioteca Inteligente"
+                                                data-description="Colecciones organizadas, búsqueda visible y tarjetas claras para explorar tu biblioteca más rápido.">
+                                                <div class="screenshots-device-frame">
+                                                    <img alt="Library Screen"
+                                                        class="w-full h-full object-cover"
+                                                        src="./img/biblioteca.webp">
+                                                </div>
+                                            </article>
+
+                                            <article
+                                                class="screenshots-slide ambient-glow"
+                                                data-title="Configuración Avanzada"
+                                                data-description="Preferencias agrupadas con una composición limpia y superficies elevadas al estilo Material 3.">
+                                                <div class="screenshots-device-frame">
+                                                    <img alt="Settings Screen"
+                                                        class="w-full h-full object-cover"
+                                                        src="./img/ajustes.webp">
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+
+                                    <button id="screenshots-next" type="button"
+                                        class="screenshots-nav-button"
+                                        aria-label="Ver siguiente captura">
+                                        <span class="material-symbols-outlined">chevron_right</span>
+                                    </button>
+                                </div>
+
+                                <div class="screenshots-footer">
+                                    <div id="screenshots-indicators" class="screenshots-indicators"
+                                        aria-label="Seleccionar captura"></div>
+                                    <p class="text-on-surface-variant text-sm">Desliza o usa los controles para cambiar
+                                        la vista.</p>
+                                </div>
                             </div>
-                            <p class="text-center font-title-md text-secondary">Reproductor Inmersivo</p>
-                        </div>
-                        <div class="space-y-6 lg:mt-12">
-                            <div
-                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                                <img alt="Library Screen" class="w-full h-full object-cover"
-                                    src="./img/biblioteca.webp">
-                            </div>
-                            <p class="text-center font-title-md text-secondary">Biblioteca Inteligente</p>
-                        </div>
-                        <div class="space-y-6 lg:mt-24">
-                            <div
-                                class="rounded-lg overflow-hidden border border-white/10 ambient-glow transition-transform hover:-translate-y-2 aspect-[9/16]">
-                                <img alt="Settings Screen" class="w-full h-full object-cover" src="./img/ajustes.webp">
-                            </div>
-                            <p class="text-center font-title-md text-secondary">Configuración Avanzada</p>
+
+                            <aside class="screenshots-preview-rail" aria-label="Vista rápida de capturas">
+                                <button type="button" class="screenshots-preview-card is-active"
+                                    data-screenshot-index="0">
+                                    <div class="screenshots-preview-thumb">
+                                        <img alt="Vista previa del reproductor" class="w-full h-full object-cover"
+                                            src="./img/reproductor.webp">
+                                    </div>
+                                    <div>
+                                        <p class="font-title-md text-on-surface">Reproductor Inmersivo</p>
+                                        <p class="text-on-surface-variant text-sm mt-1">Experiencia enfocada en la
+                                            reproducción.</p>
+                                    </div>
+                                </button>
+
+                                <button type="button" class="screenshots-preview-card" data-screenshot-index="1">
+                                    <div class="screenshots-preview-thumb">
+                                        <img alt="Vista previa de la biblioteca" class="w-full h-full object-cover"
+                                            src="./img/biblioteca.webp">
+                                    </div>
+                                    <div>
+                                        <p class="font-title-md text-on-surface">Biblioteca Inteligente</p>
+                                        <p class="text-on-surface-variant text-sm mt-1">Acceso claro a playlists,
+                                            álbumes y artistas.</p>
+                                    </div>
+                                </button>
+
+                                <button type="button" class="screenshots-preview-card" data-screenshot-index="2">
+                                    <div class="screenshots-preview-thumb">
+                                        <img alt="Vista previa de ajustes" class="w-full h-full object-cover"
+                                            src="./img/ajustes.webp">
+                                    </div>
+                                    <div>
+                                        <p class="font-title-md text-on-surface">Configuración Avanzada</p>
+                                        <p class="text-on-surface-variant text-sm mt-1">Personalización profunda con
+                                            mejor legibilidad.</p>
+                                    </div>
+                                </button>
+                            </aside>
                         </div>
                     </div>
                 </div>

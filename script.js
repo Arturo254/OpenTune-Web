@@ -677,6 +677,91 @@ document.addEventListener('DOMContentLoaded', function () {
   const screenshotsContent = document.getElementById('screenshots-content');
   const screenshotsToggle = document.getElementById('screenshots-toggle');
   const screenshotsIcon = document.getElementById('screenshots-icon');
+  const screenshotsTrack = document.getElementById('screenshots-track');
+  const screenshotsPrev = document.getElementById('screenshots-prev');
+  const screenshotsNext = document.getElementById('screenshots-next');
+  const screenshotsTitle = document.getElementById('screenshots-title');
+  const screenshotsDescription = document.getElementById('screenshots-description');
+  const screenshotsCurrentIndex = document.getElementById('screenshots-current-index');
+  const screenshotsIndicators = document.getElementById('screenshots-indicators');
+  const screenshotsPreviewCards = Array.from(document.querySelectorAll('.screenshots-preview-card'));
+  const screenshotsSlides = screenshotsTrack ? Array.from(screenshotsTrack.querySelectorAll('.screenshots-slide')) : [];
+  let currentScreenshot = 0;
+  let touchStartX = 0;
+
+
+  
+
+  const updateScreenshotsCarousel = (index) => {
+    if (!screenshotsSlides.length || !screenshotsTrack) return;
+
+    currentScreenshot = (index + screenshotsSlides.length) % screenshotsSlides.length;
+    screenshotsTrack.style.transform = `translateX(-${currentScreenshot * 100}%)`;
+
+    const activeSlide = screenshotsSlides[currentScreenshot];
+    if (activeSlide && screenshotsTitle) {
+      screenshotsTitle.textContent = activeSlide.dataset.title || '';
+    }
+    if (activeSlide && screenshotsDescription) {
+      screenshotsDescription.textContent = activeSlide.dataset.description || '';
+    }
+    if (screenshotsCurrentIndex) {
+      screenshotsCurrentIndex.textContent = String(currentScreenshot + 1).padStart(2, '0');
+    }
+
+    if (screenshotsIndicators) {
+      Array.from(screenshotsIndicators.querySelectorAll('.screenshots-indicator')).forEach((indicator, indicatorIndex) => {
+        indicator.classList.toggle('is-active', indicatorIndex === currentScreenshot);
+        indicator.setAttribute('aria-pressed', indicatorIndex === currentScreenshot ? 'true' : 'false');
+      });
+    }
+
+    screenshotsPreviewCards.forEach((card, cardIndex) => {
+      card.classList.toggle('is-active', cardIndex === currentScreenshot);
+      card.setAttribute('aria-pressed', cardIndex === currentScreenshot ? 'true' : 'false');
+    });
+  };
+
+  if (screenshotsIndicators && screenshotsSlides.length) {
+    screenshotsIndicators.innerHTML = screenshotsSlides.map((_, index) => `
+      <button type="button" class="screenshots-indicator${index === 0 ? ' is-active' : ''}" aria-label="Ir a la captura ${index + 1}" aria-pressed="${index === 0 ? 'true' : 'false'}">
+        ${String(index + 1).padStart(2, '0')}
+      </button>
+    `).join('');
+
+    Array.from(screenshotsIndicators.querySelectorAll('.screenshots-indicator')).forEach((indicator, index) => {
+      indicator.addEventListener('click', () => updateScreenshotsCarousel(index));
+    });
+  }
+
+  if (screenshotsPrev) {
+    screenshotsPrev.addEventListener('click', () => updateScreenshotsCarousel(currentScreenshot - 1));
+  }
+
+  if (screenshotsNext) {
+    screenshotsNext.addEventListener('click', () => updateScreenshotsCarousel(currentScreenshot + 1));
+  }
+
+  screenshotsPreviewCards.forEach((card, index) => {
+    card.addEventListener('click', () => updateScreenshotsCarousel(index));
+  });
+
+  if (screenshotsTrack) {
+    screenshotsTrack.addEventListener('touchstart', function (event) {
+      touchStartX = event.changedTouches[0].clientX;
+    }, { passive: true });
+
+    screenshotsTrack.addEventListener('touchend', function (event) {
+      const touchEndX = event.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+
+      if (Math.abs(deltaX) < 40) return;
+      if (deltaX < 0) updateScreenshotsCarousel(currentScreenshot + 1);
+      else updateScreenshotsCarousel(currentScreenshot - 1);
+    }, { passive: true });
+  }
+
+  updateScreenshotsCarousel(0);
 
   if (screenshotsContent && screenshotsToggle) {
 
