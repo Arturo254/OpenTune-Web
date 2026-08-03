@@ -81,7 +81,22 @@
                         "DEFAULT": "1rem",
                         "lg": "2rem",
                         "xl": "3rem",
-                        "full": "9999px"
+                        "full": "9999px",
+                        /* M3E Shapes — corner-radius family tokens */
+                        "shape-xs":   "4px",
+                        "shape-sm":   "8px",
+                        "shape-md":   "12px",
+                        "shape-lg":   "16px",
+                        "shape-xl":   "28px",
+                        "shape-2xl":  "32px",
+                        "shape-3xl":  "48px",
+                        "shape-pill": "999px",
+                        "shape-squircle": "32% / 18%",
+                        "shape-fan":       "0% 100% 0% 100% / 50%",
+                        "shape-clover4":   "50% 50% 0% 50% / 50% 50% 0% 50%",
+                        "shape-coin":      "50%",
+                        "shape-gem":       "20% 80% 80% 20% / 20% 20% 80% 80%",
+                        "shape-pebble":    "60% 40% 30% 70% / 60% 30% 70% 40%"
                     },
                     spacing: {
                         "player-padding": "32px",
@@ -91,37 +106,63 @@
                         "gutter-grid": "16px"
                     },
                     fontFamily: {
-                        "title-lg": ["Be Vietnam Pro"],
-                        "body-md": ["Be Vietnam Pro"],
-                        "label-sm": ["Be Vietnam Pro"],
-                        "body-lg": ["Be Vietnam Pro"],
-                        "display-lg": ["Epilogue"],
-                        "headline-lg": ["Epilogue"],
-                        "label-lg": ["Be Vietnam Pro"],
-                        "headline-md": ["Epilogue"],
-                        "title-md": ["Be Vietnam Pro"]
+                        /* M3E: Roboto Flex como familia UI única con ejes variables */
+                        "sans": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "title-lg": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "body-md": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "label-sm": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "body-lg": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "display-lg": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "headline-lg": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "label-lg": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "headline-md": ["\"Roboto Flex\"", "system-ui", "sans-serif"],
+                        "title-md": ["\"Roboto Flex\"", "system-ui", "sans-serif"]
                     },
                     fontSize: {
                         "title-lg": ["22px", { lineHeight: "28px", fontWeight: "500" }],
                         "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
                         "label-sm": ["11px", { lineHeight: "16px", fontWeight: "500" }],
                         "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-                        "display-lg": ["57px", { lineHeight: "64px", letterSpacing: "-0.25px", fontWeight: "700" }],
+                        "display-lg": ["57px", { lineHeight: "64px", letterSpacing: "-0.5px", fontWeight: "700" }],
                         "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
                         "label-lg": ["14px", { lineHeight: "20px", fontWeight: "500" }],
                         "headline-md": ["28px", { lineHeight: "36px", fontWeight: "600" }],
                         "title-md": ["16px", { lineHeight: "24px", fontWeight: "500" }]
+                    },
+                    /* M3E MotionScheme — spring easings via cubic-bezier */
+                    transitionTimingFunction: {
+                        "spring-fast":     "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                        "spring-normal":   "cubic-bezier(0.34, 1.3, 0.64, 1)",
+                        "spring-slow":     "cubic-bezier(0.34, 1.1, 0.64, 1)",
+                        "spring-emph":     "cubic-bezier(0.2, 0, 0, 1)",
+                        "standard":        "cubic-bezier(0.2, 0, 0, 1)",
+                        "standard-emph":   "cubic-bezier(0.3, 0, 0, 1)",
+                        "decel":           "cubic-bezier(0, 0, 0, 1)",
+                        "accel":           "cubic-bezier(0.3, 0, 1, 1)"
+                    },
+                    transitionDuration: {
+                        "fast1": "50ms",
+                        "fast2": "100ms",
+                        "med1":  "150ms",
+                        "med2":  "200ms",
+                        "med3":  "250ms",
+                        "slow1": "300ms",
+                        "slow2": "400ms",
+                        "slow3": "500ms"
                     }
                 }
             }
         }
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Roboto Flex (variable, ejes wght/opsz/SLNT/wdth/GRAD) + Material Symbols (variable) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Be+Vietnam+Pro:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         rel="stylesheet">
 
     <!-- Favicon -->
@@ -136,7 +177,8 @@
 </head>
 
 <body
-    class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+    class="bg-background text-on-background font-sans font-body-md selection:bg-primary-container selection:text-on-primary-container"
+    style="font-optical-sizing: auto; font-variation-settings: 'opsz' 14, 'wght' 400;">
 
 <!-- Fondo de partículas circulares (estático, estilo M3) -->
 <div class="particle-bg">
@@ -209,7 +251,7 @@
             <a href="#" class="flex items-center gap-3 no-underline">
                 <img id="logo" src="./icon/icon-512-maskable.png" alt="OpenTune" width="34" height="34"
                     class="rounded-lg" onerror="this.style.display='none'">
-                <span class="text-2xl font-black tracking-tighter text-violet-300 font-['Epilogue']">OpenTune</span>
+                <span class="text-2xl font-black tracking-tighter text-violet-300">OpenTune</span>
             </a>
 
             <!-- Desktop Nav -->
@@ -220,7 +262,7 @@
                     class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">Capturas</a>
                 <a href="#downloads"
                     class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">Descargas</a>
-                <a href="https://github.com/Arturo254/OpenTune" target="_blank"
+                <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer"
                     class="font-['Epilogue'] font-medium text-slate-400 hover:text-slate-100 transition-colors">GitHub</a>
             </div>
 
@@ -274,17 +316,19 @@
                         Un cliente de YouTube Music con Material Design 3, para Android.
                     </p>
 
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <!-- M3E FloatingToolbar (horizontal) — agrupa acciones primarias relacionadas -->
+                    <div class="m3e-floating-toolbar" role="toolbar" aria-label="Acciones principales">
                         <a id="hero-download-btn" href="#downloads"
-                            class="bg-primary text-on-primary px-10 py-4 rounded-full font-label-lg text-lg flex items-center gap-2 ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline">
+                            class="m3e-floating-toolbar__btn m3e-floating-toolbar__btn--primary no-underline">
                             <span class="material-symbols-outlined">download</span>
-                            Descargar APK
+                            <span>Descargar APK</span>
                         </a>
-                        <button id="hero-demo-btn"
-                            class="bg-surface-container-high text-on-surface px-10 py-4 rounded-full font-label-lg text-lg border border-outline-variant/30 hover:bg-surface-container-highest transition-all flex items-center gap-2"
+                        <span class="m3e-floating-toolbar__divider" aria-hidden="true"></span>
+                        <button id="hero-demo-btn" type="button"
+                            class="m3e-floating-toolbar__btn"
                             onclick="document.getElementById('warning-dialog').showModal()">
                             <span class="material-symbols-outlined">play_circle</span>
-                            Probar Demo
+                            <span>Probar Demo</span>
                         </button>
                     </div>
                 </div>
@@ -439,7 +483,7 @@
                         para amantes de la música. Contribuye, personaliza y ayúdanos a construir el mejor reproductor
                         de código abierto para Android.</p>
                     <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <a href="https://github.com/Arturo254/OpenTune" target="_blank"
+                        <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer"
                             class="flex items-center gap-2 bg-on-surface text-surface px-8 py-3 rounded-full font-label-lg active:scale-95 transition-all no-underline">
                             <span class="material-symbols-outlined"
                                 style="font-variation-settings: 'FILL' 1; font-size:20px">star</span>
@@ -687,9 +731,27 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="version-chip version-chip--stable">Versión Estable</span>
-                            <span id="android-version-badge" class="version-chip">Cargando...</span>
+                        <div class="flex flex-wrap items-center gap-3 mb-6">
+                            <!-- M3E ButtonGroup (segmented control) para canal de versión -->
+                            <div class="m3e-button-group" role="tablist" aria-label="Canal de versión">
+                                <button type="button" role="tab"
+                                    class="m3e-button-group__item is-selected"
+                                    data-channel="stable" aria-selected="true">
+                                    Estable
+                                </button>
+                                <button type="button" role="tab"
+                                    class="m3e-button-group__item"
+                                    data-channel="beta" aria-selected="false"
+                                    onclick="window.location.href='./beta.html'">
+                                    Beta
+                                </button>
+                                <button type="button" role="tab"
+                                    class="m3e-button-group__item"
+                                    data-channel="alpha" aria-selected="false" disabled>
+                                    Alpha
+                                </button>
+                            </div>
+                            <span id="android-version-badge" class="version-chip version-chip--latest">Cargando...</span>
                         </div>
 
                         <div class="flex flex-wrap gap-6 mb-8">
@@ -707,11 +769,41 @@
 
                         <div
                             class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 border-t border-white/10">
-                            <a id="android-download-btn" href=""
-                                class="flex items-center gap-3 bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg ambient-glow hover:brightness-110 active:scale-95 transition-all no-underline">
-                                <span class="material-symbols-outlined">download</span>
-                                <span id="android-download-text">Descargar APK</span>
-                            </a>
+                            <!-- M3E SplitButton: acción primaria + flecha con menú de versiones -->
+                            <div class="m3e-split-button" id="android-split-button">
+                                <a id="android-download-btn" href=""
+                                    class="m3e-split-button__primary no-underline">
+                                    <span class="material-symbols-outlined">download</span>
+                                    <span id="android-download-text">Descargar APK</span>
+                                </a>
+                                <span class="m3e-split-button__divider" aria-hidden="true"></span>
+                                <button id="android-split-toggle" type="button"
+                                    class="m3e-split-button__toggle"
+                                    aria-haspopup="menu"
+                                    aria-expanded="false"
+                                    aria-controls="android-version-menu"
+                                    aria-label="Más opciones de descarga">
+                                    <span class="material-symbols-outlined">expand_more</span>
+                                </button>
+                                <ul id="android-version-menu" class="m3e-split-button__menu"
+                                    role="menu" aria-label="Versiones disponibles" hidden>
+                                    <li role="none">
+                                        <a role="menuitem" href="#" data-version-channel="stable"
+                                            class="m3e-split-button__menu-item">
+                                            <span class="material-symbols-outlined">verified</span>
+                                            <span>Última estable</span>
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="menuitem" href="./beta.html" data-version-channel="beta"
+                                            class="m3e-split-button__menu-item">
+                                            <span class="material-symbols-outlined">science</span>
+                                            <span>Beta</span>
+                                        </a>
+                                    </li>
+                            
+                                </ul>
+                            </div>
                             <p class="text-on-surface-variant font-label-sm">Requiere Android 8.0+</p>
                         </div>
                     </div>
@@ -772,36 +864,41 @@
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex flex-col lg:flex-row justify-between items-center gap-8 mb-10">
                 <div class="text-center lg:text-left">
-                    <span class="text-xl font-black text-slate-100 font-['Epilogue']">OpenTune</span>
-                    <p class="text-slate-500 font-['Epilogue'] text-sm mt-1">© 2024 <a
+                    <span class="text-xl font-black text-slate-100">OpenTune</span>
+                    <p class="text-slate-500 text-sm mt-1">© 2024 <a
                             href="https://github.com/Arturo254"
                             class="text-violet-300 hover:text-violet-200 no-underline transition-colors">Arturo.inc™</a>.
                         All Rights Reserved.</p>
                 </div>
 
                 <div class="flex flex-wrap gap-3 justify-center">
-                    <a href="https://github.com/Arturo254/" target="_blank" class="footer-chip">
+                    <a href="https://github.com/Arturo254/" target="_blank" rel="noopener noreferrer"
+                        class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">developer_mode</span>
                         Dev
                     </a>
-                    <a href="https://github.com/Arturo254/OpenTune" target="_blank" class="footer-chip">
+                    <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer"
+                        class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">code</span>
                         Código fuente
                     </a>
-                    <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE" target="_blank"
+                    <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE" target="_blank" rel="noopener noreferrer"
                         class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">description</span>
                         Licencia
                     </a>
-                    <a href="https://wa.me/5576847925" target="_blank" class="footer-chip">
+                    <a href="https://wa.me/5576847925" target="_blank" rel="noopener noreferrer"
+                        class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">phone</span>
                         Contacto
                     </a>
-                    <a href="./contribuidores/contribuidores.html" class="footer-chip">
+                    <a href="./contribuidores/contribuidores.html" rel="noopener noreferrer"
+                        class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">groups</span>
                         Contribuidores
                     </a>
-                    <a href="./from.html" class="footer-chip">
+                    <a href="./from.html" rel="noopener noreferrer"
+                        class="footer-chip">    
                         <span class="material-symbols-outlined" style="font-size:16px">support</span>
                         Soporte
                     </a>
@@ -809,14 +906,14 @@
             </div>
 
             <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm font-['Epilogue']">Licensed under GPL-3.0 Open Source License.</p>
+                <p class="text-slate-500 text-sm">Licensed under GPL-3.0 Open Source License.</p>
                 <div class="flex gap-6">
                     <a href="#features"
-                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">Características</a>
+                        class="text-slate-500 hover:text-violet-200 transition-colors text-sm no-underline">Características</a>
                     <a href="#downloads"
-                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">Descargas</a>
-                    <a href="https://github.com/Arturo254/OpenTune" target="_blank"
-                        class="text-slate-500 hover:text-violet-200 transition-colors font-['Epilogue'] text-sm no-underline">GitHub</a>
+                        class="text-slate-500 hover:text-violet-200 transition-colors text-sm no-underline">Descargas</a>
+                    <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener noreferrer"
+                        class="text-slate-500 hover:text-violet-200 transition-colors text-sm no-underline">GitHub</a>
                 </div>
             </div>
         </div>
@@ -832,8 +929,12 @@
             </button>
         </div>
         <div id="changelog-content" class="dialog-content dialog-content--scroll">
-            <div class="loading-indicator">
-                <div class="circular-progress"></div>
+            <div class="loading-indicator" role="status" aria-label="Cargando">
+                <div class="m3e-loading-indicator">
+                    <span class="m3e-loading-indicator__dot"></span>
+                    <span class="m3e-loading-indicator__dot"></span>
+                    <span class="m3e-loading-indicator__dot"></span>
+                </div>
             </div>
         </div>
     </dialog>
@@ -847,12 +948,46 @@
             </button>
         </div>
         <div id="versions-list" class="dialog-content dialog-content--scroll">
-            <div class="loading-indicator">
-                <div class="circular-progress"></div>
+            <div class="loading-indicator" role="status" aria-label="Cargando">
+                <div class="m3e-loading-indicator">
+                    <span class="m3e-loading-indicator__dot"></span>
+                    <span class="m3e-loading-indicator__dot"></span>
+                    <span class="m3e-loading-indicator__dot"></span>
+                </div>
             </div>
         </div>
     </dialog>
 
+
+    <!-- M3E FAB menu — acciones rápidas accesibles desde cualquier punto -->
+    <div class="m3e-fab" id="m3e-fab" data-open="false">
+        <div class="m3e-fab__items" role="menu" aria-label="Acciones rápidas">
+            <a href="#downloads" class="m3e-fab__item" role="menuitem" data-fab-label="Descargar">
+                <span class="m3e-fab__item-label">Descargar</span>
+                <span class="m3e-fab__item-icon">
+                    <span class="material-symbols-outlined">download</span>
+                </span>
+            </a>
+            <a href="https://github.com/Arturo254/OpenTune" target="_blank" rel="noopener"
+                class="m3e-fab__item" role="menuitem" data-fab-label="GitHub">
+                <span class="m3e-fab__item-label">GitHub</span>
+                <span class="m3e-fab__item-icon">
+                    <span class="material-symbols-outlined">code</span>
+                </span>
+            </a>
+            <a href="./from.html" class="m3e-fab__item" role="menuitem" data-fab-label="Soporte">
+                <span class="m3e-fab__item-label">Soporte</span>
+                <span class="m3e-fab__item-icon">
+                    <span class="material-symbols-outlined">support_agent</span>
+                </span>
+            </a>
+        </div>
+        <button type="button" class="m3e-fab__primary" id="m3e-fab-toggle"
+            aria-label="Abrir menú de acciones" aria-haspopup="menu" aria-expanded="false">
+            <span class="material-symbols-outlined m3e-fab__icon-add">add</span>
+            <span class="material-symbols-outlined m3e-fab__icon-close">close</span>
+        </button>
+    </div>
 
     <!-- Script -->
     <script src="script.js"></script>

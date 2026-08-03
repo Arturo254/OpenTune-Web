@@ -332,7 +332,7 @@ class AndroidVersionHandler extends BaseVersionHandler {
   async loadChangelog() {
     const content = document.getElementById(this.elements.changelogContent);
     if (!content) return;
-    content.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+    content.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
     try {
       const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases/latest`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -352,7 +352,7 @@ class AndroidVersionHandler extends BaseVersionHandler {
   async loadVersions() {
     const list = document.getElementById(this.elements.versionsList);
     if (!list) return;
-    list.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+    list.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
     try {
       const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -405,7 +405,7 @@ class WindowsVersionHandler extends BaseVersionHandler {
   async loadChangelog() {
     const content = document.getElementById(this.elements.changelogContent);
     if (!content) return;
-    content.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+    content.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
     try {
       const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases/latest`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -419,7 +419,7 @@ class WindowsVersionHandler extends BaseVersionHandler {
   async loadVersions() {
     const list = document.getElementById(this.elements.versionsList);
     if (!list) return;
-    list.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+    list.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
     try {
       const response = await fetch(`${APP_CONFIG.urls.api.github}${this.repo}/releases`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -573,7 +573,7 @@ async function loadChangelogContent() {
   const content = document.getElementById('changelog-content');
   if (!content) return;
 
-  content.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+  content.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
 
   try {
     const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases/latest');
@@ -605,7 +605,7 @@ async function loadVersionsList() {
   const list = document.getElementById('versions-list');
   if (!list) return;
 
-  list.innerHTML = '<div class="loading-indicator"><div class="circular-progress"></div></div>';
+  list.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
 
   try {
     const response = await fetch('https://api.github.com/repos/Arturo254/OpenTune/releases');
@@ -1140,3 +1140,140 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+// ============================================
+// M3E COMPONENTS — SplitButton, FAB menu, View Transitions
+// ============================================
+
+(function initM3EComponents() {
+  'use strict';
+
+  /* ─── SplitButton (Android downloads) ─── */
+  function initSplitButton() {
+    const root = document.getElementById('android-split-button');
+    if (!root) return;
+    const toggle = document.getElementById('android-split-toggle');
+    const menu = document.getElementById('android-version-menu');
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+      root.dataset.open = open ? 'true' : 'false';
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        menu.hidden = false;
+        // doble rAF para que la transición dispare
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          menu.dataset.open = 'true';
+        }));
+      } else {
+        menu.dataset.open = 'false';
+        // esperar fin de animación antes de ocultar
+        setTimeout(() => { if (root.dataset.open !== 'true') menu.hidden = true; }, 220);
+      }
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(root.dataset.open !== 'true');
+    });
+
+    // Click fuera cierra
+    document.addEventListener('click', (e) => {
+      if (root.dataset.open === 'true' && !root.contains(e.target)) setOpen(false);
+    });
+
+    // ESC cierra
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && root.dataset.open === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Click en un item del menú (estable/alpha) → actualiza el botón primario
+    menu.querySelectorAll('[data-version-channel]').forEach((item) => {
+      item.addEventListener('click', (e) => {
+        const channel = item.dataset.versionChannel;
+        if (channel === 'beta') return; // ya tiene su propio href
+        e.preventDefault();
+        const label = item.querySelector('span:last-child')?.textContent || 'Descargar APK';
+        const text = document.getElementById('android-download-text');
+        if (text) text.textContent = label;
+        setOpen(false);
+      });
+    });
+  }
+
+  /* ─── FAB menu ─── */
+  function initFabMenu() {
+    const fab = document.getElementById('m3e-fab');
+    const toggle = document.getElementById('m3e-fab-toggle');
+    if (!fab || !toggle) return;
+
+    const setOpen = (open) => {
+      fab.dataset.open = open ? 'true' : 'false';
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú de acciones' : 'Abrir menú de acciones');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(fab.dataset.open !== 'true');
+    });
+
+    // Click fuera cierra
+    document.addEventListener('click', (e) => {
+      if (fab.dataset.open === 'true' && !fab.contains(e.target)) setOpen(false);
+    });
+
+    // ESC cierra
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && fab.dataset.open === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Click en un item cierra
+    fab.querySelectorAll('.m3e-fab__item').forEach((item) => {
+      item.addEventListener('click', () => setOpen(false));
+    });
+  }
+
+  /* ─── View Transitions API para cambio de idioma ─── */
+  function initViewTransitions() {
+    if (!('startViewTransition' in document)) return;
+
+    // Interceptar navegación a otros idiomas
+    const langLinks = document.querySelectorAll('a[href$=".html"]');
+    langLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      // Solo idiomas: index.html, en.html, pt_BR.html, beta.html (mismo origen, navegación interna)
+      if (!/^(index|en|pt_BR|beta|from|404|PdP)\.html/i.test(href)) return;
+      link.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        document.startViewTransition(() => {
+          window.location.href = href;
+        });
+      });
+    });
+  }
+
+  /* ─── Init ─── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initSplitButton();
+      initFabMenu();
+      initViewTransitions();
+    });
+  } else {
+    initSplitButton();
+    initFabMenu();
+    initViewTransitions();
+  }
+})();
+
