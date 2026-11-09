@@ -8,9 +8,9 @@
   [![Android](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://android.com)
   [![Material Design 3](https://img.shields.io/badge/Design-Material%20Design%203-blue.svg)](https://m3.material.io/)
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-  [![GitHub stars](https://img.shields.io/github/stars/Arturo254/OpenTune.svg)](https://github.com/Arturo254/OpenTune/stargazers)
+  [![GitHub stars](https://img.shields.io/github/stars/Arturo254/OpenTune.svg)](https://codeberg.org/Arturo254/OpenTune/stargazers)
   
-  [📱 Descargar APK](https://github.com/Arturo254/OpenTune/releases) • [🌐 Sitio Web](https://opentune.arturodev.com) • [📋 Reportar Bug](https://opentune.arturodev.com/from.html)
+  [📱 Descargar APK](https://codeberg.org/Arturo254/OpenTune/releases) • [🌐 Sitio Web](https://opentune.arturodev.com) • [📋 Reportar Bug](https://opentune.arturodev.com/from.html)
 </div>
 
 ## ✨ Características Principales
@@ -48,13 +48,13 @@
 ## 🚀 Instalación
 
 ### Android
-1. Descarga el APK desde [Releases](https://github.com/Arturo254/OpenTune/releases)
+1. Descarga el APK desde [Releases](https://codeberg.org/Arturo254/OpenTune/releases)
 2. Habilita la instalación de aplicaciones de fuentes desconocidas
 3. Instala el archivo APK descargado
 4. ¡Disfruta de OpenTune!
 
 ### Windows
-1. Descarga el archivo EXE desde [Releases](https://github.com/Arturo254/OpenTune/releases)
+1. Descarga el archivo EXE desde [Releases](https://codeberg.org/Arturo254/OpenTune/releases)
 2. Ejecuta el instalador
 3. Sigue las instrucciones de instalación
 
