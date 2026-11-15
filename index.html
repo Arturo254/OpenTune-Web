@@ -83,20 +83,20 @@
                         "xl": "3rem",
                         "full": "9999px",
                         /* M3E Shapes — corner-radius family tokens */
-                        "shape-xs":   "4px",
-                        "shape-sm":   "8px",
-                        "shape-md":   "12px",
-                        "shape-lg":   "16px",
-                        "shape-xl":   "28px",
-                        "shape-2xl":  "32px",
-                        "shape-3xl":  "48px",
+                        "shape-xs": "4px",
+                        "shape-sm": "8px",
+                        "shape-md": "12px",
+                        "shape-lg": "16px",
+                        "shape-xl": "28px",
+                        "shape-2xl": "32px",
+                        "shape-3xl": "48px",
                         "shape-pill": "999px",
                         "shape-squircle": "32% / 18%",
-                        "shape-fan":       "0% 100% 0% 100% / 50%",
-                        "shape-clover4":   "50% 50% 0% 50% / 50% 50% 0% 50%",
-                        "shape-coin":      "50%",
-                        "shape-gem":       "20% 80% 80% 20% / 20% 20% 80% 80%",
-                        "shape-pebble":    "60% 40% 30% 70% / 60% 30% 70% 40%"
+                        "shape-fan": "0% 100% 0% 100% / 50%",
+                        "shape-clover4": "50% 50% 0% 50% / 50% 50% 0% 50%",
+                        "shape-coin": "50%",
+                        "shape-gem": "20% 80% 80% 20% / 20% 20% 80% 80%",
+                        "shape-pebble": "60% 40% 30% 70% / 60% 30% 70% 40%"
                     },
                     spacing: {
                         "player-padding": "32px",
@@ -131,21 +131,21 @@
                     },
                     /* M3E MotionScheme — spring easings via cubic-bezier */
                     transitionTimingFunction: {
-                        "spring-fast":     "cubic-bezier(0.34, 1.56, 0.64, 1)",
-                        "spring-normal":   "cubic-bezier(0.34, 1.3, 0.64, 1)",
-                        "spring-slow":     "cubic-bezier(0.34, 1.1, 0.64, 1)",
-                        "spring-emph":     "cubic-bezier(0.2, 0, 0, 1)",
-                        "standard":        "cubic-bezier(0.2, 0, 0, 1)",
-                        "standard-emph":   "cubic-bezier(0.3, 0, 0, 1)",
-                        "decel":           "cubic-bezier(0, 0, 0, 1)",
-                        "accel":           "cubic-bezier(0.3, 0, 1, 1)"
+                        "spring-fast": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                        "spring-normal": "cubic-bezier(0.34, 1.3, 0.64, 1)",
+                        "spring-slow": "cubic-bezier(0.34, 1.1, 0.64, 1)",
+                        "spring-emph": "cubic-bezier(0.2, 0, 0, 1)",
+                        "standard": "cubic-bezier(0.2, 0, 0, 1)",
+                        "standard-emph": "cubic-bezier(0.3, 0, 0, 1)",
+                        "decel": "cubic-bezier(0, 0, 0, 1)",
+                        "accel": "cubic-bezier(0.3, 0, 1, 1)"
                     },
                     transitionDuration: {
                         "fast1": "50ms",
                         "fast2": "100ms",
-                        "med1":  "150ms",
-                        "med2":  "200ms",
-                        "med3":  "250ms",
+                        "med1": "150ms",
+                        "med2": "200ms",
+                        "med3": "250ms",
                         "slow1": "300ms",
                         "slow2": "400ms",
                         "slow3": "500ms"
@@ -180,14 +180,14 @@
     class="bg-background text-on-background font-sans font-body-md selection:bg-primary-container selection:text-on-primary-container"
     style="font-optical-sizing: auto; font-variation-settings: 'opsz' 14, 'wght' 400;">
 
-<!-- Fondo de partículas circulares (estático, estilo M3) -->
-<div class="particle-bg">
-    <div class="particle particle-1"></div>
-    <div class="particle particle-2"></div>
-    <div class="particle particle-3"></div>
-    <div class="particle particle-4"></div>
-    <div class="particle particle-5"></div>
-</div>
+    <!-- Fondo de partículas circulares (estático, estilo M3) -->
+    <div class="particle-bg">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+    </div>
 
 
     <!-- ═══════════════════════ DIALOGS ═══════════════════════ -->
@@ -324,8 +324,7 @@
                             <span>Descargar APK</span>
                         </a>
                         <span class="m3e-floating-toolbar__divider" aria-hidden="true"></span>
-                        <button id="hero-demo-btn" type="button"
-                            class="m3e-floating-toolbar__btn"
+                        <button id="hero-demo-btn" type="button" class="m3e-floating-toolbar__btn"
                             onclick="document.getElementById('warning-dialog').showModal()">
                             <span class="material-symbols-outlined">play_circle</span>
                             <span>Probar Demo</span>
@@ -497,15 +496,18 @@
                 </div>
 
                 <div class="flex flex-col gap-6 w-full max-w-sm items-center">
-                    <div class="w-full bg-surface-container-high p-6 rounded-lg flex items-center gap-4 border border-white/5">
+                    <div
+                        class="w-full bg-surface-container-high p-6 rounded-lg flex items-center gap-4 border border-white/5">
                         <div
                             class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center flex-shrink-0">
                             <img src="https://avatars.githubusercontent.com/u/87346871?v=4" class="rounded-full" alt="">
                         </div>
                         <div>
                             <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-secondary text-[20px] leading-none">verified</span><p class="text-on-surface font-title-md">Arturo254</p>
-                                
+                                <span
+                                    class="material-symbols-outlined text-secondary text-[20px] leading-none">verified</span>
+                                <p class="text-on-surface font-title-md">Arturo254</p>
+
                             </div>
                             <p class="text-on-surface-variant text-sm">Lead Developer</p>
                         </div>
@@ -551,8 +553,7 @@
                 <!-- Contenido colapsable -->
                 <div id="screenshots-content"
                     class="transition-all duration-300 ease-in-out overflow-hidden max-h-[2000px]">
-                    <div
-                        class="screenshots-shell glass-card rounded-xl border border-white/5 p-5 md:p-8 lg:p-10">
+                    <div class="screenshots-shell glass-card rounded-xl border border-white/5 p-5 md:p-8 lg:p-10">
                         <div class="screenshots-carousel-layout">
                             <div class="screenshots-hero-panel">
                                 <div class="flex flex-wrap items-start justify-between gap-4 mb-8">
@@ -582,51 +583,43 @@
                                 </div>
 
                                 <div class="screenshots-stage">
-                                    <button id="screenshots-prev" type="button"
-                                        class="screenshots-nav-button"
+                                    <button id="screenshots-prev" type="button" class="screenshots-nav-button"
                                         aria-label="Ver captura anterior">
                                         <span class="material-symbols-outlined">chevron_left</span>
                                     </button>
 
                                     <div class="screenshots-viewport">
                                         <div id="screenshots-track" class="screenshots-track">
-                                            <article
-                                                class="screenshots-slide ambient-glow"
+                                            <article class="screenshots-slide ambient-glow"
                                                 data-title="Reproductor Inmersivo"
                                                 data-description="Portada protagonista, controles amplios y una jerarquía visual centrada en la música.">
                                                 <div class="screenshots-device-frame">
-                                                    <img alt="Player Screen"
-                                                        class="w-full h-full object-cover"
+                                                    <img alt="Player Screen" class="w-full h-full object-cover"
                                                         src="./img/reproductor.webp">
                                                 </div>
                                             </article>
 
-                                            <article
-                                                class="screenshots-slide ambient-glow"
+                                            <article class="screenshots-slide ambient-glow"
                                                 data-title="Biblioteca Inteligente"
                                                 data-description="Colecciones organizadas, búsqueda visible y tarjetas claras para explorar tu biblioteca más rápido.">
                                                 <div class="screenshots-device-frame">
-                                                    <img alt="Library Screen"
-                                                        class="w-full h-full object-cover"
+                                                    <img alt="Library Screen" class="w-full h-full object-cover"
                                                         src="./img/biblioteca.webp">
                                                 </div>
                                             </article>
 
-                                            <article
-                                                class="screenshots-slide ambient-glow"
+                                            <article class="screenshots-slide ambient-glow"
                                                 data-title="Configuración Avanzada"
                                                 data-description="Preferencias agrupadas con una composición limpia y superficies elevadas al estilo Material 3.">
                                                 <div class="screenshots-device-frame">
-                                                    <img alt="Settings Screen"
-                                                        class="w-full h-full object-cover"
+                                                    <img alt="Settings Screen" class="w-full h-full object-cover"
                                                         src="./img/ajustes.webp">
                                                 </div>
                                             </article>
                                         </div>
                                     </div>
 
-                                    <button id="screenshots-next" type="button"
-                                        class="screenshots-nav-button"
+                                    <button id="screenshots-next" type="button" class="screenshots-nav-button"
                                         aria-label="Ver siguiente captura">
                                         <span class="material-symbols-outlined">chevron_right</span>
                                     </button>
@@ -734,24 +727,21 @@
                         <div class="flex flex-wrap items-center gap-3 mb-6">
                             <!-- M3E ButtonGroup (segmented control) para canal de versión -->
                             <div class="m3e-button-group" role="tablist" aria-label="Canal de versión">
-                                <button type="button" role="tab"
-                                    class="m3e-button-group__item is-selected"
+                                <button type="button" role="tab" class="m3e-button-group__item is-selected"
                                     data-channel="stable" aria-selected="true">
                                     Estable
                                 </button>
-                                <button type="button" role="tab"
-                                    class="m3e-button-group__item"
-                                    data-channel="beta" aria-selected="false"
-                                    onclick="window.location.href='./beta.html'">
+                                <button type="button" role="tab" class="m3e-button-group__item" data-channel="beta"
+                                    aria-selected="false" onclick="window.location.href='./beta.html'">
                                     Beta
                                 </button>
-                                <button type="button" role="tab"
-                                    class="m3e-button-group__item"
-                                    data-channel="alpha" aria-selected="false" disabled>
+                                <button type="button" role="tab" class="m3e-button-group__item" data-channel="alpha"
+                                    aria-selected="false" disabled>
                                     Alpha
                                 </button>
                             </div>
-                            <span id="android-version-badge" class="version-chip version-chip--latest">Cargando...</span>
+                            <span id="android-version-badge"
+                                class="version-chip version-chip--latest">Cargando...</span>
                         </div>
 
                         <div class="flex flex-wrap gap-6 mb-8">
@@ -771,22 +761,18 @@
                             class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 border-t border-white/10">
                             <!-- M3E SplitButton: acción primaria + flecha con menú de versiones -->
                             <div class="m3e-split-button" id="android-split-button">
-                                <a id="android-download-btn" href=""
-                                    class="m3e-split-button__primary no-underline">
+                                <a id="android-download-btn" href="" class="m3e-split-button__primary no-underline">
                                     <span class="material-symbols-outlined">download</span>
                                     <span id="android-download-text">Descargar APK</span>
                                 </a>
                                 <span class="m3e-split-button__divider" aria-hidden="true"></span>
-                                <button id="android-split-toggle" type="button"
-                                    class="m3e-split-button__toggle"
-                                    aria-haspopup="menu"
-                                    aria-expanded="false"
-                                    aria-controls="android-version-menu"
+                                <button id="android-split-toggle" type="button" class="m3e-split-button__toggle"
+                                    aria-haspopup="menu" aria-expanded="false" aria-controls="android-version-menu"
                                     aria-label="Más opciones de descarga">
                                     <span class="material-symbols-outlined">expand_more</span>
                                 </button>
-                                <ul id="android-version-menu" class="m3e-split-button__menu"
-                                    role="menu" aria-label="Versiones disponibles" hidden>
+                                <ul id="android-version-menu" class="m3e-split-button__menu" role="menu"
+                                    aria-label="Versiones disponibles" hidden>
                                     <li role="none">
                                         <a role="menuitem" href="#" data-version-channel="stable"
                                             class="m3e-split-button__menu-item">
@@ -801,7 +787,7 @@
                                             <span>Beta</span>
                                         </a>
                                     </li>
-                            
+
                                 </ul>
                             </div>
                             <p class="text-on-surface-variant font-label-sm">Requiere Android 8.0+</p>
@@ -810,45 +796,57 @@
 
 
 
-                    <!-- Windows Card (Disabled) -->
-                    <div class="glass-card rounded-xl border border-white/5 disabled-card" aria-disabled="true">
-                        <div class="disabled-card__inner p-8">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
-                                    <span
-                                        class="material-symbols-outlined text-on-surface-variant">laptop_windows</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-title-lg text-on-surface-variant">Windows</h3>
-                                    <p class="text-on-surface-variant text-sm">El desarrollo está cerrado actualmente.
-                                    </p>
-                                </div>
+                    <!-- Windows Card (Active) -->
+                    <div class="glass-card rounded-xl p-8 border border-white/5">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-secondary-container/60 text-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined">laptop_windows</span>
                             </div>
-
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="version-chip">Cerrado</span>
-                                <span class="version-chip">No disponible</span>
+                            <div>
+                                <h3 class="font-title-lg text-on-surface">Windows</h3>
+                                <p class="text-on-surface-variant text-sm">Descarga la versión de escritorio.</p>
                             </div>
+                        </div>
 
-                            <div class="flex flex-wrap gap-6 mb-8">
-                                <span class="flex items-center gap-2 text-on-surface-variant font-label-lg opacity-50">
-                                    <span class="material-symbols-outlined" style="font-size:18px">list_alt</span>
-                                    Ver cambios
-                                </span>
-                                <span class="flex items-center gap-2 text-on-surface-variant font-label-lg opacity-50">
-                                    <span class="material-symbols-outlined" style="font-size:18px">history</span>
-                                    Versiones anteriores
-                                </span>
-                            </div>
-
-                            <div class="pt-6 border-t border-white/10">
-                                <button disabled
-                                    class="flex items-center gap-3 bg-surface-container text-on-surface-variant px-8 py-3 rounded-full font-label-lg cursor-not-allowed">
-                                    <span class="material-symbols-outlined">block</span>
-                                    No disponible
+                        <div class="flex flex-wrap items-center gap-3 mb-6">
+                            <div class="m3e-button-group" role="tablist" aria-label="Canal de versión">
+                                <button type="button" role="tab" class="m3e-button-group__item is-selected"
+                                    data-channel="stable" aria-selected="true">
+                                    Estable
+                                </button>
+                                <button type="button" role="tab" class="m3e-button-group__item" data-channel="beta"
+                                    aria-selected="false" disabled>
+                                    Beta
                                 </button>
                             </div>
+                            <span id="currentVersionWindows"
+                                class="version-chip version-chip--latest">Cargando...</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-6 mb-8">
+                            <button id="changelogWindowsBtn"
+                                class="flex items-center gap-2 text-primary hover:text-on-primary-container transition-colors font-label-lg">
+                                <span class="material-symbols-outlined" style="font-size:18px">list_alt</span>
+                                Ver cambios
+                            </button>
+                            <button id="versionsWindowsBtn"
+                                class="flex items-center gap-2 text-primary hover:text-on-primary-container transition-colors font-label-lg">
+                                <span class="material-symbols-outlined" style="font-size:18px">history</span>
+                                Versiones anteriores
+                            </button>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-6 border-t border-white/10">
+                            <a id="downloadBtnWindows"
+                                href="https://www.mediafire.com/file/vv4w9ujz40dh47n/OpenTune.exe/file" target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-3 bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-label-lg active:scale-95 transition-all no-underline">
+                                <span class="material-symbols-outlined">download</span>
+                                <span id="downloadTextWindows">Descargar .exe</span>
+                            </a>
+                            <p class="text-on-surface-variant font-label-sm">Windows 10+</p>
                         </div>
                     </div>
 
@@ -865,8 +863,7 @@
             <div class="flex flex-col lg:flex-row justify-between items-center gap-8 mb-10">
                 <div class="text-center lg:text-left">
                     <span class="text-xl font-black text-slate-100">OpenTune</span>
-                    <p class="text-slate-500 text-sm mt-1">© 2024 <a
-                            href="https://github.com/Arturo254"
+                    <p class="text-slate-500 text-sm mt-1">© 2024 <a href="https://github.com/Arturo254"
                             class="text-violet-300 hover:text-violet-200 no-underline transition-colors">Arturo.inc™</a>.
                         All Rights Reserved.</p>
                 </div>
@@ -882,23 +879,20 @@
                         <span class="material-symbols-outlined" style="font-size:16px">code</span>
                         Código fuente
                     </a>
-                    <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE" target="_blank" rel="noopener noreferrer"
-                        class="footer-chip">
+                    <a href="https://raw.githubusercontent.com/Arturo254/OpenTune/master/LICENSE" target="_blank"
+                        rel="noopener noreferrer" class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">description</span>
                         Licencia
                     </a>
-                    <a href="https://wa.me/5576847925" target="_blank" rel="noopener noreferrer"
-                        class="footer-chip">
+                    <a href="https://wa.me/5576847925" target="_blank" rel="noopener noreferrer" class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">phone</span>
                         Contacto
                     </a>
-                    <a href="./contribuidores/contribuidores.html" rel="noopener noreferrer"
-                        class="footer-chip">
+                    <a href="./contribuidores/contribuidores.html" rel="noopener noreferrer" class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">groups</span>
                         Contribuidores
                     </a>
-                    <a href="./from.html" rel="noopener noreferrer"
-                        class="footer-chip">    
+                    <a href="./from.html" rel="noopener noreferrer" class="footer-chip">
                         <span class="material-symbols-outlined" style="font-size:16px">support</span>
                         Soporte
                     </a>
@@ -968,8 +962,8 @@
                     <span class="material-symbols-outlined">download</span>
                 </span>
             </a>
-            <a href="https://codeberg.org/Arturo254/OpenTune" target="_blank" rel="noopener"
-                class="m3e-fab__item" role="menuitem" data-fab-label="GitHub">
+            <a href="https://codeberg.org/Arturo254/OpenTune" target="_blank" rel="noopener" class="m3e-fab__item"
+                role="menuitem" data-fab-label="GitHub">
                 <span class="m3e-fab__item-label">GitHub</span>
                 <span class="m3e-fab__item-icon">
                     <span class="material-symbols-outlined">code</span>
@@ -982,8 +976,8 @@
                 </span>
             </a>
         </div>
-        <button type="button" class="m3e-fab__primary" id="m3e-fab-toggle"
-            aria-label="Abrir menú de acciones" aria-haspopup="menu" aria-expanded="false">
+        <button type="button" class="m3e-fab__primary" id="m3e-fab-toggle" aria-label="Abrir menú de acciones"
+            aria-haspopup="menu" aria-expanded="false">
             <span class="material-symbols-outlined m3e-fab__icon-add">add</span>
             <span class="material-symbols-outlined m3e-fab__icon-close">close</span>
         </button>

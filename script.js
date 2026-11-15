@@ -41,35 +41,22 @@ const APP_CONFIG = {
     },
 
     windows: {
-
       repo: 'Arturo254/OpenTune-Desktop',
-
-      apiBase: 'https://api.github.com/repos/',
-
-      releaseBase: 'https://github.com/',
-
+      apiBase: 'https://codeberg.org/api/v1/repos/',
+      releaseBase: 'https://codeberg.org/',
       currentVersion: '1.9.0',
-
-      downloadFormat: '{version}/OpenTune-Desktop-{version}.exe',
-
+      downloadFormat: '{version}/app-universal-release.apk', // no usado
+      downloadUrl: 'https://www.mediafire.com/file/vv4w9ujz40dh47n/OpenTune.exe/file',
       elements: {
-
         version: 'currentVersionWindows',
-
         download: 'downloadBtnWindows',
-
         text: 'downloadTextWindows',
-
-        changelog: 'changelogWindows',
-
-        versions: 'versionsWindows',
-
-        changelogContent: 'changelogContentWindows',
-
-        versionsList: 'versionsListWindows'
-
+        // mismos diálogos que Android
+        changelog: 'changelog-dialog',
+        versions: 'versions-dialog',
+        changelogContent: 'changelog-content',
+        versionsList: 'versions-list'
       }
-
     }
 
   },
@@ -736,115 +723,92 @@ class AndroidVersionHandler extends BaseVersionHandler {
 
 
 class WindowsVersionHandler extends BaseVersionHandler {
-
   constructor(config) {
-
     super(config);
-
-    this.initDialogs();
-
+    this.downloadUrl = config.downloadUrl;
   }
 
+  updateDownloadButton() {
+    const downloadBtn = document.getElementById(this.elements.download);
+    const downloadText = document.getElementById(this.elements.text);
+    if (!downloadBtn) return;
 
-  initDialogs() {
+    downloadBtn.href = this.downloadUrl;
+    downloadBtn.target = '_blank';
+    downloadBtn.rel = 'noopener noreferrer';
 
-    const changelogDialog = document.getElementById(this.elements.changelog);
-
-    const versionsDialog = document.getElementById(this.elements.versions);
-
-
-    if (changelogDialog) {
-
-      window.showChangelogWindows = () => { changelogDialog.showModal(); this.loadChangelog(); };
-
-      window.closeChangelogWindows = () => changelogDialog.close();
-
+    if (downloadText && this.latestVersion && this.latestVersion !== this.currentVersion) {
+      downloadText.textContent = `Descargar .exe (${this.latestVersion})`;
     }
-
-    if (versionsDialog) {
-
-      window.showVersionsWindows = () => { versionsDialog.showModal(); this.loadVersions(); };
-
-      window.closeVersionsWindows = () => versionsDialog.close();
-
-    }
-
   }
-
 
   async loadChangelog() {
-
     const content = document.getElementById(this.elements.changelogContent);
-
     if (!content) return;
 
     content.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
 
     try {
-
       const response = await fetch(`${this.apiBase}${this.repo}/releases/latest`);
-
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
       const data = await response.json();
 
-      content.innerHTML = `<div class="markdown-body">${marked.parse(data.body || 'Sin notas disponibles.')}</div>`;
+      const date = new Date(data.published_at).toLocaleDateString('es-ES', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
 
+      const md = typeof marked !== 'undefined'
+        ? marked.parse(data.body || 'Sin notas disponibles.')
+        : (data.body || 'Sin notas disponibles.');
+
+      content.innerHTML = `
+        <div class="changelog-meta"><span class="changelog-date">📅 ${date}</span></div>
+        <div class="markdown-body">${md}</div>`;
     } catch (error) {
-
       content.innerHTML = `<p style="color:var(--md-sys-color-error);padding:16px">Error: ${error.message}</p>`;
-
     }
-
   }
 
-
   async loadVersions() {
-
     const list = document.getElementById(this.elements.versionsList);
-
     if (!list) return;
 
     list.innerHTML = '<div class="loading-indicator" role="status" aria-label="Cargando"><div class="m3e-loading-indicator"><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span><span class="m3e-loading-indicator__dot"></span></div></div>';
 
     try {
-
-      const response = await fetch(`${this.apiBase}${this.repo}/releases`);
-
+      const response = await fetch(`${this.apiBase}${this.repo}/releases?limit=50`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       const releases = await response.json();
 
-      list.innerHTML = releases.map(release => `
+      if (!releases.length) {
+        list.innerHTML = '<p class="text-on-surface-variant" style="padding:16px">No hay versiones disponibles.</p>';
+        return;
+      }
 
-        <div class="version-list-item">
-
-          <div class="version-list-info">
-
-            <span class="version-tag">${release.tag_name}</span>
-
-            <span class="version-date">${new Date(release.published_at).toLocaleDateString()}</span>
-
-          </div>
-
-          <a href="${release.assets[0]?.browser_download_url || '#'}" class="primary-button small">
-
-            <span class="material-symbols-rounded">download</span>
-
-            Descargar
-
-          </a>
-
-        </div>`).join('');
-
+      list.innerHTML = releases.map((release, i) => {
+        const date = new Date(release.published_at).toLocaleDateString('es-ES', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+        return `
+          <div class="version-list-item">
+            <div class="version-list-info">
+              <div class="version-meta-row">
+                <span class="version-tag">${release.tag_name}</span>
+                ${i === 0 ? '<span class="version-chip version-chip--latest">Más reciente</span>' : ''}
+              </div>
+              <span class="version-date">${date}</span>
+            </div>
+            <a href="${this.downloadUrl}" target="_blank" rel="noopener noreferrer" class="version-dl-btn" download>
+              <span class="material-symbols-outlined" style="font-size:18px">download</span>
+              Descargar
+            </a>
+          </div>`;
+      }).join('');
     } catch (error) {
-
       list.innerHTML = `<p style="color:var(--md-sys-color-error);padding:16px">Error: ${error.message}</p>`;
-
     }
-
   }
-
 }
 
 
@@ -925,9 +889,8 @@ class CarouselManager {
 document.addEventListener('DOMContentLoaded', () => {
 
   const app = new OpenTuneApp(APP_CONFIG);
-
   app.init();
-
+  window.OpenTuneApp = app;
 
   if (document.querySelectorAll('.carousel-image').length && document.getElementById('popupOverlay')) {
 
@@ -938,6 +901,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+
 
 
 // Mostrar versión en el badge OSS
@@ -992,37 +957,52 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const closeVersionsBtn = document.getElementById('close-versions-btn');
 
+  const changelogWindowsBtn = document.getElementById('changelogWindowsBtn');
+
+  const versionsWindowsBtn = document.getElementById('versionsWindowsBtn');
+
+  // Instancia del handler de Windows (creada por VersionManager)
+  // La exponemos para poder invocar sus métodos desde aquí
+  if (changelogWindowsBtn && changelogDialog) {
+    changelogWindowsBtn.addEventListener('click', () => {
+      changelogDialog.querySelector('.dialog-header h3').textContent = 'Registro de cambios — Windows';
+      changelogDialog.showModal();
+      window.OpenTuneApp?.versionManager?.handlers?.windows?.loadChangelog();
+    });
+  }
+
+  if (versionsWindowsBtn && versionsDialog) {
+    versionsWindowsBtn.addEventListener('click', () => {
+      versionsDialog.querySelector('.dialog-header h3').textContent = 'Versiones anteriores — Windows';
+      versionsDialog.showModal();
+      window.OpenTuneApp?.versionManager?.handlers?.windows?.loadVersions();
+    });
+  }
+
 
   // Función para abrir changelog
 
   if (changelogTrigger && changelogDialog) {
 
     changelogTrigger.addEventListener('click', function () {
-
-      changelogDialog.showModal();
-
-      // Cargar el changelog automáticamente
-
-      loadChangelogContent();
-
-    });
+  const h3 = changelogDialog.querySelector('.dialog-header h3');
+  if (h3) h3.textContent = 'Registro de cambios';
+  changelogDialog.showModal();
+  loadChangelogContent();
+});
 
   }
 
 
-  // Función para abrir versiones
 
   if (versionsTrigger && versionsDialog) {
 
-    versionsTrigger.addEventListener('click', function () {
-
-      versionsDialog.showModal();
-
-      // Cargar las versiones automáticamente
-
-      loadVersionsList();
-
-    });
+ versionsTrigger.addEventListener('click', function () {
+  const h3 = versionsDialog.querySelector('.dialog-header h3');
+  if (h3) h3.textContent = 'Versiones anteriores';
+  versionsDialog.showModal();
+  loadVersionsList();
+});
 
   }
 
@@ -1882,88 +1862,88 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // Elementos
+  // Elementos
 
-    const demoBtn = document.getElementById('hero-demo-btn');
+  const demoBtn = document.getElementById('hero-demo-btn');
 
-    const warningDialog = document.getElementById('warning-dialog');
+  const warningDialog = document.getElementById('warning-dialog');
 
-    const proceedBtn = document.getElementById('proceedBtn');
+  const proceedBtn = document.getElementById('proceedBtn');
 
-    const dismissBtn = document.getElementById('dismissBtn');
-
-
-    // Abrir diálogo al hacer clic en "Probar Demo"
-
-    if (demoBtn && warningDialog) {
-
-        demoBtn.addEventListener('click', function(e) {
-
-            e.preventDefault();
-
-            warningDialog.showModal();
-
-        });
-
-    }
+  const dismissBtn = document.getElementById('dismissBtn');
 
 
-    // Ir a la demo al hacer clic en "Continuar"
+  // Abrir diálogo al hacer clic en "Probar Demo"
 
-    if (proceedBtn) {
+  if (demoBtn && warningDialog) {
 
-        proceedBtn.addEventListener('click', function() {
+    demoBtn.addEventListener('click', function (e) {
 
-            window.location.href = 'https://appetize.io/app/b_yb62tcjuqzqjvctnswv3krpnmm';
+      e.preventDefault();
 
-        });
+      warningDialog.showModal();
 
-    }
+    });
 
-
-    // Cerrar diálogo al hacer clic en "Cancelar"
-
-    if (dismissBtn) {
-
-        dismissBtn.addEventListener('click', function() {
-
-            warningDialog.close();
-
-        });
-
-    }
+  }
 
 
-    // Cerrar diálogo al hacer clic fuera de él
+  // Ir a la demo al hacer clic en "Continuar"
 
-    if (warningDialog) {
+  if (proceedBtn) {
 
-        warningDialog.addEventListener('click', function(e) {
+    proceedBtn.addEventListener('click', function () {
 
-            if (e.target === warningDialog) {
+      window.location.href = 'https://appetize.io/app/b_yb62tcjuqzqjvctnswv3krpnmm';
 
-                warningDialog.close();
+    });
 
-            }
-
-        });
-
-    }
+  }
 
 
-    // Cerrar con la tecla ESC (por defecto funciona, pero lo aseguramos)
+  // Cerrar diálogo al hacer clic en "Cancelar"
 
-    if (warningDialog) {
+  if (dismissBtn) {
 
-        warningDialog.addEventListener('cancel', function(e) {
+    dismissBtn.addEventListener('click', function () {
 
-            warningDialog.close();
+      warningDialog.close();
 
-        });
+    });
 
-    }
+  }
+
+
+  // Cerrar diálogo al hacer clic fuera de él
+
+  if (warningDialog) {
+
+    warningDialog.addEventListener('click', function (e) {
+
+      if (e.target === warningDialog) {
+
+        warningDialog.close();
+
+      }
+
+    });
+
+  }
+
+
+  // Cerrar con la tecla ESC (por defecto funciona, pero lo aseguramos)
+
+  if (warningDialog) {
+
+    warningDialog.addEventListener('cancel', function (e) {
+
+      warningDialog.close();
+
+    });
+
+  }
 
 });
 
