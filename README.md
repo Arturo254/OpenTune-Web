@@ -129,3 +129,13 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 © 2024 [Arturo.inc™](https://github.com/Arturo254). Todos los derechos reservados.
 
 </div>
+
+## Rediseño (Material 3 Expressive + movimiento cinemático)
+
+- `css/redesign.css` — capa de diseño (tokens tonales, formas M3E, botones con shape-morph, Roboto Flex variable).
+- `js/motion.js` — GSAP + ScrollTrigger + Lenis, controlado por `data-*` (ver cabecera del archivo).
+- `js/tailwind-config.js` — tokens de Tailwind compartidos por todas las páginas.
+- `tools/build_pages.py` — regenera `index.html`, `en.html` y `pt_BR.html` desde una plantilla + `tools/i18n.py`.
+- `tools/build_secondary.py` / `build_contributors_static.py` / `restyle_contributors.py` — resto de páginas.
+
+Edita los textos en `tools/i18n.py` y ejecuta `python3 tools/build_pages.py`.

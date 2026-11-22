@@ -1,0 +1,58 @@
+[
+ {
+  "id": "recopilacion",
+  "icon": "database",
+  "title": "1. Recopilación de Información",
+  "paras": [
+   "En OpenTune, recopilamos información personal limitada necesaria para proporcionar nuestros servicios de música. Esto puede incluir su nombre, dirección de correo electrónico, preferencias de música y datos de uso."
+  ]
+ },
+ {
+  "id": "uso",
+  "icon": "monitoring",
+  "title": "2. Uso de la Información",
+  "paras": [
+   "La información recopilada se utiliza para mejorar la experiencia de usuario y brindar contenido personalizado. Podemos utilizar esta información para recomendar música, crear listas de reproducción personalizadas y comunicarnos con usted sobre actualizaciones y novedades en la plataforma."
+  ]
+ },
+ {
+  "id": "compartir",
+  "icon": "share",
+  "title": "3. Compartir Información",
+  "paras": [
+   "No compartimos información personal con terceros sin su consentimiento, excepto en situaciones legales donde esté permitido por la ley. Podemos compartir información de forma anónima para realizar análisis y mejorar nuestros servicios."
+  ]
+ },
+ {
+  "id": "seguridad",
+  "icon": "shield",
+  "title": "4. Seguridad",
+  "paras": [
+   "Implementamos medidas de seguridad para proteger su información personal contra accesos no autorizados, uso indebido o divulgación. Utilizamos cifrado de datos y otras tecnologías para garantizar la seguridad de sus datos en nuestra plataforma."
+  ]
+ },
+ {
+  "id": "cookies",
+  "icon": "cookie",
+  "title": "5. Cookies y Tecnologías Similares",
+  "paras": [
+   "Utilizamos cookies y tecnologías similares para mejorar su experiencia en OpenTune. Estas tecnologías nos permiten recordar sus preferencias, analizar el rendimiento de la plataforma y personalizar el contenido que se le muestra."
+  ]
+ },
+ {
+  "id": "cambios",
+  "icon": "autorenew",
+  "title": "6. Cambios en la Política de Privacidad",
+  "paras": [
+   "Nos reservamos el derecho de modificar nuestra Política de Privacidad en cualquier momento. Cualquier cambio en la política se publicará en esta página. Le recomendamos revisar periódicamente esta política para mantenerse informado sobre cómo protegemos su información."
+  ]
+ },
+ {
+  "id": "contacto",
+  "icon": "mail",
+  "title": "7. Contacto",
+  "paras": [
+   "Si tiene preguntas sobre nuestra Política de Privacidad o desea ejercer sus derechos relacionados con sus datos personales, no dude en contactarnos."
+  ]
+ }
+]
